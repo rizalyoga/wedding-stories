@@ -1,21 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "./views/home/before-login/index.jsx";
+import Footer from "./views/components/footer/footer.jsx";
+import RegisterUser from "./views/components/user/register-user/register-user.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/registerUser" element={<RegisterUser />} />
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+
+      <Footer />
+    </BrowserRouter>
   );
 }
 

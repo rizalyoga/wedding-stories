@@ -1,0 +1,39 @@
+.body {
+  background-color: #5c7893;
+  height: 100vh;
+}
+
+.body-register {
+  padding-top: 10%;
+  color: black;
+}
+
+.button-submit {
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #84a1be;
+  border: none;
+  color: white;
+}
+
+.input-register {
+  border: none;
+  height: 100%;
+  color: #84aed4;
+}
+
+.button-submit:hover {
+  background-color: #6b849c;
+}
+
+@media (max-width: 850px) {
+  .body-register {
+    padding-top: 20%;
+  }
+}
+
+@media (max-width: 500px) {
+  .body-register {
+    padding-top: 30%;
+  }
+}
