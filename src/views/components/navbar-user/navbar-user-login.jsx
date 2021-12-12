@@ -17,7 +17,7 @@ const NavLoginUser = () => {
             <input type="text" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             {/* <Button class="btn btn-outline-success" type="submit"></Button> */}
           </Form>
-          <NavDropdown title="NameUser" id="collasible-nav-dropdown" className="menu-user">
+          <NavDropdown title={<i className="bi bi-person-circle" style={{ fontSize: 25, color: "#5C7893" }}></i>} id="collasible-nav-dropdown" className="menu-user">
             <NavDropdown.Item onClick={() => navigate("/")}>Home</NavDropdown.Item>
             <NavDropdown.Item>Profile</NavDropdown.Item>
             <NavDropdown.Item>History</NavDropdown.Item>

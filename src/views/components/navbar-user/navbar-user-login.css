@@ -34,6 +34,10 @@
   outline: none;
 }
 
+.dropdown-menu {
+  margin-left: -100px;
+}
+
 .search-input {
   width: 50%;
 }

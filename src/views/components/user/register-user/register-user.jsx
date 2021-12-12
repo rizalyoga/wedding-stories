@@ -53,7 +53,7 @@ const RegisUser = () => {
                   <h5 className="text-white">Ingin mendaftar sebagai WO ?</h5>
                   <Button style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>Daftar ?</Button>
                   <hr style={{ color: "white" }} />
-                  <h5 className="text-white">Masuk Sebagai Wo ?</h5>
+                  <h5 className="text-white">Masuk Sebagai WO ?</h5>
                   <Button style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>Login ?</Button>
                 </div>
               </Form>
