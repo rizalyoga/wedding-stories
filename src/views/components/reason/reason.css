@@ -13,6 +13,9 @@
 }
 
 .reason-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-basis: 31%;
   background: #b0c3d6;
   border-radius: 10px;
@@ -20,6 +23,10 @@
   padding: 20px 12px;
   box-sizing: border-box;
   transition: 0.5s;
+}
+
+.reason-col img {
+  margin-top: 20px;
 }
 
 .reason-col:hover {

@@ -3,11 +3,13 @@ import image from "../../../assets/download.jpeg";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import Banner from "../../components/banner/banner.jsx";
 import Reason from "../../components/reason/reason.jsx";
+import NavLoginUser from "../../components/navbar-user/navbar-user-login.jsx";
 
 const Home = () => {
   return (
     <>
-      <NavUser />
+      {/* <NavUser /> */}
+      <NavLoginUser />
       <Banner />
       <Reason />
       <div className="list-wo container-list-wo">

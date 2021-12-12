@@ -26,6 +26,7 @@ a {
   color: #5c7893;
   border: 0.5px solid;
   border-radius: 5px;
+  margin-right: 10px;
 }
 
 .sign-in:hover {
@@ -48,14 +49,14 @@ a {
   border-radius: 5px;
 }
 
-.search input {
+/* .search-input {
   width: 150%;
   border-radius: 20px;
   border: 2px solid;
   border-color: #5c7893;
   background: none;
   color: rgb(71, 71, 71);
-}
+} */
 
 .search input:focus {
   outline: #84a1be;
@@ -64,17 +65,22 @@ a {
 
 @media (max-width: 768px) {
   .search input {
-    width: 100%;
-    height: 5%;
+    width: 120%;
+    height: 100%;
   }
 }
 
-@media (max-width: 435px) {
+@media (max-width: 485px) {
   .logo img {
     display: none;
   }
   .search input {
-    width: 90%;
+    width: 100%;
     height: 100%;
+  }
+
+  .sign-in {
+    margin-right: 3px !important;
+    margin-left: 10px !important;
   }
 }

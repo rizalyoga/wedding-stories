@@ -3,6 +3,7 @@ import "./navbar-user.css";
 import logo from "../../../assets/virus.png";
 import ModalLogin from "../modal-login/modal-login.jsx";
 import { useNavigate } from "react-router-dom";
+import { Form } from "react-bootstrap";
 
 const NavUser = () => {
   const [modalLoginShow, setModalLoginShow] = React.useState(false);
@@ -15,16 +16,17 @@ const NavUser = () => {
           <div className="logo">
             <img src={logo} alt="logo" onClick={() => navigate("/")} />
           </div>
-          <div className="search">
-            <input style={{ textAlign: "center" }} type="text" placeholder="Search" />
-          </div>
-          <div className="nav-links">
+          <Form className="d-flex search-input">
+            <input type="text" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            {/* <Button class="btn btn-outline-success" type="submit"></Button> */}
+          </Form>
+          <div className="nav-links mt-2">
             <ModalLogin show={modalLoginShow} onHide={() => setModalLoginShow(false)} />
-            <a className="me-3 sign-in" href="#" onClick={() => setModalLoginShow(true)}>
-              Sign In
+            <a className="sign-in" href="#" onClick={() => setModalLoginShow(true)}>
+              Masuk
             </a>
             <a className="sign-up" href="#" onClick={() => navigate("/registerUser")}>
-              Sign Up
+              Daftar
             </a>
           </div>
         </div>
