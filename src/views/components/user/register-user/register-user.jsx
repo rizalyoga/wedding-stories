@@ -17,8 +17,10 @@ const RegisUser = () => {
     const x = document.getElementById("password");
     if (x.type === "password") {
       x.type = "text";
+      document.getElementById("togglePassword").style.color = "red";
     } else {
       x.type = "password";
+      document.getElementById("togglePassword").style.color = "black";
     }
   };
 
