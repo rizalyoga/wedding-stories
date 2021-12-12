@@ -16,26 +16,36 @@ const ModalLogin = (props) => {
       <Modal.Header closeButton></Modal.Header>
       <div className="form-container sign-in-container rounded">
         <Modal.Body>
-          <h5 className="mb-3 fw-bolder" style={{ textAlign: "center" }}>
+          {/* <h5 className="mb-3 fw-bolder" style={{ textAlign: "center" }}>
             Masuk
-          </h5>
-          <Form onSubmit={(event) => handleSubmit(event)}>
+          </h5> */}
+          <Form onSubmit={(event) => handleSubmit(event)} className="input-login ">
             {/* <Form.Label className="mb-0 label-login">Email</Form.Label> */}
-            <input className="input-login " type="email" placeholder="Input your email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+            <input type="email" placeholder="E-mail" value={email} onChange={(event) => setEmail(event.target.value)} required />
             {/* <Form.Label className="mb-0 label-login">Password</Form.Label> */}
-            <input className="input-login " type="password" placeholder="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+            <input type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} required />
             <br />
             <span></span>
             <Button className="mt-3 submit-login " type="submit">
-              Sign In
+              Masuk
             </Button>
-            <p className="pt-5">
+            <p className="pt-4">
               Belum punya akun ?{" "}
               <a style={{ color: "#fff", cursor: "pointer" }} onClick={() => navigate("/registerUser")}>
                 Daftar
               </a>
             </p>
           </Form>
+          <hr style={{ color: "white" }} />
+          <h6 className="text-white">Daftar sebagai WO ?</h6>
+          <Button size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px" }}>
+            Daftar
+          </Button>
+          <hr style={{ color: "white" }} />
+          <h6 className="text-white">Masuk Sebagai WO ?</h6>
+          <Button size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px", marginBottom: "10px" }}>
+            Masuk
+          </Button>
         </Modal.Body>
       </div>
     </Modal>

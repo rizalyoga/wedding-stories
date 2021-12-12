@@ -54,17 +54,16 @@
   opacity: 1; /* Firefox */
 }
 
-.input-login {
-  width: 240px !important;
+.input-login input {
+  width: 100% !important;
   text-align: center !important;
   background: transparent !important;
   border: none;
   border-bottom: 1px solid #fff !important;
-  border-radius: 5px !important;
   font-size: 16px !important;
   font-weight: 200px !important;
   transition: border 0.5s;
   outline: none;
-  color: rgb(99, 99, 99);
+  color: rgb(43, 43, 43);
   font-weight: normal;
 }

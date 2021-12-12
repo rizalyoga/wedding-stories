@@ -1,10 +1,13 @@
 import "./footer.css";
 import logo from "../../../assets/virus.png";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
-      <hr />
+      <hr style={{ marginTop: "-1px" }} />
       <div className="container">
         <div className="foo-ter">
           <div className="footer-left-col d-flex">
@@ -34,8 +37,8 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-right-col">
-            <div className="footer-logo">
-              <img src={logo} alt="logo" />
+            <div className="footer-logo" style={{ cursor: "pointer" }}>
+              <img onClick={() => navigate("/")} src={logo} alt="logo" />
             </div>
           </div>
         </div>

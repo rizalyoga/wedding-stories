@@ -21,7 +21,7 @@ const NavLoginWo = () => {
             <NavDropdown.Item onClick={() => navigate("/")}>Home</NavDropdown.Item>
             <NavDropdown.Item>Profile</NavDropdown.Item>
             <NavDropdown.Item>Packages</NavDropdown.Item>
-            <NavDropdown.Item>List Book</NavDropdown.Item>
+            <NavDropdown.Item>List Order</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item>Logout</NavDropdown.Item>
           </NavDropdown>

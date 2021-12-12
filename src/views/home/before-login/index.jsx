@@ -4,11 +4,13 @@ import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import Banner from "../../components/banner/banner.jsx";
 import Reason from "../../components/reason/reason.jsx";
 // import NavLoginUser from "../../components/navbar-user/navbar-user-login.jsx";
+import NavWo from "../../components/navbar-wo/navbar-wo-login.jsx";
 
 const Home = () => {
   return (
     <>
       <NavUser />
+      {/* <NavWo /> */}
       {/* <NavLoginUser /> */}
       <Banner />
       <Reason />

@@ -8,7 +8,7 @@ const Reason = () => {
     <div>
       <div className="container">
         <div className="reason">
-          <h2 className="text-center my-5 fw-bold">why should weeding day</h2>
+          <h2 className="text-center my-5 fw-bold">Kenapa harus weeding day</h2>
         </div>
         <div className="card-reason">
           <div className="row-reason">
