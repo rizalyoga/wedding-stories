@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/index.js";
 
 const composeEnhancers = compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>
