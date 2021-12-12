@@ -1,8 +1,9 @@
-body{
+.register-wo {
   background-color: #5c7893;
+  padding-bottom: 5%;
 }
 
-.title-form{
+.title-form {
   color: white;
 }
 
@@ -10,9 +11,9 @@ body{
   margin-top: 30vh;
   margin-right: 15vw;
   font-size: 4wh;
-  color:white;
+  color: white;
 }
-.description-text{
+.description-text {
   margin-right: 15vw;
   font-weight: bold;
 }

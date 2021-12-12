@@ -2,9 +2,9 @@ import "./register-user.css";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NavUser from "../../navbar-user/navbar-user.jsx";
+import NavUser from "../../components/navbar-user/navbar-user.jsx";
 // import NavLoginUser from "../../navbar-user/navbar-user-login.jsx";
-import logo from "../../../../assets/virus.png";
+import logo from "../../../assets/virus.png";
 
 const RegisUser = () => {
   const [username, setUsername] = useState("");
@@ -77,10 +77,14 @@ const RegisUser = () => {
                 <hr style={{ color: "white" }} />
                 <div className="content-wo ">
                   <h5 className="text-white">Ingin mendaftar sebagai WO ?</h5>
-                  <Button style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>Daftar ?</Button>
+                  <Button onClick={() => navigate("/vendor/register")} style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
+                    Daftar ?
+                  </Button>
                   <hr style={{ color: "white" }} />
                   <h5 className="text-white">Masuk Sebagai WO ?</h5>
-                  <Button style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>Masuk ?</Button>
+                  <Button onClick={() => navigate("/vendor/login")} style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
+                    Masuk ?
+                  </Button>
                 </div>
               </Form>
             </div>

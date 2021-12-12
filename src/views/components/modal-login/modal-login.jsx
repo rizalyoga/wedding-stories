@@ -31,19 +31,19 @@ const ModalLogin = (props) => {
             </Button>
             <p className="pt-4">
               Belum punya akun ?{" "}
-              <a style={{ color: "#fff", cursor: "pointer" }} onClick={() => navigate("/registerUser")}>
+              <a style={{ color: "#fff", cursor: "pointer" }} onClick={() => navigate("/user/register")}>
                 Daftar
               </a>
             </p>
           </Form>
           <hr style={{ color: "white" }} />
           <h6 className="text-white">Daftar sebagai WO ?</h6>
-          <Button size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px" }}>
+          <Button onClick={() => navigate("/vendor/register")} size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px" }}>
             Daftar
           </Button>
           <hr style={{ color: "white" }} />
           <h6 className="text-white">Masuk Sebagai WO ?</h6>
-          <Button size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px", marginBottom: "10px" }}>
+          <Button onClick={() => navigate("/vendor/login")} size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px", marginBottom: "10px" }}>
             Masuk
           </Button>
         </Modal.Body>

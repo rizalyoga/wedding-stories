@@ -29,7 +29,7 @@ const NavUser = () => {
               <a className="sign-in" href="#" onClick={() => setModalLoginShow(true)}>
                 Masuk
               </a>
-              <a className="sign-up" href="#" onClick={() => navigate("/registerUser")}>
+              <a className="sign-up" href="#" onClick={() => navigate("/user/register")}>
                 Daftar
               </a>
             </div>

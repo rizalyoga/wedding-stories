@@ -13,7 +13,11 @@
   margin-right: 30px;
 }
 
-.title-form{
+.form-login a {
+  color: black;
+}
+
+.title-form {
   color: white;
 }
 .btn-submit {
