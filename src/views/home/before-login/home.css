@@ -1,6 +1,6 @@
-.container-list-wo {
+/* .container-list-wo {
   margin-left: 90px;
-}
+} */
 
 .row-card {
   display: flex;
@@ -9,6 +9,8 @@
 
 .card-wo {
   cursor: pointer;
+  width: 271px;
+  margin-right: 8px;
 }
 
 .images {
@@ -33,21 +35,25 @@
   border-radius: 10px;
 }
 
+@media (max-width: 1105px) {
+  .card-wo {
+    width: 340px;
+  }
+}
+
 @media (max-width: 1100px) {
   .images img {
-    width: 350px;
+    width: 500px;
   }
 }
 
 @media (max-width: 850px) {
-  .container-list-wo {
-    margin-left: 0px;
-  }
-
   .list-wo h2 {
     text-align: center;
   }
-
+  .card-wo {
+    width: 500px;
+  }
   .row-card {
     display: flex;
     justify-content: center;

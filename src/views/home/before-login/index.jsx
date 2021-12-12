@@ -15,47 +15,48 @@ const Home = () => {
       <Banner />
       <Reason />
       <div className="list-wo container-list-wo">
-        <h2 className="fw-bold">Wedding Planner di Indonesia</h2>
-
-        <div className="row-card my-5">
-          <div className="card-wo mx-2 my-2">
-            <div className="images">
-              <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+        <div className="container">
+          <h2 className="fw-bold">Wedding Planner di Indonesia</h2>
+          <div className="row-card my-5">
+            <div className="card-wo my-2">
+              <div className="images">
+                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+              </div>
+              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="rate">rate: bintang</div>
             </div>
-            <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
-            <div className="rate">rate: bintang</div>
-          </div>
 
-          <div className="card-wo mx-2 my-2">
-            <div className="images">
-              <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+            <div className="card-wo my-2">
+              <div className="images">
+                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+              </div>
+              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="rate">rate: bintang</div>
             </div>
-            <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
-            <div className="rate">rate: bintang</div>
-          </div>
 
-          <div className="card-wo mx-2 my-2">
-            <div className="images">
-              <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+            <div className="card-wo my-2">
+              <div className="images">
+                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+              </div>
+              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="rate">rate: bintang</div>
             </div>
-            <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
-            <div className="rate">rate: bintang</div>
-          </div>
 
-          <div className="card-wo mx-2 my-2">
-            <div className="images">
-              <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+            <div className="card-wo my-2">
+              <div className="images">
+                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+              </div>
+              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="rate">rate: bintang</div>
             </div>
-            <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
-            <div className="rate">rate: bintang</div>
-          </div>
 
-          <div className="card-wo mx-2 my-2">
-            <div className="images">
-              <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+            <div className="card-wo my-2">
+              <div className="images">
+                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
+              </div>
+              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="rate">rate: bintang</div>
             </div>
-            <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
-            <div className="rate">rate: bintang</div>
           </div>
         </div>
       </div>
