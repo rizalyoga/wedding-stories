@@ -1,0 +1,35 @@
+body{
+  background-color: #5c7893;
+}
+
+.title-form{
+  color: white;
+}
+
+.title-text {
+  margin-top: 30vh;
+  margin-right: 15vw;
+  font-size: 4wh;
+  color:white;
+}
+.description-text{
+  margin-right: 15vw;
+  font-weight: bold;
+}
+
+.strip {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-right: 52vw;
+  align-content: flex-start;
+  justify-content: flex-start;
+  transform: scale(1);
+  color: palevioletred;
+  border: 2px solid blue;
+  border-radius: 0px;
+}
+
+.btn-submit {
+  background-color: cornflowerblue;
+  border: none;
+}
