@@ -1,5 +1,4 @@
 import "./home.css";
-import { Card } from "react-bootstrap";
 import image from "../../../assets/download.jpeg";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import Banner from "../../components/banner/banner.jsx";

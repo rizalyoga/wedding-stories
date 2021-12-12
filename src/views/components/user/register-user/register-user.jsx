@@ -13,6 +13,15 @@ const RegisUser = () => {
 
   const handleSubmit = () => {};
 
+  const showPassword = () => {
+    const x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  };
+
   return (
     <div className="body">
       <NavUser />
@@ -30,22 +39,25 @@ const RegisUser = () => {
                   <div className="Room d-flex flex-column">
                     <div className="mb-3 d-flex flex-column text-white" controlId="username">
                       <Form.Label>Username</Form.Label>
-                      <Form.Control className="input-register" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} />
+                      <Form.Control className="input-register" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
                     </div>
 
                     <div className="mb-3 d-flex flex-column text-white" controlId="email">
                       <Form.Label>Email</Form.Label>
-                      <Form.Control className="input-register" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} />
+                      <Form.Control className="input-register" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
                     </div>
 
                     <div className="mb-3 d-flex flex-column text-white" controlId="password">
                       <Form.Label>password</Form.Label>
-                      <Form.Control className="input-register" placeholder="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                      <p className="d-flex justify-content-center align-items-center">
+                        <Form.Control style={{ marginLeft: "-2px" }} id="password" className="input-register " placeholder="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+                        <i style={{ marginLeft: "-20px", color: "black", cursor: "pointer" }} className="bi bi-eye-slash" id="togglePassword" onClick={() => showPassword()}></i>
+                      </p>
                     </div>
                   </div>
                 </Row>
 
-                <button className="button-submit mt-4 mb-4" type="submit">
+                <button className="button-submit mt-1 mb-4" type="submit">
                   Register
                 </button>
                 <hr style={{ color: "white" }} />
