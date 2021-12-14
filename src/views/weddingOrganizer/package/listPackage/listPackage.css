@@ -1,0 +1,19 @@
+.title-page{
+  color: white;
+}
+.list-package{
+  background-color: #5c7893;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+.photo-package {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.card-package {
+  box-shadow: 5px 5px 10px black;
+}
+.cursor{
+  cursor: pointer;
+}

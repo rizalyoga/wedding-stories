@@ -12,6 +12,8 @@ import LoginWO from "./views/weddingOrganizer/login/login-wo";
 import DetailPackage from "./views/user/detail-package-user/detail-package.jsx";
 import ProfileWO from "./views/weddingOrganizer/profile/profile-wo";
 import ProfileUser from "./views/user/profile-user/profile-user.jsx";
+import ListPackage from "./views/weddingOrganizer/package/listPackage/listPackage";
+import FormAddPackage from "./views/weddingOrganizer/package/addPackage/formAddPackage";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +35,8 @@ function App() {
         <Route path="/detail/package" element={<DetailPackage />}></Route>
         <Route path="/vendor/profile" element={<ProfileWO />}></Route>
         <Route path="/user/profile" element={<ProfileUser />}></Route>
+        <Route path="/vendor/packages" element={<ListPackage />}></Route>
+        <Route path="/vendor/packages/add" element={<FormAddPackage />}></Route>
       </Routes>
 
       <Footer />
