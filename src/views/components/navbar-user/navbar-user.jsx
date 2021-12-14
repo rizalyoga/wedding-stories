@@ -11,7 +11,7 @@ const NavUser = () => {
   const [modalLoginShow, setModalLoginShow] = React.useState(false);
   const navigate = useNavigate();
 
-  if (localStorage.token && localStorage.status == "User") {
+  if (localStorage.token && localStorage.role == "User") {
     return <NavbarLoginUser />;
   } else if (localStorage.token && localStorage.role == "organizer") {
     return <NavbarLoginWo />;
