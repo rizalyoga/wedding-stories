@@ -1,19 +1,73 @@
 import "./register-user.css";
-import { Form, Row, Col, Button } from "react-bootstrap";
-import { useState } from "react";
+import React from "react";
+import { Form, Row, Col, Button, Spinner } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 // import NavLoginUser from "../../navbar-user/navbar-user-login.jsx";
 import logo from "../../../assets/virus.png";
+import axios from "axios";
+import swal from "sweetalert";
+import ModalLogin from "../../components/modal-login/modal-login.jsx";
 
 const RegisUser = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [modalLoginShow, setModalLoginShow] = React.useState(false);
 
   const navigate = useNavigate();
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    const online = window.navigator.onLine;
+    event.preventDefault();
+    const body = {
+      username,
+      email,
+      password,
+    };
+    console.log(username, email, password);
+
+    if (username.length == 0) {
+      return swal("Username can not be blank");
+    } else if (email.length == 0) {
+      return swal("Email can not be blank");
+    } else if (password.length == 0) {
+      return swal("Password can not be blank");
+    } else {
+      setLoading(true);
+      axios
+        .post("https://weddingstories.space/register/users", body)
+        .then((data) => {
+          console.log(data, "success register");
+          swal(data.data.message, "Now you can Login");
+          setModalLoginShow(true);
+          setUsername("");
+          setPassword("");
+          setEmail("");
+        })
+        .catch((err) => {
+          if (online) {
+            setModalLoginShow(true);
+            <ModalLogin show={modalLoginShow} />;
+            console.log(err.response.data.message, "error register");
+            swal(err.response.data.message);
+          } else {
+            swal("Your Internet Offline");
+          }
+        })
+        .finally(() => setLoading(false));
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="loading d-flex justify-content-center align-items-center flex-column">
+        <Spinner animation="border" />
+      </div>
+    );
+  }
 
   const showPassword = () => {
     const x = document.getElementById("password");
@@ -38,7 +92,7 @@ const RegisUser = () => {
             </div>
             <p className="text-center">Mulai persiapan pernikahan Anda dengan penawaran terbaik & fitur eksklusif di Wedding-Day!</p>
             <div className="form-register">
-              <Form onSubmit={(event) => handleSubmit(event)}>
+              <Form>
                 <Row>
                   <div className="Room d-flex flex-column">
                     <div className="mb-3 d-flex flex-column text-white" controlId="username">
@@ -71,7 +125,7 @@ const RegisUser = () => {
                   </div>
                 </Row>
 
-                <button className="button-submit mt-1 mb-4" type="submit">
+                <button className="button-submit mt-1 mb-4" type="submit" onClick={(event) => handleSubmit(event)}>
                   Daftar
                 </button>
                 <hr style={{ color: "white" }} />

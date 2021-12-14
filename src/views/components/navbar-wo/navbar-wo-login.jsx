@@ -6,6 +6,11 @@ import "./navbar-wo-login.css";
 const NavLoginWo = () => {
   const navigate = useNavigate();
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <div className="nav-login-wo shadow">
       <Navbar style={{ background: "#fff" }}>
@@ -23,7 +28,7 @@ const NavLoginWo = () => {
             <NavDropdown.Item>Packages</NavDropdown.Item>
             <NavDropdown.Item>List Order</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item>Logout</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
           </NavDropdown>
         </Container>
       </Navbar>

@@ -1,15 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Spinner } from "react-bootstrap";
 import "./modal-login.css";
+import allStore from "../../../store/actions/index";
 
 const ModalLogin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loading = useSelector(({ loading }) => loading);
+  const route = useSelector(({ route }) => route);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("1.masuk Handle Submit");
+    dispatch(allStore.UserLogin({ email, password }));
+  };
+
+  // useEffect(() => {
+  //   if (localStorage) {
+  //     navigate(route);
+  //   }
+  // }, [route]);
+
+  if (loading) {
+    console.log("inilagi loading");
+    return (
+      <div className="loading d-flex justify-content-center align-items-center flex-column">
+        <Spinner animation="border" />
+      </div>
+    );
+  }
 
   return (
     <Modal {...props} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
