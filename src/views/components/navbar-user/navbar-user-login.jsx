@@ -11,10 +11,6 @@ const NavLoginUser = () => {
     navigate("/");
   };
 
-  const logToken = () => {
-    console.log(localStorage.status);
-  };
-
   return (
     <div className="nav-login-user shadow">
       <Navbar style={{ background: "#fff" }}>
@@ -28,7 +24,7 @@ const NavLoginUser = () => {
           </Form>
           <NavDropdown title={<i className="bi bi-person-circle" style={{ fontSize: 25, color: "#5C7893" }}></i>} id="collasible-nav-dropdown" className="menu-user">
             <NavDropdown.Item onClick={() => navigate("/")}>Home</NavDropdown.Item>
-            <NavDropdown.Item onClick={() => logToken()}>Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => navigate("/user/profile")}>Profile</NavDropdown.Item>
             <NavDropdown.Item>History</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
