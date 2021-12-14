@@ -11,7 +11,7 @@ const NavLoginWo = () => {
       <Navbar style={{ background: "#fff" }}>
         <Container>
           <Navbar.Brand href="#home" className="logo">
-            <img src={logoNavLogin} width="30" height="35" className="d-inline-block align-top" alt="logo" />
+            <img onClick={() => navigate("/")} src={logoNavLogin} width="30" height="35" className="d-inline-block align-top" alt="logo" />
           </Navbar.Brand>
           <Form className="d-flex search-input">
             <input type="text" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -19,7 +19,7 @@ const NavLoginWo = () => {
           </Form>
           <NavDropdown title={<i className="bi bi-person-circle" style={{ fontSize: 25, color: "#5C7893" }}></i>} id="collasible-nav-dropdown" className="menu-wo">
             <NavDropdown.Item onClick={() => navigate("/")}>Home</NavDropdown.Item>
-            <NavDropdown.Item>Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => navigate("/vendor/profile")}>Profile</NavDropdown.Item>
             <NavDropdown.Item>Packages</NavDropdown.Item>
             <NavDropdown.Item>List Order</NavDropdown.Item>
             <NavDropdown.Divider />

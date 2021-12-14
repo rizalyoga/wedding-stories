@@ -4,10 +4,12 @@ import FormLogo from "./formLogo";
 import FormProfile from "./formProfile";
 import FormFile from "./formFile";
 import "./profile-wo.css";
+import NavWO from "../../components/navbar-wo/navbar-wo-login.jsx";
 
 const ProfileWO = () => {
   return (
     <>
+      <NavWO />
       <div className="profile-wo">
         <Container className="mb-5 mt-5">
           {/*  upload foto logo */}
