@@ -2,13 +2,14 @@ import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import "./register-wo.css";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 
 const RegisterWO = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const { name, email, password, address, city } = form;
+  const { name, email, password, address, city, phone } = form;
   const navigate = useNavigate();
 
   const setField = (field, value) => {
@@ -43,6 +44,10 @@ const RegisterWO = () => {
     if (!address || address === "") newErrors.address = "cannot be blank!";
     // city errors
     if (!city || city === "") newErrors.city = "cannot be blank!";
+    // phone errors
+    if (!phone || phone === "") newErrors.phone = "cannot be blank!";
+    else if (phone < 0) newErrors.phone = "phone number cannot be negative!";
+    else if (phone.length < 6) newErrors.phone = "phone number is too short!";
 
     // else if (address.length < 6)
     //   newErrors.phonenumber = "phone number is too short!";
@@ -50,7 +55,7 @@ const RegisterWO = () => {
     return newErrors;
   };
 
-  const handleSubmit = (event) => {
+  const handleRegister = (event) => {
     event.preventDefault();
     const newErrors = findFormErrors();
     // Conditional logic:
@@ -58,7 +63,27 @@ const RegisterWO = () => {
       // We got errors!
       setErrors(newErrors);
     } else {
-      navigate("/vendor/login");
+      const body = {
+        WoName: name,
+        email: email,
+        PhoneNumber: phone,
+        password: password,
+        city: city,
+        address: address,
+      };
+      console.log(body);
+      // return;
+      axios
+        .post("https://weddingstories.space/register/organizer", body)
+        .then((data) => {
+          console.log(data);
+          swal(data.data.message);
+          navigate("/vendor/login");
+        })
+        .catch((err) => {
+          console.log(err.message);
+          swal(err.Checkmessage);
+        });
     }
   };
 
@@ -79,7 +104,7 @@ const RegisterWO = () => {
               </p>
             </Col>
             <Col md={4} sm={12}>
-              <Form onSubmit={handleSubmit}>
+              <Form>
                 <Row className="mt-5 pt-5">
                   <Form.Group
                     as={Col}
@@ -147,6 +172,19 @@ const RegisterWO = () => {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group as={Col} md="12" controlId="validationCustom05">
+                    <Form.Label className="title-form">Phone Number</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Phone Number"
+                      onChange={(e) => setField("phone", e.target.value)}
+                      required
+                      isInvalid={!!errors.phone}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.phone}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col} md="12" controlId="validationCustom05">
                     <Form.Label className="title-form">Password</Form.Label>
                     <Form.Control
                       type="password"
@@ -172,7 +210,7 @@ const RegisterWO = () => {
                 <Button
                   className="col-12 mt-3 mb-3 btn-submit"
                   variant="primary"
-                  onClick={handleSubmit}
+                  onClick={(e) => handleRegister(e)}
                 >
                   Register
                 </Button>

@@ -12,6 +12,10 @@ const ProfileWO = () => {
       <NavWO />
       <div className="profile-wo">
         <Container className="mb-5 mt-5">
+          <Row>
+            <h2 className="title-page">Your Profile</h2>
+            <hr />
+          </Row>
           {/*  upload foto logo */}
           <Row className="border mt-3 mb-3">
             <FormLogo />
