@@ -25,7 +25,7 @@ const Home = () => {
               <div className="images">
                 <img style={{ borderRadius: "10px" }} src={image} alt="product" />
               </div>
-              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
               <div className="desc-packages d-flex justify-content-between">
                 <div className="price">Rp 100.000.000,00</div>
                 <div className="rate" style={{ color: "#5C7893" }}>
@@ -38,7 +38,7 @@ const Home = () => {
               <div className="images">
                 <img style={{ borderRadius: "10px" }} src={image} alt="product" />
               </div>
-              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
               <div className="desc-packages d-flex justify-content-between">
                 <div className="price">Rp 100.000.000,00</div>
                 <div className="rate" style={{ color: "#5C7893" }}>
@@ -51,7 +51,7 @@ const Home = () => {
               <div className="images">
                 <img style={{ borderRadius: "10px" }} src={image} alt="product" />
               </div>
-              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
               <div className="desc-packages d-flex justify-content-between">
                 <div className="price">Rp 100.000.000,00</div>
                 <div className="rate" style={{ color: "#5C7893" }}>
@@ -64,7 +64,7 @@ const Home = () => {
               <div className="images">
                 <img style={{ borderRadius: "10px" }} src={image} alt="product" />
               </div>
-              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
               <div className="desc-packages d-flex justify-content-between">
                 <div className="price">Rp 100.000.000,00</div>
                 <div className="rate" style={{ color: "#5C7893" }}>
@@ -77,7 +77,7 @@ const Home = () => {
               <div className="images">
                 <img style={{ borderRadius: "10px" }} src={image} alt="product" />
               </div>
-              <div className="name-wo fw-bold">Amoreti Wedding Plan</div>
+              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
               <div className="desc-packages d-flex justify-content-between">
                 <div className="price">Rp 100.000.000,00</div>
                 <div className="rate" style={{ color: "#5C7893" }}>
