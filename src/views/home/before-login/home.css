@@ -31,7 +31,7 @@
 .images:hover {
   -moz-box-shadow: rgba(4, 9, 30, 0.7) 5px 10px inset;
   -webkit-box-shadow: rgba(4, 9, 30, 0.7) 5px 5px 30px inset;
-  box-shadow: rgba(36, 36, 36, 0.3) 5px 5px 55px inset;
+  box-shadow: rgba(107, 154, 241, 0.3) 5px 5px 55px inset;
   border-radius: 10px;
 }
 
