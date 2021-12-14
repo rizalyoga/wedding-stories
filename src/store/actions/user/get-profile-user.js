@@ -2,20 +2,24 @@ import axios from "axios";
 import allStore from "../index.js";
 import swal from "sweetalert";
 
-export const ProfileUser = (payload) => {
+export const ProfileUser = () => {
   const online = window.navigator.onLine;
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
     console.log("2.masuk Action");
-    console.log(payload);
     axios
-      .post("https://weddingstories.space/users/profile", payload)
+      .get("https://weddingstories.space/users/profile", config)
       .then((response) => {
         console.log("3, Masuk Then", response.data);
         dispatch(allStore.setProfileUser(response.data));
       })
       .catch((err) => {
         if (online) {
+          console.log("Ini token bos", token);
           console.log("3, Masuk ERROR:", err.response.data.message);
           swal(err.response.data.message);
         } else if (!online) {

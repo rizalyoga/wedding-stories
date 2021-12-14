@@ -2,12 +2,14 @@ import { Navbar, Container, Form, Button, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import logoNavLogin from "../../../assets/virus.png";
 import "./navbar-user-login.css";
+import swal from "sweetalert";
 
 const NavLoginUser = () => {
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.clear();
+    swal("You've Been Logged Out!");
     navigate("/");
   };
 

@@ -18,12 +18,10 @@ import FormAddPackage from "./views/weddingOrganizer/package/addPackage/formAddP
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    dispatch(allStore.setProfileUser(config));
-  }, []);
+    if (localStorage.token) {
+      dispatch(allStore.ProfileUser());
+    }
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
