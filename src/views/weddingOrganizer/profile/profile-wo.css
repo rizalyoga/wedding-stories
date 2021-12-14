@@ -1,0 +1,22 @@
+.profile-wo{
+  background-color: #5c7893;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+.border {
+  background-color: white;
+  border-radius: 10px;
+}
+.btn-submit {
+  background-color: #84a1be;
+  border: none;
+}
+sup{
+  color: red;
+}
+.margin-logo {
+  margin-top: 110px;
+}
+.margin-logo-btn {
+  margin-top: 140px;
+}
