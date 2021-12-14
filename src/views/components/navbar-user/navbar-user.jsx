@@ -5,13 +5,16 @@ import ModalLogin from "../modal-login/modal-login.jsx";
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import NavbarLoginUser from "./navbar-user-login.jsx";
+import NavbarLoginWo from "../navbar-wo/navbar-wo-login.jsx";
 
 const NavUser = () => {
   const [modalLoginShow, setModalLoginShow] = React.useState(false);
   const navigate = useNavigate();
 
-  if (localStorage.token) {
+  if (localStorage.token && localStorage.status == "User") {
     return <NavbarLoginUser />;
+  } else if (localStorage.token && localStorage.status == "organizer") {
+    return <NavbarLoginWo />;
   } else {
     return (
       <div>
