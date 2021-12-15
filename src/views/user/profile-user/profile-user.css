@@ -1,0 +1,28 @@
+.form-edit {
+  margin-top: 5%;
+  width: 50%;
+  height: 80vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+}
+
+@media (max-width: 885px) {
+  .form-edit {
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 430px) {
+  .form-edit {
+    margin-top: 40%;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .form-edit {
+    margin-top: 30%;
+    width: 100% !important;
+  }
+}

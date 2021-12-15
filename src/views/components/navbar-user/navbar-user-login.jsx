@@ -2,17 +2,15 @@ import { Navbar, Container, Form, Button, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import logoNavLogin from "../../../assets/virus.png";
 import "./navbar-user-login.css";
+import swal from "sweetalert";
 
 const NavLoginUser = () => {
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.clear();
+    swal("You've Been Logged Out!");
     navigate("/");
-  };
-
-  const logToken = () => {
-    console.log(localStorage.status);
   };
 
   return (
@@ -28,7 +26,7 @@ const NavLoginUser = () => {
           </Form>
           <NavDropdown title={<i className="bi bi-person-circle" style={{ fontSize: 25, color: "#5C7893" }}></i>} id="collasible-nav-dropdown" className="menu-user">
             <NavDropdown.Item onClick={() => navigate("/")}>Home</NavDropdown.Item>
-            <NavDropdown.Item onClick={() => logToken()}>Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => navigate("/user/profile")}>Profile</NavDropdown.Item>
             <NavDropdown.Item>History</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
