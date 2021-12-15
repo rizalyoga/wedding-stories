@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import "./login-wo.css";
-// import NavUser from "../../components/navbar-user/navbar-user.jsx";
-import NavWO from "../../components/navbar-wo/navbar-wo-login.jsx";
+import NavUser from "../../components/navbar-user/navbar-user.jsx";
 
 const LoginWO = () => {
   const [form, setForm] = useState({});
@@ -71,15 +70,23 @@ const LoginWO = () => {
         })
         .catch((err) => {
           console.log(err);
-          swal(err.message);
+
+          window.ononline = (event) => {
+            console.log("Back Online");
+            swal(err.reponse.data.message);
+          };
+
+          window.onoffline = (event) => {
+            console.log("Connection Lost");
+            swal(err.message);
+          };
         });
     }
   };
 
   return (
     <>
-      {/* <NavUser /> */}
-      <NavWO />
+      <NavUser />
       <Container fluid>
         <Row>
           <Col md={7} sm={12}>

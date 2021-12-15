@@ -33,13 +33,16 @@ const RegisterWO = () => {
 
     // name errors
     if (!name || name === "") newErrors.name = "cannot be blank!";
+    else if (name.length < 8)
+      newErrors.name = "Bussiness Name cannot be less than 8!";
     // email errors
     if (!email || email === "") newErrors.email = "cannot be blank!";
     else if (regexEmail.test(email) === false)
       newErrors.email = "email is not valid!";
     // password errors
     if (!password || password === "") newErrors.password = "cannot be blank!";
-    else if (password.length < 4) newErrors.password = "password is too short!";
+    else if (password.length < 8)
+      newErrors.password = "password cannot be less than 8!";
     // address errors
     if (!address || address === "") newErrors.address = "cannot be blank!";
     // city errors
@@ -47,7 +50,8 @@ const RegisterWO = () => {
     // phone errors
     if (!phone || phone === "") newErrors.phone = "cannot be blank!";
     else if (phone < 0) newErrors.phone = "phone number cannot be negative!";
-    else if (phone.length < 6) newErrors.phone = "phone number is too short!";
+    else if (phone.length < 9)
+      newErrors.phone = "phone number cannot be less than 9!";
 
     // else if (address.length < 6)
     //   newErrors.phonenumber = "phone number is too short!";
@@ -82,7 +86,7 @@ const RegisterWO = () => {
         })
         .catch((err) => {
           console.log(err.message);
-          swal(err.Checkmessage);
+          swal(err.response.data.message);
         });
     }
   };
@@ -198,7 +202,7 @@ const RegisterWO = () => {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
-                <Form.Group className="mb-12 mt-3">
+                {/* <Form.Group className="mb-12 mt-3">
                   <Form.Check
                     className="title-form"
                     required
@@ -206,7 +210,7 @@ const RegisterWO = () => {
                     feedback="You must agree before submitting."
                     feedbackType="invalid"
                   />
-                </Form.Group>
+                </Form.Group> */}
                 <Button
                   className="col-12 mt-3 mb-3 btn-submit"
                   variant="primary"
