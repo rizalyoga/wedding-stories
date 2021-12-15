@@ -1,9 +1,14 @@
 import { Container, Row, Image, Form, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import swal from "sweetalert";
 import NavLoginWo from "../../../components/navbar-wo/navbar-wo-login";
 import "./formAddPackage.css";
 
+const handlePhoto = (event) => {
+  console.log(event.target.files[0]);
+};
 const FormAddPackage = () => {
   const [image, setPhoto] = useState(
     "https://www.smpn2mirit.sch.id/wp-content/themes/sekolah/gambar/guru.jpg"
@@ -31,6 +36,8 @@ const FormAddPackage = () => {
 
     // name errors
     if (!name || name === "") newErrors.name = "cannot be blank!";
+    else if (name.length < 8)
+      newErrors.name = "Package name cannot be less than 8 characters!";
     // price errors
     if (!price || price === "") newErrors.price = "cannot be blank!";
     else if (price < 0) newErrors.price = "price cannot be negative!";
@@ -39,9 +46,13 @@ const FormAddPackage = () => {
     else if (pax < 0) newErrors.pax = "pax cannot be negative!";
     // photo errors
     if (!photo || photo === "") newErrors.photo = "cannot be blank!";
+    else if (photo.size > 1e8)
+      newErrors.photo = "Photo size cannot be more than 100 MB!";
     // city errors
     if (!description || description === "")
       newErrors.description = "cannot be blank!";
+    else if (description.length < 20)
+      newErrors.description = "Description cannot be less than 20 characters!";
 
     // else if (address.length < 6)
     //   newErrors.phonenumber = "phone number is too short!";
@@ -49,7 +60,7 @@ const FormAddPackage = () => {
     return newErrors;
   };
 
-  const handleSubmit = (event) => {
+  const handleCreatPackage = (event) => {
     event.preventDefault();
     const newErrors = findFormErrors();
     // Conditional logic:
@@ -57,8 +68,54 @@ const FormAddPackage = () => {
       // We got errors!
       setErrors(newErrors);
     } else {
-      navigate("/vendor/packages");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      const body = {
+        packagename: name,
+        price: price,
+        pax: pax,
+        packagedesc: description,
+        urlphoto: photo,
+      };
+      const data = new FormData();
+      data.append("packagename", name);
+      data.append("price", price);
+      data.append("pax", pax);
+      data.append("packagedesc", description);
+      data.append("urlphoto", photo);
+      console.log(photo.size, config);
+      // return;
+      axios
+        .post("https://weddingstories.space/package", data, config)
+        .then((data) => {
+          console.log(data);
+          swal(data.data.message);
+          navigate("/vendor/packages");
+        })
+        .catch((err) => {
+          console.log(err.message);
+          swal(err.response.data.message);
+        });
     }
+  };
+
+  const coba = () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    const body = {
+      packagename: name,
+      price: price,
+      pax: pax,
+      packagedesc: description,
+      urlphoto: photo,
+    };
+    console.log(body, config);
   };
 
   return (
@@ -153,12 +210,16 @@ const FormAddPackage = () => {
             </Form.Group>
             <Form.Group as={Col} md="12">
               <Form.Label className="mt-3">
-                Photo <sup>*</sup>
+                Photo <sup>*</sup> file type : jpg/jpeg/png/bnp
               </Form.Label>
               <Form.Control
                 type="file"
                 placeholder=""
-                onChange={(e) => setField("photo", e.target.value)}
+                accept="image/png, image/jpg, image/jpeg, image/bnp"
+                onChange={(e) => {
+                  setField("photo", e.target.files[0]);
+                  // handlePhoto(e);
+                }}
                 required
                 isInvalid={!!errors.photo}
               />
@@ -182,7 +243,7 @@ const FormAddPackage = () => {
               <Button
                 className="col-12 mt-3 mb-3 btn-submit"
                 variant="primary"
-                onClick={(e) => handleSubmit(e)}
+                onClick={(e) => handleCreatPackage(e)}
               >
                 Save
               </Button>

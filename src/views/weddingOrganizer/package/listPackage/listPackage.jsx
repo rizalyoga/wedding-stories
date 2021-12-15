@@ -66,7 +66,24 @@ const ListPackage = () => {
                   <Card.Body>
                     <Card.Title>
                       {" "}
-                      <h6>Package Name</h6>
+                      <h5>
+                        <b>Package Name</b>{" "}
+                      </h5>
+                      <h6>
+                        <b>Price :</b> Rp 100000000
+                      </h6>
+                      <hr />
+                      <h6>
+                        <b>Pax :</b> 100
+                      </h6>
+                      <hr />
+                      <h6>
+                        <b>Description :</b> Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Sint dicta hic tempore
+                        voluptatem eos fuga, ipsum unde, expedita suscipit
+                        quibusdam laboriosam, assumenda eum tempora neque
+                        laudantium qui quam commodi consequuntur!
+                      </h6>
                     </Card.Title>
                     <Card.Text>
                       <Row>
