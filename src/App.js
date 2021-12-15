@@ -15,7 +15,7 @@ import ProfileUser from "./views/user/profile-user/profile-user.jsx";
 import ListPackage from "./views/weddingOrganizer/package/listPackage/listPackage";
 import FormAddPackage from "./views/weddingOrganizer/package/addPackage/formAddPackage";
 import ProfileWoUser from "./views/user/profile-wo-user/profile-wo-user.jsx";
-// import ProfileWo from "./views/weddingOrganizer/profile-wo/profile-wo.jsx";
+import ProfileWo from "./views/weddingOrganizer/profile-wo/profile-wo.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,12 +33,12 @@ function App() {
         <Route path="/vendor/register" element={<RegisterWO />}></Route>
         <Route path="/vendor/login" element={<LoginWO />}></Route>
         <Route path="/detail/package" element={<DetailPackage />}></Route>
-        <Route path="/vendor/profile" element={<ProfileWO />}></Route>
+        <Route path="/vendor/profile/edit" element={<ProfileWO />}></Route>
         <Route path="/user/profile" element={<ProfileUser />}></Route>
         <Route path="/vendor/packages" element={<ListPackage />}></Route>
         <Route path="/vendor/packages/add" element={<FormAddPackage />}></Route>
         <Route path="/user/detail/organizer" element={<ProfileWoUser />}></Route>
-        {/* <Route path="/vendor/profile" element={<ProfileWoUser />}></Route> */}
+        <Route path="/vendor/profile" element={<ProfileWo />}></Route>
       </Routes>
 
       <Footer />

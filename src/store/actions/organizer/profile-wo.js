@@ -1,5 +1,4 @@
 import axios from "axios";
-import swal from "sweetalert";
 import allStore from "../index.js";
 import swall from "sweetalert";
 
