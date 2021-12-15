@@ -23,9 +23,9 @@ const RegisUser = () => {
     const online = window.navigator.onLine;
     event.preventDefault();
     const body = {
-      username,
-      email,
-      password,
+      name: username,
+      email: email,
+      password: password,
     };
     console.log(username, email, password);
 
@@ -33,6 +33,8 @@ const RegisUser = () => {
       return swal("Username can not be blank");
     } else if (email.length == 0) {
       return swal("Email can not be blank");
+    } else if (!email.includes("@")) {
+      return swal("Please check your format Email");
     } else if (password.length == 0) {
       return swal("Password can not be blank");
     } else {
