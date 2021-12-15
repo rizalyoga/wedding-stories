@@ -8,12 +8,12 @@ export const UserLogin = (payload) => {
 
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
-    console.log("2.masuk Action");
-    console.log(payload);
+    // console.log("2.masuk Action");
+    // console.log(payload);
     axios
       .post("https://weddingstories.space/login/users", payload)
       .then((response) => {
-        console.log("3, Masuk Then", response.data);
+        // console.log("3, Masuk Then", response.data);
         swal(response.data.message);
 
         if (response.data.data !== null) {
@@ -27,12 +27,12 @@ export const UserLogin = (payload) => {
       })
       .catch((err) => {
         if (online) {
-          console.log("online");
-          console.log("3, Masuk ERROR:", err.response.data.message);
+          // console.log("online");
+          // console.log("3, Masuk ERROR:", err.response.data.message);
           swal(err.response.data.message);
         } else if (!online) {
-          console.log("offline");
-          swal("Your Internet Offline");
+          // console.log("offline");
+          swal("Check your Internet Connection");
         }
 
         // allStore.setError(err.response.data.message);

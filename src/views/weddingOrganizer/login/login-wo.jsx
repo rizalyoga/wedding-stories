@@ -61,11 +61,12 @@ const LoginWO = () => {
         .then((data) => {
           console.log(data);
           swal(data.data.message);
-          navigate("/vendor/profile");
           localStorage.setItem("name", data.data.name);
           localStorage.setItem("role", data.data.role);
           localStorage.setItem("id", data.data.id);
           localStorage.setItem("token", data.data.token);
+          navigate("/vendor/profile");
+          window.location.reload();
         })
         .catch((err) => {
           console.log(err);
