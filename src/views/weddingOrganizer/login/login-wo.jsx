@@ -69,7 +69,16 @@ const LoginWO = () => {
         })
         .catch((err) => {
           console.log(err);
-          swal(err.message);
+
+          window.ononline = (event) => {
+            console.log("Back Online");
+            swal(err.reponse.data.message);
+          };
+
+          window.onoffline = (event) => {
+            console.log("Connection Lost");
+            swal(err.message);
+          };
         });
     }
   };
