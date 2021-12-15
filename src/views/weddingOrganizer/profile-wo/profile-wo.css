@@ -31,11 +31,11 @@
   border: solid 2px;
   border-color: #5c7893;
   border-radius: 5px;
-  width: 27%;
+  width: 40%;
 }
 
 .status h6 {
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 /* ---------------------------------- card ---------------------------------- */
@@ -81,4 +81,48 @@
   .images img {
     width: 500px;
   }
+
+  .content-wo {
+    margin-left: 0%;
+  }
+}
+
+@media (max-width: 428px) {
+  .images img {
+    width: 500px;
+  }
+
+  .content-header {
+    flex-direction: column;
+  }
+
+  .contact {
+    flex-direction: column !important;
+  }
+
+  .profile-user {
+    margin-top: 5%;
+    padding-bottom: 5%;
+    padding-top: 15%;
+  }
+
+  .image-logo {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------- LOADING -------------------------------- */
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 20;
+  background-color: rgba(129, 129, 129, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: 1s all !important;
+  transition-property: color !important;
 }

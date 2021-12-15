@@ -10,20 +10,19 @@ export const ProfileUser = () => {
   };
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
-    console.log("2.masuk Action");
+    // console.log("2.masuk Action");
     axios
       .get("https://weddingstories.space/users/profile", config)
       .then((response) => {
-        console.log("3, Masuk Then", response.data);
+        // console.log("3, Masuk Then", response.data);
         dispatch(allStore.setProfileUser(response.data));
       })
       .catch((err) => {
         if (online) {
-          console.log("Ini token bos", token);
-          console.log("3, Masuk ERROR:", err.response.data.message);
+          // console.log("3, Masuk ERROR:", err.response.data.message);
           swal(err.response.data.message);
         } else if (!online) {
-          swal("Your Internet Offline");
+          swal("Check your Internet Connection");
         }
         // allStore.setError(err.response.data.message);
       })

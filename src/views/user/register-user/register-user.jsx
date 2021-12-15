@@ -35,8 +35,12 @@ const RegisUser = () => {
       return swal("Email can not be blank");
     } else if (!email.includes("@")) {
       return swal("Please check your format Email");
+    } else if (email.includes(" ")) {
+      return swal("Your Email Includes Space/blank Character");
     } else if (password.length == 0) {
       return swal("Password can not be blank");
+    } else if (password.includes(" ")) {
+      return swal("Your Password Includes Space/blank Character");
     } else {
       setLoading(true);
       axios
