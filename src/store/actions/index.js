@@ -3,7 +3,7 @@ import setLoading from "./setLoading";
 import setRoute from "./setRoute";
 import { setUserLogin, UserLogin } from "./user/user-login";
 import { setProfileUser, ProfileUser } from "./user/get-profile-user.js";
-import { setProfileWo, fetchProfileWo } from "./organizer/profile-wo.js";
+// import { setProfileWo, fetchProfileWo } from "./org/profile-wo.js";
 
 const allStore = {
   setError,
@@ -16,8 +16,8 @@ const allStore = {
   setProfileUser,
   ProfileUser,
   //setProfileWo
-  setProfileWo,
-  fetchProfileWo,
+  // setProfileWo,
+  // fetchProfileWo,
 };
 
 export default allStore;

@@ -24,7 +24,7 @@ const ProfileWO = () => {
   // }, [profileWo]);
 
   if (loading) {
-    console.log("loading bang");
+    // console.log("loading bang");
     return (
       <div className="loading d-flex justify-content-center align-items-center flex-column">
         <Spinner animation="border" />

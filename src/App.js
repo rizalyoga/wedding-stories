@@ -33,12 +33,12 @@ function App() {
         <Route path="/vendor/register" element={<RegisterWO />}></Route>
         <Route path="/vendor/login" element={<LoginWO />}></Route>
         <Route path="/detail/package" element={<DetailPackage />}></Route>
-        <Route path="/vendor/profile/" element={<ProfileWO />}></Route>
+        <Route path="/vendor/profile" element={<ProfileWO />}></Route>
         <Route path="/user/profile" element={<ProfileUser />}></Route>
         <Route path="/vendor/packages" element={<ListPackage />}></Route>
         <Route path="/vendor/packages/add" element={<FormAddPackage />}></Route>
         <Route path="/user/detail/organizer" element={<ProfileWoUser />}></Route>
-        {/* <Route path="/vendor/profile" element={<ProfileWo />}></Route> */}
+        {/* <Route path="/vendor/profile" element={<ProfileWoUser />}></Route> */}
       </Routes>
 
       <Footer />
