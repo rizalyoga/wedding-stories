@@ -2,19 +2,19 @@ import axios from "axios";
 import allStore from "../index.js";
 import swal from "sweetalert";
 
-export const fetchProfileWo = () => {
+export const detailPackage = (id) => {
   const online = window.navigator.onLine;
-  const token = localStorage.getItem("token");
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
+  //   const token = localStorage.getItem("token");
+  //   const config = {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   };
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
     axios
-      .get(`https://weddingstories.space/organizer/profile`, config)
+      .get(`https://weddingstories.space/package/${id}`)
       .then((data) => {
         // console.log(data.data.data);
-        dispatch(setProfileWo(data.data.data));
+        dispatch(setDetaiilPackage(data.data.data));
       })
       .catch((err) => {
         if (online) {
@@ -27,9 +27,9 @@ export const fetchProfileWo = () => {
   };
 };
 
-export const setProfileWo = (payload) => {
+export const setDetaiilPackage = (payload) => {
   return {
-    type: "SET_PROFILE_WO",
+    type: "SET_DETAIL_PACKAGE",
     payload,
   };
 };

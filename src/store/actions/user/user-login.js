@@ -21,8 +21,11 @@ export const UserLogin = (payload) => {
           localStorage.setItem("id", response.data.id);
           localStorage.setItem("status", response.data.role);
           localStorage.setItem("nama", response.data.name);
+          swal("Login Success");
           dispatch(allStore.setRoute("/"));
-          window.location.href = "/";
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 500);
         }
       })
       .catch((err) => {

@@ -4,6 +4,8 @@ import userProfile from "./user/user-profile-reducer";
 import profileWo from "./organizer/profile-wo-reducer.js";
 import route from "./route/route.js";
 import loading from "./loading-reduce.js";
+import getAllPackage from "./package/all-package-reducer.js";
+import getDetailPackage from "./package/detail-package-reduce.js";
 
 const rootReducers = combineReducers({
   loading,
@@ -14,6 +16,10 @@ const rootReducers = combineReducers({
   userProfile,
   //profile wo
   profileWo,
+  //get all package
+  getAllPackage,
+  //getDetailPackage
+  getDetailPackage,
 });
 
 export default rootReducers;
