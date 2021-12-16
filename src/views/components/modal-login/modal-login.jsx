@@ -52,24 +52,24 @@ const ModalLogin = (props) => {
             <br />
             <span></span>
             <Button className="mt-3 submit-login " type="submit">
-              Masuk
+              sign in
             </Button>
             <p className="pt-4">
-              Belum punya akun ?{" "}
+              Don't have an acount ?{" "}
               <a style={{ color: "#fff", cursor: "pointer" }} onClick={() => navigate("/user/register")}>
-                Daftar
+                sign up
               </a>
             </p>
           </Form>
           <hr style={{ color: "white" }} />
-          <h6 className="text-white">Daftar sebagai WO ?</h6>
+          <h6 className="text-white">Sign up as organizer</h6>
           <Button onClick={() => navigate("/vendor/register")} size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px" }}>
-            Daftar
+            sign up
           </Button>
           <hr style={{ color: "white" }} />
-          <h6 className="text-white">Masuk Sebagai WO ?</h6>
+          <h6 className="text-white">Sign in as organizer</h6>
           <Button onClick={() => navigate("/vendor/login")} size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px", marginBottom: "10px" }}>
-            Masuk
+            sign in
           </Button>
         </Modal.Body>
       </div>

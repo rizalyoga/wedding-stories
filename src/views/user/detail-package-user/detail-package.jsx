@@ -2,14 +2,18 @@ import "./detail-package.css";
 import foto from "../../../assets/download.jpeg";
 import NavUser from "../../components/navbar-user/navbar-user";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const DetailPackage = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <NavUser />
       <div className="container">
         <div className="desc-wo">
-          <h3 className="fw-bold">Amoretti Wedding Plan</h3>
+          <h3 className="fw-bold" style={{ cursor: "pointer" }} onClick={() => navigate("/user/detail/organizer")}>
+            Amoretti Wedding Plan
+          </h3>
           <h6>Jakarta, Jl.Merdeka, No.67</h6>
         </div>
         <hr />

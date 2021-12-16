@@ -31,6 +31,10 @@ const RegisUser = () => {
 
     if (username.length == 0) {
       return swal("Username can not be blank");
+    } else if (username.indexOf(" ") == 0) {
+      return swal("First character in Username is blank character");
+    } else if (email.indexOf(" ") == 0) {
+      return swal("First character in Username is blank character");
     } else if (email.length == 0) {
       return swal("Email can not be blank");
     } else if (!email.includes("@")) {
@@ -132,18 +136,18 @@ const RegisUser = () => {
                 </Row>
 
                 <button className="button-submit mt-1 mb-4" type="submit" onClick={(event) => handleSubmit(event)}>
-                  Daftar
+                  Sign up
                 </button>
                 <hr style={{ color: "white" }} />
-                <div className="content-wo ">
-                  <h5 className="text-white">Ingin mendaftar sebagai WO ?</h5>
+                <div className="content-wo " style={{ marginLeft: "0.2px" }}>
+                  <h5 className="text-white">Sign up as Organizer</h5>
                   <Button onClick={() => navigate("/vendor/register")} style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
-                    Daftar ?
+                    sign up
                   </Button>
                   <hr style={{ color: "white" }} />
-                  <h5 className="text-white">Masuk Sebagai WO ?</h5>
+                  <h5 className="text-white">Sign in as Organizer</h5>
                   <Button onClick={() => navigate("/vendor/login")} style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
-                    Masuk ?
+                    sign in
                   </Button>
                 </div>
               </Form>
