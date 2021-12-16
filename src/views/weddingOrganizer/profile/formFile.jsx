@@ -24,7 +24,12 @@ const FormFile = () => {
         className="mb-3"
         controlId="validationCustom05"
       >
-        <Button className="col-12 mt-5 btn-submit" variant="primary" onClick="">
+        <Button
+          id="btn-edit-file-wo"
+          className="col-12 mt-5 btn-submit"
+          variant="primary"
+          onClick=""
+        >
           Save
         </Button>
       </Form.Group>

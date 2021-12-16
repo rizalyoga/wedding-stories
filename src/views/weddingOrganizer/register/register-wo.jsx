@@ -51,7 +51,9 @@ const RegisterWO = () => {
     if (!phone || phone === "") newErrors.phone = "cannot be blank!";
     else if (phone < 0) newErrors.phone = "phone number cannot be negative!";
     else if (phone.length < 9)
-      newErrors.phone = "phone number cannot be less than 9!";
+      newErrors.phone = "phone number cannot be less than 8!";
+    else if (phone.length > 15)
+      newErrors.phone = "phone number cannot be more than 14!";
 
     // else if (address.length < 6)
     //   newErrors.phonenumber = "phone number is too short!";
@@ -68,15 +70,15 @@ const RegisterWO = () => {
       setErrors(newErrors);
     } else {
       const body = {
-        WoName: name,
-        email: email,
-        PhoneNumber: phone,
+        WoName: name.trim(),
+        email: email.trim(),
+        PhoneNumber: phone.trim(),
         password: password,
         city: city,
-        address: address,
+        address: address.trim(),
       };
       console.log(body);
-      // return;
+      return;
       axios
         .post("https://weddingstories.space/register/organizer", body)
         .then((data) => {
@@ -108,7 +110,7 @@ const RegisterWO = () => {
               </p>
             </Col>
             <Col md={4} sm={12}>
-              <Form>
+              <Form id="form-register-wo">
                 <Row className="mt-5 pt-5">
                   <Form.Group
                     as={Col}
@@ -178,7 +180,7 @@ const RegisterWO = () => {
                   <Form.Group as={Col} md="12" controlId="validationCustom05">
                     <Form.Label className="title-form">Phone Number</Form.Label>
                     <Form.Control
-                      type="number"
+                      type="tel"
                       placeholder="Phone Number"
                       onChange={(e) => setField("phone", e.target.value)}
                       required
@@ -212,6 +214,7 @@ const RegisterWO = () => {
                   />
                 </Form.Group> */}
                 <Button
+                  id="btn-register-wo"
                   className="col-12 mt-3 mb-3 btn-submit"
                   variant="primary"
                   onClick={(e) => handleRegister(e)}
