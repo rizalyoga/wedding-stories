@@ -1,14 +1,47 @@
 import "./home.css";
-import image from "../../../assets/download.jpeg";
+// import image from "../../../assets/download.jpeg";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import Banner from "../../components/banner/banner.jsx";
 import Reason from "../../components/reason/reason.jsx";
 // import NavLoginUser from "../../components/navbar-user/navbar-user-login.jsx";
 // import NavWo from "../../components/navbar-wo/navbar-wo-login.jsx";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import allStore from "../../../store/actions/index.js";
+import { Spinner } from "react-bootstrap";
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const allPackage = useSelector(({ getAllPackage }) => getAllPackage);
+  const loading = useSelector(({ loading }) => loading);
+
+  useEffect(() => {
+    dispatch(allStore.getAllPackage());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   console.log(typeof allPackage, "INI ALL PACKAET");
+  //   console.log(allPackage, "INI ALL PACKAET");
+  // }, [allPackage]);
+
+  const formatRupiah = (money) => {
+    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
+  };
+
+  if (loading) {
+    return (
+      <div className="loading d-flex justify-content-center align-items-center flex-column">
+        <Spinner animation="border" />
+      </div>
+    );
+  }
+
+  const goToDetail = (id) => {
+    navigate(`/detail/package/${id}`);
+  };
 
   return (
     <>
@@ -21,70 +54,20 @@ const Home = () => {
         <div className="container">
           <h2 className="fw-bold">Wedding Planner di Indonesia</h2>
           <div className="row-card my-5">
-            <div className="card-wo my-2 " onClick={() => navigate("/detail/package")}>
-              <div className="images">
-                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
-              </div>
-              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
-              <div className="desc-packages d-flex justify-content-between">
-                <div className="price">Rp 100.000.000,00</div>
-                <div className="rate" style={{ color: "#5C7893" }}>
-                  4.5
+            {allPackage.map((el, index) => (
+              <div className="card-wo my-2 " onClick={() => goToDetail(el.ID)} key={index}>
+                <div className="images">
+                  <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
+                </div>
+                <div className="name-wo fw-bold">{el.PackageName}</div>
+                <div className="desc-packages d-flex justify-content-between">
+                  <div className="price">{formatRupiah(el.Price) + ",00"}</div>
+                  <div className="rate" style={{ color: "#5C7893" }}>
+                    4.5
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="card-wo my-2 " onClick={() => navigate("/detail/package")}>
-              <div className="images">
-                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
-              </div>
-              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
-              <div className="desc-packages d-flex justify-content-between">
-                <div className="price">Rp 100.000.000,00</div>
-                <div className="rate" style={{ color: "#5C7893" }}>
-                  4.5
-                </div>
-              </div>
-            </div>
-
-            <div className="card-wo my-2 " onClick={() => navigate("/detail/package")}>
-              <div className="images">
-                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
-              </div>
-              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
-              <div className="desc-packages d-flex justify-content-between">
-                <div className="price">Rp 100.000.000,00</div>
-                <div className="rate" style={{ color: "#5C7893" }}>
-                  4.5
-                </div>
-              </div>
-            </div>
-
-            <div className="card-wo my-2 " onClick={() => navigate("/detail/package")}>
-              <div className="images">
-                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
-              </div>
-              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
-              <div className="desc-packages d-flex justify-content-between">
-                <div className="price">Rp 100.000.000,00</div>
-                <div className="rate" style={{ color: "#5C7893" }}>
-                  4.5
-                </div>
-              </div>
-            </div>
-
-            <div className="card-wo my-2 " onClick={() => navigate("/detail/package")}>
-              <div className="images">
-                <img style={{ borderRadius: "10px" }} src={image} alt="product" />
-              </div>
-              <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
-              <div className="desc-packages d-flex justify-content-between">
-                <div className="price">Rp 100.000.000,00</div>
-                <div className="rate" style={{ color: "#5C7893" }}>
-                  4.5
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

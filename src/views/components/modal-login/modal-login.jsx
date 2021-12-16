@@ -13,7 +13,7 @@ const ModalLogin = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loading = useSelector(({ loading }) => loading);
-  const route = useSelector(({ route }) => route);
+  // const route = useSelector(({ route }) => route);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,7 +28,7 @@ const ModalLogin = (props) => {
   // }, [route]);
 
   if (loading) {
-    console.log("inilagi loading");
+    // console.log("inilagi loading");
     return (
       <div className="loading d-flex justify-content-center align-items-center flex-column">
         <Spinner animation="border" />

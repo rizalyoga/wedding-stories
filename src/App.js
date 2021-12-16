@@ -32,7 +32,7 @@ function App() {
         <Route path="/user/register" element={<RegisterUser />} />
         <Route path="/vendor/register" element={<RegisterWO />}></Route>
         <Route path="/vendor/login" element={<LoginWO />}></Route>
-        <Route path="/detail/package" element={<DetailPackage />}></Route>
+        <Route path="/detail/package/:id" element={<DetailPackage />}></Route>
         <Route path="/vendor/profile/edit" element={<ProfileWO />}></Route>
         <Route path="/user/profile" element={<ProfileUser />}></Route>
         <Route path="/vendor/packages" element={<ListPackage />}></Route>
