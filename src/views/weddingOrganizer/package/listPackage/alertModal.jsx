@@ -4,9 +4,15 @@ const AlertDelete = (props) => {
   return (
     <>
       <Modal show={props.show} onHide={props.handleClose} backdrop="static">
-        <Modal.Body>Are you sure want to delete this package ?</Modal.Body>
+        <Modal.Body>
+          Are you sure want to delete "{props.packName}" package ?
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={(e) => props.handleClose(e)}>
+          <Button
+            id="btn-close-alert"
+            variant="secondary"
+            onClick={(e) => props.handleClose(e)}
+          >
             No
           </Button>
           <Button variant="primary">Yes</Button>

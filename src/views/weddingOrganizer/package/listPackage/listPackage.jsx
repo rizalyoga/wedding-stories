@@ -6,15 +6,18 @@ import {
   Button,
   Tooltip,
   OverlayTrigger,
+  Spinner,
 } from "react-bootstrap";
 import NavLoginWo from "../../../components/navbar-wo/navbar-wo-login";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AlertDelete from "./alertModal";
 import "./listPackage.css";
+import axios from "axios";
 
 const ListPackage = () => {
   const [pack, setPack] = useState([]);
+  const [loading, setLoading] = useState(false);
   // alert delete
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -27,12 +30,46 @@ const ListPackage = () => {
   const navigate = useNavigate();
 
   const checkPack = () => {
-    if (pack.length < 1) {
-      return <h3>You Have No Package.</h3>;
+    if (pack.length < 0) {
+      <h3>You Have No Package.</h3>;
     } else {
-      return <h1>hoyy</h1>;
+      <h1>hoyy</h1>;
     }
   };
+
+  const handleEdit = (id) => {
+    navigate(`/vendor/packages/edit/${id}`);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    axios
+      .get("https://weddingstories.space/package/my", config)
+      .then(({ data }) => {
+        console.log(data.data);
+        setPack(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+        <NavLoginWo />
+        <Spinner className="spinner" animation="border" />
+      </>
+    );
+  }
 
   return (
     <>
@@ -44,6 +81,7 @@ const ListPackage = () => {
             <hr />
           </Row>
           <Button
+            id="nav-form-add-package"
             variant="primary"
             className="mb-3 mt-3 btn-submit"
             onClick={() => navigate("/vendor/packages/add")}
@@ -53,12 +91,12 @@ const ListPackage = () => {
           </Button>
           {checkPack}
           <Row xs={1} md={2} className="g-4">
-            {Array.from({ length: 4 }).map((_, idx) => (
+            {pack.map((el, idx) => (
               <Col>
                 <Card className="card-package">
                   <Card.Img
                     variant="top"
-                    src={photo}
+                    src={el.UrlPhoto}
                     className="photo-package"
                     width="300px"
                     height="200px"
@@ -67,28 +105,26 @@ const ListPackage = () => {
                     <Card.Title>
                       {" "}
                       <h5>
-                        <b>Package Name</b>{" "}
+                        <b>{el.PackageName}</b>{" "}
                       </h5>
+                      <hr />
                       <h6>
-                        <b>Price :</b> Rp 100000000
+                        <b>Price :</b> Rp {el.Price}
                       </h6>
                       <hr />
                       <h6>
-                        <b>Pax :</b> 100
+                        <b>Pax :</b> {el.Pax}
                       </h6>
                       <hr />
                       <h6>
-                        <b>Description :</b> Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Sint dicta hic tempore
-                        voluptatem eos fuga, ipsum unde, expedita suscipit
-                        quibusdam laboriosam, assumenda eum tempora neque
-                        laudantium qui quam commodi consequuntur!
+                        <b>Description :</b> {el.PackageDesc}
                       </h6>
+                      <hr />
                     </Card.Title>
                     <Card.Text>
                       <Row>
-                        <div className="col-4">
-                          <OverlayTrigger
+                        <div className="col-8">
+                          {/* <OverlayTrigger
                             key="bottom"
                             placement="bottom"
                             overlay={
@@ -96,9 +132,9 @@ const ListPackage = () => {
                             }
                           >
                             <i className="bi bi-journal-text m-3 cursor"></i>
-                          </OverlayTrigger>
+                          </OverlayTrigger> */}
                         </div>
-                        <div className="col-4">
+                        <div className="col-2">
                           <OverlayTrigger
                             key="bottom"
                             placement="bottom"
@@ -106,10 +142,13 @@ const ListPackage = () => {
                               <Tooltip id="tooltip-bottom">edit</Tooltip>
                             }
                           >
-                            <i class="bi bi-pencil-square m-3 cursor"></i>
+                            <i
+                              class="bi bi-pencil-square m-3 cursor"
+                              onClick={() => handleEdit(el.ID)}
+                            ></i>
                           </OverlayTrigger>
                         </div>
-                        <div className="col-4">
+                        <div className="col-2">
                           <OverlayTrigger
                             key="bottom"
                             placement="bottom"
@@ -125,6 +164,7 @@ const ListPackage = () => {
                           <AlertDelete
                             handleClose={() => handleClose()}
                             show={show}
+                            packName={el.PackageName}
                           />
                         </div>
                       </Row>

@@ -3,7 +3,7 @@ import allStore from "../index.js";
 import swal from "sweetalert";
 
 export const ProfileUser = () => {
-  const online = window.navigator.onLine;
+  const online = window.ononLine;
   const token = localStorage.getItem("token");
   const config = {
     headers: { Authorization: `Bearer ${token}` },

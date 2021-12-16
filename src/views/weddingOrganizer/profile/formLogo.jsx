@@ -34,6 +34,7 @@ const FormLogo = () => {
       </Form.Group>
       <Form.Group as={Col} md="2" className="btn-edit mb-3">
         <Button
+          id="btn-edit-logo-wo"
           className="col-12 margin-logo-btn btn-submit"
           variant="primary"
           onClick=""

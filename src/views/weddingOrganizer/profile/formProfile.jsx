@@ -157,6 +157,7 @@ const FormProfile = () => {
         controlId="validationCustom05"
       >
         <Button
+          id="btn-edit-profile-wo"
           className="col-12 mt-3 mb-3 btn-submit"
           variant="primary"
           onClick={(e) => handleSubmit(e)}

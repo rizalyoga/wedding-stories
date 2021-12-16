@@ -16,6 +16,8 @@ import ListPackage from "./views/weddingOrganizer/package/listPackage/listPackag
 import FormAddPackage from "./views/weddingOrganizer/package/addPackage/formAddPackage";
 import ProfileWoUser from "./views/user/profile-wo-user/profile-wo-user.jsx";
 import ProfileWo from "./views/weddingOrganizer/profile-wo/profile-wo.jsx";
+import ListReservation from "./views/weddingOrganizer/reservation/listReservation";
+import FormEditPackage from "./views/weddingOrganizer/package/editPackage.jsx/editPackage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +41,8 @@ function App() {
         <Route path="/vendor/packages/add" element={<FormAddPackage />}></Route>
         <Route path="/user/detail/organizer" element={<ProfileWoUser />}></Route>
         <Route path="/vendor/profile" element={<ProfileWo />}></Route>
+        <Route path="/vendor/reservations" element={<ListReservation />}></Route>
+        <Route path="/vendor/packages/edit/:id" element={<FormEditPackage />}></Route>
       </Routes>
 
       <Footer />

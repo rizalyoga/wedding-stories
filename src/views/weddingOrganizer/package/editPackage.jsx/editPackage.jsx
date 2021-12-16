@@ -1,22 +1,27 @@
-import { Container, Row, Image, Form, Col, Button } from "react-bootstrap";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  Row,
+  Image,
+  Form,
+  Col,
+  Button,
+  Spinner,
+} from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import NavLoginWo from "../../../components/navbar-wo/navbar-wo-login";
-import "./formAddPackage.css";
+import "./editPackage.css";
 
-const handlePhoto = (event) => {
-  console.log(event.target.files[0]);
-};
-const FormAddPackage = () => {
-  const [image, setPhoto] = useState(
-    "https://www.smpn2mirit.sch.id/wp-content/themes/sekolah/gambar/guru.jpg"
-  );
+const FormEditPackage = () => {
+  const [loading, setLoading] = useState(false);
+  const [pack, setPack] = useState([""]);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const { name, price, pax, photo, description } = form;
   const navigate = useNavigate();
+  const params = useParams();
 
   const setField = (field, value) => {
     setForm({
@@ -46,8 +51,8 @@ const FormAddPackage = () => {
     else if (pax < 0) newErrors.pax = "pax cannot be negative!";
     // photo errors
     if (!photo || photo === "") newErrors.photo = "cannot be blank!";
-    else if (photo.size > 5e6)
-      newErrors.photo = "Photo size cannot be more than 5 MB!";
+    else if (photo.size > 1e8)
+      newErrors.photo = "Photo size cannot be more than 100 MB!";
     // city errors
     if (!description || description === "")
       newErrors.description = "cannot be blank!";
@@ -102,21 +107,31 @@ const FormAddPackage = () => {
     }
   };
 
-  const coba = () => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
-    const body = {
-      packagename: name,
-      price: price,
-      pax: pax,
-      packagedesc: description,
-      urlphoto: photo,
-    };
-    console.log(body, config);
-  };
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`https://weddingstories.space/package/${params.id}`)
+      .then(({ data }) => {
+        console.log(data.data);
+        setPack(data.data);
+        console.log(pack);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+        <NavLoginWo />
+        <Spinner className="spinner" animation="border" />
+      </>
+    );
+  }
 
   return (
     <>
@@ -131,18 +146,21 @@ const FormAddPackage = () => {
               <i class="bi bi-arrow-left-square "> </i>
               Your Packages
             </h5>
-            <h2 className="title-page">Form Add New Package</h2>
+            <h2 className="title-page">Form Edit Package</h2>
             <hr />
           </Row>
-          {/* <Row className="mt-3 mb-3">
+
+          {/* form */}
+
+          <Row className="mt-3 mb-3">
             <Image
-              className="mt-3 mb-3 pt-package"
-              src={photo}
+              className="mt-2 mb-2 pt-package"
+              src={pack[0].UrlPhoto}
               width="100%"
               height="100%"
               thumbnail
             />
-          </Row> */}
+          </Row>
           <Row className="border mt-3 mb-3">
             <Form.Group as={Col} md="12" controlId="validationCustom03">
               <Form.Label className="mt-3">
@@ -154,13 +172,16 @@ const FormAddPackage = () => {
                 onChange={(e) => setField("name", e.target.value)}
                 required
                 isInvalid={!!errors.name}
-              />
+                value={name}
+                defaultValue={pack[0].PackageName}
+              ></Form.Control>
+
               <Form.Control.Feedback type="invalid">
                 {errors.name}
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group as={Col} md={6} controlId="validationCustom05">
+            <Form.Group as={Col} md="6" controlId="validationCustom05">
               <Form.Label className="mt-3">
                 Price<sup>*</sup>
               </Form.Label>
@@ -170,13 +191,14 @@ const FormAddPackage = () => {
                 onChange={(e) => setField("price", e.target.value)}
                 required
                 isInvalid={!!errors.price}
+                defaultValue={pack[0].Price}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.price}
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group as={Col} md={6} controlId="validationCustom05">
+            <Form.Group as={Col} md="6" controlId="validationCustom05">
               <Form.Label className="mt-3">
                 Pax<sup>*</sup>
               </Form.Label>
@@ -186,6 +208,7 @@ const FormAddPackage = () => {
                 onChange={(e) => setField("pax", e.target.value)}
                 required
                 isInvalid={!!errors.pax}
+                defaultValue={pack[0].Pax}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.pax}
@@ -203,6 +226,7 @@ const FormAddPackage = () => {
                 onChange={(e) => setField("description", e.target.value)}
                 required
                 isInvalid={!!errors.description}
+                defaultValue={pack[0].PackageDesc}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.description}
@@ -241,10 +265,10 @@ const FormAddPackage = () => {
               controlId="validationCustom05"
             >
               <Button
-                id="btn-add-package"
+                id="btn-edit-package"
                 className="col-12 mt-3 mb-3 btn-submit"
                 variant="primary"
-                onClick={(e) => handleCreatPackage(e)}
+                // onClick={(e) => handleCreatPackage(e)}
               >
                 Save
               </Button>
@@ -256,4 +280,4 @@ const FormAddPackage = () => {
   );
 };
 
-export default FormAddPackage;
+export default FormEditPackage;
