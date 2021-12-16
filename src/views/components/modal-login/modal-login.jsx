@@ -46,29 +46,29 @@ const ModalLogin = (props) => {
           </h5> */}
           <Form onSubmit={(event) => handleSubmit(event)} className="input-login ">
             {/* <Form.Label className="mb-0 label-login">Email</Form.Label> */}
-            <input type="email" placeholder="E-mail" value={email} onChange={(event) => setEmail(event.target.value)} required />
+            <input type="email" id="form-input-email-user" placeholder="E-mail" value={email} onChange={(event) => setEmail(event.target.value)} required />
             {/* <Form.Label className="mb-0 label-login">Password</Form.Label> */}
-            <input type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+            <input type="password" id="form-input-pass-user" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} required />
             <br />
             <span></span>
-            <Button className="mt-3 submit-login " type="submit">
+            <Button className="mt-3 submit-login " id="signIn-user" type="submit">
               sign in
             </Button>
             <p className="pt-4">
               Don't have an acount ?{" "}
-              <a style={{ color: "#fff", cursor: "pointer" }} onClick={() => navigate("/user/register")}>
+              <a style={{ color: "#fff", cursor: "pointer" }} id="redirect-regis-user-page" onClick={() => navigate("/user/register")}>
                 sign up
               </a>
             </p>
           </Form>
           <hr style={{ color: "white" }} />
           <h6 className="text-white">Sign up as organizer</h6>
-          <Button onClick={() => navigate("/vendor/register")} size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px" }}>
+          <Button onClick={() => navigate("/vendor/register")} id="redirect-signUp-wo-page" size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px" }}>
             sign up
           </Button>
           <hr style={{ color: "white" }} />
           <h6 className="text-white">Sign in as organizer</h6>
-          <Button onClick={() => navigate("/vendor/login")} size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px", marginBottom: "10px" }}>
+          <Button onClick={() => navigate("/vendor/login")} id="redirect-signIn-wo-page" size="sm" style={{ background: "#84A1BE", borderColor: "#84A1BE", width: "100%", borderRadius: "20px", marginBottom: "10px" }}>
             sign in
           </Button>
         </Modal.Body>

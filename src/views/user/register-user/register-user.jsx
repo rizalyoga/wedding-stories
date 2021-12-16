@@ -80,7 +80,7 @@ const RegisUser = () => {
   }
 
   const showPassword = () => {
-    const x = document.getElementById("password");
+    const x = document.getElementById("form-password-user");
     if (x.type === "password") {
       x.type = "text";
       document.getElementById("togglePassword").style.color = "red";
@@ -107,12 +107,12 @@ const RegisUser = () => {
                   <div className="Room d-flex flex-column">
                     <div className="mb-3 d-flex flex-column text-white" controlId="username">
                       <Form.Label>Username</Form.Label>
-                      <Form.Control className="input-register" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
+                      <Form.Control className="input-register" id="form-username-user" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
                     </div>
 
                     <div className="mb-3 d-flex flex-column text-white" controlId="email">
                       <Form.Label>Email</Form.Label>
-                      <Form.Control className="input-register" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
+                      <Form.Control className="input-register" id="form-email-user" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
                     </div>
 
                     <div className="mb-3 d-flex flex-column text-white" controlId="password">
@@ -120,7 +120,7 @@ const RegisUser = () => {
                       <p className="d-flex justify-content-center align-items-center">
                         <Form.Control
                           style={{ marginLeft: "-2px" }}
-                          id="password"
+                          id="form-password-user"
                           className="input-register "
                           placeholder="password"
                           type="password"
@@ -135,18 +135,18 @@ const RegisUser = () => {
                   </div>
                 </Row>
 
-                <button className="button-submit mt-1 mb-4" type="submit" onClick={(event) => handleSubmit(event)}>
+                <button className="button-submit mt-1 mb-4" id="SignUp-user" type="submit" onClick={(event) => handleSubmit(event)}>
                   Sign up
                 </button>
                 <hr style={{ color: "white" }} />
                 <div className="content-wo " style={{ marginLeft: "0.2px" }}>
                   <h5 className="text-white">Sign up as Organizer</h5>
-                  <Button onClick={() => navigate("/vendor/register")} style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
+                  <Button onClick={() => navigate("/vendor/register")} id="redirect-signUp-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
                     sign up
                   </Button>
                   <hr style={{ color: "white" }} />
                   <h5 className="text-white">Sign in as Organizer</h5>
-                  <Button onClick={() => navigate("/vendor/login")} style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
+                  <Button onClick={() => navigate("/vendor/login")} id="redirect-signIn-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
                     sign in
                   </Button>
                 </div>

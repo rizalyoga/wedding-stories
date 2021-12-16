@@ -18,18 +18,24 @@ const NavLoginUser = () => {
       <Navbar style={{ background: "#fff" }}>
         <Container>
           <Navbar.Brand href="#home" className="logo">
-            <img src={logoNavLogin} width="30" height="35" className="d-inline-block align-top" alt="logo" />
+            <img src={logoNavLogin} width="30" id="nav-logo-after-login" height="35" className="d-inline-block align-top" alt="logo" />
           </Navbar.Brand>
           <Form className="d-flex search-input">
-            <input type="text" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <input type="text" id="search-form-bef-login" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             {/* <Button class="btn btn-outline-success" type="submit"></Button> */}
           </Form>
-          <NavDropdown title={<i className="bi bi-person-circle" style={{ fontSize: 25, color: "#5C7893" }}></i>} id="collasible-nav-dropdown" className="menu-user">
-            <NavDropdown.Item onClick={() => navigate("/")}>Home</NavDropdown.Item>
-            <NavDropdown.Item onClick={() => navigate("/user/profile")}>Profile</NavDropdown.Item>
-            <NavDropdown.Item>History</NavDropdown.Item>
+          <NavDropdown title={<i id="avatar-user" className="bi bi-person-circle" style={{ fontSize: 25, color: "#5C7893" }}></i>} id="collasible-nav-dropdown" className="menu-user">
+            <NavDropdown.Item id="home-menu-user" onClick={() => navigate("/")}>
+              Home
+            </NavDropdown.Item>
+            <NavDropdown.Item id="profile-menu-user" onClick={() => navigate("/user/profile")}>
+              Profile
+            </NavDropdown.Item>
+            <NavDropdown.Item id="history-menu-user">History</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
+            <NavDropdown.Item id="logout-menu-user" onClick={() => logout()}>
+              Logout
+            </NavDropdown.Item>
           </NavDropdown>
         </Container>
       </Navbar>
