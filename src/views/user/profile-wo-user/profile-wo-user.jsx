@@ -43,7 +43,7 @@ const ProfileWO = () => {
                 </div>
               </div>
               <div className="status">
-                <h6 className="text-center">Deactivated</h6>
+                <h6 className="text-center">Not Actived</h6>
               </div>
             </div>
           </div>
