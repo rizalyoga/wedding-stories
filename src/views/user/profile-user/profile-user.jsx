@@ -40,30 +40,30 @@ const ProfileUser = () => {
           <Form>
             <Row>
               <div className="Room d-flex flex-column">
-                <Button className="mb-3" style={{ backgroundColor: "#F18493", border: "#9CB2C7" }} onClick={() => unlock()}>
+                <Button className="mb-3" id="enable-edit-profile" style={{ backgroundColor: "#F18493", border: "#9CB2C7" }} onClick={() => unlock()}>
                   Click for edit profile
                 </Button>
                 <div className="mb-3 d-flex flex-column text-white" controlId="username">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control disabled={disabled} className="input-register" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
+                  <Form.Control disabled={disabled} id="username-profile-user" className="input-register" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
                 </div>
 
                 <div className="mb-3 d-flex flex-column text-white" controlId="email">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control disabled={disabled} className="input-register" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
+                  <Form.Control disabled={disabled} id="email-profile-user" className="input-register" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
                 </div>
 
                 <div className="mb-1 d-flex flex-column text-white" controlId="password">
                   <Form.Label>password</Form.Label>
                   <p className="d-flex justify-content-center align-items-center">
-                    <Form.Control id="password" disabled={disabled} placeholder="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required autoComplete="off" />
+                    <Form.Control id="password" id="password-profile-user" disabled={disabled} placeholder="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required autoComplete="off" />
                   </p>
                 </div>
                 <div className="button-edit">
-                  <Button className="w-35" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }}>
+                  <Button className="w-35" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }}>
                     Edit
                   </Button>
-                  <Button className="w-35 ms-2 bg-danger" style={{ border: "#DC3545" }}>
+                  <Button className="w-35 ms-2 bg-danger" id="delete-user" style={{ border: "#DC3545" }}>
                     delete
                   </Button>
                 </div>

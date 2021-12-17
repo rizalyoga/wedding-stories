@@ -55,7 +55,7 @@ const Home = () => {
           <h2 className="fw-bold">Wedding Planner di Indonesia</h2>
           <div className="row-card my-5">
             {allPackage.map((el, index) => (
-              <div className="card-wo my-2 " onClick={() => goToDetail(el.ID)} key={index}>
+              <div className="card-wo my-2 " id="card-package-landing-page" onClick={() => goToDetail(el.ID)} key={index}>
                 <div className="images">
                   <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
                 </div>
