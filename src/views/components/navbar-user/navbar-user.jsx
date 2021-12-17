@@ -13,7 +13,7 @@ const NavUser = () => {
 
   if (localStorage.token && localStorage.status == "User") {
     return <NavbarLoginUser />;
-  } else if (localStorage.token && localStorage.role == "organizer") {
+  } else if (localStorage.token && localStorage.status == "organizer") {
     return <NavbarLoginWo />;
   } else {
     return (
