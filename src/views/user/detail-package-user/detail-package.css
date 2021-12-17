@@ -76,6 +76,14 @@
   background-color: #5c7893;
 }
 
+.date-order {
+  width: 96% !important;
+}
+
+.additional {
+  width: 96%;
+}
+
 .btn-pesan Button:hover {
   background-color: #9cb2c7;
 }
@@ -110,6 +118,19 @@
   }
 
   .image-package img {
+    width: 100%;
+  }
+
+  .custom-pax,
+  .custom-pax p {
+    margin-left: 10%;
+  }
+
+  .date-order {
+    width: 100% !important;
+  }
+
+  .additional {
     width: 100%;
   }
 }

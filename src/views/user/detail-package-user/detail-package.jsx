@@ -3,9 +3,11 @@ import "./detail-package.css";
 import NavUser from "../../components/navbar-user/navbar-user";
 import { Button, Spinner } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import allStore from "../../../store/actions/index.js";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const DetailPackage = () => {
   const navigate = useNavigate();
@@ -14,6 +16,8 @@ const DetailPackage = () => {
   const detailPackage = useSelector(({ getDetailPackage }) => getDetailPackage);
   const loading = useSelector(({ loading }) => loading);
   const { id } = useParams();
+
+  const [selectedDate, setSelectDate] = useState(null);
 
   useEffect(() => {
     dispatch(allStore.detailPackage(id));
@@ -79,17 +83,24 @@ const DetailPackage = () => {
               <hr />
               <div className="form-pax">
                 <div className="min-pax">
-                  <p className="text-center desc-pax">Harga</p>
+                  <p className="text-center desc-pax">Min Pax</p>
                   <input className="text-center" disabled="disable" value={detailPackage.Pax} type="text" />
                 </div>
                 <div className="custom-pax">
                   <p className="text-center desc-pax">Custom pax</p>
-                  <input className="text-center" type="text" required />
+                  <input className="text-center custom-pax" id="custom-pax" type="text" />
                 </div>
               </div>
+              <div className="content-order">
+                <DatePicker className="date-order mt-3" id="date-order" selected={selectedDate} onChange={(date) => setSelectDate(date)} dateFormat="yyyy-MM-dd" minDate={new Date()} placeholderText="Select a date for Order" />
+                <textarea className="additional mt-3" name="additional" id="additional" cols="30" rows="10"></textarea>
+              </div>
+
               <hr />
               <div className="btn-pesan">
-                <Button className="w-100">Order</Button>
+                <Button className="w-100" id="order-button">
+                  Order
+                </Button>
               </div>
             </div>
           </div>
