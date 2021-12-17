@@ -6,6 +6,7 @@ import { setProfileUser, ProfileUser } from "./user/get-profile-user.js";
 import { setProfileWo, fetchProfileWo } from "./organizer/profile-wo.js";
 import { setAllPackage, getAllPackage } from "./package/get-all-packet.js";
 import { setDetaiilPackage, detailPackage } from "./package/detail-package.js";
+import { setDetailWo, getDetailWo } from "./user/get-profile-wo.js";
 
 const allStore = {
   setError,
@@ -26,6 +27,9 @@ const allStore = {
   //detailPackage
   setDetaiilPackage,
   detailPackage,
+  //getProfileWo
+  setDetailWo,
+  getDetailWo,
 };
 
 export default allStore;

@@ -6,6 +6,7 @@ import route from "./route/route.js";
 import loading from "./loading-reduce.js";
 import getAllPackage from "./package/all-package-reducer.js";
 import getDetailPackage from "./package/detail-package-reduce.js";
+import detailWo from "./user/detail-wo-reducer.js";
 
 const rootReducers = combineReducers({
   loading,
@@ -20,6 +21,8 @@ const rootReducers = combineReducers({
   getAllPackage,
   //getDetailPackage
   getDetailPackage,
+  //getDetailWo
+  detailWo,
 });
 
 export default rootReducers;
