@@ -18,7 +18,7 @@ const NavLoginUser = () => {
       <Navbar style={{ background: "#fff" }}>
         <Container>
           <Navbar.Brand href="#home" className="logo">
-            <img src={logoNavLogin} width="30" id="nav-logo-after-login" height="35" className="d-inline-block align-top" alt="logo" />
+            <img src={logoNavLogin} width="30" id="nav-logo-after-login" height="35" className="d-inline-block align-top" alt="logo" onClick={() => navigate("/")} />
           </Navbar.Brand>
           <Form className="d-flex search-input">
             <input type="text" id="search-form-bef-login" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

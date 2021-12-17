@@ -108,7 +108,7 @@ const ProfileWO = () => {
                   return <>{/* <h1>salah masuk BOS!!!</h1> */}</>;
                 } else if (el.Organizer_ID === idInt) {
                   return (
-                    <div className="card-wo my-2 " onClick={() => goToDetail(el.ID)} key={index}>
+                    <div className="card-wo my-2 " id="card-package-wo" onClick={() => goToDetail(el.ID)} key={index}>
                       <div className="images">
                         <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
                       </div>
