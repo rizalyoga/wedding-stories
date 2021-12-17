@@ -70,7 +70,7 @@ const LoginWO = () => {
           window.location.reload();
         })
         .catch((err) => {
-          const online = window.ononLine;
+          const online = window.ononline;
           console.log(err.message);
 
           window.ononline = (event) => {};

@@ -1,5 +1,6 @@
 import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FormLogo from "./formLogo";
 import FormProfile from "./formProfile";
 import FormFile from "./formFile";
@@ -7,13 +8,22 @@ import "./profile-wo.css";
 import NavWO from "../../components/navbar-wo/navbar-wo-login.jsx";
 
 const ProfileWO = () => {
+  const navigate = useNavigate();
   return (
     <>
       <NavWO />
       <div className="profile-wo">
         <Container className="mb-5 mt-5">
           <Row>
-            <h2 className="title-page">Your Profile</h2>
+            <h5
+              className="col-6 cursor"
+              onClick={() => navigate("/vendor/profile")}
+            >
+              <i class="bi bi-arrow-left-square "> </i>
+              Your Profile
+            </h5>
+
+            <h2 className="title-page">Edit Profile</h2>
             <hr />
           </Row>
           {/*  upload foto logo */}
