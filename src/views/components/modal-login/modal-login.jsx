@@ -46,9 +46,9 @@ const ModalLogin = (props) => {
           </h5> */}
           <Form onSubmit={(event) => handleSubmit(event)} className="input-login ">
             {/* <Form.Label className="mb-0 label-login">Email</Form.Label> */}
-            <input type="email" id="form-input-email-user" placeholder="E-mail" value={email} onChange={(event) => setEmail(event.target.value)} required />
+            <input type="email" id="form-input-email-user" autoComplete="off" a placeholder="E-mail" value={email} onChange={(event) => setEmail(event.target.value)} required />
             {/* <Form.Label className="mb-0 label-login">Password</Form.Label> */}
-            <input type="password" id="form-input-pass-user" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+            <input type="password" id="form-input-pass-user" placeholder="Password" autoComplete="off" value={password} onChange={(event) => setPassword(event.target.value)} required />
             <br />
             <span></span>
             <Button className="mt-3 submit-login " id="signIn-user" type="submit">
