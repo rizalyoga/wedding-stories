@@ -39,7 +39,7 @@ function App() {
         <Route path="/user/profile" element={<ProfileUser />}></Route>
         <Route path="/vendor/packages" element={<ListPackage />}></Route>
         <Route path="/vendor/packages/add" element={<FormAddPackage />}></Route>
-        <Route path="/user/detail/organizer" element={<ProfileWoUser />}></Route>
+        <Route path="/user/detail/organizer/:id" element={<ProfileWoUser />}></Route>
         <Route path="/vendor/profile" element={<ProfileWo />}></Route>
         <Route path="/vendor/reservations" element={<ListReservation />}></Route>
         <Route path="/vendor/packages/edit/:id" element={<FormEditPackage />}></Route>

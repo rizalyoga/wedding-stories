@@ -78,7 +78,7 @@ const RegisterWO = () => {
         address: address.trim(),
       };
       console.log(body);
-      return;
+      // return;
       axios
         .post("https://weddingstories.space/register/organizer", body)
         .then((data) => {
@@ -87,8 +87,16 @@ const RegisterWO = () => {
           navigate("/vendor/login");
         })
         .catch((err) => {
+          const online = window.ononLine;
           console.log(err.message);
-          swal(err.response.data.message);
+
+          window.ononline = (event) => {};
+          if (online) {
+            console.log("Back Online");
+            swal(err.reponse.data.message);
+          } else if (!online) {
+            swal(err.message);
+          }
         });
     }
   };

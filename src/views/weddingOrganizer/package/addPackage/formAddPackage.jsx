@@ -96,8 +96,16 @@ const FormAddPackage = () => {
           navigate("/vendor/packages");
         })
         .catch((err) => {
+          const online = window.ononLine;
           console.log(err.message);
-          swal(err.response.data.message);
+
+          window.ononline = (event) => {};
+          if (online) {
+            console.log("Back Online");
+            swal(err.reponse.data.message);
+          } else if (!online) {
+            swal(err.message);
+          }
         });
     }
   };
@@ -131,7 +139,7 @@ const FormAddPackage = () => {
               <i class="bi bi-arrow-left-square "> </i>
               Your Packages
             </h5>
-            <h2 className="title-page">Form Add New Package</h2>
+            <h2 className="title-page">Add New Package</h2>
             <hr />
           </Row>
           {/* <Row className="mt-3 mb-3">

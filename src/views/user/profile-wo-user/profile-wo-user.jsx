@@ -1,11 +1,59 @@
 import "./profile-wo-user.css";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
-import LogoWo from "../../../assets/covid.jpg";
-import ImageCard from "../../../assets/2.jpeg";
-import { useNavigate } from "react-router-dom";
+// import LogoWo from "../../../assets/covid.jpg";
+import logoWo from "../../../assets/unknown.png";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import allStore from "../../../store/actions/index.js";
+import { Spinner } from "react-bootstrap";
 
 const ProfileWO = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const detailWo = useSelector(({ detailWo }) => detailWo);
+  const { id } = useParams();
+  const loading = useSelector(({ loading }) => loading);
+
+  //GET PROFILE WO
+  useEffect(() => {
+    dispatch(allStore.getDetailWo(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    console.log(detailWo);
+  }, [detailWo]);
+
+  // GET ALL PACKAGE WO
+  const allPackage = useSelector(({ getAllPackage }) => getAllPackage);
+
+  useEffect(() => {
+    dispatch(allStore.getAllPackage());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   console.log(allPackage);
+  // }, [allPackage]);
+
+  if (loading) {
+    return (
+      <div className="loading d-flex justify-content-center align-items-center flex-column">
+        <Spinner animation="border" />
+      </div>
+    );
+  }
+
+  const idInt = parseInt(id);
+
+  const goToDetail = (id) => {
+    navigate(`/detail/package/${id}`);
+  };
+
+  const formatRupiah = (money) => {
+    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
+  };
+
   return (
     <div>
       <NavUser />
@@ -13,37 +61,37 @@ const ProfileWO = () => {
         <div className="container">
           <div className="content-header">
             <div className="image-logo">
-              <img src={LogoWo} alt="logo-wo" />
+              <img src={detailWo.logo == "" ? logoWo : detailWo.logo} alt="logo-wo" />
             </div>
             <div className="content-wo">
-              <h2 className="fw-bold">Covid Wedding Plan</h2>
+              <h2 className="fw-bold">{detailWo.woname}</h2>
               <div className="content-address d-flex mb-1">
                 <i className="bi bi-geo-alt me-1"></i>
-                <h6>Jakarta,</h6>
-                <h6>Jalan Merdeka No.47</h6>
+                <h6>{detailWo.city}</h6>
+                <h6>{detailWo.address}</h6>
               </div>
               <div className="contact d-flex">
                 <div className="phone d-flex">
                   <i style={{ marginTop: "-2px", color: "#2CB040" }} className="bi bi-whatsapp me-1 mb-2"></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
-                    0812928912031
+                    {detailWo.phonenumber}
                   </h6>
                 </div>
                 <div className="mail d-flex">
                   <i style={{ marginTop: "-2px", color: "#E34133" }} className="bi bi-envelope me-1"></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
-                    Covid-wo@mail.com
+                    {detailWo.email}
                   </h6>
                 </div>
                 <div className="website d-flex">
                   <i style={{ marginTop: "-2px", color: "#5C7893" }} className="bi bi-globe2 me-2"></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
-                    Covid-wo.com
+                    {detailWo.weburl == "" ? "-" : detailWo.weburl}
                   </h6>
                 </div>
               </div>
               <div className="status">
-                <h6 className="text-center">Not Actived</h6>
+                <h6 className="text-center">{detailWo.status}</h6>
               </div>
             </div>
           </div>
@@ -51,38 +99,30 @@ const ProfileWO = () => {
           <div className="desc">
             <h5 className="fw-bold">Description Wedding Organizer</h5>
             <hr />
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro corporis excepturi natus voluptate? Ea, accusantium ipsa. Pariatur quisquam debitis nemo inventore odio impedit voluptas, deleniti nam tempora, voluptatem beatae
-              laudantium.
-            </p>
+            <p>{detailWo.about == "" ? "No Description" : detailWo.about}</p>
             <hr />
             <h5 className="fw-bold">List Packages</h5>
             <div className="list-packages mt-5">
-              <div className="card-wo my-2 " onClick={() => navigate("/detail/package")}>
-                <div className="images">
-                  <img style={{ borderRadius: "10px" }} src={ImageCard} alt="product" />
-                </div>
-                <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
-                <div className="desc-packages d-flex justify-content-between">
-                  <div className="price">Rp 100.000.000,00</div>
-                  <div className="rate" style={{ color: "#5C7893" }}>
-                    4.5
-                  </div>
-                </div>
-              </div>
-
-              <div className="card-wo my-2 " onClick={() => navigate("/detail/package")}>
-                <div className="images">
-                  <img style={{ borderRadius: "10px" }} src={ImageCard} alt="product" />
-                </div>
-                <div className="name-wo fw-bold">All inclusive Package for 100 Person</div>
-                <div className="desc-packages d-flex justify-content-between">
-                  <div className="price">Rp 100.000.000,00</div>
-                  <div className="rate" style={{ color: "#5C7893" }}>
-                    4.5
-                  </div>
-                </div>
-              </div>
+              {allPackage.map((el, index) => {
+                if (el.Organizer_ID !== idInt) {
+                  return <>{/* <h1>salah masuk BOS!!!</h1> */}</>;
+                } else if (el.Organizer_ID === idInt) {
+                  return (
+                    <div className="card-wo my-2 " onClick={() => goToDetail(el.ID)} key={index}>
+                      <div className="images">
+                        <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
+                      </div>
+                      <div className="name-wo fw-bold">{el.PackageName}</div>
+                      <div className="desc-packages d-flex justify-content-between">
+                        <div className="price">{formatRupiah(el.Price) + ",00"}</div>
+                        <div className="rate" style={{ color: "#5C7893" }}>
+                          4.5
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
         </div>
