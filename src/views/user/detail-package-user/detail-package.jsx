@@ -19,9 +19,9 @@ const DetailPackage = () => {
     dispatch(allStore.detailPackage(id));
   }, [dispatch, id]);
 
-  useEffect(() => {
-    console.log(detailPackage);
-  }, [detailPackage]);
+  // useEffect(() => {
+  //   console.log(detailPackage);
+  // }, [detailPackage]);
 
   const formatRupiah = (money) => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
@@ -35,6 +35,10 @@ const DetailPackage = () => {
     );
   }
 
+  const goToDetailWo = (id) => {
+    navigate(`/user/detail/organizer/${id}`);
+  };
+
   if (!detailPackage) {
     return <></>;
   }
@@ -44,7 +48,7 @@ const DetailPackage = () => {
       <NavUser />
       <div className="container">
         <div className="desc-wo">
-          <h3 className="fw-bold" style={{ cursor: "pointer" }} id="wo-name" onClick={() => navigate("/user/detail/organizer")}>
+          <h3 className="fw-bold" style={{ cursor: "pointer" }} id="wo-name" onClick={() => goToDetailWo(detailPackage.Organizer_ID)}>
             {detailPackage.Wo_Name}
           </h3>
           <div className="content-address d-flex mb-1">
