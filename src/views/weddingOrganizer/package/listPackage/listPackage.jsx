@@ -7,22 +7,55 @@ import {
   Tooltip,
   OverlayTrigger,
   Spinner,
+  Modal,
+  Alert,
 } from "react-bootstrap";
 import NavLoginWo from "../../../components/navbar-wo/navbar-wo-login";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AlertDelete from "./alertModal";
+import swal from "sweetalert";
 import "./listPackage.css";
 import axios from "axios";
 
 const ListPackage = () => {
   const [pack, setPack] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [ID, setID] = useState("");
+  const [packName, setPackName] = useState("");
   // alert delete
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => {
-    setShow(true);
+  const handleShow = (id, name) => {
+    console.log(ID, packName);
+    // return;
+    if (show) {
+      return (
+        <Modal show={show} onHide={handleClose} backdrop="static">
+          <Modal.Body>
+            Are you sure want to delete "{packName}" package ?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              id="btn-close-alert"
+              variant="secondary"
+              onClick={(e) => handleClose(e)}
+            >
+              No
+            </Button>
+            <Button
+              id="btn-delete-package"
+              variant="primary"
+              onClick={() => handleDelete(ID)}
+            >
+              Yes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      );
+    }
+
+    return <></>;
   };
   const [photo, setPhoto] = useState(
     "https://www.smpn2mirit.sch.id/wp-content/themes/sekolah/gambar/guru.jpg"
@@ -30,16 +63,24 @@ const ListPackage = () => {
   const navigate = useNavigate();
 
   const checkPack = () => {
-    if (pack.length < 0) {
-      <h3>You Have No Package.</h3>;
-    } else {
-      <h1>hoyy</h1>;
+    if (pack.length === 0) {
+      return (
+        <>
+          <Alert variant="warning">You have no data.</Alert>
+          {/* <h3>You have no data.</h3> */}
+        </>
+      );
     }
+    return <></>;
   };
 
   const handleEdit = (id) => {
     navigate(`/vendor/packages/edit/${id}`);
   };
+
+  useEffect(() => {
+    console.log(pack);
+  }, [pack]);
 
   useEffect(() => {
     setLoading(true);
@@ -51,7 +92,7 @@ const ListPackage = () => {
     axios
       .get("https://weddingstories.space/package/my", config)
       .then(({ data }) => {
-        console.log(data.data);
+        // console.log(data.data);
         setPack(data.data);
       })
       .catch((err) => {
@@ -61,6 +102,36 @@ const ListPackage = () => {
         setLoading(false);
       });
   }, []);
+
+  const handleDelete = (id) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    console.log(id);
+    axios
+      .delete(`https://weddingstories.space/package/${id}`, config)
+      .then((data) => {
+        console.log(data);
+        swal(data.data.message);
+        navigate("/vendor/packages");
+        setShow(false);
+        window.location.reload();
+      })
+      .catch((err) => {
+        const online = window.ononLine;
+        console.log(err.message);
+
+        window.ononline = (event) => {};
+        if (online) {
+          console.log("Back Online");
+          swal(err.reponse.data.message);
+        } else if (!online) {
+          swal(err.message);
+        }
+      });
+  };
 
   if (loading) {
     return (
@@ -89,7 +160,7 @@ const ListPackage = () => {
             <i class="bi bi-plus-square"> </i>
             New Package
           </Button>
-          {checkPack}
+          {checkPack()}
           <Row xs={1} md={2} className="g-4">
             {pack.map((el, idx) => (
               <Col>
@@ -158,14 +229,20 @@ const ListPackage = () => {
                           >
                             <i
                               class="bi bi-trash m-3 cursor"
-                              onClick={handleShow}
+                              onClick={() => {
+                                setShow(true);
+                                setID(el.ID);
+                                setPackName(el.PackageName);
+                                // handleShow(el.ID, el.PackageName);
+                              }}
                             ></i>
                           </OverlayTrigger>
-                          <AlertDelete
+                          {/* <AlertDelete
                             handleClose={() => handleClose()}
                             show={show}
-                            packName={el.PackageName}
-                          />
+                            packName={packName}
+                            id={ID}
+                          /> */}
                         </div>
                       </Row>
                     </Card.Text>
@@ -176,6 +253,7 @@ const ListPackage = () => {
           </Row>
         </Container>
       </div>
+      {handleShow()}
     </>
   );
 };

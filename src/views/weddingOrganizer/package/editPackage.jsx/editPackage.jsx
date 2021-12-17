@@ -16,7 +16,7 @@ import "./editPackage.css";
 
 const FormEditPackage = () => {
   const [loading, setLoading] = useState(false);
-  const [pack, setPack] = useState([""]);
+  const [pack, setPack] = useState({});
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const { name, price, pax, photo, description } = form;
@@ -137,6 +137,7 @@ const FormEditPackage = () => {
     <>
       <NavLoginWo></NavLoginWo>
       <div className="form-add-package">
+        {/* {pack.map((el, idx) => ( */}
         <Container className="mb-5 mt-5">
           <Row>
             <h5
@@ -146,7 +147,7 @@ const FormEditPackage = () => {
               <i class="bi bi-arrow-left-square "> </i>
               Your Packages
             </h5>
-            <h2 className="title-page">Form Edit Package</h2>
+            <h2 className="title-page">Edit Package</h2>
             <hr />
           </Row>
 
@@ -155,7 +156,7 @@ const FormEditPackage = () => {
           <Row className="mt-3 mb-3">
             <Image
               className="mt-2 mb-2 pt-package"
-              src={pack[0].UrlPhoto}
+              src={pack.UrlPhoto}
               width="100%"
               height="100%"
               thumbnail
@@ -173,7 +174,7 @@ const FormEditPackage = () => {
                 required
                 isInvalid={!!errors.name}
                 value={name}
-                defaultValue={pack[0].PackageName}
+                defaultValue={pack.PackageName}
               ></Form.Control>
 
               <Form.Control.Feedback type="invalid">
@@ -191,7 +192,7 @@ const FormEditPackage = () => {
                 onChange={(e) => setField("price", e.target.value)}
                 required
                 isInvalid={!!errors.price}
-                defaultValue={pack[0].Price}
+                defaultValue={pack.Price}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.price}
@@ -208,7 +209,7 @@ const FormEditPackage = () => {
                 onChange={(e) => setField("pax", e.target.value)}
                 required
                 isInvalid={!!errors.pax}
-                defaultValue={pack[0].Pax}
+                defaultValue={pack.Pax}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.pax}
@@ -226,7 +227,7 @@ const FormEditPackage = () => {
                 onChange={(e) => setField("description", e.target.value)}
                 required
                 isInvalid={!!errors.description}
-                defaultValue={pack[0].PackageDesc}
+                defaultValue={pack.PackageDesc}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.description}
@@ -234,7 +235,7 @@ const FormEditPackage = () => {
             </Form.Group>
             <Form.Group as={Col} md="12">
               <Form.Label className="mt-3">
-                Photo <sup>*</sup> file type : jpg/jpeg/png/bnp
+                Photo <sup>*</sup>
               </Form.Label>
               <Form.Control
                 type="file"
@@ -247,6 +248,7 @@ const FormEditPackage = () => {
                 required
                 isInvalid={!!errors.photo}
               />
+              <h7>file type : jpg/jpeg/png/bnp - max size : 3 MB</h7>
               <Form.Control.Feedback type="invalid">
                 {errors.photo}
               </Form.Control.Feedback>
@@ -275,6 +277,7 @@ const FormEditPackage = () => {
             </Form.Group>
           </Row>
         </Container>
+        {/* ))} */}
       </div>
     </>
   );
