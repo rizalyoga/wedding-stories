@@ -44,7 +44,7 @@ const DetailPackage = () => {
       <NavUser />
       <div className="container">
         <div className="desc-wo">
-          <h3 className="fw-bold" style={{ cursor: "pointer" }} id="wo-name" onClick={() => navigate("/user/detail/organizer")}>
+          <h3 className="fw-bold" style={{ cursor: "pointer" }} onClick={() => navigate("/user/detail/organizer")}>
             {detailPackage[0].Wo_Name}
           </h3>
           <div className="content-address d-flex mb-1">
@@ -85,9 +85,7 @@ const DetailPackage = () => {
               </div>
               <hr />
               <div className="btn-pesan">
-                <Button className="w-100" id="order-button">
-                  Order
-                </Button>
+                <Button className="w-100">Order</Button>
               </div>
             </div>
           </div>
