@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import allStore from "../../../store/actions/index.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import swal from "sweetalert";
 
 const DetailPackage = () => {
   const navigate = useNavigate();
@@ -17,19 +18,26 @@ const DetailPackage = () => {
   const loading = useSelector(({ loading }) => loading);
   const { id } = useParams();
 
-  const [selectedDate, setSelectDate] = useState(null);
+  /* --------------------------- GET DETAIL PACKAGE --------------------------- */
 
   useEffect(() => {
     dispatch(allStore.detailPackage(id));
   }, [dispatch, id]);
 
+  const [date, setDate] = useState(null);
+  const [additional, setAdditional] = useState("");
+  const [totalPax, setTotalPax] = useState(detailPackage.Pax);
   // useEffect(() => {
   //   console.log(detailPackage);
   // }, [detailPackage]);
 
+  /* ----------------------------- RUPIAH CONVERT ----------------------------- */
+
   const formatRupiah = (money) => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
   };
+
+  /* --------------------------------- LOADING -------------------------------- */
 
   if (loading) {
     return (
@@ -39,8 +47,38 @@ const DetailPackage = () => {
     );
   }
 
+  /* ----------------------- NAVIGATE TO DETAIL PACKAGE ----------------------- */
+
   const goToDetailWo = (id) => {
     navigate(`/user/detail/organizer/${id}`);
+  };
+
+  /* ------------------------------ HANDLE SUBMIT ----------------------------- */
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const pax = parseInt(totalPax);
+    //check total pax
+    if (!localStorage.token) {
+      swal("Please Login First");
+    } else if (localStorage.status == "organizer") {
+      swal("Please Sign In as User");
+    } else if (pax < detailPackage.Pax) {
+      swal("Your Custom-Pax under minimum");
+    } else if (!date) {
+      swal("Please insert date !");
+    } else if (!totalPax) {
+      swal("Custom Pax Cannot be Blank");
+    } else {
+      // console.log(date);
+      // console.log(additional);
+      // console.log(pax);
+      // console.log(id);
+      dispatch(allStore.postOrder({ package_id: id, date: date, additional: additional, total_pax: pax }));
+
+      setTotalPax(detailPackage.Pax);
+      setDate(null);
+      setAdditional("");
+    }
   };
 
   if (!detailPackage) {
@@ -88,17 +126,37 @@ const DetailPackage = () => {
                 </div>
                 <div className="custom-pax">
                   <p className="text-center desc-pax">Custom pax</p>
-                  <input className="text-center custom-pax" id="custom-pax" type="text" />
+                  <input
+                    className="text-center custom-pax"
+                    autoComplete="off"
+                    id="custom-pax"
+                    type="number"
+                    placeholder={detailPackage.Pax}
+                    value={totalPax}
+                    min={detailPackage.Pax}
+                    onChange={(event) => setTotalPax(event.target.value)}
+                    required
+                  />
                 </div>
               </div>
               <div className="content-order">
-                <DatePicker className="date-order mt-3" id="date-order" selected={selectedDate} onChange={(date) => setSelectDate(date)} dateFormat="yyyy-MM-dd" minDate={new Date()} placeholderText="Select a date for Order" />
-                <textarea className="additional mt-3" name="additional" id="additional" cols="30" rows="10"></textarea>
+                <DatePicker
+                  className="date-order mt-3 text-center"
+                  autoComplete="off"
+                  id="date-order"
+                  selected={date}
+                  onChange={(date) => setDate(date)}
+                  dateFormat="yyyy-MM-dd"
+                  minDate={new Date()}
+                  placeholderText="Select a date"
+                  required
+                />
+                <textarea className="additional mt-3" name="additional" id="additional" cols="30" rows="10" value={additional} onChange={(event) => setAdditional(event.target.value)}></textarea>
               </div>
 
               <hr />
               <div className="btn-pesan">
-                <Button className="w-100" id="order-button">
+                <Button className="w-100" id="order-button" onClick={(event) => handleSubmit(event)}>
                   Order
                 </Button>
               </div>

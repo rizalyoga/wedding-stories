@@ -31,7 +31,9 @@ const NavLoginUser = () => {
             <NavDropdown.Item id="profile-menu-user" onClick={() => navigate("/user/profile")}>
               Profile
             </NavDropdown.Item>
-            <NavDropdown.Item id="history-menu-user">History</NavDropdown.Item>
+            <NavDropdown.Item id="history-menu-user" onClick={() => navigate("/user/history")}>
+              History
+            </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item id="logout-menu-user" onClick={() => logout()}>
               Logout
