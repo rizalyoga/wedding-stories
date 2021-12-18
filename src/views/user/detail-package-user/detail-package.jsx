@@ -9,6 +9,7 @@ import allStore from "../../../store/actions/index.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import swal from "sweetalert";
+import moment from "moment";
 
 const DetailPackage = () => {
   const navigate = useNavigate();
@@ -53,6 +54,8 @@ const DetailPackage = () => {
     navigate(`/user/detail/organizer/${id}`);
   };
 
+  /* ------------------------------- DATE CONVER ------------------------------ */
+
   /* ------------------------------ HANDLE SUBMIT ----------------------------- */
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,11 +72,14 @@ const DetailPackage = () => {
     } else if (!totalPax) {
       swal("Custom Pax Cannot be Blank");
     } else {
+      let dateString = moment(date).format("YYYY-MM-DD");
+      let idPackage = parseInt(id);
+      // console.log(dateString); // Output: 2020-07-21
       // console.log(date);
       // console.log(additional);
       // console.log(pax);
       // console.log(id);
-      dispatch(allStore.postOrder({ package_id: id, date: date, additional: additional, total_pax: pax }));
+      dispatch(allStore.postOrder({ package_id: idPackage, date: dateString, additional: additional, Total_pax: pax }));
 
       setTotalPax(detailPackage.Pax);
       setDate(null);
