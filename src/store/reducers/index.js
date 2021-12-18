@@ -7,6 +7,7 @@ import loading from "./loading-reduce.js";
 import getAllPackage from "./package/all-package-reducer.js";
 import getDetailPackage from "./package/detail-package-reduce.js";
 import detailWo from "./user/detail-wo-reducer.js";
+import postOrder from "./user/order-reducer.js";
 
 const rootReducers = combineReducers({
   loading,
@@ -23,6 +24,8 @@ const rootReducers = combineReducers({
   getDetailPackage,
   //getDetailWo
   detailWo,
+  //postOrder
+  postOrder,
 });
 
 export default rootReducers;
