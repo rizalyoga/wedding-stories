@@ -7,6 +7,18 @@
   margin-bottom: auto;
 }
 
+.unlock-edit {
+  background-color: #f18493;
+}
+
+.unlock-edit:hover {
+  background-color: #9cb2c7;
+}
+
+.unlock-edit:focus {
+  background-color: #f18493;
+}
+
 @media (max-width: 885px) {
   .form-edit {
     margin-top: 15%;

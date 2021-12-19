@@ -64,7 +64,7 @@ const RegisUser = () => {
             setModalLoginShow(true);
             <ModalLogin show={modalLoginShow} />;
             console.log(err.response.data.message, "error register");
-            // swal(err.response.data.message);
+            swal(err.response.data.message);
           } else {
             swal("Your Internet Offline");
           }

@@ -40,7 +40,7 @@ const ProfileUser = () => {
           <Form>
             <Row>
               <div className="Room d-flex flex-column">
-                <Button className="mb-3" id="enable-edit-profile" style={{ backgroundColor: "#F18493", border: "#9CB2C7" }} onClick={() => unlock()}>
+                <Button className="mb-3 unlock-edit" id="enable-edit-profile" onClick={() => unlock()}>
                   Click for edit profile
                 </Button>
                 <div className="mb-3 d-flex flex-column text-white" controlId="username">
@@ -60,10 +60,10 @@ const ProfileUser = () => {
                   </p>
                 </div>
                 <div className="button-edit">
-                  <Button className="w-35" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }}>
+                  <Button className="w-35" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }} disabled={disabled}>
                     Edit
                   </Button>
-                  <Button className="w-35 ms-2 bg-danger" id="delete-user" style={{ border: "#DC3545" }}>
+                  <Button className="w-35 ms-2 bg-danger" id="delete-user" style={{ border: "#DC3545" }} disabled={disabled}>
                     delete
                   </Button>
                 </div>
