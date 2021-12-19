@@ -8,6 +8,8 @@ import getAllPackage from "./package/all-package-reducer.js";
 import getDetailPackage from "./package/detail-package-reduce.js";
 import detailWo from "./user/detail-wo-reducer.js";
 import postOrder from "./user/order-reducer.js";
+import myPackage from "./organizer/list-package-reducer.js";
+import myHistory from "./user/history-user-reducer.js";
 
 const rootReducers = combineReducers({
   loading,
@@ -26,6 +28,10 @@ const rootReducers = combineReducers({
   detailWo,
   //postOrder
   postOrder,
+  //getMyPackage
+  myPackage,
+  //getHistoryOrderUser
+  myHistory,
 });
 
 export default rootReducers;

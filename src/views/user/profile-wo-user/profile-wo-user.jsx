@@ -21,9 +21,9 @@ const ProfileWO = () => {
     dispatch(allStore.getDetailWo(id));
   }, [dispatch, id]);
 
-  useEffect(() => {
-    console.log(detailWo);
-  }, [detailWo]);
+  // useEffect(() => {
+  //   console.log(detailWo);
+  // }, [detailWo]);
 
   // GET ALL PACKAGE WO
   const allPackage = useSelector(({ getAllPackage }) => getAllPackage);
@@ -36,6 +36,7 @@ const ProfileWO = () => {
   //   console.log(allPackage);
   // }, [allPackage]);
 
+  //LOADING
   if (loading) {
     return (
       <div className="loading d-flex justify-content-center align-items-center flex-column">
@@ -50,6 +51,7 @@ const ProfileWO = () => {
     navigate(`/detail/package/${id}`);
   };
 
+  //CONVER RUPIAH
   const formatRupiah = (money) => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
   };
