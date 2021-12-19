@@ -1,14 +1,16 @@
 import "./register-user.css";
 import React from "react";
 import { Form, Row, Col, Button, Spinner } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 // import NavLoginUser from "../../navbar-user/navbar-user-login.jsx";
 import logo from "../../../assets/virus.png";
 import axios from "axios";
 import swal from "sweetalert";
 import ModalLogin from "../../components/modal-login/modal-login.jsx";
+import allStore from "../../../store/actions/index.js";
 
 const RegisUser = () => {
   const [username, setUsername] = useState("");
@@ -17,6 +19,7 @@ const RegisUser = () => {
   const [loading, setLoading] = useState(false);
   const [modalLoginShow, setModalLoginShow] = React.useState(false);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -31,27 +34,26 @@ const RegisUser = () => {
 
     if (username.length == 0) {
       return swal("Username can not be blank");
-    } else if (username.indexOf(" ") == 0) {
-      return swal("First character in Username is blank character");
-    } else if (email.indexOf(" ") == 0) {
-      return swal("First character in Username is blank character");
     } else if (email.length == 0) {
       return swal("Email can not be blank");
     } else if (!email.includes("@")) {
       return swal("Please check your format Email");
-    } else if (email.includes(" ")) {
-      return swal("Your Email Includes Space/blank Character");
     } else if (password.length == 0) {
       return swal("Password can not be blank");
     } else if (password.includes(" ")) {
       return swal("Your Password Includes Space/blank Character");
     } else {
+      username.replace(/\s+/g, "");
+      email.replace(/\s+/g, "");
+
       setLoading(true);
       axios
         .post("https://weddingstories.space/register/users", body)
         .then((data) => {
-          console.log(data, "success register");
-          swal(data.data.message, "Now you can Login");
+          // console.log(data, "success register");
+          swal(data.data.message, "Success Register");
+          dispatch(allStore.UserLogin({ email, password }));
+
           setModalLoginShow(true);
           setUsername("");
           setPassword("");
@@ -62,7 +64,7 @@ const RegisUser = () => {
             setModalLoginShow(true);
             <ModalLogin show={modalLoginShow} />;
             console.log(err.response.data.message, "error register");
-            swal(err.response.data.message);
+            // swal(err.response.data.message);
           } else {
             swal("Your Internet Offline");
           }

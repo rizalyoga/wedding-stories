@@ -6,7 +6,7 @@ const History = () => {
   return (
     <>
       <NavUser />
-      <div className="list-reserve">
+      <div className="list-reservasi">
         <Container className="mt-5 mb-5">
           <Row>
             <h2 className="title-page">Your History Order</h2>
