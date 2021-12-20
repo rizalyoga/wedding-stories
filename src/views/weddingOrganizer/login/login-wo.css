@@ -24,3 +24,17 @@
   background-color: #84a1be;
   border: none;
 }
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 20;
+  background-color: rgba(129, 129, 129, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: 1s all !important;
+  transition-property: color !important;
+}

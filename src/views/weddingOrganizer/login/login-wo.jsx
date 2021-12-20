@@ -1,4 +1,4 @@
-import { Col, Container, Row, Image, Form, Button } from "react-bootstrap";
+import { Col, Container, Row, Image, Form, Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -58,6 +58,7 @@ const LoginWO = () => {
       };
       console.log(body);
       // return;
+      const online = window.ononline;
       axios
         .post("https://weddingstories.space/login/organizer", body)
         .then((data) => {
@@ -71,15 +72,14 @@ const LoginWO = () => {
           window.location.reload();
         })
         .catch((err) => {
-          const online = window.ononline;
           console.log(err.message);
 
-          window.ononline = (event) => {};
+          // window.ononline = (event) => {};
           if (online) {
             console.log("Back Online");
             swal(err.response.data.message);
-          } else if (!online) {
-            swal(err.message);
+          } else {
+            swal(err.response.data.message);
           }
         })
         .finally(() => {
@@ -87,6 +87,14 @@ const LoginWO = () => {
         });
     }
   };
+
+  if (loading) {
+    return (
+      <div className="loading d-flex justify-content-center align-items-center flex-column">
+        <Spinner animation="border" />
+      </div>
+    );
+  }
 
   return (
     <>
