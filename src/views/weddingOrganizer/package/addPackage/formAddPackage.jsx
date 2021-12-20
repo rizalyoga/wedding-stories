@@ -158,6 +158,7 @@ const FormAddPackage = () => {
               </Form.Label>
               <Form.Control
                 type="text"
+                autoComplete="off"
                 placeholder="Package Name"
                 onChange={(e) => setField("name", e.target.value)}
                 required
@@ -174,6 +175,7 @@ const FormAddPackage = () => {
               </Form.Label>
               <Form.Control
                 type="number"
+                autoComplete="off"
                 placeholder="Price"
                 onChange={(e) => setField("price", e.target.value)}
                 required
@@ -190,6 +192,7 @@ const FormAddPackage = () => {
               </Form.Label>
               <Form.Control
                 type="number"
+                autoComplete="off"
                 placeholder="Pax"
                 onChange={(e) => setField("pax", e.target.value)}
                 required
@@ -206,6 +209,7 @@ const FormAddPackage = () => {
               </Form.Label>
               <Form.Control
                 as="textarea"
+                autoComplete="off"
                 rows={5}
                 placeholder="Description"
                 onChange={(e) => setField("description", e.target.value)}
@@ -218,7 +222,7 @@ const FormAddPackage = () => {
             </Form.Group>
             <Form.Group as={Col} md="12">
               <Form.Label className="mt-3">
-                Photo <sup>*</sup> file type : jpg/jpeg/png/bnp
+                Photo <sup>*</sup>
               </Form.Label>
               <Form.Control
                 type="file"
@@ -231,6 +235,7 @@ const FormAddPackage = () => {
                 required
                 isInvalid={!!errors.photo}
               />
+              <h7>file type : jpg/jpeg/png/bnp · max size : 3 MB</h7>
               <Form.Control.Feedback type="invalid">
                 {errors.photo}
               </Form.Control.Feedback>

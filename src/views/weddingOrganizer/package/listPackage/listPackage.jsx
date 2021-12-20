@@ -26,14 +26,14 @@ const ListPackage = () => {
   // alert delete
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = (id, name) => {
+  const handleShow = () => {
     console.log(ID, packName);
     // return;
     if (show) {
       return (
         <Modal show={show} onHide={handleClose} backdrop="static">
           <Modal.Body>
-            Are you sure want to delete "{packName}" package ?
+            Are you sure want to delete "{packName}" package?
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -57,9 +57,6 @@ const ListPackage = () => {
 
     return <></>;
   };
-  const [photo, setPhoto] = useState(
-    "https://www.smpn2mirit.sch.id/wp-content/themes/sekolah/gambar/guru.jpg"
-  );
   const navigate = useNavigate();
 
   const checkPack = () => {
@@ -175,7 +172,7 @@ const ListPackage = () => {
                   <Card.Body>
                     <Card.Title>
                       {" "}
-                      <h5>
+                      <h5 className="pack-name">
                         <b>{el.PackageName}</b>{" "}
                       </h5>
                       <hr />
@@ -187,8 +184,12 @@ const ListPackage = () => {
                         <b>Pax :</b> {el.Pax}
                       </h6>
                       <hr />
-                      <h6>
-                        <b>Description :</b> {el.PackageDesc}
+                      <h6 className="description">
+                        <b>Description :</b> {el.PackageDesc} Lorem, ipsum dolor
+                        sit amet consectetur adipisicing elit. Quidem,
+                        praesentium. Pariatur qui cumque mollitia magni
+                        molestiae sequi sit harum, blanditiis nisi maxime omnis
+                        vel iste accusantium error, nemo perspiciatis? Libero?
                       </h6>
                       <hr />
                     </Card.Title>
