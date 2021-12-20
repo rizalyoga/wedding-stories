@@ -21,21 +21,21 @@ export const UserLogin = (payload) => {
           localStorage.setItem("id", response.data.id);
           localStorage.setItem("status", response.data.role);
           localStorage.setItem("nama", response.data.name);
-          swal("Login Success");
+          swal("Login Success", { icon: "success" });
           dispatch(allStore.setRoute("/"));
           setTimeout(() => {
             window.location.href = "/";
-          }, 500);
+          }, 750);
         }
       })
       .catch((err) => {
         if (online) {
           // console.log("online");
-          // console.log("3, Masuk ERROR:", err.response.data.message);
-          swal(err.response.data.message);
+          console.log("3, Masuk ERROR:", err.response.data);
+          swal(err.response.data.message, { icon: "warning" });
         } else if (!online) {
           // console.log("offline");
-          swal("Check your Internet Connection");
+          swal("Check your Internet Connection", { icon: "warning" });
         }
 
         // allStore.setError(err.response.data.message);

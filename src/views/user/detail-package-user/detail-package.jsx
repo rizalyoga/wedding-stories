@@ -66,15 +66,15 @@ const DetailPackage = () => {
     //check total pax
     if (!localStorage.token) {
       // <ModalLogin show={modalLoginShow} />;
-      swal("Please Login First");
+      swal("Please Login First", { icon: "info" });
     } else if (localStorage.status == "organizer") {
-      swal("Please Sign In as User");
+      swal("Please Sign In as User", { icon: "info" });
     } else if (pax < detailPackage.Pax) {
-      swal("Your Custom-Pax under minimum");
+      swal("Your Custom-Pax under minimum", { icon: "warning" });
     } else if (!date) {
-      swal("Please insert date !");
+      swal("Please insert date !", { icon: "warning" });
     } else if (!totalPax) {
-      swal("Custom Pax Cannot be Blank");
+      swal("Custom Pax Cannot be Blank", { icon: "warning" });
     } else {
       let dateString = moment(date).format("YYYY-MM-DD");
       let idPackage = parseInt(id);
