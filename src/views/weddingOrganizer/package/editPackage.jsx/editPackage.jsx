@@ -49,10 +49,7 @@ const FormEditPackage = () => {
     // pax errors
     if (!pax || pax === "") newErrors.pax = "cannot be blank!";
     else if (pax < 0) newErrors.pax = "pax cannot be negative!";
-    // photo errors
-    if (!photo || photo === "") newErrors.photo = "cannot be blank!";
-    else if (photo.size > 1e8)
-      newErrors.photo = "Photo size cannot be more than 100 MB!";
+
     // city errors
     if (!description || description === "")
       newErrors.description = "cannot be blank!";
@@ -65,44 +62,56 @@ const FormEditPackage = () => {
     return newErrors;
   };
 
-  const handleCreatPackage = (event) => {
+  const findFormPhoto = () => {
+    const newErrors = {};
+    // photo errors
+    if (!photo || photo === "") newErrors.photo = "cannot be blank!";
+    else if (photo.size > 3e6)
+      newErrors.photo = "Photo size cannot be more than 3 MB!";
+
+    return newErrors;
+  };
+
+  useEffect(() => {
+    console.log(pack);
+  }, [pack]);
+
+  const handleUploadPhoto = (event) => {
     event.preventDefault();
-    const newErrors = findFormErrors();
+    const newErrors = findFormPhoto();
     // Conditional logic:
     if (Object.keys(newErrors).length > 0) {
       // We got errors!
       setErrors(newErrors);
     } else {
+      setLoading(true);
       const config = {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       };
-      const body = {
-        packagename: name,
-        price: price,
-        pax: pax,
-        packagedesc: description,
-        urlphoto: photo,
-      };
       const data = new FormData();
-      data.append("packagename", name);
-      data.append("price", price);
-      data.append("pax", pax);
-      data.append("packagedesc", description);
       data.append("urlphoto", photo);
-      console.log(photo.size, config);
+      console.log(DataTransferItemList);
       // return;
       axios
-        .post("https://weddingstories.space/package", data, config)
+        .put(
+          `https://weddingstories.space/package/photo/${params.id}`,
+          data,
+          config
+        )
         .then((data) => {
+          window.location.reload();
           console.log(data);
+          navigate(`/vendor/packages/edit/${params.id}`);
           swal(data.data.message);
-          navigate("/vendor/packages");
         })
         .catch((err) => {
           console.log(err.message);
           swal(err.response.data.message);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   };
@@ -114,7 +123,7 @@ const FormEditPackage = () => {
       .then(({ data }) => {
         console.log(data.data);
         setPack(data.data);
-        console.log(pack);
+        // console.log(pack);
       })
       .catch((err) => {
         console.log(err);
@@ -153,14 +162,52 @@ const FormEditPackage = () => {
 
           {/* form */}
 
-          <Row className="mt-3 mb-3">
+          <Row className="border mt-3 mb-3">
             <Image
+              as={Col}
+              md="5"
               className="mt-2 mb-2 pt-package"
               src={pack.UrlPhoto}
               width="100%"
               height="100%"
               thumbnail
             />
+            <Form.Group as={Col} md="10">
+              <Form.Label className="mt-3">
+                Photo{" "}
+                <h7>( file type : jpg/jpeg/png/bnp · max size : 3 MB )</h7>
+              </Form.Label>
+              <Form.Control
+                type="file"
+                placeholder=""
+                accept="image/png, image/jpg, image/jpeg, image/bnp"
+                onChange={(e) => {
+                  setField("photo", e.target.files[0]);
+                  // handlePhoto(e);
+                }}
+                required
+                isInvalid={!!errors.photo}
+              />
+
+              <Form.Control.Feedback type="invalid">
+                {errors.photo}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group
+              as={Col}
+              md="2"
+              className="btn-edit"
+              controlId="validationCustom05"
+            >
+              <Button
+                id="btn-edit-package"
+                className="col-12 mt-5 mb-4 btn-submit"
+                variant="primary"
+                onClick={(e) => handleUploadPhoto(e)}
+              >
+                Save
+              </Button>
+            </Form.Group>
           </Row>
           <Row className="border mt-3 mb-3">
             <Form.Group as={Col} md="12" controlId="validationCustom03">
@@ -233,26 +280,7 @@ const FormEditPackage = () => {
                 {errors.description}
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group as={Col} md="12">
-              <Form.Label className="mt-3">
-                Photo <sup>*</sup>
-              </Form.Label>
-              <Form.Control
-                type="file"
-                placeholder=""
-                accept="image/png, image/jpg, image/jpeg, image/bnp"
-                onChange={(e) => {
-                  setField("photo", e.target.files[0]);
-                  // handlePhoto(e);
-                }}
-                required
-                isInvalid={!!errors.photo}
-              />
-              <h7>file type : jpg/jpeg/png/bnp - max size : 3 MB</h7>
-              <Form.Control.Feedback type="invalid">
-                {errors.photo}
-              </Form.Control.Feedback>
-            </Form.Group>
+
             <Form.Group as={Col} md="10" controlId="validationCustom05">
               <Form.Label className="mt-3">
                 <h6>
