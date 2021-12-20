@@ -11,8 +11,8 @@ const NavLoginWo = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
     localStorage.removeItem("name");
-    localStorage.removeItem("role");
-    swal("You've Been Logged Out!");
+    localStorage.removeItem("status");
+    swal("You've Been Logged Out!", { icon: "success" });
     navigate("/");
   };
 

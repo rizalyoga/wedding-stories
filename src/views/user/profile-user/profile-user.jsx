@@ -4,11 +4,16 @@ import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import allStore from "../../../store/actions/index";
+import swal from "sweetalert";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProfileUser = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const [disabled, setDisabled] = useState(true);
 
@@ -29,6 +34,44 @@ const ProfileUser = () => {
 
   const unlock = () => {
     setDisabled(!disabled);
+  };
+
+  /* ------------------------------ HANDLE DELETE ----------------------------- */
+
+  const handleDelete = () => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    swal({
+      title: "Are you sure for delete the account ?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete("https://weddingstories.space/users/profile", config)
+          .then((response) => {
+            localStorage.removeItem("token");
+            if (response.data.data !== null) {
+              navigate("/");
+            }
+            window.location.reload();
+          })
+          .catch((err) => {
+            console.log("3, Masuk ERROR:", err);
+            swal(err.response.data.message);
+            // allStore.setError(err.response.data.message);
+            // dispatch(allStore.setError(err.response.data.message));
+          });
+        swal("Data Sukses dihapus", {
+          icon: "success",
+        });
+      } else {
+        swal("Data tidak jadi dihapus");
+      }
+    });
   };
 
   return (
@@ -63,7 +106,7 @@ const ProfileUser = () => {
                   <Button className="w-35" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }} disabled={disabled}>
                     Edit
                   </Button>
-                  <Button className="w-35 ms-2 bg-danger" id="delete-user" style={{ border: "#DC3545" }} disabled={disabled}>
+                  <Button className="w-35 ms-2 bg-danger" id="delete-user" style={{ border: "#DC3545" }} disabled={disabled} onClick={() => handleDelete()}>
                     delete
                   </Button>
                 </div>

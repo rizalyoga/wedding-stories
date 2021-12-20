@@ -27,7 +27,7 @@ export const postOrder = (payload) => {
           swal(err.response.data.message);
         } else if (!online) {
           // console.log("offline");
-          swal("Check your Internet Connection");
+          swal("Check your Internet Connection", { icon: "warning" });
         }
 
         // allStore.setError(err.response.data.message);

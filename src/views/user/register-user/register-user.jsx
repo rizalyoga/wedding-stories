@@ -33,15 +33,15 @@ const RegisUser = () => {
     console.log(username, email, password);
 
     if (username.length == 0) {
-      return swal("Username can not be blank");
+      return swal("Username can not be blank", { icon: "warning" });
     } else if (email.length == 0) {
-      return swal("Email can not be blank");
+      return swal("Email can not be blank", { icon: "warning" });
     } else if (!email.includes("@")) {
-      return swal("Please check your format Email");
+      return swal("Please check your format Email", { icon: "warning" });
     } else if (password.length == 0) {
-      return swal("Password can not be blank");
+      return swal("Password can not be blank", { icon: "warning" });
     } else if (password.includes(" ")) {
-      return swal("Your Password Includes Space/blank Character");
+      return swal("Your Password Includes Space Character", { icon: "warning" });
     } else {
       // username.replace(/\s+/g, "");
       // email.replace(/\s+/g, "");

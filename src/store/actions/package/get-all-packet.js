@@ -19,8 +19,9 @@ export const getAllPackage = () => {
       .catch((err) => {
         if (online) {
           console.log(err);
+          swal(err.response.data.message);
         } else {
-          swal("Check your Internet Connection");
+          swal("Check your Internet Connection", { icon: "warning" });
         }
       })
       .finally((_) => dispatch(allStore.setLoading(false)));

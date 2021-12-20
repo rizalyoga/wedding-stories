@@ -19,8 +19,10 @@ export const detailPackage = (id) => {
       .catch((err) => {
         if (online) {
           console.log(err);
+          swal(err.response.data.message, { icon: "warning" });
         } else {
-          swal("Check your Internet Connection");
+          // console.log(err.response.data.message);
+          swal("Check your Internet Connection", { icon: "warning" });
         }
       })
       .finally((_) => dispatch(allStore.setLoading(false)));
