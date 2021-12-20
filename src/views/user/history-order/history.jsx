@@ -1,12 +1,15 @@
 import "./history.css";
 import NavUser from "../../components/navbar-user/navbar-user-login.jsx";
 import { Container, Accordion, Row, Col, Button, Spinner } from "react-bootstrap";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import allStore from "../../../store/actions/index.js";
 
 const History = () => {
   return (
     <>
       <NavUser />
-      <div className="list-reserve">
+      <div className="list-reservasi">
         <Container className="mt-5 mb-5">
           <Row>
             <h2 className="title-page">Your History Order</h2>

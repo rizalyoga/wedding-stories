@@ -1,4 +1,5 @@
 import "./detail-package.css";
+import React from "react";
 // import foto from "../../../assets/download.jpeg";
 import NavUser from "../../components/navbar-user/navbar-user";
 import { Button, Spinner } from "react-bootstrap";
@@ -10,6 +11,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import swal from "sweetalert";
 import moment from "moment";
+// import ModalLogin from "../../components/modal-login/modal-login";
 
 const DetailPackage = () => {
   const navigate = useNavigate();
@@ -18,6 +20,8 @@ const DetailPackage = () => {
   const detailPackage = useSelector(({ getDetailPackage }) => getDetailPackage);
   const loading = useSelector(({ loading }) => loading);
   const { id } = useParams();
+
+  // const [modalLoginShow] = useState(true);
 
   /* --------------------------- GET DETAIL PACKAGE --------------------------- */
 
@@ -54,14 +58,14 @@ const DetailPackage = () => {
     navigate(`/user/detail/organizer/${id}`);
   };
 
-  /* ------------------------------- DATE CONVER ------------------------------ */
-
   /* ------------------------------ HANDLE SUBMIT ----------------------------- */
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const pax = parseInt(totalPax);
     //check total pax
     if (!localStorage.token) {
+      // <ModalLogin show={modalLoginShow} />;
       swal("Please Login First");
     } else if (localStorage.status == "organizer") {
       swal("Please Sign In as User");

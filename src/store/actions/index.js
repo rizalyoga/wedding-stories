@@ -8,6 +8,8 @@ import { setAllPackage, getAllPackage } from "./package/get-all-packet.js";
 import { setDetaiilPackage, detailPackage } from "./package/detail-package.js";
 import { setDetailWo, getDetailWo } from "./user/get-profile-wo.js";
 import { setPostOrder, postOrder } from "./user/post-order.js";
+import { setMyPackage, getMyPackage } from "./organizer/get-list-package.js";
+import { setHistory, getHistory } from "./user/get-history.js";
 
 const allStore = {
   setError,
@@ -34,6 +36,12 @@ const allStore = {
   //postOrder
   setPostOrder,
   postOrder,
+  //getPavkageOrganizer
+  setMyPackage,
+  getMyPackage,
+  //getHistoryOrder
+  setHistory,
+  getHistory,
 };
 
 export default allStore;

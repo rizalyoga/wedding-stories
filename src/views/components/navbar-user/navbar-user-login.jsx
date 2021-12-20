@@ -13,6 +13,8 @@ const NavLoginUser = () => {
     navigate("/");
   };
 
+  const username = localStorage.nama;
+
   return (
     <div className="nav-login-user shadow">
       <Navbar style={{ background: "#fff" }}>
@@ -21,10 +23,21 @@ const NavLoginUser = () => {
             <img src={logoNavLogin} width="30" id="nav-logo-after-login" height="35" className="d-inline-block align-top" alt="logo" onClick={() => navigate("/")} />
           </Navbar.Brand>
           <Form className="d-flex search-input">
-            <input type="text" id="search-form-bef-login" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <input type="text" id="search-form-bef-login" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" autoComplete="off" />
             {/* <Button class="btn btn-outline-success" type="submit"></Button> */}
           </Form>
-          <NavDropdown title={<i id="avatar-user" className="bi bi-person-circle" style={{ fontSize: 25, color: "#5C7893" }}></i>} id="collasible-nav-dropdown" className="menu-user">
+          <NavDropdown
+            title={
+              <i id="avatar-user" className="bi bi-person-circle" style={{ fontSize: 25, color: "#5C7893" }}>
+                <a style={{ fontSize: "15px" }} className="name">
+                  {" "}
+                  {username}
+                </a>
+              </i>
+            }
+            id="collasible-nav-dropdown"
+            className="menu-user"
+          >
             <NavDropdown.Item id="home-menu-user" onClick={() => navigate("/")}>
               Home
             </NavDropdown.Item>
