@@ -30,9 +30,9 @@ const ProfileWO = () => {
     dispatch(allStore.fetchProfileWo());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(myPackage, "JAJAAJ");
-  }, [myPackage]);
+  // useEffect(() => {
+  //   console.log(myPackage, "JAJAAJ");
+  // }, [myPackage]);
 
   /* --------------------------------- LOADING -------------------------------- */
 
@@ -72,10 +72,7 @@ const ProfileWO = () => {
         <div className="container">
           <div className="content-header">
             <div className="image-logo">
-              <img
-                src={profileWo.logo == "" ? LogoWo : profileWo.logo}
-                alt="logo-wo"
-              />
+              <img src={profileWo.logo == "" ? LogoWo : profileWo.logo} alt="logo-wo" />
             </div>
             <div className="content-wo">
               <h2 className="fw-bold">{profileWo.woname}</h2>
@@ -86,28 +83,19 @@ const ProfileWO = () => {
               </div>
               <div className="contact d-flex">
                 <div className="phone d-flex">
-                  <i
-                    style={{ marginTop: "-2px", color: "#2CB040" }}
-                    className="bi bi-whatsapp me-1 mb-2"
-                  ></i>
+                  <i style={{ marginTop: "-2px", color: "#2CB040" }} className="bi bi-whatsapp me-1 mb-2"></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
                     {profileWo.phonenumber}
                   </h6>
                 </div>
                 <div className="mail d-flex">
-                  <i
-                    style={{ marginTop: "-2px", color: "#E34133" }}
-                    className="bi bi-envelope me-1"
-                  ></i>
+                  <i style={{ marginTop: "-2px", color: "#E34133" }} className="bi bi-envelope me-1"></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
                     {profileWo.email}
                   </h6>
                 </div>
                 <div className="website d-flex">
-                  <i
-                    style={{ marginTop: "-2px", color: "#5C7893" }}
-                    className="bi bi-globe2 me-2"
-                  ></i>
+                  <i style={{ marginTop: "-2px", color: "#5C7893" }} className="bi bi-globe2 me-2"></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
                     {profileWo.weburl == "" ? "-" : profileWo.weburl}
                   </h6>
@@ -118,11 +106,7 @@ const ProfileWO = () => {
                   <h6 className="text-center">{profileWo.status}</h6>
                 </div>
                 <div className="buton ms-2">
-                  <Button
-                    id="nav-edit-profile-wo"
-                    style={{ background: "#5C7893", borderColor: "#5C7893" }}
-                    onClick={() => toEdit()}
-                  >
+                  <Button id="nav-edit-profile-wo" style={{ background: "#5C7893", borderColor: "#5C7893" }} onClick={() => toEdit()}>
                     Edit Profile
                   </Button>
                 </div>
@@ -137,31 +121,24 @@ const ProfileWO = () => {
             <hr />
             <h5 className="fw-bold">List Packages</h5>
             <div className="list-packages mt-5">
-              {myPackage.map((el, index) => (
-                <div
-                  className="card-wo my-2 "
-                  onClick={() => navigate("/detail/package")}
-                  key={index}
-                  onClick={() => goToDetail(el.ID)}
-                >
-                  <div className="images">
-                    <img
-                      style={{ borderRadius: "10px" }}
-                      src={el.UrlPhoto}
-                      alt="product"
-                    />
-                  </div>
-                  <div className="name-wo fw-bold">{el.PackageName}</div>
-                  <div className="desc-packages d-flex justify-content-between">
-                    <div className="price">
-                      {formatRupiah(el.Price) + ",00"}
+              {!myPackage ? (
+                <></>
+              ) : (
+                myPackage.map((el, index) => (
+                  <div className="card-wo my-2 " onClick={() => navigate("/detail/package")} key={index} onClick={() => goToDetail(el.ID)}>
+                    <div className="images">
+                      <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
                     </div>
-                    <div className="rate" style={{ color: "#5C7893" }}>
-                      4.5
+                    <div className="name-wo fw-bold">{el.PackageName}</div>
+                    <div className="desc-packages d-flex justify-content-between">
+                      <div className="price">{formatRupiah(el.Price) + ",00"}</div>
+                      <div className="rate" style={{ color: "#5C7893" }}>
+                        4.5
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         </div>

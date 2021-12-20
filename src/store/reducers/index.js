@@ -10,6 +10,7 @@ import detailWo from "./user/detail-wo-reducer.js";
 import postOrder from "./user/order-reducer.js";
 import myPackage from "./organizer/list-package-reducer.js";
 import myHistory from "./user/history-user-reducer.js";
+import editUser from "./user/edit-profile-reducer.js";
 
 const rootReducers = combineReducers({
   loading,
@@ -32,6 +33,8 @@ const rootReducers = combineReducers({
   myPackage,
   //getHistoryOrderUser
   myHistory,
+  //editProfileUser
+  editUser,
 });
 
 export default rootReducers;

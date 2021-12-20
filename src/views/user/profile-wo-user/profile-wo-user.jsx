@@ -21,9 +21,9 @@ const ProfileWO = () => {
     dispatch(allStore.getDetailWo(id));
   }, [dispatch, id]);
 
-  // useEffect(() => {
-  //   console.log(detailWo);
-  // }, [detailWo]);
+  useEffect(() => {
+    console.log(detailWo);
+  }, [detailWo]);
 
   // GET ALL PACKAGE WO
   const allPackage = useSelector(({ getAllPackage }) => getAllPackage);

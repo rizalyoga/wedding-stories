@@ -64,7 +64,7 @@ const LoginWO = () => {
           console.log(data);
           swal(data.data.message);
           localStorage.setItem("name", data.data.name);
-          localStorage.setItem("role", data.data.role);
+          localStorage.setItem("status", data.data.role);
           localStorage.setItem("id", data.data.id);
           localStorage.setItem("token", data.data.token);
           navigate("/vendor/profile");
@@ -77,7 +77,7 @@ const LoginWO = () => {
           window.ononline = (event) => {};
           if (online) {
             console.log("Back Online");
-            swal(err.reponse.data.message);
+            swal(err.response.data.message);
           } else if (!online) {
             swal(err.message);
           }
