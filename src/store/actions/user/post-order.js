@@ -18,7 +18,7 @@ export const postOrder = (payload) => {
       .post("https://weddingstories.space/reservation", payload, config)
       .then((response) => {
         console.log("3, Masuk Then", response.data);
-        swal(response.data.message);
+        swal(response.data.message, { icon: "success" });
       })
       .catch((err) => {
         if (online) {
