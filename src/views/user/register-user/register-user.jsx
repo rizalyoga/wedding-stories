@@ -26,8 +26,8 @@ const RegisUser = () => {
     const online = window.navigator.onLine;
     event.preventDefault();
     const body = {
-      name: username,
-      email: email,
+      name: username.replace(/\s+/g, ""),
+      email: email.replace(/\s+/g, ""),
       password: password,
     };
     console.log(username, email, password);
@@ -43,15 +43,15 @@ const RegisUser = () => {
     } else if (password.includes(" ")) {
       return swal("Your Password Includes Space/blank Character");
     } else {
-      username.replace(/\s+/g, "");
-      email.replace(/\s+/g, "");
+      // username.replace(/\s+/g, "");
+      // email.replace(/\s+/g, "");
 
       setLoading(true);
       axios
         .post("https://weddingstories.space/register/users", body)
         .then((data) => {
           // console.log(data, "success register");
-          swal(data.data.message, "Success Register");
+          swal(data.data.message);
           dispatch(allStore.UserLogin({ email, password }));
 
           setModalLoginShow(true);
