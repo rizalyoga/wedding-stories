@@ -6,15 +6,93 @@ import {
   Button,
   Spinner,
   Alert,
+  Modal,
 } from "react-bootstrap";
 import NavLoginWo from "../../components/navbar-wo/navbar-wo-login";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 import "./listReservation.css";
+import { useNavigate } from "react-router-dom";
 
 const ListReservation = () => {
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState([]);
+  const [status, setStatus] = useState("");
+  const [ID, setID] = useState("");
+  const [buttonSelected, setButtonSelected] = useState("");
+  const navigate = useNavigate();
+  // alert accept/decline
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    console.log(status, buttonSelected);
+    // return;
+    if (show) {
+      return (
+        <Modal show={show} onHide={handleClose} backdrop="static">
+          <Modal.Body>
+            Are you sure want to "{buttonSelected}" this order?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              id="btn-close-alert"
+              variant="secondary"
+              onClick={(e) => handleClose(e)}
+            >
+              No
+            </Button>
+            <Button
+              id="btn-delete-package"
+              variant="primary"
+              onClick={() => {
+                handleStatusOrder();
+              }}
+            >
+              Yes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      );
+    }
+
+    return <></>;
+  };
+
+  //update status Order
+  const handleStatusOrder = () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    const body = {
+      status_order: status,
+    };
+    console.log(body, config, ID);
+    // return;
+    axios
+      .put(`https://weddingstories.space/order/status/${ID}`, body, config)
+      .then((data) => {
+        console.log(data);
+        swal(data.data.message);
+        navigate("/vendor/reservations");
+        setShow(false);
+        window.location.reload();
+      })
+      .catch((err) => {
+        const online = window.ononLine;
+        console.log(err.message);
+
+        window.ononline = (event) => {};
+        if (online) {
+          console.log("Back Online");
+          swal(err.reponse.data.message);
+        } else if (!online) {
+          swal(err.message);
+        }
+      });
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -23,7 +101,7 @@ const ListReservation = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     };
-    console.log(order.length);
+    // console.log(order.length);
     axios
       .get("https://weddingstories.space/order/organizer/my", config)
       .then(({ data }) => {
@@ -59,6 +137,77 @@ const ListReservation = () => {
 
     return <></>;
   };
+
+  const showButton = (recentStatus, id) => {
+    if (recentStatus === "waiting") {
+      return (
+        <>
+          <Col md={2} sm={12}>
+            <Button
+              id="accept"
+              md={12}
+              sm={6}
+              className="m-2"
+              variant="success"
+              onClick={(e) => {
+                setShow(true);
+                setID(id);
+                setStatus("accept");
+                setButtonSelected("Accept");
+              }}
+            >
+              Accept
+            </Button>
+            <Button
+              id="decline"
+              md={12}
+              sm={6}
+              className="m-2"
+              variant="danger"
+              onClick={(e) => {
+                setShow(true);
+                setID(id);
+                setStatus("decline");
+                setButtonSelected("Decline");
+              }}
+            >
+              Decline
+            </Button>
+          </Col>
+        </>
+      );
+    }
+
+    return (
+      <>
+        {" "}
+        <Col md={2} sm={12}>
+          {/* <Button
+            id="accept"
+            md={12}
+            sm={6}
+            className="m-2"
+            variant="success"
+            disabled="on"
+            // onClick={(e) => handleCreatPackage(e)}
+          >
+            Accept
+          </Button>
+          <Button
+            id="decline"
+            md={12}
+            sm={6}
+            className="m-2"
+            variant="danger"
+            disabled="on"
+            // onClick={(e) => handleCreatPackage(e)}
+          >
+            Decline
+          </Button> */}
+        </Col>
+      </>
+    );
+  };
   return (
     <>
       <NavLoginWo></NavLoginWo>
@@ -69,6 +218,7 @@ const ListReservation = () => {
             <hr />
           </Row>
           {checkOrder()}
+          {handleShow()}
           {order.map((el, idx) => (
             <Accordion>
               <Accordion.Item eventKey="0">
@@ -117,28 +267,7 @@ const ListReservation = () => {
                       </h7>
                       <br />
                     </Col>
-                    <Col md={2} sm={12}>
-                      <Button
-                        id="accept"
-                        md={12}
-                        sm={6}
-                        className="m-2 btn-submit"
-                        variant="success"
-                        // onClick={(e) => handleCreatPackage(e)}
-                      >
-                        Accept
-                      </Button>
-                      <Button
-                        id="decline"
-                        md={12}
-                        sm={6}
-                        className="m-2 btn-submit"
-                        variant="danger"
-                        // onClick={(e) => handleCreatPackage(e)}
-                      >
-                        Decline
-                      </Button>
-                    </Col>
+                    {showButton(el.Status_Order, el.ID)}
                   </Row>
                 </Accordion.Body>
               </Accordion.Item>

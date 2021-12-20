@@ -28,7 +28,7 @@ const AlertDelete = (props) => {
     <>
       <Modal show={props.show} onHide={props.handleClose} backdrop="static">
         <Modal.Body>
-          Are you sure want to delete "{props.packName}" package ?
+          Are you sure want to delete "{props.packName}" package?
         </Modal.Body>
         <Modal.Footer>
           <Button

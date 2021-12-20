@@ -22,3 +22,18 @@
 .cursor{
   cursor: pointer;
 }
+
+.description{
+  height: 60px;
+  white-space: normal; 
+  width: 100%; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pack-name{
+  white-space: nowrap; 
+  width: 100%; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
