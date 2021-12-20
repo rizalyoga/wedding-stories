@@ -10,6 +10,7 @@ import { setDetailWo, getDetailWo } from "./user/get-profile-wo.js";
 import { setPostOrder, postOrder } from "./user/post-order.js";
 import { setMyPackage, getMyPackage } from "./organizer/get-list-package.js";
 import { setHistory, getHistory } from "./user/get-history.js";
+import { setEditUser, postEditUser } from "./user/edit-profile.js";
 
 const allStore = {
   setError,
@@ -42,6 +43,9 @@ const allStore = {
   //getHistoryOrder
   setHistory,
   getHistory,
+  //EDIT USERS
+  setEditUser,
+  postEditUser,
 };
 
 export default allStore;

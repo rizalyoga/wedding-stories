@@ -1,5 +1,5 @@
 import "./profile-user.css";
-import { Form, Button, Row } from "react-bootstrap";
+import { Form, Button, Row, Spinner } from "react-bootstrap";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ const ProfileUser = () => {
 
   const dispatch = useDispatch();
   const profileUser = useSelector(({ userProfile }) => userProfile);
+  const loading = useSelector(({ loading }) => loading);
 
   useEffect(() => {
     dispatch(allStore.ProfileUser());
@@ -27,13 +28,28 @@ const ProfileUser = () => {
     }
   }, [dispatch]);
 
+  //GET DATA PROFILE USER
   useEffect(() => {
     setUsername(localStorage.nama);
     setEmail(localStorage.email);
   }, [profileUser]);
 
+  useEffect(() => {
+    console.log(profileUser.data);
+  }, [profileUser]);
+
+  /* -------------------------- UNLOCK ACTION DISABEL ------------------------- */
+
   const unlock = () => {
     setDisabled(!disabled);
+  };
+
+  /* ------------------------------- HANDLE EDIT ------------------------------ */
+  const handleEdit = (event) => {
+    event.preventDefault();
+    dispatch(allStore.postEditUser({ name: username, email: email, password: password }));
+    console.log(username);
+    console.log(email);
   };
 
   /* ------------------------------ HANDLE DELETE ----------------------------- */
@@ -74,6 +90,15 @@ const ProfileUser = () => {
     });
   };
 
+  /* --------------------------------- LOADING -------------------------------- */
+  if (loading) {
+    return (
+      <div className="loading d-flex justify-content-center align-items-center flex-column">
+        <Spinner animation="border" />
+      </div>
+    );
+  }
+
   return (
     <div style={{ backgroundColor: "#5C7893", paddingTop: "5%", paddingBottom: "5%" }}>
       <NavUser />
@@ -103,7 +128,7 @@ const ProfileUser = () => {
                   </p>
                 </div>
                 <div className="button-edit">
-                  <Button className="w-35" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }} disabled={disabled}>
+                  <Button className="w-35" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }} disabled={disabled} onClick={(event) => handleEdit(event)}>
                     Edit
                   </Button>
                   <Button className="w-35 ms-2 bg-danger" id="delete-user" style={{ border: "#DC3545" }} disabled={disabled} onClick={() => handleDelete()}>
