@@ -120,7 +120,9 @@ const ListReservation = () => {
     return (
       <>
         <NavLoginWo />
-        <Spinner className="spinner" animation="border" />
+        <div className="spinner-bg">
+          <Spinner className="spinner" animation="border" />
+        </div>
       </>
     );
   }
@@ -214,7 +216,7 @@ const ListReservation = () => {
       <div className="list-reserve">
         <Container className="mt-5 mb-5">
           <Row>
-            <h2 className="title-page">Your Order</h2>
+            <h2 className="title-page">Order List</h2>
             <hr />
           </Row>
           {checkOrder()}

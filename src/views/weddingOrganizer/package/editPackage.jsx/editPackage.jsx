@@ -47,9 +47,10 @@ const FormEditPackage = () => {
     const newErrors = {};
 
     // name errors
-    if (!packName || packName === "") newErrors.packName = "cannot be blank!";
+    if ((!name || name === "") && (!packName || packName === ""))
+      newErrors.name = "cannot be blank!";
     else if (packName.length < 8)
-      newErrors.packName = "Package name cannot be less than 8 characters!";
+      newErrors.name = "Package name cannot be less than 8 characters!";
     // price errors
     if (!packPrice || packPrice === "")
       newErrors.packPrice = "cannot be blank!";
@@ -137,21 +138,15 @@ const FormEditPackage = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       };
-      // const data = new FormData();
-      // data.append("packagename", name);
-      // data.append("price", price);
-      // data.append("pax", pax);
-      // data.append("packagedesc", description);
-      const body = {
-        packagename: packName,
-        price: packPrice,
-        pax: packPax,
-        packagedesc: packDesc,
-      };
-      console.log(body);
+      const data = new FormData();
+      data.append("packagename", packName);
+      data.append("price", packPrice);
+      data.append("pax", packPax);
+      data.append("packagedesc", packDesc);
+      console.log(data);
       // return;
       axios
-        .put(`https://weddingstories.space/package/${params.id}`, body, config)
+        .put(`https://weddingstories.space/package/${params.id}`, data, config)
         .then((data) => {
           console.log(data);
           navigate(`/vendor/packages/`);
@@ -197,7 +192,9 @@ const FormEditPackage = () => {
     return (
       <>
         <NavLoginWo />
-        <Spinner className="spinner" animation="border" />
+        <div className="spinner-bg">
+          <Spinner className="spinner" animation="border" />
+        </div>
       </>
     );
   }
@@ -209,10 +206,7 @@ const FormEditPackage = () => {
         {/* {pack.map((el, idx) => ( */}
         <Container className="mb-5 mt-5">
           <Row>
-            <h5
-              className="col-6 cursor"
-              onClick={() => navigate("/vendor/packages")}
-            >
+            <h5 className="cursor" onClick={() => navigate("/vendor/packages")}>
               <i class="bi bi-arrow-left-square "> </i>
               Your Packages
             </h5>
@@ -223,20 +217,23 @@ const FormEditPackage = () => {
           {/* form */}
 
           <Row className="border mt-3 mb-3">
-            <Image
-              as={Col}
-              md="5"
-              className="mt-2 mb-2 pt-package"
-              src={pack.UrlPhoto}
-              width="100%"
-              height="100%"
-              thumbnail
-            />
+            <Form.Group as={Col} md="2">
+              {" "}
+            </Form.Group>
+            <Form.Group as={Col} md="8">
+              <Image
+                className="mt-2 mb-2 pt-package"
+                src={pack.UrlPhoto}
+                width="100%"
+                height="100%"
+                thumbnail
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="2">
+              {" "}
+            </Form.Group>
             <Form.Group as={Col} md="10">
-              <Form.Label className="mt-3">
-                Photo{" "}
-                <h7>( file type : jpg/jpeg/png/bnp · max size : 3 MB )</h7>
-              </Form.Label>
+              <Form.Label className="mt-3">Photo </Form.Label>
               <Form.Control
                 type="file"
                 placeholder=""
@@ -248,10 +245,10 @@ const FormEditPackage = () => {
                 required
                 isInvalid={!!errors.photo}
               />
-
               <Form.Control.Feedback type="invalid">
                 {errors.photo}
               </Form.Control.Feedback>
+              <h7>file type: jpg/jpeg/png/bnp · max size: 3 MB</h7>
             </Form.Group>
             <Form.Group
               as={Col}
@@ -277,10 +274,10 @@ const FormEditPackage = () => {
               <Form.Control
                 type="text"
                 placeholder="Package Name"
-                onChange={
-                  (e) => setPackName(e.target.value)
-                  // setField("name", e.target.value)
-                }
+                onChange={(e) => {
+                  setPackName(e.target.value);
+                  // setField("name", e.target.value);
+                }}
                 required
                 isInvalid={!!errors.name}
                 value={packName}
