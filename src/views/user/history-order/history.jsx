@@ -102,9 +102,13 @@ const History = () => {
                         <br />
                       </Col>
                       <Col md={2} sm={12}>
-                        <Button id="payment" md={12} sm={6} className="m-2 btn-submit" variant="secondary" onClick={() => (el.Status_Order === "waiting" ? swal("tunggu Pihak WO ya") : swal("sabar fitur belum jadi"))}>
-                          Payment
-                        </Button>
+                        {el.Status_Order === "declined" ? (
+                          <></>
+                        ) : (
+                          <Button id="payment" md={12} sm={6} className="m-2 btn-submit" variant="secondary" onClick={() => (el.Status_Order === "waiting" ? swal("tunggu Pihak WO ya") : swal("sabar fitur belum jadi"))}>
+                            Payment
+                          </Button>
+                        )}
                       </Col>
                     </Row>
                   </Accordion.Body>
