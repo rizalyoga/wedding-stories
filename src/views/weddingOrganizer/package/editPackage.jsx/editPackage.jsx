@@ -19,6 +19,13 @@ const FormEditPackage = () => {
   const [pack, setPack] = useState({});
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  // coba state
+  const [packName, setPackName] = useState("");
+  const [packPrice, setPackPrice] = useState("");
+  const [packPax, setPackPax] = useState("");
+  const [packDesc, setPackDesc] = useState("");
+  // state end
+
   const { name, price, pax, photo, description } = form;
   const navigate = useNavigate();
   const params = useParams();
@@ -40,21 +47,21 @@ const FormEditPackage = () => {
     const newErrors = {};
 
     // name errors
-    if (!name || name === "") newErrors.name = "cannot be blank!";
-    else if (name.length < 8)
-      newErrors.name = "Package name cannot be less than 8 characters!";
+    if (!packName || packName === "") newErrors.packName = "cannot be blank!";
+    else if (packName.length < 8)
+      newErrors.packName = "Package name cannot be less than 8 characters!";
     // price errors
-    if (!price || price === "") newErrors.price = "cannot be blank!";
-    else if (price < 0) newErrors.price = "price cannot be negative!";
+    if (!packPrice || packPrice === "")
+      newErrors.packPrice = "cannot be blank!";
+    else if (packPrice < 0) newErrors.packPrice = "price cannot be negative!";
     // pax errors
-    if (!pax || pax === "") newErrors.pax = "cannot be blank!";
-    else if (pax < 0) newErrors.pax = "pax cannot be negative!";
+    if (!packPax || packPax === "") newErrors.packPax = "cannot be blank!";
+    else if (packPax < 0) newErrors.packPax = "pax cannot be negative!";
 
     // city errors
-    if (!description || description === "")
-      newErrors.description = "cannot be blank!";
-    else if (description.length < 20)
-      newErrors.description = "Description cannot be less than 20 characters!";
+    if (!packDesc || packDesc === "") newErrors.packDesc = "cannot be blank!";
+    else if (packDesc.length < 20)
+      newErrors.packDesc = "Description cannot be less than 20 characters!";
 
     // else if (address.length < 6)
     //   newErrors.phonenumber = "phone number is too short!";
@@ -116,13 +123,66 @@ const FormEditPackage = () => {
     }
   };
 
+  const handleCreatPackage = (event) => {
+    event.preventDefault();
+    const newErrors = findFormErrors();
+    // Conditional logic:
+    if (Object.keys(newErrors).length > 0) {
+      // We got errors!
+      setErrors(newErrors);
+    } else {
+      setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      // const data = new FormData();
+      // data.append("packagename", name);
+      // data.append("price", price);
+      // data.append("pax", pax);
+      // data.append("packagedesc", description);
+      const body = {
+        packagename: packName,
+        price: packPrice,
+        pax: packPax,
+        packagedesc: packDesc,
+      };
+      console.log(body);
+      // return;
+      axios
+        .put(`https://weddingstories.space/package/${params.id}`, body, config)
+        .then((data) => {
+          console.log(data);
+          navigate(`/vendor/packages/`);
+          swal(data.data.message);
+        })
+        .catch((err) => {
+          console.log(err.message);
+          swal(err.response.data.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
   useEffect(() => {
     setLoading(true);
     axios
       .get(`https://weddingstories.space/package/${params.id}`)
       .then(({ data }) => {
-        console.log(data.data);
+        console.log(data.data.PackageDesc);
         setPack(data.data);
+        // setField("price", data.data.Price);
+        // setField("pax", data.data.Pax);
+        // setField("description", data.data.PackageDesc);
+        // setField("name", data.data.PackageName);
+        setPackName(data.data.PackageName);
+        setPackPrice(data.data.Price);
+        setPackPax(data.data.Pax);
+        setPackDesc(data.data.PackageDesc);
+
         // console.log(pack);
       })
       .catch((err) => {
@@ -217,11 +277,14 @@ const FormEditPackage = () => {
               <Form.Control
                 type="text"
                 placeholder="Package Name"
-                onChange={(e) => setField("name", e.target.value)}
+                onChange={
+                  (e) => setPackName(e.target.value)
+                  // setField("name", e.target.value)
+                }
                 required
                 isInvalid={!!errors.name}
-                value={name}
-                defaultValue={pack.PackageName}
+                value={packName}
+                // defaultValue={pack.PackageName}
               ></Form.Control>
 
               <Form.Control.Feedback type="invalid">
@@ -236,10 +299,14 @@ const FormEditPackage = () => {
               <Form.Control
                 type="number"
                 placeholder="Price"
-                onChange={(e) => setField("price", e.target.value)}
+                onChange={
+                  (e) => setPackPrice(e.target.value)
+                  //  setField("price", e.target.value)
+                }
                 required
                 isInvalid={!!errors.price}
-                defaultValue={pack.Price}
+                value={packPrice}
+                // defaultValue={pack.Price}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.price}
@@ -253,10 +320,14 @@ const FormEditPackage = () => {
               <Form.Control
                 type="number"
                 placeholder="Pax"
-                onChange={(e) => setField("pax", e.target.value)}
+                onChange={
+                  (e) => setPackPax(e.target.value)
+                  // setField("pax", e.target.value)
+                }
                 required
                 isInvalid={!!errors.pax}
-                defaultValue={pack.Pax}
+                value={packPax}
+                // defaultValue={pack.Pax}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.pax}
@@ -271,10 +342,14 @@ const FormEditPackage = () => {
                 as="textarea"
                 rows={5}
                 placeholder="Description"
-                onChange={(e) => setField("description", e.target.value)}
+                onChange={
+                  (e) => setPackDesc(e.target.value)
+                  // setField("description", e.target.value)
+                }
                 required
                 isInvalid={!!errors.description}
-                defaultValue={pack.PackageDesc}
+                value={packDesc}
+                // defaultValue={pack.PackageDesc}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.description}
@@ -298,7 +373,7 @@ const FormEditPackage = () => {
                 id="btn-edit-package"
                 className="col-12 mt-3 mb-3 btn-submit"
                 variant="primary"
-                // onClick={(e) => handleCreatPackage(e)}
+                onClick={(e) => handleCreatPackage(e)}
               >
                 Save
               </Button>
