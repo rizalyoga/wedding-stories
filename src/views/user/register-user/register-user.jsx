@@ -95,74 +95,75 @@ const RegisUser = () => {
 
   if (localStorage.token) {
     return <Home />;
-  }
-  return (
-    <div className="body">
-      <NavUser />
-      {/* <NavLoginUser /> */}
-      <div className="container body-register">
-        <Row className="d-flex justify-content-center mb-5">
-          <Col lg={5} md={5} sm={12} className="">
-            <div className="logo-register text-center mb-4">
-              <img onClick={() => navigate("/")} style={{ width: "60px", cursor: "pointer" }} src={logo} alt="logo" />
-            </div>
-            <p className="text-center">Mulai persiapan pernikahan Anda dengan penawaran terbaik & fitur eksklusif di Wedding-Day!</p>
-            <div className="form-register">
-              <Form>
-                <Row>
-                  <div className="Room d-flex flex-column">
-                    <div className="mb-3 d-flex flex-column text-white" controlId="username">
-                      <Form.Label>Username</Form.Label>
-                      <Form.Control className="input-register" id="form-username-user" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
-                    </div>
+  } else {
+    return (
+      <div className="body">
+        <NavUser />
+        {/* <NavLoginUser /> */}
+        <div className="container body-register">
+          <Row className="d-flex justify-content-center mb-5">
+            <Col lg={5} md={5} sm={12} className="">
+              <div className="logo-register text-center mb-4">
+                <img onClick={() => navigate("/")} style={{ width: "60px", cursor: "pointer" }} src={logo} alt="logo" />
+              </div>
+              <p className="text-center">Mulai persiapan pernikahan Anda dengan penawaran terbaik & fitur eksklusif di Wedding-Day!</p>
+              <div className="form-register">
+                <Form>
+                  <Row>
+                    <div className="Room d-flex flex-column">
+                      <div className="mb-3 d-flex flex-column text-white" controlId="username">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control className="input-register" id="form-username-user" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
+                      </div>
 
-                    <div className="mb-3 d-flex flex-column text-white" controlId="email">
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control className="input-register" id="form-email-user" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
-                    </div>
+                      <div className="mb-3 d-flex flex-column text-white" controlId="email">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control className="input-register" id="form-email-user" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
+                      </div>
 
-                    <div className="mb-3 d-flex flex-column text-white" controlId="password">
-                      <Form.Label>password</Form.Label>
-                      <p className="d-flex justify-content-center align-items-center">
-                        <Form.Control
-                          style={{ marginLeft: "-2px" }}
-                          id="form-password-user"
-                          className="input-register "
-                          placeholder="password"
-                          type="password"
-                          value={password}
-                          onChange={(event) => setPassword(event.target.value)}
-                          required
-                          autoComplete="off"
-                        />
-                        <i style={{ marginLeft: "-20px", color: "black", cursor: "pointer" }} className="bi bi-eye-slash" id="togglePassword" onClick={() => showPassword()}></i>
-                      </p>
+                      <div className="mb-3 d-flex flex-column text-white" controlId="password">
+                        <Form.Label>password</Form.Label>
+                        <p className="d-flex justify-content-center align-items-center">
+                          <Form.Control
+                            style={{ marginLeft: "-2px" }}
+                            id="form-password-user"
+                            className="input-register "
+                            placeholder="password"
+                            type="password"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                            required
+                            autoComplete="off"
+                          />
+                          <i style={{ marginLeft: "-20px", color: "black", cursor: "pointer" }} className="bi bi-eye-slash" id="togglePassword" onClick={() => showPassword()}></i>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </Row>
+                  </Row>
 
-                <button className="button-submit mt-1 mb-4" id="SignUp-user" type="submit" onClick={(event) => handleSubmit(event)}>
-                  Sign up
-                </button>
-                <hr style={{ color: "white" }} />
-                <div className="content-wo " style={{ marginLeft: "0.2px" }}>
-                  <h5 className="text-white">Sign up as Organizer</h5>
-                  <Button onClick={() => navigate("/vendor/register")} id="redirect-signUp-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
-                    sign up
-                  </Button>
+                  <button className="button-submit mt-1 mb-4" id="SignUp-user" type="submit" onClick={(event) => handleSubmit(event)}>
+                    Sign up
+                  </button>
                   <hr style={{ color: "white" }} />
-                  <h5 className="text-white">Sign in as Organizer</h5>
-                  <Button onClick={() => navigate("/vendor/login")} id="redirect-signIn-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
-                    sign in
-                  </Button>
-                </div>
-              </Form>
-            </div>
-          </Col>
-        </Row>
+                  <div className="content-wo " style={{ marginLeft: "0.2px" }}>
+                    <h5 className="text-white">Sign up as Organizer</h5>
+                    <Button onClick={() => navigate("/vendor/register")} id="redirect-signUp-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
+                      sign up
+                    </Button>
+                    <hr style={{ color: "white" }} />
+                    <h5 className="text-white">Sign in as Organizer</h5>
+                    <Button onClick={() => navigate("/vendor/login")} id="redirect-signIn-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
+                      sign in
+                    </Button>
+                  </div>
+                </Form>
+              </div>
+            </Col>
+          </Row>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default RegisUser;

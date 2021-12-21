@@ -27,14 +27,29 @@ export const postEditUser = (payload) => {
         //   localStorage.removeItem("nama");
         //   localStorage.setItem("nama", "dian");
         // }
-        allStore.setProfileUser(response.data.data);
+        // allStore.setProfileUser(response.data.data);
+
+        return axios
+          .get("https://weddingstories.space/users/profile", config)
+          .then((response) => {
+            console.log(response.data, "INI RESPONSE PROFILE");
+            if (localStorage.nama) {
+              localStorage.removeItem("nama");
+              localStorage.removeItem("email");
+              localStorage.setItem("nama", response.data.data.Name);
+              localStorage.setItem("email", response.data.data.Email);
+            }
+          })
+          .catch((err) => {
+            console.log("ERROR GET PROFILE", err.response.data);
+          });
         dispatch(allStore.setEditUser(response.data.data));
 
         // window.location.reload();
       })
       .catch((err) => {
         console.log("3, Masuk ERROR:", err.response);
-        swal(err.response.data.message);
+        // swal(err.response.data.message);
         // allStore.setError(err.response.data.message);
         // dispatch(allStore.setError(err.response.data.message));
       })
