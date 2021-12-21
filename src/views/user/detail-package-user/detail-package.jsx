@@ -46,9 +46,10 @@ const DetailPackage = () => {
 
   if (loading) {
     return (
-      <div className="loading d-flex justify-content-center align-items-center flex-column">
-        <Spinner animation="border" />
-      </div>
+      <>
+        <NavUser />
+        <Spinner className="spinner" animation="border" />
+      </>
     );
   }
 
