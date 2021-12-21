@@ -92,8 +92,9 @@ const FormAddPackage = () => {
         .post("https://weddingstories.space/package", data, config)
         .then((data) => {
           console.log(data);
-          swal(data.data.message);
+
           navigate("/vendor/packages");
+          swal(data.data.message);
         })
         .catch((err) => {
           const online = window.ononLine;
