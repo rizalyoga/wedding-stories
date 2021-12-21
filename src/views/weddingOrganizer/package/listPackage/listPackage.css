@@ -1,3 +1,6 @@
+.spinner-bg{
+  background-color: #5c7893;
+}
 .spinner {
   margin-top: 50vh;
   margin-bottom: 50vh;
@@ -8,12 +11,12 @@
 }
 .list-package{
   background-color: #5c7893;
-  padding-bottom: 5%;
-  padding-top: 5%;
+  padding-bottom: 10%;
+  padding-top: 10%;
 }
 .photo-package {
   width: 100%;
-  height: 300px;
+  height: 200px;
   object-fit: cover;
 }
 .card-package {

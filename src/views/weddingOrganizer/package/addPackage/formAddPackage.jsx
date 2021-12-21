@@ -48,7 +48,7 @@ const FormAddPackage = () => {
     if (!photo || photo === "") newErrors.photo = "cannot be blank!";
     else if (photo.size > 5e6)
       newErrors.photo = "Photo size cannot be more than 5 MB!";
-    // city errors
+    // description errors
     if (!description || description === "")
       newErrors.description = "cannot be blank!";
     else if (description.length < 20)
@@ -92,14 +92,12 @@ const FormAddPackage = () => {
         .post("https://weddingstories.space/package", data, config)
         .then((data) => {
           console.log(data);
-
           navigate("/vendor/packages");
           swal(data.data.message);
         })
         .catch((err) => {
           const online = window.ononLine;
           console.log(err.message);
-
           window.ononline = (event) => {};
           if (online) {
             console.log("Back Online");
@@ -143,15 +141,6 @@ const FormAddPackage = () => {
             <h2 className="title-page">Add New Package</h2>
             <hr />
           </Row>
-          {/* <Row className="mt-3 mb-3">
-            <Image
-              className="mt-3 mb-3 pt-package"
-              src={photo}
-              width="100%"
-              height="100%"
-              thumbnail
-            />
-          </Row> */}
           <Row className="border mt-3 mb-3">
             <Form.Group as={Col} md="12" controlId="validationCustom03">
               <Form.Label className="mt-3">
@@ -221,6 +210,7 @@ const FormAddPackage = () => {
                 {errors.description}
               </Form.Control.Feedback>
             </Form.Group>
+
             <Form.Group as={Col} md="12">
               <Form.Label className="mt-3">
                 Photo <sup>*</sup>
@@ -236,11 +226,12 @@ const FormAddPackage = () => {
                 required
                 isInvalid={!!errors.photo}
               />
-              <h7>file type : jpg/jpeg/png/bnp · max size : 3 MB</h7>
               <Form.Control.Feedback type="invalid">
                 {errors.photo}
               </Form.Control.Feedback>
+              <h7>file type: jpg/jpeg/png/bnp · max size: 3 MB</h7>
             </Form.Group>
+
             <Form.Group as={Col} md="10" controlId="validationCustom05">
               <Form.Label className="mt-3">
                 <h6>
