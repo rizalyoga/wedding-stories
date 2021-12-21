@@ -11,7 +11,7 @@ export const postEditUser = (payload) => {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const email = "joni@mail.com";
+  // const email = "joni@mail.com";
 
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
@@ -23,14 +23,18 @@ export const postEditUser = (payload) => {
       .then((response) => {
         console.log("3, Masuk Then", response.data);
         swal(response.data.message, { icon: "success" });
+        // if (localStorage.nama) {
+        //   localStorage.removeItem("nama");
+        //   localStorage.setItem("nama", "dian");
+        // }
         allStore.setProfileUser(response.data.data);
-        dispatch(allStore.setProfileUser(response.data.data));
+        dispatch(allStore.setEditUser(response.data.data));
 
         // window.location.reload();
       })
       .catch((err) => {
         console.log("3, Masuk ERROR:", err.response);
-        // swal(err.response.data.message);
+        swal(err.response.data.message);
         // allStore.setError(err.response.data.message);
         // dispatch(allStore.setError(err.response.data.message));
       })

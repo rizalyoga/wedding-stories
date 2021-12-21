@@ -11,6 +11,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import ModalLogin from "../../components/modal-login/modal-login.jsx";
 import allStore from "../../../store/actions/index.js";
+import Home from "../../home/before-login/index.jsx";
 
 const RegisUser = () => {
   const [username, setUsername] = useState("");
@@ -92,6 +93,9 @@ const RegisUser = () => {
     }
   };
 
+  if (localStorage.token) {
+    return <Home />;
+  }
   return (
     <div className="body">
       <NavUser />
