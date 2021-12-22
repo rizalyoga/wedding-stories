@@ -9,3 +9,9 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media (max-width: 885px) {
+  .list-reservasi {
+    padding-top: 10%;
+  }
+}

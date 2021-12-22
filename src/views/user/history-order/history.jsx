@@ -1,13 +1,16 @@
 import "./history.css";
 import NavUser from "../../components/navbar-user/navbar-user-login.jsx";
-import { Container, Accordion, Row, Col, Button, Spinner } from "react-bootstrap";
+import { Container, Accordion, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import allStore from "../../../store/actions/index.js";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 const History = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const listOrder = useSelector(({ myHistory }) => myHistory);
   const loading = useSelector(({ loading }) => loading);
@@ -40,6 +43,10 @@ const History = () => {
     );
   }
 
+  const goToDetail = (id) => {
+    navigate(`/detail/package/${id}`);
+  };
+
   return (
     <>
       <NavUser />
@@ -50,7 +57,11 @@ const History = () => {
             <hr />
           </Row>
           {!listOrder ? (
-            <></>
+            <>
+              <Alert variant="warning" style={{ height: "100vh" }}>
+                You have no data.
+              </Alert>
+            </>
           ) : (
             listOrder.map((el, index) => (
               <Accordion key={index}>
@@ -70,26 +81,11 @@ const History = () => {
                     <Row>
                       <Col md={1}></Col>
                       <Col md={5} sm={12}>
-                        <h7>
-                          <b>Client Name&emsp;&emsp; : {el.WoName}</b>
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Package Name &ensp;: {el.PackageName}</b>
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;: {el.Date}</b>
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Total Pax&emsp;&emsp;&emsp;&emsp;: {el.Total_Pax}</b>
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Additional&emsp;&emsp;&emsp; : {!el.Additional ? "-" : el.Additional}</b>
-                        </h7>
-                        <br />
+                        <p>Client Name&emsp;&emsp; : {el.WoName}</p>
+                        <p>Package Name &ensp;: {el.PackageName}</p>
+                        <p>Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {el.Date}</p>
+                        <p>Total Pax&emsp;&emsp;&emsp;&emsp;: {el.Total_Pax}</p>
+                        <p>Additional&emsp;&emsp;&emsp; : {!el.Additional ? "-" : el.Additional}</p>
                       </Col>
                       <Col md={4}>
                         <h7>
@@ -102,6 +98,9 @@ const History = () => {
                         <br />
                       </Col>
                       <Col md={2} sm={12}>
+                        <Button id="payment" md={12} sm={6} className="m-2 btn-submit" variant="secondary" onClick={() => goToDetail(el.Package_ID)}>
+                          Detail Package
+                        </Button>
                         {el.Status_Order === "declined" ? (
                           <></>
                         ) : (

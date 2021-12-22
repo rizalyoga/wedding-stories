@@ -36,6 +36,18 @@ const ModalLogin = (props) => {
     );
   }
 
+  /* ------------------------------ SHOW PASSWORD ----------------------------- */
+  const showPassword = () => {
+    const x = document.getElementById("form-input-pass-user");
+    if (x.type === "password") {
+      x.type = "text";
+      document.getElementById("togglePassword").style.color = "red";
+    } else {
+      x.type = "password";
+      document.getElementById("togglePassword").style.color = "#bdbdbd";
+    }
+  };
+
   return (
     <Modal {...props} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton></Modal.Header>
@@ -49,6 +61,7 @@ const ModalLogin = (props) => {
             <input type="email" id="form-input-email-user" autoComplete="off" a placeholder="E-mail" value={email} onChange={(event) => setEmail(event.target.value)} required />
             {/* <Form.Label className="mb-0 label-login">Password</Form.Label> */}
             <input type="password" id="form-input-pass-user" placeholder="Password" autoComplete="off" value={password} onChange={(event) => setPassword(event.target.value)} required />
+            <i style={{ marginLeft: "-20px", color: "#bdbdbd", cursor: "pointer" }} className="bi bi-eye-slash" id="togglePassword" onClick={() => showPassword()}></i>
             <br />
             <span></span>
             <Button className="mt-3 submit-login " id="signIn-user" type="submit">

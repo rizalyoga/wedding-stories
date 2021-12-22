@@ -1,6 +1,7 @@
 import axios from "axios";
 import allStore from "../index.js";
 import swal from "sweetalert";
+import navUser from "../../../views/components/navbar-user/navbar-user.jsx";
 
 export const detailPackage = (id) => {
   const online = window.navigator.onLine;
@@ -18,8 +19,9 @@ export const detailPackage = (id) => {
       })
       .catch((err) => {
         if (online) {
-          console.log(err);
-          swal(err.response.data.message, { icon: "warning" });
+          console.log(err.response);
+          swal("data not found", { icon: "warning" });
+          // swal(err.response.data.message, { icon: "warning" });
         } else {
           // console.log(err.response.data.message);
           swal("Check your Internet Connection", { icon: "warning" });

@@ -13,7 +13,7 @@ const ProfileUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [disabled, setDisabled] = useState(true);
 
@@ -34,9 +34,9 @@ const ProfileUser = () => {
     setEmail(localStorage.email);
   }, [profileUser]);
 
-  useEffect(() => {
-    console.log(profileUser.data);
-  }, [profileUser]);
+  // useEffect(() => {
+  //   console.log(profileUser.data);
+  // }, [profileUser]);
 
   /* -------------------------- UNLOCK ACTION DISABEL ------------------------- */
 

@@ -65,7 +65,7 @@
 .form-pax input {
   display: flex;
   margin-top: -10%;
-  width: 90%;
+  width: 99%;
 }
 
 .desc-pax {
@@ -77,15 +77,44 @@
 }
 
 .date-order {
-  width: 96% !important;
+  width: 100% !important;
+  font-size: 0.9rem;
+  border: white;
 }
 
-.additional {
-  width: 96%;
+.date-order:focus {
+  outline-color: #0097ff;
+}
+
+.text-area {
+  overflow: hidden;
+  min-height: 50px;
+  font-size: 0.9rem;
+  border: white;
+  width: 100%;
+}
+
+.text-area:focus {
+  outline-color: #0097ff;
+}
+
+.custom-pax {
+  border: white;
+}
+
+.custom-pax:focus {
+  outline-color: #0097ff;
 }
 
 .btn-pesan Button:hover {
   background-color: #9cb2c7;
+}
+
+.logo-calender {
+  margin-top: 15px;
+  margin-left: -20px;
+  z-index: 1;
+  color: #bdbdbd;
 }
 
 @media (max-width: 1105px) {
@@ -123,7 +152,7 @@
 
   .custom-pax,
   .custom-pax p {
-    margin-left: 10%;
+    margin-left: 1%;
   }
 
   .date-order {
