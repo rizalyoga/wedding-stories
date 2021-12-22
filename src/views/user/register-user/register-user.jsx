@@ -52,7 +52,7 @@ const RegisUser = () => {
         .post("https://weddingstories.space/register/users", body)
         .then((data) => {
           // console.log(data, "success register");
-          swal(data.data.message);
+          swal(data.data.message, { buttons: false });
           dispatch(allStore.UserLogin({ email, password }));
 
           setModalLoginShow(true);

@@ -4,16 +4,16 @@ import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import allStore from "../../../store/actions/index";
-// import swal from "sweetalert";
+import swal from "sweetalert";
 // import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const ProfileUser = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [disabled, setDisabled] = useState(true);
 
@@ -34,9 +34,9 @@ const ProfileUser = () => {
     setEmail(localStorage.email);
   }, [profileUser]);
 
-  useEffect(() => {
-    console.log(profileUser.data);
-  }, [profileUser]);
+  // useEffect(() => {
+  //   console.log(profileUser.data);
+  // }, [profileUser]);
 
   /* -------------------------- UNLOCK ACTION DISABEL ------------------------- */
 
@@ -47,10 +47,27 @@ const ProfileUser = () => {
   /* ------------------------------- HANDLE EDIT ------------------------------ */
   const handleEdit = (event) => {
     event.preventDefault();
-    dispatch(allStore.postEditUser({ name: username, email: email, password: password }));
-    // console.log(username);
-    // console.log(email);
-    setPassword("");
+    if (password.length < 8) {
+      swal("password cannot less than 8 characters", { icon: "warning", buttons: false, timer: 1500 });
+    } else if (password.includes(" ")) {
+      swal("password cannot contain space character", { icon: "warning", buttons: false, timer: 1500 });
+    } else if (!email.includes("@")) {
+      swal("please check your email format", { icon: "warning", buttons: false, timer: 1500 });
+    } else {
+      swal({
+        text: "Are you sure to edit Profile?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willEdit) => {
+        if (willEdit) {
+          dispatch(allStore.postEditUser({ name: username, email: email, password: password }));
+        }
+        setPassword("");
+      });
+      // console.log(username);
+      // console.log(email);
+    }
   };
 
   /* ------------------------------ HANDLE DELETE ----------------------------- */
@@ -101,6 +118,17 @@ const ProfileUser = () => {
     );
   }
 
+  const showPassword = () => {
+    const x = document.getElementById("password-profile-user");
+    if (x.type === "password") {
+      x.type = "text";
+      document.getElementById("togglePassword").style.color = "red";
+    } else {
+      x.type = "password";
+      document.getElementById("togglePassword").style.color = "black";
+    }
+  };
+
   return (
     <div style={{ backgroundColor: "#5C7893", paddingTop: "5%", paddingBottom: "5%" }}>
       <NavUser />
@@ -126,7 +154,19 @@ const ProfileUser = () => {
                 <div className="mb-1 d-flex flex-column text-white" controlId="password">
                   <Form.Label>password</Form.Label>
                   <p className="d-flex justify-content-center align-items-center">
-                    <Form.Control id="password" id="password-profile-user" disabled={disabled} placeholder="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required autoComplete="off" />
+                    <Form.Control
+                      id="password"
+                      style={{ marginLeft: "-10px" }}
+                      id="password-profile-user"
+                      disabled={disabled}
+                      placeholder="password"
+                      type="password"
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                      required
+                      autoComplete="off"
+                    />
+                    <i style={{ marginLeft: "-25px", color: "black", cursor: "pointer" }} className="bi bi-eye-slash" id="togglePassword" onClick={() => showPassword()}></i>
                   </p>
                 </div>
                 <div className="button-edit">

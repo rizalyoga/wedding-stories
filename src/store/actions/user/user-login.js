@@ -21,7 +21,7 @@ export const UserLogin = (payload) => {
           localStorage.setItem("id", response.data.id);
           localStorage.setItem("status", response.data.role);
           localStorage.setItem("nama", response.data.name);
-          swal("Login Success", { icon: "success" });
+          swal("Login Success", { icon: "success", buttons: false });
           dispatch(allStore.setRoute("/"));
           setTimeout(() => {
             window.location.href = "/";

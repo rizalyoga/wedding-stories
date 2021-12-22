@@ -9,7 +9,7 @@ const NavLoginUser = () => {
 
   const logout = () => {
     localStorage.clear();
-    swal("You've Been Logged Out!", { icon: "success" });
+    swal("You've Been Logged Out!", { icon: "success", buttons: false, timer: 1000 });
     navigate("/");
   };
 

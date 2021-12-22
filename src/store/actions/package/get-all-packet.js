@@ -19,7 +19,8 @@ export const getAllPackage = () => {
       .catch((err) => {
         if (online) {
           console.log(err);
-          swal(err.response.data.message);
+          // swal(err.response.data.message);
+          // swal("");
         } else {
           // swal("Check your Internet Connection", { icon: "warning" });
         }

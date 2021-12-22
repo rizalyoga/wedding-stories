@@ -19,8 +19,8 @@ export const ProfileUser = () => {
       })
       .catch((err) => {
         if (online) {
-          // console.log("3, Masuk ERROR:", err.response.data.message);
-          swal(err.response.data.message, { icon: "warning" });
+          console.log("3, Masuk ERROR:", err);
+          // swal(err.response.data.message, { icon: "warning" });
         } else if (!online) {
           swal("Check your Internet Connection", { icon: "warning" });
         }

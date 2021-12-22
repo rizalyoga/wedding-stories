@@ -31,7 +31,7 @@ const DetailPackage = () => {
 
   const [date, setDate] = useState(null);
   const [additional, setAdditional] = useState("");
-  const [totalPax, setTotalPax] = useState(detailPackage.Pax);
+  const [totalPax, setTotalPax] = useState(detailPackage ? detailPackage.Pax : null);
   // useEffect(() => {
   //   console.log(detailPackage);
   // }, [detailPackage]);
@@ -92,91 +92,114 @@ const DetailPackage = () => {
     }
   };
 
+  /* --------------------------- TEXT-AREA AUTO GROW -------------------------- */
+
+  /* ---------------------------- // PAGE NOT FOUN ---------------------------- */
+
   if (!detailPackage) {
-    return <></>;
-  }
-
-  return (
-    <div>
-      <NavUser />
-      <div className="container">
-        <div className="desc-wo">
-          <h3 className="fw-bold" style={{ cursor: "pointer" }} id="wo-name" onClick={() => goToDetailWo(detailPackage.Organizer_ID)}>
-            {detailPackage.Wo_Name}
-          </h3>
-          <div className="content-address d-flex mb-1">
-            <h6 className="me-1">{detailPackage.City}, </h6>
-            <h6>{detailPackage.Address}</h6>
+    return (
+      <>
+        <NavUser />
+        <h1 className="text-center" style={{ marginTop: "25%", height: "50vh" }}>
+          Package Not Found
+        </h1>
+      </>
+    );
+  } else {
+    return (
+      <div>
+        <NavUser />
+        <div className="container">
+          <div className="desc-wo">
+            <h3 className="fw-bold" style={{ cursor: "pointer" }} id="wo-name" onClick={() => goToDetailWo(detailPackage.Organizer_ID)}>
+              {detailPackage.Wo_Name}
+            </h3>
+            <div className="content-address d-flex mb-1">
+              <h6 className="me-1">{detailPackage.City}, </h6>
+              <h6>{detailPackage.Address}</h6>
+            </div>
           </div>
-        </div>
-        <hr />
-        <div className="row-foto">
-          <div className="image-package">
-            <img src={detailPackage.UrlPhoto} alt="foto-paket" />
+          <hr />
+          <div className="row-foto">
+            <div className="image-package">
+              <img src={detailPackage.UrlPhoto} alt="foto-paket" />
+            </div>
           </div>
-        </div>
-        <div className="name-package">
-          <h4 className="fw-bold">{detailPackage.PackageName}</h4>
-          <h5 className="my-3">Detail Package</h5>
-        </div>
-        <div className="row-content-detail">
-          <div className="col-detail">
-            <p>{detailPackage.PackageDesc}</p>
+          <div className="name-package">
+            <h4 className="fw-bold">{detailPackage.PackageName}</h4>
+            <h5 className="my-3">Detail Package</h5>
           </div>
-          <div className="col-card-price">
-            <div className="content-pesan">
-              <div className="harga">
-                <p>Harga</p>
-                <h6 className="fw-bold">{formatRupiah(detailPackage.Price) + ",00"} </h6>
-              </div>
-              <hr />
-              <div className="form-pax">
-                <div className="min-pax">
-                  <p className="text-center desc-pax">Min Pax</p>
-                  <input className="text-center" disabled="disable" value={detailPackage.Pax} type="text" />
+          <div className="row-content-detail">
+            <div className="col-detail">
+              <p>{detailPackage.PackageDesc}</p>
+            </div>
+            <div className="col-card-price">
+              <div className="content-pesan">
+                <div className="harga">
+                  <p>Harga</p>
+                  <h6 className="fw-bold">{formatRupiah(detailPackage.Price) + ",00"} </h6>
                 </div>
-                <div className="custom-pax">
-                  <p className="text-center desc-pax">Custom pax</p>
-                  <input
-                    className="text-center custom-pax"
-                    autoComplete="off"
-                    id="custom-pax"
-                    type="number"
-                    placeholder={detailPackage.Pax}
-                    value={totalPax}
-                    min={detailPackage.Pax}
-                    onChange={(event) => setTotalPax(event.target.value)}
-                    required
-                  />
+                <hr />
+                <div className="form-pax">
+                  <div className="min-pax">
+                    <p className="text-center desc-pax">Min Pax</p>
+                    <input className="text-center" disabled="disable" value={detailPackage.Pax} type="text" />
+                  </div>
+                  <div className="custom-pax">
+                    <p className="text-center desc-pax">Custom pax</p>
+                    <input
+                      className="text-center custom-pax"
+                      autoComplete="off"
+                      id="custom-pax"
+                      type="number"
+                      placeholder={detailPackage.Pax}
+                      value={totalPax}
+                      min={detailPackage.Pax}
+                      onChange={(event) => setTotalPax(event.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="content-order">
-                <DatePicker
-                  className="date-order mt-3 text-center"
-                  autoComplete="off"
-                  id="date-order"
-                  selected={date}
-                  onChange={(date) => setDate(date)}
-                  dateFormat="yyyy-MM-dd"
-                  minDate={new Date()}
-                  placeholderText="Select a date"
-                  required
-                />
-                <textarea className="additional mt-3" name="additional" id="additional" cols="30" rows="10" value={additional} onChange={(event) => setAdditional(event.target.value)}></textarea>
-              </div>
+                <div className="content-order">
+                  <div className="calender d-flex">
+                    <DatePicker
+                      className="date-order mt-3 text-center"
+                      autoComplete="off"
+                      id="date-order"
+                      selected={date}
+                      onChange={(date) => setDate(date)}
+                      dateFormat="yyyy-MM-dd"
+                      minDate={new Date()}
+                      placeholderText="Select date Reservation"
+                      required
+                    />
+                    <i className="bi bi-calendar2-week logo-calender"></i>
+                  </div>
+                  <textarea
+                    className="text-area additional mt-3"
+                    name="additional"
+                    id="additional"
+                    cols="30"
+                    rows="5"
+                    value={additional}
+                    onChange={(event) => setAdditional(event.target.value)}
+                    placeholder="Type your additional..."
+                  ></textarea>
+                </div>
 
-              <hr />
-              <div className="btn-pesan">
-                <Button className="w-100" id="order-button" onClick={(event) => handleSubmit(event)}>
-                  Order
-                </Button>
+                <hr />
+                <div className="btn-pesan">
+                  <Button className="w-100" id="order-button" onClick={(event) => handleSubmit(event)}>
+                    Order
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default DetailPackage;
