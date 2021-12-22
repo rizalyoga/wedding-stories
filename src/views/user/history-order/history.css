@@ -15,3 +15,12 @@
     padding-top: 10%;
   }
 }
+
+@media (max-width: 450px) {
+  #detail-package-history {
+    width: 95%;
+  }
+  #user-payment {
+    width: 95% !important;
+  }
+}

@@ -85,7 +85,10 @@ const History = () => {
                         <p>Package Name &ensp;: {el.PackageName}</p>
                         <p>Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {el.Date}</p>
                         <p>Total Pax&emsp;&emsp;&emsp;&emsp;: {el.Total_Pax}</p>
-                        <p>Additional&emsp;&emsp;&emsp; : {!el.Additional ? "-" : el.Additional}</p>
+                        <p>
+                          Additional&emsp;&emsp;&emsp; : <br />
+                          {!el.Additional ? "no additional" : el.Additional}
+                        </p>
                       </Col>
                       <Col md={4}>
                         <h7>
@@ -98,13 +101,21 @@ const History = () => {
                         <br />
                       </Col>
                       <Col md={2} sm={12}>
-                        <Button id="payment" md={12} sm={6} className="m-2 btn-submit" variant="secondary" onClick={() => goToDetail(el.Package_ID)}>
+                        <Button id="detail-package-history" style={{ color: "#fff" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
                           Detail Package
                         </Button>
                         {el.Status_Order === "declined" ? (
                           <></>
                         ) : (
-                          <Button id="payment" md={12} sm={6} className="m-2 btn-submit" variant="secondary" onClick={() => (el.Status_Order === "waiting" ? swal("tunggu Pihak WO ya") : swal("sabar fitur belum jadi"))}>
+                          <Button
+                            id="user-payment"
+                            md={12}
+                            sm={6}
+                            style={{ width: "90%" }}
+                            className="m-2 btn-submit"
+                            variant="success"
+                            onClick={() => (el.Status_Order === "waiting" ? swal("tunggu Pihak WO ya") : swal("sabar fitur belum jadi"))}
+                          >
                             Payment
                           </Button>
                         )}

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "react-bootstrap";
 import "./modal-login.css";
 import allStore from "../../../store/actions/index";
+// import NavUser from "../navbar-user/navbar-user.jsx";
 
 const ModalLogin = (props) => {
   const [email, setEmail] = useState("");
@@ -31,7 +32,9 @@ const ModalLogin = (props) => {
     // console.log("inilagi loading");
     return (
       <div className="loading d-flex justify-content-center align-items-center flex-column">
+        {/* <NavUser /> */}
         <Spinner animation="border" />
+        {/* <Spinner className="spinner" animation="border" /> */}
       </div>
     );
   }

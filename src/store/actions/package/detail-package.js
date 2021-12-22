@@ -19,7 +19,7 @@ export const detailPackage = (id) => {
       })
       .catch((err) => {
         if (online) {
-          console.log(err.response);
+          console.log(err);
           swal("data not found", { icon: "warning" });
           // swal(err.response.data.message, { icon: "warning" });
         } else {
