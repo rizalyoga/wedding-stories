@@ -48,8 +48,8 @@ export const postEditUser = (payload) => {
         // window.location.reload();
       })
       .catch((err) => {
-        console.log("3, Masuk ERROR:", err.response);
-        // swal(err.response.data.message);
+        console.log("3, Masuk ERROR:", err.response.data.message);
+        swal(err.response.data.message);
         // allStore.setError(err.response.data.message);
         // dispatch(allStore.setError(err.response.data.message));
       })

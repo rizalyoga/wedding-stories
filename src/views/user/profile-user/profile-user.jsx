@@ -48,8 +48,9 @@ const ProfileUser = () => {
   const handleEdit = (event) => {
     event.preventDefault();
     dispatch(allStore.postEditUser({ name: username, email: email, password: password }));
-    console.log(username);
-    console.log(email);
+    // console.log(username);
+    // console.log(email);
+    setPassword("");
   };
 
   /* ------------------------------ HANDLE DELETE ----------------------------- */
