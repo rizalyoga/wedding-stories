@@ -1,7 +1,7 @@
 import axios from "axios";
 import allStore from "../index.js";
 import swal from "sweetalert";
-import navUser from "../../../views/components/navbar-user/navbar-user.jsx";
+// import navUser from "../../../views/components/navbar-user/navbar-user.jsx";
 
 export const detailPackage = (id) => {
   const online = window.navigator.onLine;
