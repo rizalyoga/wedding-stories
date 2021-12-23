@@ -22,10 +22,10 @@ const Home = () => {
     dispatch(allStore.getAllPackage());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log(typeof allPackage, "INI ALL PACKAET");
-  //   console.log(allPackage, "INI ALL PACKAET");
-  // }, [allPackage]);
+  useEffect(() => {
+    // console.log(typeof allPackage, "INI ALL PACKAET");
+    console.log(allPackage, "INI ALL PACKAET");
+  }, [allPackage]);
 
   const formatRupiah = (money) => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);

@@ -14,7 +14,7 @@ const Home = () => {
   const loading = useSelector(({ loading }) => loading);
 
   useEffect(() => {
-    console.log(typeof searchPackage);
+    // console.log(typeof searchPackage);
   }, [searchPackage]);
 
   // useEffect(() => {

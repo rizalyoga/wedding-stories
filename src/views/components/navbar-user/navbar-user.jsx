@@ -21,11 +21,12 @@ const NavUser = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const newTerm = term.replace(/\s+/g, " ".trim());
+    // const newTerm = term.replace(/\s+/g, " ".trim());
+    const newTerm = term;
     if (newTerm === "") {
       swal("Please Input Keyword", { buttons: false, icon: "warning", timer: 500 });
     } else {
-      // console.log(term);
+      console.log(newTerm);
       dispatch(allStore.getSearchPackage(newTerm));
       navigate("/search/package");
       setTerm("");
