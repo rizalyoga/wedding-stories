@@ -11,11 +11,8 @@ export const postEditUser = (payload) => {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  // const email = "joni@mail.com";
-
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
-    // dispatch(allStore.setError(null));
     console.log("2.masuk Action Edit INI");
     console.log(payload);
     axios
@@ -23,11 +20,6 @@ export const postEditUser = (payload) => {
       .then((response) => {
         console.log("3, Masuk Then", response.data);
         swal(response.data.message, { icon: "success" });
-        // if (localStorage.nama) {
-        //   localStorage.removeItem("nama");
-        //   localStorage.setItem("nama", "dian");
-        // }
-        // allStore.setProfileUser(response.data.data);
 
         return axios
           .get("https://weddingstories.space/users/profile", config)

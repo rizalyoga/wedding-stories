@@ -18,7 +18,10 @@ export const postOrder = (payload) => {
       .post("https://weddingstories.space/reservation", payload, config)
       .then((response) => {
         console.log("3, Masuk Then", response.data);
-        swal(response.data.message, { icon: "success" });
+        swal(response.data.message, { icon: "success", buttons: false, timer: 1000 });
+        setTimeout(() => {
+          window.location.href = "/user/history";
+        }, 1500);
       })
       .catch((err) => {
         if (online) {

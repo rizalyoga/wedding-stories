@@ -162,20 +162,24 @@ const DetailPackage = () => {
                   </div>
                 </div>
                 <div className="content-order">
-                  <div className="calender d-flex">
-                    <DatePicker
-                      className="date-order mt-3 text-center"
-                      autoComplete="off"
-                      id="date-order"
-                      selected={date}
-                      onChange={(date) => setDate(date)}
-                      dateFormat="yyyy-MM-dd"
-                      minDate={new Date()}
-                      placeholderText="Select date Reservation"
-                      required
-                    />
-                    <i className="bi bi-calendar2-week logo-calender"></i>
+                  <div className="calender">
+                    <p className="text-center desc-pax date-title">Date Reservation</p>
+                    <div className="date-picker d-flex">
+                      <DatePicker
+                        className="date-order mt-3 text-center"
+                        autoComplete="off"
+                        id="date-order"
+                        selected={date}
+                        onChange={(date) => setDate(date)}
+                        dateFormat="yyyy-MM-dd"
+                        minDate={new Date()}
+                        placeholderText="Select date Reservation"
+                        required
+                      />
+                      <i className="bi bi-calendar2-week logo-calender"></i>
+                    </div>
                   </div>
+                  <p className="text-center desc-pax date-title">Your Additional</p>
                   <textarea
                     className="text-area additional mt-3"
                     name="additional"

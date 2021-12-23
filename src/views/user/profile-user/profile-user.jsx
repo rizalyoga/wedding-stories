@@ -6,14 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import allStore from "../../../store/actions/index";
 import swal from "sweetalert";
 // import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 
 const ProfileUser = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // const navigate = useNavigate();
 
   const [disabled, setDisabled] = useState(true);
 

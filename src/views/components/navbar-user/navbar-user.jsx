@@ -29,7 +29,6 @@ const NavUser = () => {
       console.log(newTerm);
       dispatch(allStore.getSearchPackage(newTerm));
       navigate("/search/package");
-      setTerm("");
     }
   };
 
@@ -66,10 +65,10 @@ const NavUser = () => {
             <div className="nav-links mt-2">
               <ModalLogin show={modalLoginShow} onHide={() => setModalLoginShow(false)} />
               <a className="sign-in" href="#" id="signIn-button-user" onClick={() => setModalLoginShow(true)}>
-                Masuk
+                Sign in
               </a>
               <a className="sign-up" href="#" id="signUp-button-user" onClick={() => navigate("/user/register")}>
-                Daftar
+                Sign up
               </a>
             </div>
           </div>

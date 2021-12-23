@@ -63,69 +63,72 @@ const History = () => {
               </Alert>
             </>
           ) : (
-            listOrder.map((el, index) => (
-              <Accordion key={index}>
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header id="detail-history">
-                    <Row style={{ width: "100%" }}>
-                      <Col className="title">
-                        <h6>{el.PackageName}</h6>
-                        <h6 className="fw-bold">{el.Status_Order}</h6>
-                      </Col>
-                      {/* <Col md={6} style={{ color: "darkyellow" }}>
+            listOrder
+              .slice(0)
+              .reverse()
+              .map((el, index) => (
+                <Accordion key={index}>
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header id="detail-history">
+                      <Row style={{ width: "100%" }}>
+                        <Col className="title">
+                          <h6>{el.PackageName}</h6>
+                          <h6 className="fw-bold">{el.Status_Order}</h6>
+                        </Col>
+                        {/* <Col md={6} style={{ color: "darkyellow" }}>
                       waiting
                     </Col> */}
-                    </Row>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <Row>
-                      <Col md={1}></Col>
-                      <Col md={5} sm={12}>
-                        <p>Client Name&emsp;&emsp; : {el.WoName}</p>
-                        <p>Package Name &ensp;: {el.PackageName}</p>
-                        <p>Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {el.Date}</p>
-                        <p>Total Pax&emsp;&emsp;&emsp;&emsp;: {el.Total_Pax}</p>
-                        <p>
-                          Additional&emsp;&emsp;&emsp; : <br />
-                          {!el.Additional ? "no additional" : el.Additional}
-                        </p>
-                      </Col>
-                      <Col md={4}>
-                        <h7>
-                          <b>Status Order&emsp;&emsp;&ensp;: {el.Status_Order}</b>
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Status Payment&ensp; : {el.Status_Payment}</b>
-                        </h7>
-                        <br />
-                      </Col>
-                      <Col md={2} sm={12}>
-                        <Button id="detail-package-history" style={{ color: "#fff" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
-                          Detail Package
-                        </Button>
-                        {el.Status_Order === "declined" ? (
-                          <></>
-                        ) : (
-                          <Button
-                            id="user-payment"
-                            md={12}
-                            sm={6}
-                            style={{ width: "90%" }}
-                            className="m-2 btn-submit"
-                            variant="success"
-                            onClick={() => (el.Status_Order === "waiting" ? swal("tunggu Pihak WO ya") : swal("sabar fitur belum jadi"))}
-                          >
-                            Payment
+                      </Row>
+                    </Accordion.Header>
+                    <Accordion.Body>
+                      <Row>
+                        <Col md={1}></Col>
+                        <Col md={5} sm={12}>
+                          <p>Client Name&emsp;&emsp; : {el.WoName}</p>
+                          <p>Package Name &ensp;: {el.PackageName}</p>
+                          <p>Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {el.Date}</p>
+                          <p>Total Pax&emsp;&emsp;&emsp;&emsp;: {el.Total_Pax}</p>
+                          <p>
+                            Additional&emsp;&emsp;&emsp; : <br />
+                            {!el.Additional ? "no additional" : el.Additional}
+                          </p>
+                        </Col>
+                        <Col md={4}>
+                          <h7>
+                            <b>Status Order&emsp;&emsp;&ensp;: {el.Status_Order}</b>
+                          </h7>
+                          <br />
+                          <h7>
+                            <b>Status Payment&ensp; : {el.Status_Payment}</b>
+                          </h7>
+                          <br />
+                        </Col>
+                        <Col md={2} sm={12}>
+                          <Button id="detail-package-history" style={{ color: "#fff" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
+                            Detail Package
                           </Button>
-                        )}
-                      </Col>
-                    </Row>
-                  </Accordion.Body>
-                </Accordion.Item>
-                <br />
-              </Accordion>
-            ))
+                          {el.Status_Order === "declined" ? (
+                            <></>
+                          ) : (
+                            <Button
+                              id="user-payment"
+                              md={12}
+                              sm={6}
+                              style={{ width: "90%" }}
+                              className="m-2 btn-submit"
+                              variant="success"
+                              onClick={() => (el.Status_Order === "waiting" ? swal("tunggu Pihak WO ya") : swal("sabar fitur belum jadi"))}
+                            >
+                              Payment
+                            </Button>
+                          )}
+                        </Col>
+                      </Row>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <br />
+                </Accordion>
+              ))
           )}
         </Container>
       </div>

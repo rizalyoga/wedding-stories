@@ -3,9 +3,15 @@ import { useNavigate } from "react-router-dom";
 import logoNavLogin from "../../../assets/virus.png";
 import "./navbar-user-login.css";
 import swal from "sweetalert";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import allStore from "../../../store/actions/index";
 
 const NavLoginUser = () => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const logout = () => {
     localStorage.clear();
@@ -15,16 +21,45 @@ const NavLoginUser = () => {
 
   const username = localStorage.nama;
 
+  const [term, setTerm] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    // const newTerm = term.replace(/\s+/g, " ".trim());
+    const newTerm = term;
+    if (newTerm === "") {
+      swal("Please Input Keyword", { buttons: false, icon: "warning", timer: 500 });
+    } else {
+      console.log(newTerm);
+      dispatch(allStore.getSearchPackage(newTerm));
+      navigate("/search/package");
+    }
+  };
+
   return (
     <div className="nav-login-user shadow">
-      <Navbar style={{ background: "#fff" }}>
+      <Navbar style={{ background: "#fff" }} id="navigation-bar">
         <Container>
           <Navbar.Brand href="#home" className="logo">
             <img src={logoNavLogin} width="30" id="nav-logo-after-login" height="35" className="d-inline-block align-top" alt="logo" onClick={() => navigate("/")} />
           </Navbar.Brand>
-          <Form className="d-flex search-input">
-            <input type="text" id="search-form-bef-login" style={{ borderRadius: "20px" }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" autoComplete="off" />
+          <Form className="d-flex search-input" onSubmit={submitHandler}>
+            <input
+              type="text"
+              id="search-form-bef-login"
+              style={{ borderRadius: "20px" }}
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              autoComplete="off"
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
+            />
             {/* <Button class="btn btn-outline-success" type="submit"></Button> */}
+            <Button variant="primary" type="submit" style={{ borderRadius: "50%", background: "#5C7893", border: "#5C7893" }}>
+              <i class="bi bi-search"></i>
+            </Button>
           </Form>
           <NavDropdown
             title={

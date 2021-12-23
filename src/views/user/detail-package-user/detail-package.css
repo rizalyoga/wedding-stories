@@ -69,11 +69,19 @@
 }
 
 .desc-pax {
-  margin-left: -10%;
+  margin-left: -2%;
+  font-size: 0.9rem;
 }
 
 .btn-pesan Button {
   background-color: #5c7893;
+}
+
+.date-title {
+  padding-top: 3px;
+  margin-left: 0;
+  margin-bottom: -4%;
+  font-size: 0.9rem;
 }
 
 .date-order {
@@ -113,7 +121,7 @@
 .logo-calender {
   margin-top: 15px;
   margin-left: -20px;
-  z-index: 1;
+  z-index: 2;
   color: #bdbdbd;
 }
 
