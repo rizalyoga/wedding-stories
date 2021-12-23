@@ -11,6 +11,7 @@ import { setPostOrder, postOrder } from "./user/post-order.js";
 import { setMyPackage, getMyPackage } from "./organizer/get-list-package.js";
 import { setHistory, getHistory } from "./user/get-history.js";
 import { setEditUser, postEditUser } from "./user/edit-profile.js";
+import { setSearchPackage, getSearchPackage } from "./package/get-search-package";
 
 const allStore = {
   setError,
@@ -46,6 +47,9 @@ const allStore = {
   //EDIT USERS
   setEditUser,
   postEditUser,
+  //getSearchPackage
+  setSearchPackage,
+  getSearchPackage,
 };
 
 export default allStore;

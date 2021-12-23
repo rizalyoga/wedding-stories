@@ -100,7 +100,8 @@ const DetailPackage = () => {
     return (
       <>
         <NavUser />
-        <h1 className="text-center" style={{ marginTop: "25%", height: "50vh" }}>
+        <h1 className="text-center" style={{ marginTop: "25%", height: "50vh", color: "#bdbdbd" }}>
+          <i className="bi bi-emoji-frown"> </i>
           Package Not Found
         </h1>
       </>
