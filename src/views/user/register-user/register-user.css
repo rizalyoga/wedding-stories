@@ -27,6 +27,17 @@
   background-color: #f2789f;
 }
 
+#redirect-signUp-wo,
+#redirect-signIn-wo {
+  width: 93.5%;
+  margin-left: 6.3%;
+}
+
+.content-wo hr {
+  width: 93.5%;
+  margin-left: 6.3%;
+}
+
 #redirect-signUp-wo:hover,
 #redirect-signIn-wo:hover {
   background-color: #f2789f !important;
@@ -36,6 +47,12 @@
 @media (max-width: 850px) {
   .body-register {
     padding-top: 20%;
+  }
+
+  #redirect-signUp-wo,
+  #redirect-signIn-wo {
+    width: 100%;
+    margin-left: 0%;
   }
 }
 

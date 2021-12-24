@@ -70,8 +70,10 @@ const ProfileWO = () => {
               <h2 className="fw-bold">{detailWo.woname}</h2>
               <div className="content-address d-flex mb-1">
                 <i className="bi bi-geo-alt me-1"></i>
-                <h6>{detailWo.city}</h6>
-                <h6>{detailWo.address}</h6>
+                <div className="address d-flex">
+                  <h6 className="me-1">{detailWo.city},</h6>
+                  <h6>{detailWo.address}</h6>
+                </div>
               </div>
               <div className="contact d-flex">
                 <div className="phone d-flex">

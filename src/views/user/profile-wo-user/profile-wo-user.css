@@ -11,6 +11,7 @@
 .image-logo {
   flex-basis: 25%;
   display: inline-block;
+  width: 100%;
   /* position: relative; */
   /* overflow: hidden; */
 }
@@ -18,12 +19,12 @@
 .image-logo img {
   width: 13rem;
   height: 13rem;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   left: 0;
 }
 
 .content-wo {
-  margin-left: -3%;
+  margin-left: -7% !important;
 }
 
 .status {
@@ -68,7 +69,22 @@
   }
 }
 
+@media (max-width: 885px) {
+  .content-wo {
+    margin-left: 0% !important;
+  }
+}
+
 @media (max-width: 850px) {
+  .profile-user {
+    margin-top: 15% !important;
+    padding-bottom: 10% !important;
+  }
+
+  .content-wo {
+    margin-left: 20% !important;
+  }
+
   .card-wo {
     width: 500px;
   }
@@ -80,6 +96,10 @@
 
   .images img {
     width: 500px;
+  }
+
+  .image-logo img {
+    margin-bottom: 20px;
   }
 }
 
