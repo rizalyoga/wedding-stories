@@ -1,4 +1,12 @@
-import { Col, Container, Row, Image, Form, Button } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Image,
+  Form,
+  Button,
+  Spinner,
+} from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -89,6 +97,17 @@ const LoginWO = () => {
         });
     }
   };
+
+  if (loading) {
+    return (
+      <>
+        <NavUser />
+        <div className="spinner-grey">
+          <Spinner className="spinner" animation="grow" />
+        </div>
+      </>
+    );
+  }
 
   if (localStorage.token) {
     return <LandingPage />;

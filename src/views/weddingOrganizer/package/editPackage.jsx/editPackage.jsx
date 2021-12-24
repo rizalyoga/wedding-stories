@@ -9,12 +9,17 @@ import {
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import swal from "sweetalert";
+import allStore from "../../../../store/actions/index.js";
 import NavLoginWo from "../../../components/navbar-wo/navbar-wo-login";
 import "./editPackage.css";
 
 const FormEditPackage = () => {
+  const dispatch = useDispatch();
+  const detailPackage = useSelector(({ getDetailPackage }) => getDetailPackage);
+
   const [loading, setLoading] = useState(false);
   const [pack, setPack] = useState({});
   const [form, setForm] = useState({});
@@ -30,6 +35,12 @@ const FormEditPackage = () => {
   const navigate = useNavigate();
   const params = useParams();
 
+  /* --------------------------- GET DETAIL PACKAGE --------------------------- */
+
+  useEffect(() => {
+    dispatch(allStore.detailPackage(params.id));
+  }, [dispatch, params.id, detailPackage]);
+
   const setField = (field, value) => {
     setForm({
       ...form,
@@ -43,26 +54,48 @@ const FormEditPackage = () => {
       });
   };
 
+  const updateErr = (value) => {
+    console.log(!!errors.value, value);
+
+    // if (!!errors.value) {
+    setErrors({
+      ...errors,
+      [value]: null,
+    });
+    // }
+  };
+
   const findFormErrors = () => {
     const newErrors = {};
 
     // name errors
-    if ((!name || name === "") && (!packName || packName === ""))
-      newErrors.name = "cannot be blank!";
+    if (!packName || packName.trim() === "")
+      newErrors.packName = "cannot be blank!";
     else if (packName.length < 8)
-      newErrors.name = "Package name cannot be less than 8 characters!";
+      newErrors.packName = "package name cannot be less than 8 characters!";
     // price errors
     if (!packPrice || packPrice === "")
       newErrors.packPrice = "cannot be blank!";
     else if (packPrice < 0) newErrors.packPrice = "price cannot be negative!";
+    else if (packPrice.length > 11)
+      newErrors.packPrice = "price cannot be more than 10 characters!";
+    else if (packPrice.toString().includes("."))
+      newErrors.packPrice = "price cannot contain dots!";
     // pax errors
     if (!packPax || packPax === "") newErrors.packPax = "cannot be blank!";
     else if (packPax < 0) newErrors.packPax = "pax cannot be negative!";
+    else if (packPax.length > 11)
+      newErrors.packPax = "pax cannot be more than 10 characters!";
+    else if (packPax.toString().includes("."))
+      newErrors.packPax = "pax cannot contain dots!";
+    // else if (packPax.includes("."))
+    //   newErrors.packPax = "price cannot contain dots!";
 
     // city errors
-    if (!packDesc || packDesc === "") newErrors.packDesc = "cannot be blank!";
+    if (!packDesc || packDesc.trim() === "")
+      newErrors.packDesc = "cannot be blank!";
     else if (packDesc.length < 20)
-      newErrors.packDesc = "Description cannot be less than 20 characters!";
+      newErrors.packDesc = "description cannot be less than 20 characters!";
 
     // else if (address.length < 6)
     //   newErrors.phonenumber = "phone number is too short!";
@@ -79,10 +112,6 @@ const FormEditPackage = () => {
 
     return newErrors;
   };
-
-  useEffect(() => {
-    console.log(pack);
-  }, [pack]);
 
   const handleUploadPhoto = (event) => {
     event.preventDefault();
@@ -109,14 +138,20 @@ const FormEditPackage = () => {
           config
         )
         .then((data) => {
-          window.location.reload();
           console.log(data);
-          navigate(`/vendor/packages/edit/${params.id}`);
+          // navigate(`/vendor/packages/edit/${params.id}`);
           swal(data.data.message);
         })
         .catch((err) => {
-          console.log(err.message);
-          swal(err.response.data.message);
+          const online = window.navigator.onLine;
+          console.log(err.response.data.message);
+
+          if (online) {
+            console.log("Back Online");
+            swal(err.response.data.message);
+          } else if (!online) {
+            swal(err.message);
+          }
         })
         .finally(() => {
           setLoading(false);
@@ -132,18 +167,21 @@ const FormEditPackage = () => {
       // We got errors!
       setErrors(newErrors);
     } else {
+      console.log("done");
       setLoading(true);
       const config = {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       };
+
+      const desc = packDesc.trim();
       const data = new FormData();
-      data.append("packagename", packName);
+      data.append("packagename", packName.trim());
       data.append("price", packPrice);
       data.append("pax", packPax);
-      data.append("packagedesc", packDesc);
-      console.log(data);
+      data.append("packagedesc", desc);
+      console.log(data, desc);
       // return;
       axios
         .put(`https://weddingstories.space/package/${params.id}`, data, config)
@@ -153,8 +191,15 @@ const FormEditPackage = () => {
           swal(data.data.message);
         })
         .catch((err) => {
-          console.log(err.message);
+          const online = window.navigator.onLine;
+          console.log(err);
           swal(err.response.data.message);
+          // if (online) {
+          //   console.log("Back Online");
+          //   swal(err.response.data.message);
+          // } else if (!online) {
+          //   swal(err.message);
+          // }
         })
         .finally(() => {
           setLoading(false);
@@ -216,55 +261,55 @@ const FormEditPackage = () => {
 
           {/* form */}
 
-          <Row className="border mt-3 mb-3">
-            <Form.Group as={Col} md="2">
-              {" "}
-            </Form.Group>
-            <Form.Group as={Col} md="8">
-              <Image
-                className="mt-2 mb-2 pt-package"
-                src={pack.UrlPhoto}
-                width="100%"
-                height="100%"
-                thumbnail
-              />
-            </Form.Group>
-            <Form.Group as={Col} md="2">
-              {" "}
-            </Form.Group>
-            <Form.Group as={Col} md="10">
-              <Form.Label className="mt-3">Photo </Form.Label>
-              <Form.Control
-                type="file"
-                placeholder=""
-                accept="image/png, image/jpg, image/jpeg, image/bnp"
-                onChange={(e) => {
-                  setField("photo", e.target.files[0]);
-                  // handlePhoto(e);
-                }}
-                required
-                isInvalid={!!errors.photo}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.photo}
-              </Form.Control.Feedback>
-              <h7>file type: jpg/jpeg/png/bnp · max size: 3 MB</h7>
-            </Form.Group>
-            <Form.Group
-              as={Col}
-              md="2"
-              className="btn-edit"
-              controlId="validationCustom05"
-            >
-              <Button
-                id="btn-edit-package"
-                className="col-12 mt-5 mb-4 btn-submit"
-                variant="primary"
-                onClick={(e) => handleUploadPhoto(e)}
+          <Row className="row-margin mt-3 mb-3">
+            <Col md={2} sm={0}></Col>
+            <Col className="border-pt" md={8} sm={12}>
+              <Form.Group as={Col} md="12">
+                <Image
+                  className="mt-2 mb-2 pt-package"
+                  src={detailPackage.UrlPhoto}
+                  width="100%"
+                  height="100%"
+                  thumbnail
+                />
+              </Form.Group>
+              <Form.Group as={Col} md="12">
+                <div className="mt-3 text-center">
+                  <Form.Label className="">Photo Package</Form.Label>
+                </div>
+                <Form.Control
+                  type="file"
+                  placeholder=""
+                  accept="image/png, image/jpg, image/jpeg, image/bnp"
+                  onChange={(e) => {
+                    setField("photo", e.target.files[0]);
+                    // handlePhoto(e);
+                  }}
+                  required
+                  isInvalid={!!errors.photo}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.photo}
+                </Form.Control.Feedback>
+                <h7>file type: jpg/jpeg/png/bnp · max size: 3 MB</h7>
+              </Form.Group>
+              <Form.Group
+                as={Col}
+                md="12"
+                className="btn-edit"
+                controlId="validationCustom05"
               >
-                Save
-              </Button>
-            </Form.Group>
+                <Button
+                  id="btn-edit-package"
+                  className="col-12 mt-3 mb-4 btn-submit"
+                  variant="primary"
+                  onClick={(e) => handleUploadPhoto(e)}
+                >
+                  Save
+                </Button>
+              </Form.Group>
+            </Col>
+            <Col md={2} sm={0}></Col>
           </Row>
           <Row className="border mt-3 mb-3">
             <Form.Group as={Col} md="12" controlId="validationCustom03">
@@ -276,16 +321,15 @@ const FormEditPackage = () => {
                 placeholder="Package Name"
                 onChange={(e) => {
                   setPackName(e.target.value);
-                  // setField("name", e.target.value);
+                  updateErr("packName");
                 }}
                 required
-                isInvalid={!!errors.name}
+                isInvalid={!!errors.packName}
                 value={packName}
-                // defaultValue={pack.PackageName}
               ></Form.Control>
 
               <Form.Control.Feedback type="invalid">
-                {errors.name}
+                {errors.packName}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -295,18 +339,20 @@ const FormEditPackage = () => {
               </Form.Label>
               <Form.Control
                 type="number"
+                min={0}
+                step="any"
                 placeholder="Price"
-                onChange={
-                  (e) => setPackPrice(e.target.value)
-                  //  setField("price", e.target.value)
-                }
+                onChange={(e) => {
+                  setPackPrice(e.target.value);
+                  updateErr("packPrice");
+                }}
                 required
-                isInvalid={!!errors.price}
+                isInvalid={!!errors.packPrice}
                 value={packPrice}
                 // defaultValue={pack.Price}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.price}
+                {errors.packPrice}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -316,18 +362,20 @@ const FormEditPackage = () => {
               </Form.Label>
               <Form.Control
                 type="number"
+                min={0}
+                step="any"
                 placeholder="Pax"
-                onChange={
-                  (e) => setPackPax(e.target.value)
-                  // setField("pax", e.target.value)
-                }
+                onChange={(e) => {
+                  setPackPax(e.target.value);
+                  updateErr("packPax");
+                }}
                 required
-                isInvalid={!!errors.pax}
+                isInvalid={!!errors.packPax}
                 value={packPax}
                 // defaultValue={pack.Pax}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.pax}
+                {errors.packPax}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -339,17 +387,17 @@ const FormEditPackage = () => {
                 as="textarea"
                 rows={5}
                 placeholder="Description"
-                onChange={
-                  (e) => setPackDesc(e.target.value)
-                  // setField("description", e.target.value)
-                }
+                onChange={(e) => {
+                  setPackDesc(e.target.value);
+                  updateErr("packDesc");
+                }}
                 required
-                isInvalid={!!errors.description}
+                isInvalid={!!errors.packDesc}
                 value={packDesc}
                 // defaultValue={pack.PackageDesc}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.description}
+                {errors.packDesc}
               </Form.Control.Feedback>
             </Form.Group>
 

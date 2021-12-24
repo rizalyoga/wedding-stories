@@ -1,4 +1,4 @@
-import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -88,10 +88,9 @@ const RegisterWO = () => {
           navigate("/vendor/login");
         })
         .catch((err) => {
-          const online = window.ononLine;
-          console.log(err.message);
+          const online = window.navigator.onLine;
+          console.log(err.response.data.message);
 
-          window.ononline = (event) => {};
           if (online) {
             console.log("Back Online");
             swal(err.response.data.message);

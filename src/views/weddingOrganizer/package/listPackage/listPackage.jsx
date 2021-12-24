@@ -1,18 +1,35 @@
-import { Container, Row, Col, Card, Button, Tooltip, OverlayTrigger, Spinner, Modal, Alert } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Tooltip,
+  OverlayTrigger,
+  Spinner,
+  Modal,
+  Alert,
+} from "react-bootstrap";
 import NavLoginWo from "../../../components/navbar-wo/navbar-wo-login";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import AlertDelete from "./alertModal";
+import { useDispatch, useSelector } from "react-redux";
+import allStore from "../../../../store/actions/index.js";
 import swal from "sweetalert";
 import "./listPackage.css";
 import axios from "axios";
 
 const ListPackage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const myPackage = useSelector(({ myPackage }) => myPackage);
+
   const [pack, setPack] = useState([]);
   const [loading, setLoading] = useState(false);
   const [ID, setID] = useState("");
   const [packName, setPackName] = useState("");
-  // alert delete
+
+  /* --------------------------- ALERT DELETE PACKAGE -------------------------- */
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -21,23 +38,32 @@ const ListPackage = () => {
     if (show) {
       return (
         <Modal show={show} onHide={handleClose} backdrop="static">
-          <Modal.Body>Are you sure want to delete "{packName}" package?</Modal.Body>
+          <Modal.Body>
+            Are you sure want to delete "{packName}" package?
+          </Modal.Body>
           <Modal.Footer>
-            <Button id="btn-close-alert" variant="secondary" onClick={(e) => handleClose(e)}>
+            <Button
+              id="btn-close-alert"
+              variant="secondary"
+              onClick={(e) => handleClose(e)}
+            >
               No
             </Button>
-            <Button id="btn-delete-package" variant="primary" onClick={() => handleDelete(ID)}>
+            <Button
+              id="btn-delete-package"
+              variant="primary"
+              onClick={() => handleDelete(ID)}
+            >
               Yes
             </Button>
           </Modal.Footer>
         </Modal>
       );
     }
-
     return <></>;
   };
-  const navigate = useNavigate();
 
+  /* --------------------------- CHECK MY PACKAGE WO -------------------------- */
   const checkPack = () => {
     if (pack.length === 0) {
       return (
@@ -47,13 +73,19 @@ const ListPackage = () => {
         </>
       );
     }
-    return <></>;
+    return (
+      <>
+        <h3></h3>
+      </>
+    );
   };
 
+  /* --------------------------- NAVIGATE TO EDIT PAGE -------------------------- */
   const handleEdit = (id) => {
     navigate(`/vendor/packages/edit/${id}`);
   };
 
+  /* --------------------------- GET MY PACKAGE WITH AXIOS -------------------------- */
   useEffect(() => {
     setLoading(true);
     const config = {
@@ -66,6 +98,7 @@ const ListPackage = () => {
       .then(({ data }) => {
         // console.log(data.data);
         setPack(data.data);
+        console.log(pack);
       })
       .catch((err) => {
         console.log(err);
@@ -75,6 +108,12 @@ const ListPackage = () => {
       });
   }, []);
 
+  /* --------------------------- GET LIST PACKAGE WO WITH REDUX -------------------------- */
+  useEffect(() => {
+    dispatch(allStore.getMyPackage());
+  }, [dispatch, myPackage]);
+
+  /* --------------------------- DELETE MY PACKAGE WO -------------------------- */
   const handleDelete = (id) => {
     const config = {
       headers: {
@@ -86,16 +125,13 @@ const ListPackage = () => {
       .delete(`https://weddingstories.space/package/${id}`, config)
       .then((data) => {
         console.log(data);
-
         // navigate("/vendor/packages");
         setShow(false);
-        window.location.reload();
         swal(data.data.message);
       })
       .catch((err) => {
         const online = window.ononLine;
         console.log(err.message);
-
         window.ononline = (event) => {};
         if (online) {
           console.log("Back Online");
@@ -105,9 +141,8 @@ const ListPackage = () => {
         }
       });
   };
-  useEffect(() => {
-    console.log(pack);
-  }, [pack]);
+
+  /* --------------------------- LOADING -------------------------- */
   if (loading) {
     return (
       <>
@@ -128,19 +163,37 @@ const ListPackage = () => {
             <h2 className="title-page">My Packages</h2>
             <hr />
           </Row>
-          <Button id="nav-form-add-package" variant="primary" className="mb-3 mt-3 btn-submit" onClick={() => navigate("/vendor/packages/add")}>
+          <Button
+            id="nav-form-add-package"
+            variant="primary"
+            className="mb-3 mt-3 btn-submit"
+            onClick={() => navigate("/vendor/packages/add")}
+          >
             <i class="bi bi-plus-square"> </i>
             New Package
           </Button>
           {checkPack()}
-          <Row xs={1} md={3} className="g-4">
-            {!pack ? (
+          {!myPackage ? (
+            <>
+              <Alert variant="warning">You have no data.</Alert>
+            </>
+          ) : (
+            <></>
+          )}
+          <Row xs={1} md={3} sm={2} className="g-4">
+            {!myPackage ? (
               <></>
             ) : (
-              pack.map((el, idx) => (
+              myPackage.map((el, idx) => (
                 <Col>
-                  <Card className="card-package">
-                    <Card.Img variant="top" src={el.UrlPhoto} className="photo-package" width="300px" height="150px" />
+                  <Card className="card-package" id={idx}>
+                    <Card.Img
+                      variant="top"
+                      src={el.UrlPhoto}
+                      className="photo-package"
+                      width="300px"
+                      height="150px"
+                    />
                     <Card.Body>
                       <Card.Title>
                         {" "}
@@ -163,40 +216,38 @@ const ListPackage = () => {
                       </Card.Title>
                       <Card.Text>
                         <Row>
-                          <div className="col-8">
-                            {/* <OverlayTrigger
-                            key="bottom"
-                            placement="bottom"
-                            overlay={
-                              <Tooltip id="tooltip-bottom">details</Tooltip>
-                            }
-                          >
-                            <i className="bi bi-journal-text m-3 cursor"></i>
-                          </OverlayTrigger> */}
-                          </div>
+                          <div className="col-7"></div>
                           <div className="col-2">
-                            <OverlayTrigger key="bottom" placement="bottom" overlay={<Tooltip id="tooltip-bottom">edit</Tooltip>}>
-                              <i class="bi bi-pencil-square m-3 cursor" onClick={() => handleEdit(el.ID)}></i>
+                            <OverlayTrigger
+                              key="bottom"
+                              placement="bottom"
+                              overlay={
+                                <Tooltip id="tooltip-bottom">edit</Tooltip>
+                              }
+                            >
+                              <i
+                                class="bi bi-pencil-square m-3 cursor"
+                                onClick={() => handleEdit(el.ID)}
+                              ></i>
                             </OverlayTrigger>
                           </div>
-                          <div className="col-2">
-                            <OverlayTrigger key="bottom" placement="bottom" overlay={<Tooltip id="tooltip-bottom">delete</Tooltip>}>
+                          <div className="col-3">
+                            <OverlayTrigger
+                              key="bottom"
+                              placement="bottom"
+                              overlay={
+                                <Tooltip id="tooltip-bottom">delete</Tooltip>
+                              }
+                            >
                               <i
                                 class="bi bi-trash m-3 cursor"
                                 onClick={() => {
                                   setShow(true);
                                   setID(el.ID);
                                   setPackName(el.PackageName);
-                                  // handleShow(el.ID, el.PackageName);
                                 }}
                               ></i>
                             </OverlayTrigger>
-                            {/* <AlertDelete
-                            handleClose={() => handleClose()}
-                            show={show}
-                            packName={packName}
-                            id={ID}
-                          /> */}
                           </div>
                         </Row>
                       </Card.Text>
