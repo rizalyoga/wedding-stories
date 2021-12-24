@@ -106,19 +106,19 @@ const RegisUser = () => {
               <div className="logo-register text-center mb-4">
                 <img onClick={() => navigate("/")} style={{ width: "60px", cursor: "pointer" }} src={logo} alt="logo" />
               </div>
-              <p className="text-center">Mulai persiapan pernikahan Anda dengan penawaran terbaik & fitur eksklusif di Wedding-Day!</p>
+              <p className="text-center text-white">Mulai persiapan pernikahan Anda dengan penawaran terbaik & fitur eksklusif di Wedding-Day!</p>
               <div className="form-register">
                 <Form>
                   <Row>
                     <div className="Room d-flex flex-column">
                       <div className="mb-3 d-flex flex-column text-white" controlId="username">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control className="input-register" id="form-username-user" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
+                        <Form.Control className="input-register p-2" id="form-username-user" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
                       </div>
 
                       <div className="mb-3 d-flex flex-column text-white" controlId="email">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control className="input-register" id="form-email-user" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
+                        <Form.Control className="input-register p-2" id="form-email-user" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
                       </div>
 
                       <div className="mb-3 d-flex flex-column text-white" controlId="password">
@@ -127,7 +127,7 @@ const RegisUser = () => {
                           <Form.Control
                             style={{ marginLeft: "-2px" }}
                             id="form-password-user"
-                            className="input-register "
+                            className="input-register  p-2"
                             placeholder="password"
                             type="password"
                             value={password}
@@ -146,14 +146,14 @@ const RegisUser = () => {
                   </button>
                   <hr style={{ color: "white" }} />
                   <div className="content-wo " style={{ marginLeft: "0.2px" }}>
-                    <h5 className="text-white">Sign up as Organizer</h5>
+                    {/* <h5 className="text-white">Sign up as Organizer</h5> */}
                     <Button onClick={() => navigate("/vendor/register")} id="redirect-signUp-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
-                      sign up
+                      Sign up as Organizer
                     </Button>
                     <hr style={{ color: "white" }} />
-                    <h5 className="text-white">Sign in as Organizer</h5>
+                    {/* <h5 className="text-white">Sign in as Organizer</h5> */}
                     <Button onClick={() => navigate("/vendor/login")} id="redirect-signIn-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
-                      sign in
+                      Sign in as Organizer
                     </Button>
                   </div>
                 </Form>

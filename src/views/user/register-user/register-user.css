@@ -14,6 +14,7 @@
   background-color: #84a1be;
   border: none;
   color: white;
+  width: 100%;
 }
 
 .input-register {
@@ -23,7 +24,13 @@
 }
 
 .button-submit:hover {
-  background-color: #6b849c;
+  background-color: #f2789f;
+}
+
+#redirect-signUp-wo:hover,
+#redirect-signIn-wo:hover {
+  background-color: #f2789f !important;
+  border-color: #f2789f !important;
 }
 
 @media (max-width: 850px) {
