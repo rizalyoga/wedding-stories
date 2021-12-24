@@ -10,9 +10,6 @@ const handlePhoto = (event) => {
   console.log(event.target.files[0]);
 };
 const FormAddPackage = () => {
-  const [image, setPhoto] = useState(
-    "https://www.smpn2mirit.sch.id/wp-content/themes/sekolah/gambar/guru.jpg"
-  );
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const { name, price, pax, photo, description } = form;
@@ -35,21 +32,29 @@ const FormAddPackage = () => {
     const newErrors = {};
 
     // name errors
-    if (!name || name === "") newErrors.name = "cannot be blank!";
+    if (!name || name.trim() === "") newErrors.name = "cannot be blank!";
     else if (name.length < 8)
       newErrors.name = "Package name cannot be less than 8 characters!";
     // price errors
     if (!price || price === "") newErrors.price = "cannot be blank!";
     else if (price < 0) newErrors.price = "price cannot be negative!";
+    else if (price.length > 10)
+      newErrors.price = "price cannot be more than 10 characters!";
+    else if (price.toString().includes("."))
+      newErrors.price = "price cannot contain dots!";
     // pax errors
     if (!pax || pax === "") newErrors.pax = "cannot be blank!";
     else if (pax < 0) newErrors.pax = "pax cannot be negative!";
+    else if (pax.length > 11)
+      newErrors.pax = "pax cannot be more than 10 characters!";
+    else if (pax.toString().includes("."))
+      newErrors.pax = "pax cannot contain dots!";
     // photo errors
     if (!photo || photo === "") newErrors.photo = "cannot be blank!";
-    else if (photo.size > 5e6)
-      newErrors.photo = "Photo size cannot be more than 5 MB!";
+    else if (photo.size > 3e6)
+      newErrors.photo = "Photo size cannot be more than 3 MB!";
     // description errors
-    if (!description || description === "")
+    if (!description || description.trim() === "")
       newErrors.description = "cannot be blank!";
     else if (description.length < 20)
       newErrors.description = "Description cannot be less than 20 characters!";
@@ -74,17 +79,17 @@ const FormAddPackage = () => {
         },
       };
       const body = {
-        packagename: name,
+        packagename: name.trim(),
         price: price,
         pax: pax,
-        packagedesc: description,
+        packagedesc: description.trim(),
         urlphoto: photo,
       };
       const data = new FormData();
-      data.append("packagename", name);
+      data.append("packagename", name.trim());
       data.append("price", price);
       data.append("pax", pax);
-      data.append("packagedesc", description);
+      data.append("packagedesc", description.trim());
       data.append("urlphoto", photo);
       console.log(photo.size, config);
       // return;
@@ -96,12 +101,12 @@ const FormAddPackage = () => {
           swal(data.data.message);
         })
         .catch((err) => {
-          const online = window.ononLine;
-          console.log(err.message);
-          window.ononline = (event) => {};
+          const online = window.navigator.onLine;
+          console.log(err.response.data.message);
+
           if (online) {
             console.log("Back Online");
-            swal(err.reponse.data.message);
+            swal(err.response.data.message);
           } else if (!online) {
             swal(err.message);
           }

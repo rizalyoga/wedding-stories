@@ -12,6 +12,7 @@ import myPackage from "./organizer/list-package-reducer.js";
 import myHistory from "./user/history-user-reducer.js";
 import editUser from "./user/edit-profile-reducer.js";
 import searchPackage from "./package/get-search-reducer.js";
+import myOrder from "./organizer/list-order-reducer.js";
 
 const rootReducers = combineReducers({
   loading,
@@ -38,6 +39,8 @@ const rootReducers = combineReducers({
   editUser,
   //getSearchPackage
   searchPackage,
+  //getMyOrder
+  myOrder,
 });
 
 export default rootReducers;

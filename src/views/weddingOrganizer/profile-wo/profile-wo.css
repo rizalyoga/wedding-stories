@@ -87,7 +87,7 @@
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 428px) {
   .images img {
     width: 500px;
   }
@@ -103,7 +103,7 @@
   .profile-user {
     margin-top: 5%;
     padding-bottom: 5%;
-    padding-top: 20%;
+    padding-top: 15%;
   }
 
   .image-logo {
@@ -120,8 +120,8 @@
   height: 100%;
   width: 100%;
   z-index: 20;
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
+  background-color: rgba(129, 129, 129, 0.7);
+  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   transition: 1s all !important;
   transition-property: color !important;

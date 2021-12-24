@@ -1,25 +1,62 @@
 import { Col, Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import swal from "sweetalert";
 import "./profile-wo.css";
 
-const FormProfile = () => {
-  const [form, setForm] = useState({});
+const FormProfile = (props) => {
+  const [nameWO, setNameWO] = useState("");
+  const [emailWO, setEmailWO] = useState("");
+  const [phoneWO, setPhoneWO] = useState("");
+  const [urlWO, setUrlWO] = useState("");
+  const [adrsWO, setAdrsWO] = useState("");
+  const [cityWO, setCityWO] = useState("");
+  const [pwdWO, setpwdWO] = useState("");
+  const [descWO, setDescWO] = useState("");
+
+  // const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const { name, email, phone, url, description } = form;
+  // const { name, email, phone, url, description } = form;
+
   const navigate = useNavigate();
 
-  const setField = (field, value) => {
-    setForm({
-      ...form,
-      [field]: value,
+  useEffect(() => {
+    setNameWO(props.name);
+    setEmailWO(props.profileWo.email);
+    setPhoneWO(props.profileWo.phonenumber);
+    setUrlWO(props.profileWo.weburl);
+    setAdrsWO(props.profileWo.address);
+    setCityWO(props.profileWo.city);
+    setDescWO(props.profileWo.about);
+  }, [props.name]);
+
+  useEffect(() => {
+    // console.log(props.profileWo);
+  }, [props.profileWo]);
+
+  // const setField = (field, value) => {
+  //   setForm({
+  //     ...form,
+  //     [field]: value,
+  //   });
+  //   // Check and see if errors exist, and remove them from the error object:
+  //   if (!!errors[field])
+  //     setErrors({
+  //       ...errors,
+  //       [field]: null,
+  //     });
+  // };
+
+  const updateErr = (value) => {
+    console.log(!!errors.value, value);
+
+    // if (!!errors.value) {
+    setErrors({
+      ...errors,
+      [value]: null,
     });
-    // Check and see if errors exist, and remove them from the error object:
-    if (!!errors[field])
-      setErrors({
-        ...errors,
-        [field]: null,
-      });
+    // }
   };
 
   const findFormErrors = () => {
@@ -29,19 +66,31 @@ const FormProfile = () => {
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     // name errors
-    if (!name || name === "") newErrors.name = "cannot be blank!";
+    if (!nameWO.trim() || nameWO.trim() === "")
+      newErrors.nameWO = "cannot be blank!";
     // email errors
-    if (!email || email === "") newErrors.email = "cannot be blank!";
-    else if (regexEmail.test(email) === false)
-      newErrors.email = "email is not valid!";
+    if (!emailWO.trim() || emailWO.trim() === "")
+      newErrors.emailWO = "cannot be blank!";
+    else if (regexEmail.test(emailWO) === false)
+      newErrors.emailWO = "email is not valid!";
     // phone errors
-    if (!phone || phone === "") newErrors.phone = "cannot be blank!";
-    else if (phone.length < 11) newErrors.phone = "phone number is too short!";
+    if (!phoneWO || phoneWO === "") newErrors.phoneWO = "cannot be blank!";
+    else if (phoneWO.length < 11)
+      newErrors.phoneWO = "phone number is too short!";
     // address errors
-    if (!url || url === "") newErrors.url = "cannot be blank!";
+    if (!urlWO.trim() || urlWO.trim() === "")
+      newErrors.urlWO = "cannot be blank!";
+    // address errors
+    if (!adrsWO.trim() || adrsWO.trim() === "")
+      newErrors.adrsWO = "cannot be blank!";
+    else if (adrsWO.length < 11) newErrors.adrsWO = "address is too short!";
     // city errors
-    if (!description || description === "")
-      newErrors.description = "cannot be blank!";
+    if (!descWO.trim() || descWO.trim() === "")
+      newErrors.descWO = "cannot be blank!";
+    else if (descWO.length < 11) newErrors.descWO = "description is too short!";
+    //password
+    if (pwdWO.length > 0 && pwdWO.length < 11)
+      newErrors.pwdWO = "password is too short!";
 
     // else if (address.length < 6)
     //   newErrors.phonenumber = "phone number is too short!";
@@ -52,12 +101,62 @@ const FormProfile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newErrors = findFormErrors();
+
     // Conditional logic:
     if (Object.keys(newErrors).length > 0) {
       // We got errors!
       setErrors(newErrors);
     } else {
-      navigate("/vendor/profile");
+      //   console.log("done");
+      // }
+
+      // else {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      const body = {
+        WoName: nameWO.trim(),
+        email: emailWO.trim(),
+        password: "",
+        PhoneNumber: phoneWO.trim(),
+        weburl: urlWO.trim(),
+        about: descWO.trim(),
+        city: cityWO,
+        address: adrsWO.trim(),
+      };
+      const data = new FormData();
+      data.append("WoName", nameWO.trim());
+      data.append("email", emailWO.trim());
+      data.append("password", "");
+      data.append("PhoneNumber", phoneWO);
+      data.append("weburl", urlWO.trim());
+      data.append("about", descWO.trim());
+      data.append("city", cityWO);
+      data.append("address", adrsWO.trim());
+
+      console.log(data);
+      // return;
+      axios
+        .put(`https://weddingstories.space/organizer/profile`, body, config)
+        .then((data) => {
+          console.log(data);
+          navigate("/vendor/profile");
+          swal(data.data.message);
+        })
+        .catch((err) => {
+          const online = window.navigator.onLine;
+          console.log(err);
+
+          if (online) {
+            console.log("Back Online");
+            swal(err.response.data.message);
+          } else if (!online) {
+            swal(err.message);
+          }
+        })
+        .finally(() => {});
     }
   };
 
@@ -70,12 +169,17 @@ const FormProfile = () => {
         <Form.Control
           type="text"
           placeholder="Business Name"
-          onChange={(e) => setField("name", e.target.value)}
+          value={nameWO}
+          onChange={(e) => {
+            setNameWO(e.target.value);
+            updateErr("nameWO");
+            // setField("name", e.target.value);
+          }}
           required
-          isInvalid={!!errors.name}
+          isInvalid={!!errors.nameWO}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.name}
+          {errors.nameWO}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -86,12 +190,19 @@ const FormProfile = () => {
         <Form.Control
           type="email"
           placeholder="Email"
-          onChange={(e) => setField("email", e.target.value)}
+          value={emailWO}
+          onChange={
+            (e) => {
+              setEmailWO(e.target.value);
+              updateErr("emailWO");
+            }
+            // setField("email", e.target.value)
+          }
           required
-          isInvalid={!!errors.email}
+          isInvalid={!!errors.emailWO}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.email}
+          {errors.emailWO}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -100,14 +211,21 @@ const FormProfile = () => {
           Phone Number<sup>*</sup>
         </Form.Label>
         <Form.Control
-          type="phone"
+          type="tel"
           placeholder="Phone Number"
-          onChange={(e) => setField("phone", e.target.value)}
+          value={phoneWO}
+          onChange={
+            (e) => {
+              setPhoneWO(e.target.value);
+              updateErr("phoneWO");
+            }
+            // setField("phone", e.target.value)
+          }
           required
-          isInvalid={!!errors.phone}
+          isInvalid={!!errors.phoneWO}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.phone}
+          {errors.phoneWO}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -118,12 +236,97 @@ const FormProfile = () => {
         <Form.Control
           type="text"
           placeholder="URL Web"
-          onChange={(e) => setField("url", e.target.value)}
+          value={urlWO}
+          onChange={
+            (e) => {
+              setUrlWO(e.target.value);
+              updateErr("urlWO");
+            }
+            // setField("phone", e.target.value)
+          }
           required
-          isInvalid={!!errors.url}
+          isInvalid={!!errors.urlWO}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.url}
+          {errors.urlWO}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group as={Col} md="12" controlId="validationCustom05">
+        <Form.Label className="mt-3">
+          Address<sup>*</sup>
+        </Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="URL Web"
+          value={adrsWO}
+          onChange={
+            (e) => {
+              setAdrsWO(e.target.value);
+              updateErr("adrsWO");
+            }
+            // setField("phone", e.target.value)
+          }
+          required
+          isInvalid={!!errors.adrsWO}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.adrsWO}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group as={Col} md="6" controlId="validationCustom05">
+        <Form.Label className="mt-3">
+          City<sup>*</sup>
+        </Form.Label>
+        <Form.Select
+          type="text"
+          placeholder="City"
+          value={cityWO}
+          onChange={
+            (e) => {
+              setCityWO(e.target.value);
+              updateErr("cityWO");
+            }
+            // setField("phone", e.target.value)
+          }
+          required
+          isInvalid={!!errors.cityWO}
+        >
+          <option>- Select City -</option>
+          <option>Jakarta</option>
+          <option>Surabaya</option>
+          <option>Kediri</option>
+          <option>Bandung</option>
+          <option>Makassar</option>
+        </Form.Select>
+
+        <Form.Control.Feedback type="invalid">
+          {errors.cityWO}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group as={Col} md="6" controlId="validationCustom05">
+        <Form.Label className="mt-3">
+          Password<sup>*</sup>
+        </Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="password"
+          // value={pwdWO}
+          disabled="true"
+          onChange={
+            (e) => {
+              setpwdWO(e.target.value);
+              updateErr("pwdWO");
+            }
+            // setField("phone", e.target.value)
+          }
+          required
+          isInvalid={!!errors.pwdWO}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.pwdWO}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -135,12 +338,19 @@ const FormProfile = () => {
           as="textarea"
           rows={5}
           placeholder="Description"
-          onChange={(e) => setField("description", e.target.value)}
+          value={descWO}
+          onChange={
+            (e) => {
+              setDescWO(e.target.value);
+              updateErr("descWO");
+            }
+            // setField("phone", e.target.value)
+          }
           required
-          isInvalid={!!errors.description}
+          isInvalid={!!errors.descWO}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.description}
+          {errors.descWO}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group as={Col} md="10" controlId="validationCustom05">
