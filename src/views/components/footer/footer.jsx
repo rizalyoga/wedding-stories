@@ -22,7 +22,7 @@ const Footer = () => {
               <small>Website</small>
             </div>
             <div className="link-title mx-3 mb-3">
-              <h4>business</h4>
+              <h4>Business</h4>
               <small>Our Plan</small>
               <br />
               <small>Location</small>

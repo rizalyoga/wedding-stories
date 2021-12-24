@@ -16,8 +16,10 @@ a {
 }
 
 .logo img {
-  width: 30px;
+  margin-top: -2px;
+  width: 50px !important;
   cursor: pointer;
+  position: absolute;
 }
 
 .sign-in {

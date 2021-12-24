@@ -40,7 +40,7 @@ const NavLoginUser = () => {
     <div className="nav-login-user shadow">
       <Navbar style={{ background: "#fff" }} id="navigation-bar">
         <Container>
-          <Navbar.Brand href="#home" className="logo">
+          <Navbar.Brand href="#home" className="logo-login-user">
             <img src={logoNavLogin} width="30" id="nav-logo-after-login" height="35" className="d-inline-block align-top" alt="logo" onClick={() => navigate("/")} />
           </Navbar.Brand>
           <Form className="d-flex search-input" onSubmit={submitHandler}>

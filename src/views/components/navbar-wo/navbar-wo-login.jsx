@@ -42,7 +42,7 @@ const NavLoginWo = () => {
     <div className="nav-login-wo shadow">
       <Navbar style={{ background: "#fff" }}>
         <Container>
-          <Navbar.Brand href="#home" className="logo">
+          <Navbar.Brand href="#home" className="logo-login-wo">
             <img onClick={() => navigate("/")} src={logoNavLogin} width="30" height="35" className="d-inline-block align-top" alt="logo" id="nav-logo-after-login" />
           </Navbar.Brand>
           <Form className="d-flex search-input" onSubmit={submitHandler}>
