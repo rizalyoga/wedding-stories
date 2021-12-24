@@ -1,39 +1,32 @@
 import "./history.css";
 import NavUser from "../../components/navbar-user/navbar-user-login.jsx";
-import { Container, Accordion, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
+import { Container, Accordion, Row, Col, Button, Spinner, Alert, Modal, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import allStore from "../../../store/actions/index.js";
-import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import allStore from "../../../store/actions/index.js";
 
 const History = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const [modalShow, setModalShow] = useState(false);
 
   const listOrder = useSelector(({ myHistory }) => myHistory);
   const loading = useSelector(({ loading }) => loading);
+
+  /* ------------------------------ GET HISTRORY ------------------------------ */
 
   useEffect(() => {
     dispatch(allStore.getHistory());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(listOrder);
-  }, [listOrder]);
+  // useEffect(() => {
+  //   console.log(listOrder);
+  // }, [listOrder]);
 
-  // const handlePayment = (event) => {
-  //   event.preventDefault();
-  //   if (listOrder.Status_Order === "accepted") {
-  //     swal("nunggu Payment");
-  //     console.log(listOrder.Status_Order);
-  //   } else if (listOrder.Status_Order === "waiting") {
-  //     swal("Pesanan anda masih belum diterima");
-  //     console.log(listOrder.Status_Order);
-  //   }
-  // };
-
+  /* --------------------------------- LOADING -------------------------------- */
   if (loading) {
     return (
       <>
@@ -43,17 +36,29 @@ const History = () => {
     );
   }
 
+  /* ----------------------------- FUNCTION DIRECT ---------------------------- */
+
   const goToDetail = (id) => {
     navigate(`/detail/package/${id}`);
   };
 
   return (
     <>
+      {/* /* ---------------------------------- MODAL ---------------------------------  */}
+      <Modal size="lg" show={modalShow} onHide={() => setModalShow(false)} aria-labelledby="example-modal-sizes-title-lg">
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">Payment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>...</Modal.Body>
+      </Modal>
+
       <NavUser />
+
+      {/* /* ---------------------------- LIST RESERVATION ----------------------------  */}
       <div className="list-reservasi">
         <Container className="mt-5 mb-5">
           <Row>
-            <h2 className="title-page">Your History Order</h2>
+            <h2 className="title-page text-white">Your History Order</h2>
             <hr />
           </Row>
           {!listOrder ? (
@@ -79,19 +84,36 @@ const History = () => {
                       </Row>
                     </Accordion.Header>
                     <Accordion.Body>
-                      <Row>
+                      <Row className="row-desc">
+                        {/* /* ----------------------------- COL DESCRIPTION ----------------------------  */}
                         <Col md={1}></Col>
-                        <Col md={5} sm={12}>
-                          <p>Client Name&emsp;&emsp; : {el.WoName}</p>
-                          <p>Package Name &ensp;: {el.PackageName}</p>
-                          <p>Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {el.Date}</p>
-                          <p>Total Pax&emsp;&emsp;&emsp;&emsp;: {el.Total_Pax}</p>
-                          <p>
-                            Additional&emsp;&emsp;&emsp; : <br />
-                            {!el.Additional ? "no additional" : el.Additional}
-                          </p>
+                        <Col md={5} sm={12} className="col-description">
+                          <Table className="table-desc">
+                            <tbody>
+                              <tr>
+                                <td>Organizer</td>
+                                <td>{el.WoName}</td>
+                              </tr>
+                              <tr>
+                                <td>Package</td>
+                                <td>{el.PackageName}</td>
+                              </tr>
+                              <tr>
+                                <td>Date Reservation</td>
+                                <td>{el.Date}</td>
+                              </tr>
+                              <tr>
+                                <td>Total pax</td>
+                                <td>{el.Total_Pax}</td>
+                              </tr>
+                              <tr>
+                                <td>Additional</td>
+                                <td>{!el.Additional ? "no additional" : el.Additional}</td>
+                              </tr>
+                            </tbody>
+                          </Table>
                         </Col>
-                        <Col md={4}>
+                        <Col md={4} className="col-status">
                           <h7>
                             <b>Status Order&emsp;&emsp;&ensp;: {el.Status_Order}</b>
                           </h7>
@@ -101,22 +123,22 @@ const History = () => {
                           </h7>
                           <br />
                         </Col>
-                        <Col md={2} sm={12}>
-                          <Button id="detail-package-history" style={{ color: "#fff" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
+
+                        {/* /* ------------------------------- COL BUTTON ------------------------------- */}
+                        <Col md={2} sm={12} className="col-button">
+                          <Button id="detail-package-history" style={{ color: "#fff", width: "90%" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
                             Detail Package
                           </Button>
                           {el.Status_Order === "declined" ? (
                             <></>
+                          ) : el.Status_Order === "waiting" ? (
+                            <div>
+                              <Alert variant="warning" className="waiting-alert">
+                                waiting for organizer confirmation
+                              </Alert>
+                            </div>
                           ) : (
-                            <Button
-                              id="user-payment"
-                              md={12}
-                              sm={6}
-                              style={{ width: "90%" }}
-                              className="m-2 btn-submit"
-                              variant="success"
-                              onClick={() => (el.Status_Order === "waiting" ? swal("tunggu Pihak WO ya") : swal("sabar fitur belum jadi"))}
-                            >
+                            <Button id="user-payment" md={12} sm={6} style={{ width: "90%" }} className="m-2 btn-submit" variant="success" onClick={() => setModalShow(true)}>
                               Payment
                             </Button>
                           )}

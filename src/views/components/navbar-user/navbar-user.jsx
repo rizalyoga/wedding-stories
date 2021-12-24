@@ -47,7 +47,7 @@ const NavUser = () => {
             <div className="logo">
               <img src={logo} alt="logo" id="navbar-logo-bef-login" onClick={() => navigate("/")} />
             </div>
-            <Form className="d-flex search-input" onSubmit={submitHandler}>
+            <Form className="search-input-user" onSubmit={submitHandler}>
               <input
                 type="text"
                 style={{ borderRadius: "20px" }}
@@ -61,7 +61,7 @@ const NavUser = () => {
                 onChange={(e) => setTerm(e.target.value)}
               />
               {/* <Button class="btn btn-outline-success" type="submit"></Button> */}
-              <Button variant="primary" type="submit" style={{ borderRadius: "50%", background: "#5C7893", border: "#5C7893" }}>
+              <Button variant="primary" id="search-button" type="submit" style={{ borderRadius: "50%", background: "#5C7893", border: "#5C7893" }}>
                 <i class="bi bi-search"></i>
               </Button>
             </Form>

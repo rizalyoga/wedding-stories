@@ -2,13 +2,18 @@ import "./reason.css";
 import easy from "../../../assets/reason/easy-to-use.png";
 import reliable from "../../../assets/reason/reliability.png";
 import target from "../../../assets/reason/target.png";
+import { useNavigate } from "react-router-dom";
 
 const Reason = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="container">
         <div className="reason">
-          <h2 className="text-center my-5 fw-bold">Kenapa harus weeding day</h2>
+          <h2 className="text-center my-5 fw-bold">
+            Kenapa harus we<span onClick={() => navigate("/admin/login")}>e</span>ding day
+          </h2>
         </div>
         <div className="card-reason">
           <div className="row-reason">

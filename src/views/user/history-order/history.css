@@ -1,6 +1,6 @@
 .list-reservasi {
-  background-color: #5c7893;
-  padding-bottom: 20%;
+  background-color: #709bc4;
+  padding-bottom: 5%;
   padding-top: 5%;
 }
 
@@ -10,17 +10,70 @@
   align-items: center;
 }
 
+.waiting-alert {
+  width: 91%;
+  margin-left: 4% !important;
+  text-align: center;
+}
+
+.col-description {
+  margin-left: -40px !important;
+}
+
+.table-desc {
+  border-bottom: transparent;
+}
+
 @media (max-width: 885px) {
   .list-reservasi {
     padding-top: 10%;
   }
+
+  .col-description {
+    margin-left: 0px !important;
+    width: 100%;
+  }
+
+  .col-status {
+    width: 100%;
+  }
+
+  .col-button {
+    width: 100% !important;
+  }
+
+  .col-button Button {
+    margin-left: 4% !important;
+    width: 91% !important;
+  }
+
+  .row-desc {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 450px) {
-  #detail-package-history {
-    width: 95%;
+  .list-reservasi {
+    padding-top: 15%;
   }
+
+  .col-description {
+    margin-left: 0px !important;
+  }
+
+  #detail-package-history {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
   #user-payment {
-    width: 95% !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .waiting-alert {
+    width: 100%;
+    margin-left: 0% !important;
   }
 }

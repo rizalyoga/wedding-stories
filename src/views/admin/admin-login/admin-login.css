@@ -1,5 +1,5 @@
 .admin-login-page {
-  height: 80vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@
 .admin-login-page form {
   width: 70%;
   border: 1px solid #dfdfdf;
-  padding: 20px;
+  padding: 50px;
   border-radius: 5px;
   background: #fff;
 }
@@ -32,6 +32,7 @@
 
 .btn-submit-login {
   width: 100%;
+  border-radius: 3px;
   border: #5a81d5;
   background: #5a81d5;
 }

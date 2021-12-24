@@ -18,7 +18,7 @@ const AdminLogin = () => {
       localStorage.setItem("token", "asdjlkasjdioqwlksaida");
       navigate("/admin/dashboard");
     } else {
-      swal("Invalid Email / Password", { icon: "warning", timer: 3000, buttons: false });
+      swal("Invalid Email / Password", { icon: "warning", timer: 5000, buttons: false });
     }
   };
 

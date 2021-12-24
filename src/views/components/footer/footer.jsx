@@ -13,27 +13,27 @@ const Footer = () => {
           <div className="footer-left-col d-flex">
             <div className="link-title mx-3 mb-3">
               <h4>Product</h4>
-              <small>OurPlan</small>
+              <small>Organizer</small>
               <br />
-              <small>Free Trial</small>
+              <small>Wedding</small>
             </div>
             <div className="link-title mx-3 mb-3">
               <h4>About us</h4>
-              <small>OurPlan</small>
-              <br />
-              <small>Free Trial</small>
+              <small>Website</small>
             </div>
             <div className="link-title mx-3 mb-3">
-              <h4>Bisnis</h4>
-              <small>OurPlan</small>
+              <h4>business</h4>
+              <small>Our Plan</small>
               <br />
-              <small>Free Trial</small>
+              <small>Location</small>
             </div>
             <div className="link-title mx-3 mb-3">
               <h4>Contact</h4>
-              <small>OurPlan</small>
+              <small>Social media</small>
               <br />
-              <small onClick={() => navigate("/admin/login")}>Free Trial</small>
+              <small id="admin-login" onClick={() => navigate("/admin/login")}>
+                Admin
+              </small>
             </div>
           </div>
           <div className="footer-right-col">

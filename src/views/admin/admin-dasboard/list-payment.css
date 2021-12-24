@@ -1,7 +1,11 @@
 .list-payment {
-  background-color: #5c7893;
+  background-color: #ffffff;
   padding-bottom: 20%;
   padding-top: 5%;
+}
+
+.title-page {
+  color: black;
 }
 
 .title {

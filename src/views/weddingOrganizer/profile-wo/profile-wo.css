@@ -87,7 +87,7 @@
   }
 }
 
-@media (max-width: 428px) {
+@media (max-width: 430px) {
   .images img {
     width: 500px;
   }
@@ -103,7 +103,7 @@
   .profile-user {
     margin-top: 5%;
     padding-bottom: 5%;
-    padding-top: 15%;
+    padding-top: 20%;
   }
 
   .image-logo {

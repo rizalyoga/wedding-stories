@@ -2,27 +2,28 @@ import "./list-payment.css";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import { Container, Accordion, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import allStore from "../../../store/actions/index.js";
-import swal from "sweetalert";
+// import { useEffect } from "react";
+// import allStore from "../../../store/actions/index.js";
+// import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import Home from "../../home/before-login/index.jsx";
 
 const ListPayment = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const listOrder = useSelector(({ myHistory }) => myHistory);
+  // const listOrder = useSelector(({ myHistory }) => myHistory);
+  const listOrder = null;
   const loading = useSelector(({ loading }) => loading);
 
-  useEffect(() => {
-    dispatch(allStore.getHistory());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(allStore.getHistory());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    console.log(listOrder);
-  }, [listOrder]);
+  // useEffect(() => {
+  //   console.log(listOrder);
+  // }, [listOrder]);
 
   if (loading) {
     return (
@@ -44,15 +45,13 @@ const ListPayment = () => {
         <div className="list-payment">
           <Container className="mt-5 mb-5">
             <Row>
-              <h2 className="title-page">Your History Order</h2>
+              <h4 className="title-page">List Payment User</h4>
               <hr />
             </Row>
             {!listOrder ? (
-              <>
-                <Alert variant="warning" style={{ height: "100vh" }}>
-                  You have no data.
-                </Alert>
-              </>
+              <div style={{ height: "100vh" }}>
+                <Alert variant="warning">You have no data.</Alert>
+              </div>
             ) : (
               listOrder
                 .slice(0)
@@ -75,44 +74,28 @@ const ListPayment = () => {
                         <Row>
                           <Col md={1}></Col>
                           <Col md={5} sm={12}>
-                            <p>Client Name&emsp;&emsp; : {el.WoName}</p>
-                            <p>Package Name &ensp;: {el.PackageName}</p>
-                            <p>Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {el.Date}</p>
-                            <p>Total Pax&emsp;&emsp;&emsp;&emsp;: {el.Total_Pax}</p>
+                            <p>Client Name&emsp;&emsp; : </p>
+                            <p>Package Name &ensp;: </p>
+                            <p>Date&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: </p>
+                            <p>Total Pax&emsp;&emsp;&emsp;&emsp;: </p>
                             <p>
                               Additional&emsp;&emsp;&emsp; : <br />
-                              {!el.Additional ? "no additional" : el.Additional}
                             </p>
                           </Col>
                           <Col md={4}>
                             <h7>
-                              <b>Status Order&emsp;&emsp;&ensp;: {el.Status_Order}</b>
+                              <b>Status Order&emsp;&emsp;&ensp;: </b>
                             </h7>
                             <br />
                             <h7>
-                              <b>Status Payment&ensp; : {el.Status_Payment}</b>
+                              <b>Status Payment&ensp; : </b>
                             </h7>
                             <br />
                           </Col>
                           <Col md={2} sm={12}>
                             <Button id="detail-package-order" style={{ color: "#fff" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
-                              Detail Package
+                              Accept
                             </Button>
-                            {el.Status_Order === "declined" ? (
-                              <></>
-                            ) : (
-                              <Button
-                                id="admin-accept"
-                                md={12}
-                                sm={6}
-                                style={{ width: "90%" }}
-                                className="m-2 btn-submit"
-                                variant="success"
-                                onClick={() => (el.Status_Order === "waiting" ? swal("tunggu Pihak WO ya") : swal("sabar fitur belum jadi"))}
-                              >
-                                Payment
-                              </Button>
-                            )}
                           </Col>
                         </Row>
                       </Accordion.Body>

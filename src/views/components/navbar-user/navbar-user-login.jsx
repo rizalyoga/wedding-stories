@@ -57,7 +57,7 @@ const NavLoginUser = () => {
               onChange={(e) => setTerm(e.target.value)}
             />
             {/* <Button class="btn btn-outline-success" type="submit"></Button> */}
-            <Button variant="primary" type="submit" style={{ borderRadius: "50%", background: "#5C7893", border: "#5C7893" }}>
+            <Button id="search-button" variant="primary" type="submit" style={{ borderRadius: "50%", background: "#5C7893", border: "#5C7893" }}>
               <i class="bi bi-search"></i>
             </Button>
           </Form>
