@@ -20,6 +20,8 @@ import ListReservation from "./views/weddingOrganizer/reservation/listReservatio
 import FormEditPackage from "./views/weddingOrganizer/package/editPackage.jsx/editPackage";
 import History from "./views/user/history-order/history.jsx";
 import SearchPage from "./views/components/search-page/search-page.jsx";
+import ListPayment from "./views/admin/admin-dasboard/list-payment.jsx";
+import AdminLogin from "./views/admin/admin-login/admin-login.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +49,8 @@ function App() {
         <Route path="/vendor/reservations" element={<ListReservation />}></Route>
         <Route path="/vendor/packages/edit/:id" element={<FormEditPackage />}></Route>
         <Route path="/search/package" element={<SearchPage />}></Route>
+        <Route path="/admin/dashboard" element={<ListPayment />}></Route>
+        <Route path="/admin/login" element={<AdminLogin />}></Route>
       </Routes>
 
       <Footer />

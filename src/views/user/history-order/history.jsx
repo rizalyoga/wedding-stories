@@ -57,11 +57,9 @@ const History = () => {
             <hr />
           </Row>
           {!listOrder ? (
-            <>
-              <Alert variant="warning" style={{ height: "100vh" }}>
-                You have no data.
-              </Alert>
-            </>
+            <div style={{ height: "70vh" }}>
+              <Alert variant="warning">You have no data.</Alert>
+            </div>
           ) : (
             listOrder
               .slice(0)

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import NavbarLoginUser from "./navbar-user-login.jsx";
 import NavbarLoginWo from "../navbar-wo/navbar-wo-login.jsx";
+import NavbarAdmin from "../navbar-admin/navbar-admin.jsx";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import allStore from "../../../store/actions/index";
@@ -36,6 +37,8 @@ const NavUser = () => {
     return <NavbarLoginUser />;
   } else if (localStorage.token && localStorage.status == "organizer") {
     return <NavbarLoginWo />;
+  } else if (localStorage.status == "admin") {
+    return <NavbarAdmin />;
   } else {
     return (
       <div>

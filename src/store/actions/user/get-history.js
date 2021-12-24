@@ -19,7 +19,8 @@ export const getHistory = () => {
       .catch((err) => {
         if (online) {
           console.log(err);
-          swal(err.response.data.message, { icon: "warning" });
+          // swal(err.response.data.message, { icon: "warning" });
+          swal("Token Expired, Please Login Again", { icon: "warning" });
         } else {
           swal("Check your Internet Connection", { icon: "warning" });
         }

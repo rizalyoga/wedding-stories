@@ -1,0 +1,26 @@
+.list-payment {
+  background-color: #5c7893;
+  padding-bottom: 20%;
+  padding-top: 5%;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 885px) {
+  .list-payment {
+    padding-top: 10%;
+  }
+}
+
+@media (max-width: 450px) {
+  #detail-package-order {
+    width: 95%;
+  }
+  #admin-accept {
+    width: 95% !important;
+  }
+}

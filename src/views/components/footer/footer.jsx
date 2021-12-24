@@ -33,7 +33,7 @@ const Footer = () => {
               <h4>Contact</h4>
               <small>OurPlan</small>
               <br />
-              <small>Free Trial</small>
+              <small onClick={() => navigate("/admin/login")}>Free Trial</small>
             </div>
           </div>
           <div className="footer-right-col">

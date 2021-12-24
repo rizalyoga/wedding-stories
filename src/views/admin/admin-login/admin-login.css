@@ -1,0 +1,61 @@
+.admin-login-page {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.admin-login-page form {
+  width: 70%;
+  border: 1px solid #dfdfdf;
+  padding: 20px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.logo-admin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo-admin img {
+  width: 4rem;
+}
+
+.admin-login-page input {
+  width: 100%;
+}
+
+.btn-submit-login {
+  width: 100%;
+  border: #5a81d5;
+  background: #5a81d5;
+}
+
+@media (max-width: 576px) {
+  .container-admin {
+    margin-top: 10%;
+  }
+
+  .container-admin form {
+    width: 90%;
+  }
+
+  .container-admin input {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .email-admin {
+    width: 100% !important;
+  }
+
+  .admin-login-page {
+    width: 100%;
+    padding: 0px !important;
+  }
+}
