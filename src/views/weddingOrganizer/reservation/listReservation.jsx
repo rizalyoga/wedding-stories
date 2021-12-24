@@ -10,18 +10,30 @@ import {
 } from "react-bootstrap";
 import NavLoginWo from "../../components/navbar-wo/navbar-wo-login";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import allStore from "../../../store/actions/index.js";
 import axios from "axios";
 import swal from "sweetalert";
 import "./listReservation.css";
 import { useNavigate } from "react-router-dom";
 
 const ListReservation = () => {
+  const dispatch = useDispatch();
+  const listOrder = useSelector(({ myOrder }) => myOrder);
+
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState([]);
   const [status, setStatus] = useState("");
   const [ID, setID] = useState("");
   const [buttonSelected, setButtonSelected] = useState("");
   const navigate = useNavigate();
+
+  /* --------------------------- GET DETAIL PACKAGE --------------------------- */
+
+  useEffect(() => {
+    dispatch(allStore.getMyOrder());
+  }, [dispatch, listOrder]);
+
   // alert accept/decline
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -75,10 +87,10 @@ const ListReservation = () => {
       .put(`https://weddingstories.space/order/status/${ID}`, body, config)
       .then((data) => {
         console.log(data);
-        swal(data.data.message);
-        navigate("/vendor/reservations");
+
+        // navigate("/vendor/reservations");
         setShow(false);
-        window.location.reload();
+        swal(data.data.message);
       })
       .catch((err) => {
         const online = window.ononLine;
@@ -221,61 +233,69 @@ const ListReservation = () => {
           </Row>
           {checkOrder()}
           {handleShow()}
-          {order.map((el, idx) => (
-            <Accordion>
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>
-                  <Row>
-                    <Col>
-                      {el.Name} · {el.PackageName} · {el.Status_Order}
-                    </Col>
-                    {/* <Col md={6} style={{ color: "darkyellow" }}>
+          {!listOrder ? (
+            <Row>
+              <Col md={3}>
+                <Alert variant="warning">You have no data.</Alert>
+              </Col>
+            </Row>
+          ) : (
+            listOrder.map((el, idx) => (
+              <Accordion>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>
+                    <Row>
+                      <Col>
+                        {el.Name} · {el.PackageName} · {el.Status_Order}
+                      </Col>
+                      {/* <Col md={6} style={{ color: "darkyellow" }}>
                       waiting
                     </Col> */}
-                  </Row>
-                </Accordion.Header>
-                <Accordion.Body>
-                  <Row>
-                    <Col md={1}></Col>
-                    <Col md={5} sm={12}>
-                      <h7>
-                        <b>Client Name :</b> {el.Name}
-                      </h7>
-                      <br />
-                      <h7>
-                        <b>Package Name :</b> {el.PackageName}
-                      </h7>
-                      <br />
-                      <h7>
-                        <b>Date :</b> {el.Date}
-                      </h7>
-                      <br />
-                      <h7>
-                        <b>Total Pax :</b> {el.Total_Pax}
-                      </h7>
-                      <br />
-                      <h7>
-                        <b>Additional :</b> {el.Additional}
-                      </h7>
-                      <br />
-                    </Col>
-                    <Col md={4}>
-                      <h7>
-                        <b>Status Order :</b> {el.Status_Order}
-                      </h7>
-                      <br />
-                      <h7>
-                        <b>Status Payment :</b> {el.Status_Payment}
-                      </h7>
-                      <br />
-                    </Col>
-                    {showButton(el.Status_Order, el.ID)}
-                  </Row>
-                </Accordion.Body>
-              </Accordion.Item>
-              <br />
-            </Accordion>
-          ))}
+                    </Row>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <Row>
+                      <Col md={1}></Col>
+                      <Col md={5} sm={12}>
+                        <h7>
+                          <b>Client Name :</b> {el.Name}
+                        </h7>
+                        <br />
+                        <h7>
+                          <b>Package Name :</b> {el.PackageName}
+                        </h7>
+                        <br />
+                        <h7>
+                          <b>Date :</b> {el.Date}
+                        </h7>
+                        <br />
+                        <h7>
+                          <b>Total Pax :</b> {el.Total_Pax}
+                        </h7>
+                        <br />
+                        <h7>
+                          <b>Additional :</b> {el.Additional}
+                        </h7>
+                        <br />
+                      </Col>
+                      <Col md={4}>
+                        <h7>
+                          <b>Status Order :</b> {el.Status_Order}
+                        </h7>
+                        <br />
+                        <h7>
+                          <b>Status Payment :</b> {el.Status_Payment}
+                        </h7>
+                        <br />
+                      </Col>
+                      {showButton(el.Status_Order, el.ID)}
+                    </Row>
+                  </Accordion.Body>
+                </Accordion.Item>
+                <br />
+              </Accordion>
+            ))
+          )}
         </Container>
       </div>
     </>
