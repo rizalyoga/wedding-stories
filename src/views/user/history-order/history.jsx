@@ -13,6 +13,7 @@ const History = () => {
 
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
+  const [id_order, setId] = useState();
 
   const listOrder = useSelector(({ myHistory }) => myHistory);
   const loading = useSelector(({ loading }) => loading);
@@ -131,11 +132,22 @@ const History = () => {
                               </Alert>
                             </div>
                           ) : (
-                            <Button id="user-payment" md={12} sm={6} style={{ width: "90%" }} className="m-2 btn-submit" variant="success" onClick={() => setModalShow(true)}>
+                            <Button
+                              id="user-payment"
+                              md={12}
+                              sm={6}
+                              style={{ width: "90%" }}
+                              className="m-2 btn-submit"
+                              variant="success"
+                              onClick={() => {
+                                setModalShow(true);
+                                setId(el.ID);
+                              }}
+                            >
                               Payment
                             </Button>
                           )}
-                          <ModalPayment show={modalShow} id_order={el.ID} onHide={() => setModalShow(false)} />
+                          <ModalPayment show={modalShow} id_order={id_order} onHide={() => setModalShow(false)} />
                         </Col>
                       </Row>
                     </Accordion.Body>

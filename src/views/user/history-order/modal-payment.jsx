@@ -1,6 +1,6 @@
 import "./modal-payment.css";
 import { Modal, Button, Form } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import logo from "../../../assets/virus.png";
 import bank from "../../../assets/bank/bank.png";
@@ -21,13 +21,16 @@ const ModalPayment = (props) => {
     setPreview(URL.createObjectURL(images));
   };
 
-  const id_order = props.id_order;
+  useEffect(() => {
+    console.log(props.id_order);
+  }, [props.id_order]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (file.size > 3e6) {
       swal("Your file more than 3MB");
     } else {
+      const id_order = props.id_order;
       // console.log("file", file);
       // console.log(props.id_order);
       const data = new FormData();
