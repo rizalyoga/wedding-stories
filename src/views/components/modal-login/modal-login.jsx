@@ -36,7 +36,9 @@ const ModalLogin = (props) => {
       // </div>
       <>
         {/* <NavUser /> */}
-        {/* <Spinner className="spinner" animation="border" /> */}
+        <div className="loading">
+          <Spinner className="spinner" animation="border" />
+        </div>
       </>
     );
   }

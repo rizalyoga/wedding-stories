@@ -55,20 +55,24 @@ const Home = () => {
         <div className="container">
           <h2 className="fw-bold">Wedding Planner di Indonesia</h2>
           <div className="row-card my-5">
-            {allPackage.map((el, index) => (
-              <div className="card-wo my-2 " id="card-package-landing-page" onClick={() => goToDetail(el.ID)} key={index}>
-                <div className="images">
-                  <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
-                </div>
-                <div className="name-wo fw-bold">{el.PackageName}</div>
-                <div className="desc-packages d-flex justify-content-between">
-                  <div className="price">{formatRupiah(el.Price) + ",00"}</div>
-                  <div className="rate" style={{ color: "#5C7893" }}>
-                    4.5
+            {!allPackage ? (
+              <></>
+            ) : (
+              allPackage.map((el, index) => (
+                <div className="card-wo my-2 " id="card-package-landing-page" onClick={() => goToDetail(el.ID)} key={index}>
+                  <div className="images">
+                    <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
+                  </div>
+                  <div className="name-wo fw-bold">{el.PackageName}</div>
+                  <div className="desc-packages d-flex justify-content-between">
+                    <div className="price">{formatRupiah(el.Price) + ",00"}</div>
+                    <div className="rate" style={{ color: "#5C7893" }}>
+                      4.5
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </div>

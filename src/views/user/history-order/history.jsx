@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import allStore from "../../../store/actions/index.js";
+import ModalPayment from "./modal-payment.jsx";
 
 const History = () => {
   const dispatch = useDispatch();
@@ -22,9 +23,9 @@ const History = () => {
     dispatch(allStore.getHistory());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log(listOrder);
-  // }, [listOrder]);
+  useEffect(() => {
+    console.log(listOrder);
+  }, [listOrder]);
 
   /* --------------------------------- LOADING -------------------------------- */
   if (loading) {
@@ -44,14 +45,6 @@ const History = () => {
 
   return (
     <>
-      {/* /* ---------------------------------- MODAL ---------------------------------  */}
-      <Modal size="lg" show={modalShow} onHide={() => setModalShow(false)} aria-labelledby="example-modal-sizes-title-lg">
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">Payment</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>...</Modal.Body>
-      </Modal>
-
       <NavUser />
 
       {/* /* ---------------------------- LIST RESERVATION ----------------------------  */}
@@ -142,6 +135,7 @@ const History = () => {
                               Payment
                             </Button>
                           )}
+                          <ModalPayment show={modalShow} id_order={el.ID} onHide={() => setModalShow(false)} />
                         </Col>
                       </Row>
                     </Accordion.Body>
