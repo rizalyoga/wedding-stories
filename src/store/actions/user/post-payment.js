@@ -24,7 +24,7 @@ export const postPayment = (payload) => {
         if (online) {
           // console.log("online");
           console.log("3, Masuk ERROR:", err.response.data);
-          swal(err.response.data.message);
+          swal(err.response.data.message, { icon: "warning" });
         } else if (!online) {
           // console.log("offline");
           swal("Check your Internet Connection", { icon: "warning" });

@@ -34,6 +34,8 @@ const ModalPayment = (props) => {
       data.append("reservationid", id_order);
       data.append("invoice", file);
 
+      console.log(data);
+      console.log(id_order);
       dispatch(allStore.postPayment(data));
       setFile();
       setPreview();

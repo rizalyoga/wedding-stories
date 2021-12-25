@@ -23,8 +23,8 @@
 }
 
 .body-preview img {
-  width: 20rem;
-  height: 20rem;
+  width: 100%;
+  height: 100%;
 }
 
 .bi-cloud-arrow-up {
@@ -51,7 +51,7 @@
 
 .logo-bank img {
   width: 50%;
-  height: 100%px;
+  height: 100%;
   margin-bottom: 20px;
 }
 
