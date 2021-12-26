@@ -13,6 +13,7 @@ import myHistory from "./user/history-user-reducer.js";
 import editUser from "./user/edit-profile-reducer.js";
 import searchPackage from "./package/get-search-reducer.js";
 import myOrder from "./organizer/list-order-reducer.js";
+import listPayment from "./admin/get-payment-reducer.js";
 
 const rootReducers = combineReducers({
   loading,
@@ -41,6 +42,8 @@ const rootReducers = combineReducers({
   searchPackage,
   //getMyOrder
   myOrder,
+  //get list payment admin
+  listPayment,
 });
 
 export default rootReducers;

@@ -14,6 +14,7 @@ import { setEditUser, postEditUser } from "./user/edit-profile.js";
 import { setSearchPackage, getSearchPackage } from "./package/get-search-package";
 import { setMyOrder, getMyOrder } from "./organizer/get-list-order";
 import { setPostPayment, postPayment } from "./user/post-payment.js";
+import { setAllPayment, getAllPayment } from "./admin/get-all-payment.js";
 
 const allStore = {
   setError,
@@ -58,6 +59,9 @@ const allStore = {
   //postPayment
   setPostPayment,
   postPayment,
+  //getALLPayment
+  setAllPayment,
+  getAllPayment,
 };
 
 export default allStore;
