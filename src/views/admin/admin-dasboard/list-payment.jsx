@@ -20,9 +20,9 @@ const ListPayment = () => {
     dispatch(allStore.getAllPayment());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(listPayment);
-  }, [listPayment]);
+  // useEffect(() => {
+  //   console.log(listPayment);
+  // }, [listPayment]);
 
   if (loading) {
     return (
@@ -62,7 +62,15 @@ const ListPayment = () => {
                         <Row style={{ width: "100%" }}>
                           <Col className="title">
                             <h6>Harusnya Nama User</h6>
-                            <h6 className="fw-bold">{el.Status_Payment}</h6>
+                            {el.Status_Payment === "unpaid" ? (
+                              <h6 className="fw-bold" style={{ color: "red" }}>
+                                {el.Status_Payment}
+                              </h6>
+                            ) : (
+                              <h6 className="fw-bold" style={{ color: "green" }}>
+                                {el.Status_Payment}
+                              </h6>
+                            )}
                           </Col>
                           {/* <Col md={6} style={{ color: "darkyellow" }}>
                       waiting
