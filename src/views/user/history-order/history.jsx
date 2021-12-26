@@ -6,12 +6,14 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import allStore from "../../../store/actions/index.js";
+import ModalPayment from "./modal-payment.jsx";
 
 const History = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
+  const [id_order, setId] = useState();
 
   const listOrder = useSelector(({ myHistory }) => myHistory);
   const loading = useSelector(({ loading }) => loading);
@@ -22,9 +24,9 @@ const History = () => {
     dispatch(allStore.getHistory());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log(listOrder);
-  // }, [listOrder]);
+  useEffect(() => {
+    console.log(listOrder);
+  }, [listOrder]);
 
   /* --------------------------------- LOADING -------------------------------- */
   if (loading) {
@@ -44,14 +46,6 @@ const History = () => {
 
   return (
     <>
-      {/* /* ---------------------------------- MODAL ---------------------------------  */}
-      <Modal size="lg" show={modalShow} onHide={() => setModalShow(false)} aria-labelledby="example-modal-sizes-title-lg">
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">Payment</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>...</Modal.Body>
-      </Modal>
-
       <NavUser />
 
       {/* /* ---------------------------- LIST RESERVATION ----------------------------  */}
@@ -138,10 +132,22 @@ const History = () => {
                               </Alert>
                             </div>
                           ) : (
-                            <Button id="user-payment" md={12} sm={6} style={{ width: "90%" }} className="m-2 btn-submit" variant="success" onClick={() => setModalShow(true)}>
+                            <Button
+                              id="user-payment"
+                              md={12}
+                              sm={6}
+                              style={{ width: "90%" }}
+                              className="m-2 btn-submit"
+                              variant="success"
+                              onClick={() => {
+                                setModalShow(true);
+                                setId(el.ID);
+                              }}
+                            >
                               Payment
                             </Button>
                           )}
+                          <ModalPayment show={modalShow} id_order={id_order} onHide={() => setModalShow(false)} />
                         </Col>
                       </Row>
                     </Accordion.Body>

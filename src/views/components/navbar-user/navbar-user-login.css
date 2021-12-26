@@ -67,8 +67,8 @@
 }
 
 @media (max-width: 485px) {
-  .logo img {
-    display: none;
+  .logo-login-user img {
+    display: none !important;
   }
 
   .search-input {

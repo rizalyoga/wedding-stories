@@ -14,6 +14,18 @@
   align-items: center;
 }
 
+.image-invoice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin-top: 10px;
+}
+
+.image-invoice img {
+  width: 100%;
+}
+
 @media (max-width: 885px) {
   .list-payment {
     padding-top: 10%;

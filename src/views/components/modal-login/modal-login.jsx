@@ -31,11 +31,15 @@ const ModalLogin = (props) => {
   if (loading) {
     // console.log("inilagi loading");
     return (
-      <div className="loading d-flex justify-content-center align-items-center flex-column">
+      // <div className="loading d-flex justify-content-center align-items-center flex-column">
+      //   <Spinner animation="border" />
+      // </div>
+      <>
         {/* <NavUser /> */}
-        <Spinner animation="border" />
-        {/* <Spinner className="spinner" animation="border" /> */}
-      </div>
+        <div className="loading">
+          <Spinner className="spinner" animation="border" />
+        </div>
+      </>
     );
   }
 

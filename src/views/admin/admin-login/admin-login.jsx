@@ -1,25 +1,23 @@
 import "./admin-login.css";
 import { Form } from "react-bootstrap";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import logo from "../../../assets/virus.png";
-import swal from "sweetalert";
+// import swal from "sweetalert";
+import allStore from "../../../store/actions/index";
 
 const AdminLogin = () => {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    if (email == "admin@mail.com" && password == "admin") {
-      localStorage.setItem("status", "admin");
-      localStorage.setItem("token", "asdjlkasjdioqwlksaida");
-      navigate("/admin/dashboard");
-    } else {
-      swal("Invalid Email / Password", { icon: "warning", timer: 5000, buttons: false });
-    }
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("1.masuk Handle Submit");
+    dispatch(allStore.UserLogin({ email, password }));
   };
 
   return (
