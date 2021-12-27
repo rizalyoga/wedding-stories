@@ -149,7 +149,7 @@ const RegisUser = () => {
                     Sign up
                   </button>
                   <hr style={{ color: "white" }} />
-                  <div className="content-wo " style={{ marginLeft: "0.2px" }}>
+                  <div className="content-wo " style={{ marginLeft: "0px" }}>
                     {/* <h5 className="text-white">Sign up as Organizer</h5> */}
                     <Button onClick={() => navigate("/vendor/register")} id="redirect-signUp-wo" style={{ background: "#84A1BE", borderColor: "#84A1BE" }}>
                       Sign up as Organizer

@@ -117,7 +117,9 @@ const ProfileWO = () => {
                       <div className="images">
                         <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
                       </div>
-                      <div className="name-wo fw-bold">{el.PackageName}</div>
+                      <div className="name-wo fw-bold mt-1" id="name-wo" style={{ overflow: "hidden", textOverflow: "ellipsis", height: "25px" }}>
+                        {el.PackageName}
+                      </div>
                       <div className="desc-packages d-flex justify-content-between">
                         <div className="price">{formatRupiah(el.Price) + ",00"}</div>
                         {/* <div className="rate" style={{ color: "#5C7893" }}>

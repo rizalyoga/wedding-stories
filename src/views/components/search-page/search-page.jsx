@@ -58,13 +58,15 @@ const Home = () => {
         <div className="list-wo container-list-wo" style={{ paddingBottom: "15%" }}>
           <div className="container">
             <h2 className="fw-bold">Wedding Planner di Indonesia</h2>
-            <div className="row-card my-5">
+            <div className="row-card" style={{ paddingTop: "6%" }}>
               {searchPackage.map((el, index) => (
                 <div className="card-wo my-2 " id="card-package-landing-page" onClick={() => goToDetail(el.ID)} key={index}>
                   <div className="images">
                     <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
                   </div>
-                  <div className="name-wo fw-bold">{el.PackageName}</div>
+                  <div className="name-wo fw-bold mt-1" id="name-wo" style={{ overflow: "hidden", textOverflow: "ellipsis", height: "25px" }}>
+                    {el.PackageName}
+                  </div>
                   <div className="desc-packages d-flex justify-content-between">
                     <div className="price">{formatRupiah(el.Price) + ",00"}</div>
                     <div className="rate" style={{ color: "#5C7893" }}>

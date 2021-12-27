@@ -24,9 +24,9 @@ const History = () => {
     dispatch(allStore.getHistory());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log(listOrder);
-  // }, [listOrder]);
+  useEffect(() => {
+    console.log(listOrder);
+  }, [listOrder]);
 
   /* --------------------------------- LOADING -------------------------------- */
   if (loading) {
@@ -114,6 +114,14 @@ const History = () => {
                               <tr>
                                 <td>Organizer</td>
                                 <td>{el.WoName}</td>
+                              </tr>
+                              <tr>
+                                <td>Phone Organizer</td>
+                                <td>{el.PhoneNumber}</td>
+                              </tr>
+                              <tr>
+                                <td>Address</td>
+                                <td>{el.Address}</td>
                               </tr>
                               <tr>
                                 <td>Package</td>

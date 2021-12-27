@@ -99,19 +99,23 @@ const ListPayment = () => {
                               <tbody>
                                 <tr>
                                   <td>Organizer</td>
-                                  <td>Harusnya Nama WO</td>
+                                  <td>{el.WoName}</td>
                                 </tr>
                                 <tr>
                                   <td>User</td>
-                                  <td>Harusnya Nama User</td>
+                                  <td>{el.Name}</td>
+                                </tr>
+                                <tr>
+                                  <td>User Email</td>
+                                  <td>{el.Email}</td>
                                 </tr>
                                 <tr>
                                   <td>Package</td>
-                                  <td>Harusnya Nama Package</td>
+                                  <td>{el.PackageName}</td>
                                 </tr>
                                 <tr>
                                   <td>Date Reservation</td>
-                                  <td>Harusnya Tanggal Reservasi</td>
+                                  <td>{el.Date}</td>
                                 </tr>
                                 <tr>
                                   <td>Total pax</td>

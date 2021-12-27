@@ -33,13 +33,11 @@
 
 #redirect-signUp-wo,
 #redirect-signIn-wo {
-  width: 93.5%;
-  margin-left: 6.3%;
+  width: 100%;
 }
 
 .content-wo hr {
-  width: 93.5%;
-  margin-left: 6.3%;
+  width: 100%;
 }
 
 #redirect-signUp-wo:hover,
@@ -56,7 +54,6 @@
   #redirect-signUp-wo,
   #redirect-signIn-wo {
     width: 100%;
-    margin-left: 0%;
   }
 }
 

@@ -16,7 +16,7 @@ a {
 }
 
 .logo img {
-  margin-top: -30px;
+  margin-top: -32px;
   width: 100px !important;
   cursor: pointer;
   position: absolute;
@@ -79,9 +79,9 @@ a {
 }
 
 @media (max-width: 485px) {
-  /* .logo img {
-    display: none;
-  } */
+  .logo img {
+    display: none !important;
+  }
   .search-user-input input {
     width: 100%;
     height: 100%;
