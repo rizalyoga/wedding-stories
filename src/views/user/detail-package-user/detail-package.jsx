@@ -188,7 +188,7 @@ const DetailPackage = () => {
                     rows="5"
                     value={additional}
                     onChange={(event) => setAdditional(event.target.value)}
-                    placeholder="Type your additional..."
+                    placeholder="Type your additional note..."
                   ></textarea>
                 </div>
 

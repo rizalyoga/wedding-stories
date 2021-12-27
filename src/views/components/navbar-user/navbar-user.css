@@ -63,6 +63,7 @@ a {
 .search-input-user {
   display: flex;
   width: 50%;
+  margin-left: 10%;
 }
 
 .search-input-user input:focus {
@@ -93,6 +94,10 @@ a {
 
   #search-button {
     display: none;
+  }
+
+  .search-input-user {
+    margin-left: 0%;
   }
 }
 

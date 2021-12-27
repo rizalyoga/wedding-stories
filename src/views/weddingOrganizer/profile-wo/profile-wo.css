@@ -11,6 +11,7 @@
 .image-logo {
   flex-basis: 25%;
   display: inline-block;
+  width: 100%;
   /* position: relative; */
   /* overflow: hidden; */
 }
@@ -18,12 +19,12 @@
 .image-logo img {
   width: 13rem;
   height: 13rem;
-  border-radius: 50%;
+  border-radius: 5px;
   left: 0;
 }
 
 .content-wo {
-  margin-left: -3%;
+  margin-left: -6%;
 }
 
 .status {
@@ -66,9 +67,22 @@
   .images img {
     width: 500px;
   }
+
+  .content-wo {
+    margin-left: 10% !important;
+  }
 }
 
 @media (max-width: 850px) {
+  .profile-user {
+    margin-top: 15% !important;
+    padding-bottom: 10% !important;
+  }
+
+  .content-wo {
+    margin-left: 5% !important;
+  }
+
   .card-wo {
     width: 500px;
   }
@@ -82,8 +96,8 @@
     width: 500px;
   }
 
-  .content-wo {
-    margin-left: 0%;
+  .image-logo img {
+    margin-bottom: 20px;
   }
 }
 
@@ -94,6 +108,10 @@
 
   .content-header {
     flex-direction: column;
+  }
+
+  .content-wo {
+    margin-left: 0% !important;
   }
 
   .contact {

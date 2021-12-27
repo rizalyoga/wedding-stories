@@ -101,6 +101,10 @@
   .image-logo img {
     margin-bottom: 20px;
   }
+
+  .address {
+    flex-direction: column !important;
+  }
 }
 
 /* .loading {

@@ -68,9 +68,9 @@ const Home = () => {
                   </div>
                   <div className="desc-packages d-flex justify-content-between">
                     <div className="price">{formatRupiah(el.Price) + ",00"}</div>
-                    <div className="rate" style={{ color: "#5C7893" }}>
+                    {/* <div className="rate" style={{ color: "#5C7893" }}>
                       <i style={{ color: "#B0C3D6" }} className="bi bi-star-fill"></i>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))

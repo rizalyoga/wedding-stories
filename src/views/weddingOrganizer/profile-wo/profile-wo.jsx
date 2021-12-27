@@ -132,9 +132,9 @@ const ProfileWO = () => {
                     <div className="name-wo fw-bold">{el.PackageName}</div>
                     <div className="desc-packages d-flex justify-content-between">
                       <div className="price">{formatRupiah(el.Price) + ",00"}</div>
-                      <div className="rate" style={{ color: "#5C7893" }}>
+                      {/* <div className="rate" style={{ color: "#5C7893" }}>
                         4.5
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 ))

@@ -1,4 +1,4 @@
-import "./profile-wo-user.css";
+import "../../weddingOrganizer/profile-wo/profile-wo.css";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 // import LogoWo from "../../../assets/covid.jpg";
 import logoWo from "../../../assets/unknown.png";
@@ -120,9 +120,9 @@ const ProfileWO = () => {
                       <div className="name-wo fw-bold">{el.PackageName}</div>
                       <div className="desc-packages d-flex justify-content-between">
                         <div className="price">{formatRupiah(el.Price) + ",00"}</div>
-                        <div className="rate" style={{ color: "#5C7893" }}>
+                        {/* <div className="rate" style={{ color: "#5C7893" }}>
                           4.5
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   );
