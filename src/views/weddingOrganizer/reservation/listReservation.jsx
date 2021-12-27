@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 const ListReservation = () => {
   const dispatch = useDispatch();
-  const listOrder = useSelector(({ myOrder }) => myOrder);
+  const listOrder = useSelector(({ myOrder }) => myOrder.reverse());
 
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState([]);
@@ -192,35 +192,7 @@ const ListReservation = () => {
       );
     }
 
-    return (
-      <>
-        {" "}
-        <Col md={2} sm={12}>
-          {/* <Button
-            id="accept"
-            md={12}
-            sm={6}
-            className="m-2"
-            variant="success"
-            disabled="on"
-            // onClick={(e) => handleCreatPackage(e)}
-          >
-            Accept
-          </Button>
-          <Button
-            id="decline"
-            md={12}
-            sm={6}
-            className="m-2"
-            variant="danger"
-            disabled="on"
-            // onClick={(e) => handleCreatPackage(e)}
-          >
-            Decline
-          </Button> */}
-        </Col>
-      </>
-    );
+    return <></>;
   };
   return (
     <>
@@ -228,7 +200,9 @@ const ListReservation = () => {
       <div className="list-reserve">
         <Container className="mt-5 mb-5">
           <Row>
-            <h2 className="title-page">Order List</h2>
+            <h2 className="title-page" style={{ color: "white" }}>
+              Order List
+            </h2>
             <hr />
           </Row>
           {checkOrder()}

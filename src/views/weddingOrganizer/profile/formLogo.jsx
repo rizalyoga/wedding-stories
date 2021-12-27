@@ -113,10 +113,12 @@ const FormLogo = (props) => {
             required
             isInvalid={!!errors.logo}
           />
+          <Form.Text id="logoHelpBlock" muted>
+            File type: jpg/jpeg/png/bnp · Max size: 3 MB.
+          </Form.Text>
           <Form.Control.Feedback type="invalid">
             {errors.logo}
           </Form.Control.Feedback>
-          <h7>file type: jpg/jpeg/png/bnp · max size: 3 MB</h7>
         </Form.Group>
         <Form.Group as={Col} md="12" className="btn-edit mb-3">
           <Button

@@ -1,4 +1,4 @@
-import { Col, Form, Button } from "react-bootstrap";
+import { Col, Form, Button, InputGroup } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -85,6 +85,8 @@ const FormProfile = (props) => {
       newErrors.adrsWO = "cannot be blank!";
     else if (adrsWO.length < 11) newErrors.adrsWO = "address is too short!";
     // city errors
+    if (!cityWO || cityWO === "") newErrors.cityWO = "cannot be blank!";
+    // description errors
     if (!descWO.trim() || descWO.trim() === "")
       newErrors.descWO = "cannot be blank!";
     else if (descWO.length < 11) newErrors.descWO = "description is too short!";
@@ -160,6 +162,31 @@ const FormProfile = (props) => {
     }
   };
 
+  // ---------------------- SHOW PASSWORD -----------------------------------//
+  const [passwordShown, setPasswordShown] = useState(false);
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
+  // ---------------------- END - SHOW PASSWORD ------------------------------//
+
+  // ----------------------------- GET CITY ----------------------------------//
+  const [cities, setCity] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://weddingstories.space/cities")
+      .then(({ data }) => {
+        // console.log(data.data);
+        setCity(data.data);
+        console.log(cities);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  });
+
   return (
     <>
       <Form.Group as={Col} md="6" controlId="validationCustom03">
@@ -178,6 +205,9 @@ const FormProfile = (props) => {
           required
           isInvalid={!!errors.nameWO}
         />
+        <Form.Text id="nameHelpBlock" muted>
+          Your Bussiness Name must be more than 8 characters long.
+        </Form.Text>
         <Form.Control.Feedback type="invalid">
           {errors.nameWO}
         </Form.Control.Feedback>
@@ -224,6 +254,9 @@ const FormProfile = (props) => {
           required
           isInvalid={!!errors.phoneWO}
         />
+        <Form.Text id="descHelpBlock" muted>
+          Your phone number must be more than 10 characters long.
+        </Form.Text>
         <Form.Control.Feedback type="invalid">
           {errors.phoneWO}
         </Form.Control.Feedback>
@@ -270,6 +303,9 @@ const FormProfile = (props) => {
           required
           isInvalid={!!errors.adrsWO}
         />
+        <Form.Text id="adrsHelpBlock" muted>
+          The address must be more than 10 characters long.
+        </Form.Text>
         <Form.Control.Feedback type="invalid">
           {errors.adrsWO}
         </Form.Control.Feedback>
@@ -293,12 +329,10 @@ const FormProfile = (props) => {
           required
           isInvalid={!!errors.cityWO}
         >
-          <option>- Select City -</option>
-          <option>Jakarta</option>
-          <option>Surabaya</option>
-          <option>Kediri</option>
-          <option>Bandung</option>
-          <option>Makassar</option>
+          <option value="">Choose your city</option>
+          {cities.map((el, idx) => (
+            <option value={el.County}>{el.County}</option>
+          ))}
         </Form.Select>
 
         <Form.Control.Feedback type="invalid">
@@ -307,24 +341,49 @@ const FormProfile = (props) => {
       </Form.Group>
 
       <Form.Group as={Col} md="6" controlId="validationCustom05">
-        <Form.Label className="mt-3">
-          Password<sup>*</sup>
-        </Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="password"
-          // value={pwdWO}
-          disabled="true"
-          onChange={
-            (e) => {
-              setpwdWO(e.target.value);
-              updateErr("pwdWO");
+        <Form.Label className="mt-3">Password</Form.Label>
+        <InputGroup>
+          <Form.Control
+            type={passwordShown ? "text" : "password"}
+            placeholder="password"
+            // value={pwdWO}
+            // disabled="true"
+            onChange={
+              (e) => {
+                setpwdWO(e.target.value);
+                updateErr("pwdWO");
+              }
+              // setField("phone", e.target.value)
             }
-            // setField("phone", e.target.value)
-          }
-          required
-          isInvalid={!!errors.pwdWO}
-        />
+            required
+            isInvalid={!!errors.pwdWO}
+          />
+          <InputGroup.Text>
+            {passwordShown ? (
+              <i
+                style={{
+                  cursor: "pointer",
+                }}
+                className="bi bi-eye-slash"
+                id="inlineFormInputGroup"
+                onClick={() => togglePassword()}
+              ></i>
+            ) : (
+              <i
+                style={{
+                  cursor: "pointer",
+                }}
+                className="bi bi-eye"
+                id="inlineFormInputGroup"
+                onClick={() => togglePassword()}
+              ></i>
+            )}
+          </InputGroup.Text>
+        </InputGroup>
+        <Form.Text id="passwordHelpBlock" muted>
+          Your password must be more than 8 characters long, empty the field if
+          you don't want to change your password!
+        </Form.Text>
         <Form.Control.Feedback type="invalid">
           {errors.pwdWO}
         </Form.Control.Feedback>
@@ -349,6 +408,9 @@ const FormProfile = (props) => {
           required
           isInvalid={!!errors.descWO}
         />
+        <Form.Text id="descHelpBlock" muted>
+          The description be more than 8 characters long.
+        </Form.Text>
         <Form.Control.Feedback type="invalid">
           {errors.descWO}
         </Form.Control.Feedback>

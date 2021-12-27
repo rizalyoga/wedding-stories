@@ -6,6 +6,7 @@ import {
   Form,
   Button,
   Spinner,
+  InputGroup,
 } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -47,14 +48,13 @@ const LoginWO = () => {
       newErrors.email = "email is not valid!";
     // password errors
     if (!password || password === "") newErrors.password = "cannot be blank!";
-    else if (password.length < 4) newErrors.password = "password is too short!";
+    else if (password.length < 8) newErrors.password = "password is too short!";
     // password errors
 
     return newErrors;
   };
 
   const handleLogin = (event) => {
-    setLoading(true);
     event.preventDefault();
     const newErrors = findFormErrors();
     // Conditional logic:
@@ -62,9 +62,10 @@ const LoginWO = () => {
       // We got errors!
       setErrors(newErrors);
     } else {
+      setLoading(true);
       const body = {
-        email: email.trim(),
-        password: password.trim(),
+        email: email,
+        password: password,
       };
       console.log(body);
       // return;
@@ -98,6 +99,16 @@ const LoginWO = () => {
     }
   };
 
+  // ---------------------- SHOW PASSWORD -----------------------------------//
+  const [passwordShown, setPasswordShown] = useState(false);
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
+  // ---------------------- END - SHOW PASSWORD ------------------------------//
+
   if (loading) {
     return (
       <>
@@ -115,7 +126,7 @@ const LoginWO = () => {
     return (
       <>
         <NavUser />
-        <Container fluid>
+        <Container className="mb-5" fluid>
           <Row>
             <Col md={7} sm={12}>
               <Image
@@ -135,7 +146,7 @@ const LoginWO = () => {
                     md="12"
                     controlId="validationCustom03"
                   >
-                    {/* <Form.Label className="">Email</Form.Label> */}
+                    <Form.Label className="">Email</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Email"
@@ -150,18 +161,42 @@ const LoginWO = () => {
                   </Form.Group>
 
                   <Form.Group as={Col} md="12" controlId="validationCustom05">
-                    {/* <Form.Label className="">Password</Form.Label> */}
-                    <Form.Control
-                      type="password"
-                      placeholder="Password"
-                      onChange={(e) => setField("password", e.target.value)}
-                      autoComplete="off"
-                      required
-                      isInvalid={!!errors.password}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.password}
-                    </Form.Control.Feedback>
+                    <Form.Label className="">Password</Form.Label>
+
+                    <InputGroup>
+                      <Form.Control
+                        type={passwordShown ? "text" : "password"}
+                        placeholder="Password"
+                        onChange={(e) => setField("password", e.target.value)}
+                        autoComplete="off"
+                        required
+                        isInvalid={!!errors.password}
+                      />
+                      <InputGroup.Text>
+                        {passwordShown ? (
+                          <i
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            className="bi bi-eye-slash"
+                            id="inlineFormInputGroup"
+                            onClick={() => togglePassword()}
+                          ></i>
+                        ) : (
+                          <i
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            className="bi bi-eye"
+                            id="inlineFormInputGroup"
+                            onClick={() => togglePassword()}
+                          ></i>
+                        )}
+                      </InputGroup.Text>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.password}
+                      </Form.Control.Feedback>
+                    </InputGroup>
                   </Form.Group>
                 </Row>
                 <Button
@@ -173,7 +208,7 @@ const LoginWO = () => {
                   Log in
                 </Button>
               </Form>
-              <h7 className="mt-3">
+              <h7 className="mt-3 mb-5">
                 Don't have an account?{" "}
                 <a href="/vendor/register" className="title-form text-primary">
                   Apply now

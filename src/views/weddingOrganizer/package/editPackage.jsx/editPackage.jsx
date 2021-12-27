@@ -6,6 +6,7 @@ import {
   Col,
   Button,
   Spinner,
+  InputGroup,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -88,10 +89,7 @@ const FormEditPackage = () => {
       newErrors.packPax = "pax cannot be more than 10 characters!";
     else if (packPax.toString().includes("."))
       newErrors.packPax = "pax cannot contain dots!";
-    // else if (packPax.includes("."))
-    //   newErrors.packPax = "price cannot contain dots!";
-
-    // city errors
+    // description errors
     if (!packDesc || packDesc.trim() === "")
       newErrors.packDesc = "cannot be blank!";
     else if (packDesc.length < 20)
@@ -255,7 +253,9 @@ const FormEditPackage = () => {
               <i class="bi bi-arrow-left-square "> </i>
               Your Packages
             </h5>
-            <h2 className="title-page">Edit Package</h2>
+            <h2 className="title-page" style={{ color: "white" }}>
+              Edit Package
+            </h2>
             <hr />
           </Row>
 
@@ -288,10 +288,12 @@ const FormEditPackage = () => {
                   required
                   isInvalid={!!errors.photo}
                 />
+                <Form.Text as={Col} md={12} id="photoHelpBlock" muted>
+                  File type: jpg/jpeg/png/bnp · Max size: 3 MB.
+                </Form.Text>
                 <Form.Control.Feedback type="invalid">
                   {errors.photo}
                 </Form.Control.Feedback>
-                <h7>file type: jpg/jpeg/png/bnp · max size: 3 MB</h7>
               </Form.Group>
               <Form.Group
                 as={Col}
@@ -327,7 +329,9 @@ const FormEditPackage = () => {
                 isInvalid={!!errors.packName}
                 value={packName}
               ></Form.Control>
-
+              <Form.Text id="nameHelpBlock" muted>
+                Your Bussiness Name must be more than 8 characters long.
+              </Form.Text>
               <Form.Control.Feedback type="invalid">
                 {errors.packName}
               </Form.Control.Feedback>
@@ -337,23 +341,29 @@ const FormEditPackage = () => {
               <Form.Label className="mt-3">
                 Price<sup>*</sup>
               </Form.Label>
-              <Form.Control
-                type="number"
-                min={0}
-                step="any"
-                placeholder="Price"
-                onChange={(e) => {
-                  setPackPrice(e.target.value);
-                  updateErr("packPrice");
-                }}
-                required
-                isInvalid={!!errors.packPrice}
-                value={packPrice}
-                // defaultValue={pack.Price}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.packPrice}
-              </Form.Control.Feedback>
+              <InputGroup>
+                <InputGroup.Text>Rp</InputGroup.Text>
+                <Form.Control
+                  type="number"
+                  min={0}
+                  step="any"
+                  placeholder="Price"
+                  onChange={(e) => {
+                    setPackPrice(e.target.value);
+                    updateErr("packPrice");
+                  }}
+                  required
+                  isInvalid={!!errors.packPrice}
+                  value={packPrice}
+                  // defaultValue={pack.Price}
+                />
+                <Form.Text as={Col} md={12} id="priceHelpBlock" muted>
+                  The maximum price is Rp 9.999.999.999.
+                </Form.Text>
+                <Form.Control.Feedback type="invalid">
+                  {errors.packPrice}
+                </Form.Control.Feedback>
+              </InputGroup>
             </Form.Group>
 
             <Form.Group as={Col} md="6" controlId="validationCustom05">
@@ -396,6 +406,9 @@ const FormEditPackage = () => {
                 value={packDesc}
                 // defaultValue={pack.PackageDesc}
               />
+              <Form.Text as={Col} md={12} id="descHelpBlock" muted>
+                The description must be more than 20 characters long.
+              </Form.Text>
               <Form.Control.Feedback type="invalid">
                 {errors.packDesc}
               </Form.Control.Feedback>
