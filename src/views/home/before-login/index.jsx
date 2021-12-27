@@ -22,10 +22,10 @@ const Home = () => {
     dispatch(allStore.getAllPackage());
   }, [dispatch]);
 
-  useEffect(() => {
-    // console.log(typeof allPackage, "INI ALL PACKAET");
-    console.log(allPackage, "INI ALL PACKAET");
-  }, [allPackage]);
+  // useEffect(() => {
+  //   console.log(typeof allPackage, "INI ALL PACKAET");
+  //   console.log(allPackage, "INI ALL PACKAET");
+  // }, [allPackage]);
 
   const formatRupiah = (money) => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
@@ -53,7 +53,7 @@ const Home = () => {
       <Reason />
       <div className="list-wo container-list-wo">
         <div className="container">
-          <h2 className="fw-bold">Wedding Planner di Indonesia</h2>
+          <h2 className="fw-bold">Wedding Planner in Indonesia</h2>
           <div className="row-card my-5">
             {!allPackage ? (
               <></>
@@ -63,11 +63,13 @@ const Home = () => {
                   <div className="images">
                     <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
                   </div>
-                  <div className="name-wo fw-bold">{el.PackageName}</div>
+                  <div className="name-wo fw-bold mt-1" id="name-wo" style={{ overflow: "hidden", textOverflow: "ellipsis", height: "25px" }}>
+                    {el.PackageName}
+                  </div>
                   <div className="desc-packages d-flex justify-content-between">
                     <div className="price">{formatRupiah(el.Price) + ",00"}</div>
                     <div className="rate" style={{ color: "#5C7893" }}>
-                      4.5
+                      <i style={{ color: "#B0C3D6" }} className="bi bi-star-fill"></i>
                     </div>
                   </div>
                 </div>

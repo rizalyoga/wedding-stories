@@ -23,7 +23,8 @@
 }
 
 .logo-admin img {
-  width: 4rem;
+  width: 15rem;
+  margin-bottom: -50px;
 }
 
 .admin-login-page input {

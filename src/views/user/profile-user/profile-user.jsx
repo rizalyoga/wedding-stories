@@ -52,7 +52,7 @@ const ProfileUser = () => {
       swal("please check your email format", { icon: "warning", buttons: false, timer: 1500 });
     } else {
       swal({
-        text: "Are you sure to edit Profile?",
+        text: "Are you sure to edit Profile ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -140,15 +140,15 @@ const ProfileUser = () => {
                 </Button>
                 <div className="mb-3 d-flex flex-column text-white" controlId="username">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control disabled={disabled} id="username-profile-user" className="input-register" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
+                  <Form.Control disabled={disabled} id="username-profile-user" className="input-register p-2" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
                 </div>
 
                 <div className="mb-3 d-flex flex-column text-white" controlId="email">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control disabled={disabled} id="email-profile-user" className="input-register" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
+                  <Form.Control disabled={disabled} id="email-profile-user" className="input-register p-2" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
                 </div>
 
-                <div className="mb-1 d-flex flex-column text-white" controlId="password">
+                <div className="mb-2 d-flex flex-column text-white" controlId="password">
                   <Form.Label>password</Form.Label>
                   <p className="d-flex justify-content-center align-items-center">
                     <Form.Control
@@ -163,11 +163,11 @@ const ProfileUser = () => {
                       required
                       autoComplete="off"
                     />
-                    <i style={{ marginLeft: "-25px", color: "black", cursor: "pointer" }} className="bi bi-eye-slash" id="togglePassword" onClick={() => showPassword()}></i>
+                    <i style={{ marginLeft: "-25px", color: "black", cursor: "pointer" }} className="bi bi-eye-slash fw-1" id="togglePassword" onClick={() => showPassword()}></i>
                   </p>
                 </div>
                 <div className="button-edit">
-                  <Button className="w-35" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }} disabled={disabled} onClick={(event) => handleEdit(event)}>
+                  <Button className="w-100 p-2" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }} disabled={disabled} onClick={(event) => handleEdit(event)}>
                     Edit
                   </Button>
                   {/* <Button className="w-35 ms-2 bg-danger" id="delete-user" style={{ border: "#DC3545" }} disabled={disabled} onClick={() => handleDelete()}> */}

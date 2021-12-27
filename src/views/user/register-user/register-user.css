@@ -2,8 +2,12 @@
   background-color: #5c7893;
 }
 
+.logo-register img {
+  width: 200px !important;
+}
+
 .body-register {
-  padding-top: 10%;
+  padding-top: 5%;
   padding-bottom: 10%;
   color: black;
 }

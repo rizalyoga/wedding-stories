@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
 // import NavLoginUser from "../../navbar-user/navbar-user-login.jsx";
-import logo from "../../../assets/virus.png";
+import logo from "../../../assets/virus-2.png";
 import axios from "axios";
 import swal from "sweetalert";
 import ModalLogin from "../../components/modal-login/modal-login.jsx";
@@ -107,10 +107,10 @@ const RegisUser = () => {
         <div className="container body-register">
           <Row className="d-flex justify-content-center mb-5">
             <Col lg={5} md={5} sm={12} className="">
-              <div className="logo-register text-center mb-4">
-                <img onClick={() => navigate("/")} style={{ width: "60px", cursor: "pointer" }} src={logo} alt="logo" />
+              <div className="logo-register text-center mb-1">
+                <img onClick={() => navigate("/")} style={{ cursor: "pointer" }} src={logo} alt="logo" />
               </div>
-              <p className="text-center text-white">Mulai persiapan pernikahan Anda dengan penawaran terbaik & fitur eksklusif di Wedding-Day!</p>
+              <p className="text-center text-white">Start your wedding preparations with the best offers & exclusive features in Wedding-Stories!</p>
               <div className="form-register">
                 <Form>
                   <Row>

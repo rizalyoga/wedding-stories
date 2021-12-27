@@ -1,5 +1,5 @@
 import "./footer.css";
-import logo from "../../../assets/virus.png";
+import logo from "../../../assets/virus-2.png";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {

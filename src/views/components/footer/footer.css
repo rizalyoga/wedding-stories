@@ -41,7 +41,7 @@ small {
 
 .footer-logo img {
   float: right;
-  width: 75px;
+  width: 200px;
 }
 
 @media only screen and (max-width: 770px) {

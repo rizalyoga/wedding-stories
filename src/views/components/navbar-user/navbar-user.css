@@ -16,8 +16,8 @@ a {
 }
 
 .logo img {
-  margin-top: -2px;
-  width: 50px !important;
+  margin-top: -30px;
+  width: 100px !important;
   cursor: pointer;
   position: absolute;
 }

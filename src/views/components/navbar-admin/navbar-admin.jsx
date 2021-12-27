@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import allStore from "../../../store/actions/index";
-import logoNavLogin from "../../../assets/virus.png";
+import logoNavLogin from "../../../assets/virus-user.png";
 import swal from "sweetalert";
 
 const NavAdmin = () => {

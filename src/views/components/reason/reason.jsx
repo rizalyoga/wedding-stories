@@ -12,7 +12,7 @@ const Reason = () => {
       <div className="container">
         <div className="reason">
           <h2 className="text-center my-5 fw-bold">
-            Kenapa harus we<span onClick={() => navigate("/admin/login")}>e</span>ding day
+            Why should wed<span onClick={() => navigate("/admin/login")}>d</span>ing stories
           </h2>
         </div>
         <div className="card-reason">

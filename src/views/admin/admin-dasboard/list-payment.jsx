@@ -4,37 +4,50 @@ import { Container, Accordion, Row, Col, Button, Spinner, Alert, Table } from "r
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import allStore from "../../../store/actions/index.js";
-// import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import Home from "../../home/before-login/index.jsx";
 
 const ListPayment = () => {
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
-
   const listPayment = useSelector(({ listPayment }) => listPayment);
-  const loading = useSelector(({ loading }) => loading);
+  // const loading = useSelector(({ loading }) => loading);
 
   useEffect(() => {
     dispatch(allStore.getAllPayment());
-  }, [dispatch]);
+  }, [dispatch, listPayment]);
 
   // useEffect(() => {
   //   console.log(listPayment);
+  //   // listPayment();
   // }, [listPayment]);
 
-  if (loading) {
-    return (
-      <>
-        <NavUser />
-        <Spinner className="spinner" animation="border" />
-      </>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <>
+  //       <NavUser />
+  //       <Spinner className="spinner" animation="border" />
+  //     </>
+  //   );
+  // }
 
-  const goToDetail = (id) => {
-    navigate(`/detail/package/${id}`);
+  const handleChange = (id) => {
+    // event.preventDefault();
+    swal({
+      text: "Are you sure to accept ?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willAccept) => {
+      if (willAccept) {
+        dispatch(allStore.acceptPayment({ reservationid: id }));
+        // console.log(id);
+      }
+    });
+  };
+
+  const formatRupiah = (money) => {
+    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
   };
 
   if (localStorage.token && localStorage.status === "admin") {
@@ -105,11 +118,11 @@ const ListPayment = () => {
                                   <td>{el.Total_Pax}</td>
                                 </tr>
                                 <tr>
-                                  <td>Total Price</td>
-                                  <td>{el.Price}</td>
+                                  <td>Price</td>
+                                  <td>{formatRupiah(el.Price) + ",00"}</td>
                                 </tr>
                                 <tr>
-                                  <td>Price</td>
+                                  <td>Total Price</td>
                                   <td>{el.Total_Price}</td>
                                 </tr>
                               </tbody>
@@ -131,7 +144,7 @@ const ListPayment = () => {
 
                           {/* /* ------------------------------- COL BUTTON ------------------------------- */}
                           <Col md={2} sm={12} className="col-button">
-                            <Button id="detail-package-history" style={{ color: "#fff", width: "90%" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
+                            <Button id="detail-package-history" style={{ color: "#fff", width: "90%" }} md={12} sm={6} className="m-2 btn-submit" variant="success" onClick={(id) => handleChange(el.Reservation_ID)}>
                               Accept
                             </Button>
                           </Col>

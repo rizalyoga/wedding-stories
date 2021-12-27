@@ -1,6 +1,6 @@
 import "./history.css";
 import NavUser from "../../components/navbar-user/navbar-user-login.jsx";
-import { Container, Accordion, Row, Col, Button, Spinner, Alert, Modal, Table } from "react-bootstrap";
+import { Container, Accordion, Row, Col, Button, Spinner, Alert, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,9 +24,9 @@ const History = () => {
     dispatch(allStore.getHistory());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(listOrder);
-  }, [listOrder]);
+  // useEffect(() => {
+  //   console.log(listOrder);
+  // }, [listOrder]);
 
   /* --------------------------------- LOADING -------------------------------- */
   if (loading) {
@@ -70,7 +70,34 @@ const History = () => {
                       <Row style={{ width: "100%" }}>
                         <Col className="title">
                           <h6>{el.PackageName}</h6>
-                          <h6 className="fw-bold">{el.Status_Order}</h6>
+                          <div className="status">
+                            <div className="status-order">
+                              {el.Status_Order === "waiting" ? (
+                                <h6 className="fw-bold" style={{ color: "orange" }}>
+                                  {el.Status_Order}
+                                </h6>
+                              ) : el.Status_Order === "accepted" ? (
+                                <h6 className="fw-bold" style={{ color: "green" }}>
+                                  {el.Status_Order}
+                                </h6>
+                              ) : (
+                                <h6 className="fw-bold" style={{ color: "red" }}>
+                                  {el.Status_Order}
+                                </h6>
+                              )}
+                            </div>
+                            <div className="ms-2" style={{ width: "30px", marginRight: "30px" }}>
+                              {el.Status_Payment === "paid" ? (
+                                <h6 className="fw-bold" style={{ color: "green" }}>
+                                  {el.Status_Payment}
+                                </h6>
+                              ) : (
+                                <h6 className="fw-bold" style={{ color: "red" }}>
+                                  {el.Status_Payment}
+                                </h6>
+                              )}
+                            </div>
+                          </div>
                         </Col>
                         {/* <Col md={6} style={{ color: "darkyellow" }}>
                       waiting

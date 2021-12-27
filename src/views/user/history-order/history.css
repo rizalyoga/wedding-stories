@@ -10,6 +10,12 @@
   align-items: center;
 }
 
+.status {
+  display: flex;
+  justify-content: flex-end;
+  border: none;
+}
+
 .waiting-alert {
   width: 91%;
   margin-left: 4% !important;

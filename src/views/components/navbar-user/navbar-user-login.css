@@ -6,9 +6,9 @@
 }
 
 .logo-login-user img {
-  margin-top: -20px !important;
-  width: 50px !important;
-  height: 40px;
+  margin-top: -50px !important;
+  width: 100px !important;
+  height: 100px;
   cursor: pointer;
   position: absolute !important;
 }
@@ -45,7 +45,7 @@
   color: #5c7893;
   font-size: 25px !important;
   font-style: normal;
-  letter-spacing: -3px;
+  letter-spacing: -1px;
 }
 
 .name:hover {

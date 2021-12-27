@@ -2,7 +2,7 @@ import "./modal-payment.css";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import logo from "../../../assets/virus.png";
+import logo from "../../../assets/virus-2.png";
 import bank from "../../../assets/bank/bank.png";
 import swal from "sweetalert";
 import allStore from "../../../store/actions/index.js";
@@ -54,7 +54,6 @@ const ModalPayment = (props) => {
         <Modal.Body className="modal-body-payment">
           <div className="logo-header">
             <img src={logo} alt="logo-weeding" />
-            <p>Wedding Stories</p>
           </div>
           <div className="rekening">
             <div className="logo-bank">

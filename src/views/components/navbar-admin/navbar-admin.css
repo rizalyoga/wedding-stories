@@ -6,9 +6,9 @@
 }
 
 .logo-login-admin img {
-  margin-top: -20px !important;
-  width: 50px !important;
-  height: 40px;
+  margin-top: -50px !important;
+  width: 100px !important;
+  height: 100px;
   cursor: pointer;
   position: absolute !important;
 }

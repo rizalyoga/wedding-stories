@@ -15,6 +15,7 @@ import { setSearchPackage, getSearchPackage } from "./package/get-search-package
 import { setMyOrder, getMyOrder } from "./organizer/get-list-order";
 import { setPostPayment, postPayment } from "./user/post-payment.js";
 import { setAllPayment, getAllPayment } from "./admin/get-all-payment.js";
+import { setAcceptPayment, acceptPayment } from "./admin/accept-payment.js";
 
 const allStore = {
   setError,
@@ -62,6 +63,9 @@ const allStore = {
   //getALLPayment
   setAllPayment,
   getAllPayment,
+  //acceptPayment
+  setAcceptPayment,
+  acceptPayment,
 };
 
 export default allStore;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./navbar-user.css";
-import logo from "../../../assets/virus.png";
+import logo from "../../../assets/virus-user.png";
 import ModalLogin from "../modal-login/modal-login.jsx";
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";

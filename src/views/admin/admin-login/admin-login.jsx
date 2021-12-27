@@ -4,7 +4,7 @@ import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
-import logo from "../../../assets/virus.png";
+import logo from "../../../assets/virus-2.png";
 // import swal from "sweetalert";
 import allStore from "../../../store/actions/index";
 

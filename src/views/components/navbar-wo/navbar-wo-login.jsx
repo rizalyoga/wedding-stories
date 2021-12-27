@@ -1,6 +1,6 @@
 import { Navbar, Container, Form, Button, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import logoNavLogin from "../../../assets/virus.png";
+import logoNavLogin from "../../../assets/virus-user.png";
 import swal from "sweetalert";
 import "./navbar-wo-login.css";
 import { useState } from "react";
