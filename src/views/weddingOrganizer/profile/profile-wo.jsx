@@ -12,12 +12,12 @@ import NavWO from "../../components/navbar-wo/navbar-wo-login.jsx";
 
 const ProfileWO = () => {
   const dispatch = useDispatch();
-  const profileWo = useSelector(({ profileWo }) => profileWo);
   const navigate = useNavigate();
   const [nameWO, setNameWO] = useState("");
   const [email, setEmail] = useState("");
 
   /* --------------------------- GET LIST PACKAGE WO -------------------------- */
+  const profileWo = useSelector(({ profileWo }) => profileWo);
   useEffect(() => {
     dispatch(allStore.fetchProfileWo());
     setNameWO(profileWo.woname);

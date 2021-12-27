@@ -11,7 +11,6 @@
 .image-logo {
   flex-basis: 25%;
   display: inline-block;
-  width: 100%;
   /* position: relative; */
   /* overflow: hidden; */
 }
@@ -19,7 +18,7 @@
 .image-logo img {
   width: 13rem;
   height: 13rem;
-  border-radius: 5%;
+  border-radius: 50%;
   left: 0;
 }
 
@@ -69,12 +68,6 @@
   }
 }
 
-@media (max-width: 885px) {
-  .content-wo {
-    margin-left: 0% !important;
-  }
-}
-
 @media (max-width: 850px) {
   .card-wo {
     width: 500px;
@@ -87,6 +80,10 @@
 
   .images img {
     width: 500px;
+  }
+
+  .content-wo {
+    margin-left: 0%;
   }
 }
 
@@ -116,7 +113,7 @@
 }
 
 /* --------------------------------- LOADING -------------------------------- */
-/* .loading {
+.loading {
   position: fixed;
   top: 0;
   left: 0;
@@ -128,4 +125,4 @@
   -webkit-backdrop-filter: blur(5px);
   transition: 1s all !important;
   transition-property: color !important;
-} */
+}

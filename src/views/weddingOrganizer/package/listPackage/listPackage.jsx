@@ -22,9 +22,8 @@ import axios from "axios";
 const ListPackage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const myPackage = useSelector(({ myPackage }) => myPackage);
 
-  const [pack, setPack] = useState([]);
+  // const [pack, setPack] = useState([]);
   const [loading, setLoading] = useState(false);
   const [ID, setID] = useState("");
   const [packName, setPackName] = useState("");
@@ -64,21 +63,21 @@ const ListPackage = () => {
   };
 
   /* --------------------------- CHECK MY PACKAGE WO -------------------------- */
-  const checkPack = () => {
-    if (pack.length === 0) {
-      return (
-        <>
-          <Alert variant="warning">You have no data.</Alert>
-          {/* <h3>You have no data.</h3> */}
-        </>
-      );
-    }
-    return (
-      <>
-        <h3></h3>
-      </>
-    );
-  };
+  // const checkPack = () => {
+  //   if (pack.length === 0) {
+  //     return (
+  //       <>
+  //         <Alert variant="warning">You have no data.</Alert>
+  //         {/* <h3>You have no data.</h3> */}
+  //       </>
+  //     );
+  //   }
+  //   return (
+  //     <>
+  //       <h3></h3>
+  //     </>
+  //   );
+  // };
 
   /* --------------------------- NAVIGATE TO EDIT PAGE -------------------------- */
   const handleEdit = (id) => {
@@ -97,8 +96,8 @@ const ListPackage = () => {
       .get("https://weddingstories.space/package/my", config)
       .then(({ data }) => {
         // console.log(data.data);
-        setPack(data.data);
-        console.log(pack);
+        // setPack(data.data);
+        // console.log(pack);
       })
       .catch((err) => {
         console.log(err);
@@ -109,9 +108,17 @@ const ListPackage = () => {
   }, []);
 
   /* --------------------------- GET LIST PACKAGE WO WITH REDUX -------------------------- */
+  const myPackage = useSelector(({ myPackage }) => myPackage.reverse());
   useEffect(() => {
     dispatch(allStore.getMyPackage());
-  }, [dispatch, myPackage]);
+  }, [dispatch, myPackage.reverse()]);
+
+  /* --------------------------- GET LIST PROFILE WO WITH REDUX -------------------------- */
+  const profileWo = useSelector(({ profileWo }) => profileWo);
+  useEffect(() => {
+    dispatch(allStore.fetchProfileWo());
+    console.log(profileWo.status);
+  }, [dispatch]);
 
   /* --------------------------- DELETE MY PACKAGE WO -------------------------- */
   const handleDelete = (id) => {
@@ -160,19 +167,25 @@ const ListPackage = () => {
       <div className="list-package">
         <Container className="mb-5 mt-5">
           <Row>
-            <h2 className="title-page">My Packages</h2>
+            <h2 className="title-page" style={{ color: "white" }}>
+              My Packages
+            </h2>
             <hr />
           </Row>
           <Button
             id="nav-form-add-package"
             variant="primary"
             className="mb-3 mt-3 btn-submit"
-            onClick={() => navigate("/vendor/packages/add")}
+            onClick={() =>
+              profileWo.status === "Not Activated"
+                ? swal("You need to activate your account !")
+                : navigate("/vendor/packages/add")
+            }
           >
             <i class="bi bi-plus-square"> </i>
             New Package
           </Button>
-          {checkPack()}
+          {/* {checkPack()} */}
           {!myPackage ? (
             <>
               <Alert variant="warning">You have no data.</Alert>

@@ -1,4 +1,12 @@
-import { Container, Row, Image, Form, Col, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Image,
+  Form,
+  Col,
+  Button,
+  InputGroup,
+} from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -34,7 +42,7 @@ const FormAddPackage = () => {
     // name errors
     if (!name || name.trim() === "") newErrors.name = "cannot be blank!";
     else if (name.length < 8)
-      newErrors.name = "Package name cannot be less than 8 characters!";
+      newErrors.name = "ackage name cannot be less than 8 characters!";
     // price errors
     if (!price || price === "") newErrors.price = "cannot be blank!";
     else if (price < 0) newErrors.price = "price cannot be negative!";
@@ -143,7 +151,9 @@ const FormAddPackage = () => {
               <i class="bi bi-arrow-left-square "> </i>
               Your Packages
             </h5>
-            <h2 className="title-page">Add New Package</h2>
+            <h2 className="title-page" style={{ color: "white" }}>
+              Add New Package
+            </h2>
             <hr />
           </Row>
           <Row className="border mt-3 mb-3">
@@ -159,6 +169,9 @@ const FormAddPackage = () => {
                 required
                 isInvalid={!!errors.name}
               />
+              <Form.Text id="nameHelpBlock" muted>
+                Your Bussiness Name must be more than 8 characters long.
+              </Form.Text>
               <Form.Control.Feedback type="invalid">
                 {errors.name}
               </Form.Control.Feedback>
@@ -168,17 +181,24 @@ const FormAddPackage = () => {
               <Form.Label className="mt-3">
                 Price<sup>*</sup>
               </Form.Label>
-              <Form.Control
-                type="number"
-                autoComplete="off"
-                placeholder="Price"
-                onChange={(e) => setField("price", e.target.value)}
-                required
-                isInvalid={!!errors.price}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.price}
-              </Form.Control.Feedback>
+              <InputGroup>
+                <InputGroup.Text>Rp</InputGroup.Text>
+
+                <Form.Control
+                  type="number"
+                  autoComplete="off"
+                  placeholder="Price"
+                  onChange={(e) => setField("price", e.target.value)}
+                  required
+                  isInvalid={!!errors.price}
+                />
+                <Form.Text as={Col} md={12} id="priceHelpBlock" muted>
+                  The maximum price is Rp 9.999.999.999.
+                </Form.Text>
+                <Form.Control.Feedback type="invalid">
+                  {errors.price}
+                </Form.Control.Feedback>
+              </InputGroup>
             </Form.Group>
 
             <Form.Group as={Col} md={6} controlId="validationCustom05">
@@ -211,6 +231,9 @@ const FormAddPackage = () => {
                 required
                 isInvalid={!!errors.description}
               />
+              <Form.Text as={Col} md={12} id="descHelpBlock" muted>
+                The description must be more than 20 characters long.
+              </Form.Text>
               <Form.Control.Feedback type="invalid">
                 {errors.description}
               </Form.Control.Feedback>
@@ -231,10 +254,12 @@ const FormAddPackage = () => {
                 required
                 isInvalid={!!errors.photo}
               />
+              <Form.Text as={Col} md={12} id="photoHelpBlock" muted>
+                File type: jpg/jpeg/png/bnp · Max size: 3 MB.
+              </Form.Text>
               <Form.Control.Feedback type="invalid">
                 {errors.photo}
               </Form.Control.Feedback>
-              <h7>file type: jpg/jpeg/png/bnp · max size: 3 MB</h7>
             </Form.Group>
 
             <Form.Group as={Col} md="10" controlId="validationCustom05">

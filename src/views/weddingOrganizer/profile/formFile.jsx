@@ -99,6 +99,9 @@ const FormFile = (props) => {
           // checked={status == "off"}
           onChange={(e) => changeStatus()}
         />
+        <Form.Text id="checkHelpBlock" muted>
+          You have to upload your document to activate your Bussiness Account.
+        </Form.Text>
       </Form.Group>
       <Form.Group as={Col} md="10" controlId="validationCustom05">
         <Form.Label className="mt-3">File</Form.Label>
@@ -111,10 +114,12 @@ const FormFile = (props) => {
           disabled={status}
           isInvalid={!!errors.file}
         />
+        <Form.Text as={Col} md={12} id="photoHelpBlock" muted>
+          File type: pdf · Max size: 3 MB.
+        </Form.Text>
         <Form.Control.Feedback type="invalid">
           {errors.file}
         </Form.Control.Feedback>
-        <h7>file type: pdf · max size: 3 MB</h7>
       </Form.Group>
       <Form.Group
         as={Col}
