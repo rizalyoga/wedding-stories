@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.status {
+.status-orders {
   display: flex;
   justify-content: flex-end;
   border: none;

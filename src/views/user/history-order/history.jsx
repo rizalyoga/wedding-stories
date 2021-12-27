@@ -70,7 +70,7 @@ const History = () => {
                       <Row style={{ width: "100%" }}>
                         <Col className="title">
                           <h6>{el.PackageName}</h6>
-                          <div className="status">
+                          <div className="status-orders">
                             <div className="status-order">
                               {el.Status_Order === "waiting" ? (
                                 <h6 className="fw-bold" style={{ color: "orange" }}>
