@@ -99,35 +99,35 @@ const ListPayment = () => {
                               <tbody>
                                 <tr>
                                   <td>Organizer</td>
-                                  <td>{el.WoName}</td>
+                                  <td>: {el.WoName}</td>
                                 </tr>
                                 <tr>
                                   <td>User</td>
-                                  <td>{el.Name}</td>
+                                  <td>: {el.Name}</td>
                                 </tr>
                                 <tr>
                                   <td>User Email</td>
-                                  <td>{el.Email}</td>
+                                  <td>: {el.Email}</td>
                                 </tr>
                                 <tr>
                                   <td>Package</td>
-                                  <td>{el.PackageName}</td>
+                                  <td>: {el.PackageName}</td>
                                 </tr>
                                 <tr>
                                   <td>Date Reservation</td>
-                                  <td>{el.Date}</td>
+                                  <td>: {el.Date}</td>
                                 </tr>
                                 <tr>
                                   <td>Total pax</td>
-                                  <td>{el.Total_Pax}</td>
+                                  <td>: {el.Total_Pax}</td>
                                 </tr>
                                 <tr>
                                   <td>Price</td>
-                                  <td>{formatRupiah(el.Price) + ",00"}</td>
+                                  <td>: {formatRupiah(el.Price) + ",00"}</td>
                                 </tr>
                                 <tr>
                                   <td>Total Price</td>
-                                  <td>{el.Total_Price}</td>
+                                  <td>: {formatRupiah(el.Total_Price) + ",00"}</td>
                                 </tr>
                               </tbody>
                             </Table>
