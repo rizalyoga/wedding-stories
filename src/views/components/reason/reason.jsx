@@ -19,18 +19,18 @@ const Reason = () => {
           <div className="row-reason">
             <div className="reason-col">
               <img style={{ width: "80px" }} src={target} alt="target" />
-              <h5>Interact realtime with potential clients</h5>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae possimus quo eligendi voluptas iste in quos , est blanditiis!</p>
+              <h5>Interact real time with potential clients</h5>
+              {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae possimus quo eligendi voluptas iste in quos , est blanditiis!</p> */}
             </div>
             <div className="reason-col">
               <img style={{ width: "80px" }} src={reliable} alt="reliable" />
               <h5>Reliable</h5>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae possimus quo eligendierror molestias nam doloremque cum nemo, est blanditiis!</p>
+              {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae possimus quo eligendierror molestias nam doloremque cum nemo, est blanditiis!</p> */}
             </div>
             <div className="reason-col">
               <img style={{ width: "80px" }} src={easy} alt="easy" />
-              <h5>Easy to Use</h5>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.aliquid temporibus excepturi error molestias nam doloremque cum nemo, est blanditiis!</p>
+              <h5>Easy to use</h5>
+              {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.aliquid temporibus excepturi error molestias nam doloremque cum nemo, est blanditiis!</p> */}
             </div>
           </div>
         </div>

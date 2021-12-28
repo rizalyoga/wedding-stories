@@ -158,7 +158,7 @@ const History = () => {
                           <Button id="detail-package-history" style={{ color: "#fff", width: "90%" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
                             Detail Package
                           </Button>
-                          {el.Status_Order === "declined" ? (
+                          {el.Status_Order === "declined" || el.Status_Payment === "paid" ? (
                             <></>
                           ) : el.Status_Order === "waiting" ? (
                             <div>

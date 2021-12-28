@@ -1,6 +1,6 @@
 import "./list-payment.css";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
-import { Container, Accordion, Row, Col, Button, Spinner, Alert, Table } from "react-bootstrap";
+import { Container, Accordion, Row, Col, Button, Alert, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import allStore from "../../../store/actions/index.js";
@@ -74,7 +74,7 @@ const ListPayment = () => {
                       <Accordion.Header id="detail-history">
                         <Row style={{ width: "100%" }}>
                           <Col className="title">
-                            <h6>Harusnya Nama User</h6>
+                            <h6>{el.Name}</h6>
                             {el.Status_Payment === "unpaid" ? (
                               <h6 className="fw-bold" style={{ color: "red" }}>
                                 {el.Status_Payment}

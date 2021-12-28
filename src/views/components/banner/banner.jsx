@@ -1,6 +1,7 @@
 import "./banner.css";
 import { useState } from "react";
 import ModalPayment from "../../user/history-order/modal-payment.jsx";
+import logoWedding from "../../../assets/virus.png";
 
 const Banner = () => {
   // const animScroll = () => {
@@ -18,7 +19,10 @@ const Banner = () => {
       <div className="banner" id="banner">
         <div className="container">
           <div className="text-box">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ea accusantium fugit amet animi quod sint labore nisi accusamus? Saepe nulla alias doloribus veritatis dolor omnis quas illo sit enim!</p>
+            <div className="logo-wedding">
+              <img src={logoWedding} alt="logo-wedding-stories" />
+            </div>
+            <p style={{ fontSize: "1.2rem" }}>Wedding Stories is a comprehensive and inspiring wedding directory and marketplace that helps connect wedding organizers with brides-to-be across Indonesia.</p>
             {/* <a class="explore-btn" onClick={() => setModalShow(true)}>
             Explore
             </a> */}
