@@ -1,13 +1,4 @@
-import {
-  Container,
-  Accordion,
-  Row,
-  Col,
-  Button,
-  Spinner,
-  Alert,
-  Modal,
-} from "react-bootstrap";
+import { Container, Accordion, Row, Col, Button, Spinner, Alert, Modal } from "react-bootstrap";
 import NavLoginWo from "../../components/navbar-wo/navbar-wo-login";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,15 +34,9 @@ const ListReservation = () => {
     if (show) {
       return (
         <Modal show={show} onHide={handleClose} backdrop="static">
-          <Modal.Body>
-            Are you sure want to "{buttonSelected}" this order?
-          </Modal.Body>
+          <Modal.Body>Are you sure want to "{buttonSelected}" this order?</Modal.Body>
           <Modal.Footer>
-            <Button
-              id="btn-close-alert"
-              variant="secondary"
-              onClick={(e) => handleClose(e)}
-            >
+            <Button id="btn-close-alert" variant="secondary" onClick={(e) => handleClose(e)}>
               No
             </Button>
             <Button
