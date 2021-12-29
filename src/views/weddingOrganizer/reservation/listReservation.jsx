@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const ListReservation = () => {
   const dispatch = useDispatch();
-  const listOrder = useSelector(({ myOrder }) => myOrder.reverse());
+  const listOrder = useSelector(({ myOrder }) => myOrder);
 
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState([]);
@@ -199,61 +199,64 @@ const ListReservation = () => {
               </Col>
             </Row>
           ) : (
-            listOrder.map((el, idx) => (
-              <Accordion>
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header>
-                    <Row>
-                      <Col>
-                        {el.Name} · {el.PackageName} · {el.Status_Order}
-                      </Col>
-                      {/* <Col md={6} style={{ color: "darkyellow" }}>
+            listOrder
+              .slice(0)
+              .reverse()
+              .map((el, idx) => (
+                <Accordion key={idx}>
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                      <Row>
+                        <Col>
+                          {el.Name} · {el.PackageName} · {el.Status_Order}
+                        </Col>
+                        {/* <Col md={6} style={{ color: "darkyellow" }}>
                       waiting
                     </Col> */}
-                    </Row>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <Row>
-                      <Col md={1}></Col>
-                      <Col md={5} sm={12}>
-                        <h7>
-                          <b>Client Name :</b> {el.Name}
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Package Name :</b> {el.PackageName}
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Date :</b> {el.Date}
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Total Pax :</b> {el.Total_Pax}
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Additional :</b> {el.Additional}
-                        </h7>
-                        <br />
-                      </Col>
-                      <Col md={4}>
-                        <h7>
-                          <b>Status Order :</b> {el.Status_Order}
-                        </h7>
-                        <br />
-                        <h7>
-                          <b>Status Payment :</b> {el.Status_Payment}
-                        </h7>
-                        <br />
-                      </Col>
-                      {showButton(el.Status_Order, el.ID)}
-                    </Row>
-                  </Accordion.Body>
-                </Accordion.Item>
-                <br />
-              </Accordion>
-            ))
+                      </Row>
+                    </Accordion.Header>
+                    <Accordion.Body>
+                      <Row>
+                        <Col md={1}></Col>
+                        <Col md={5} sm={12}>
+                          <h7>
+                            <b>Client Name :</b> {el.Name}
+                          </h7>
+                          <br />
+                          <h7>
+                            <b>Package Name :</b> {el.PackageName}
+                          </h7>
+                          <br />
+                          <h7>
+                            <b>Date :</b> {el.Date}
+                          </h7>
+                          <br />
+                          <h7>
+                            <b>Total Pax :</b> {el.Total_Pax}
+                          </h7>
+                          <br />
+                          <h7>
+                            <b>Additional :</b> {el.Additional}
+                          </h7>
+                          <br />
+                        </Col>
+                        <Col md={4}>
+                          <h7>
+                            <b>Status Order :</b> {el.Status_Order}
+                          </h7>
+                          <br />
+                          <h7>
+                            <b>Status Payment :</b> {el.Status_Payment}
+                          </h7>
+                          <br />
+                        </Col>
+                        {showButton(el.Status_Order, el.ID)}
+                      </Row>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <br />
+                </Accordion>
+              ))
           )}
         </Container>
       </div>
