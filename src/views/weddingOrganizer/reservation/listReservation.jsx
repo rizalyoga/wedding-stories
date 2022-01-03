@@ -1,4 +1,4 @@
-import { Container, Accordion, Row, Col, Button, Spinner, Alert, Modal } from "react-bootstrap";
+import { Container, Accordion, Row, Col, Button, Spinner, Alert, Modal, Table } from "react-bootstrap";
 import NavLoginWo from "../../components/navbar-wo/navbar-wo-login";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -199,64 +199,110 @@ const ListReservation = () => {
               </Col>
             </Row>
           ) : (
-            listOrder
-              .slice(0)
-              .reverse()
-              .map((el, idx) => (
-                <Accordion key={idx}>
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>
-                      <Row>
-                        <Col>
-                          {el.Name} · {el.PackageName} · {el.Status_Order}
-                        </Col>
-                        {/* <Col md={6} style={{ color: "darkyellow" }}>
-                      waiting
-                    </Col> */}
-                      </Row>
-                    </Accordion.Header>
-                    <Accordion.Body>
-                      <Row>
-                        <Col md={1}></Col>
-                        <Col md={5} sm={12}>
-                          <h7>
-                            <b>Client Name :</b> {el.Name}
-                          </h7>
-                          <br />
-                          <h7>
-                            <b>Package Name :</b> {el.PackageName}
-                          </h7>
-                          <br />
-                          <h7>
-                            <b>Date :</b> {el.Date}
-                          </h7>
-                          <br />
-                          <h7>
-                            <b>Total Pax :</b> {el.Total_Pax}
-                          </h7>
-                          <br />
-                          <h7>
-                            <b>Additional :</b> {el.Additional}
-                          </h7>
-                          <br />
-                        </Col>
-                        <Col md={4}>
-                          <h7>
-                            <b>Status Order :</b> {el.Status_Order}
-                          </h7>
-                          <br />
-                          <h7>
-                            <b>Status Payment :</b> {el.Status_Payment}
-                          </h7>
-                          <br />
-                        </Col>
-                        {showButton(el.Status_Order, el.ID)}
-                      </Row>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                  <br />
-                </Accordion>
-              ))
+            listOrder.map((el, idx) => (
+              <Accordion key={idx}>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>
+                    <Row>
+                      <Col md={12}>
+                        {el.Name} · {el.PackageName} ·{" "}
+                        {el.Status_Order == "waiting" ? (
+                          <b style={{ color: "orange" }}>{el.Status_Order}</b>
+                        ) : el.Status_Order == "declined" ? (
+                          <b style={{ color: "red" }}>{el.Status_Order} </b>
+                        ) : (
+                          <b style={{ color: "green" }}>{el.Status_Order}</b>
+                        )}{" "}
+                        {el.Status_Order == "accepted" ? (
+                          el.Status_Payment == "unpaid" ? (
+                            <b style={{ color: "red" }}>{el.Status_Payment}</b>
+                          ) : (
+                            <b style={{ color: "green" }}>
+                              {el.Status_Payment} <i class="bi bi-check"></i>
+                            </b>
+                          )
+                        ) : (
+                          ""
+                        )}
+                      </Col>
+                      {/* <Col
+                        md={2}
+                        style={{ color: "darkyellow" }}
+                        className="status"
+                      >
+                        waiting
+                      </Col> */}
+                    </Row>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <Row>
+                      <Col md={1}></Col>
+                      <Col md={4} sm={12}>
+                        <Table className="table-desc">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <b>Client Name</b>{" "}
+                              </td>
+                              <td>: {el.Name}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Package Name</b>
+                              </td>
+                              <td>
+                                :{" "}
+                                <a href="" onClick={() => navigate(`/detail/package/${el.Package_ID}`)}>
+                                  {el.PackageName}
+                                </a>{" "}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Reservation Date</b>{" "}
+                              </td>
+                              <td>: {el.Date}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Total Pax</b>{" "}
+                              </td>
+                              <td>: {el.Total_Pax} pax</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Additional</b>{" "}
+                              </td>
+                              <td>: {el.Additional == "" ? "none" : el.Additional}</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                      </Col>
+                      <Col md={4}>
+                        <Table className="table-desc">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <b>Status Order</b>
+                              </td>
+                              <td>: {el.Status_Order}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Status Payment</b>
+                              </td>
+                              <td>: {el.Status_Payment}</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                      </Col>
+                      {showButton(el.Status_Order, el.ID)}
+                    </Row>
+                  </Accordion.Body>
+                </Accordion.Item>
+                <br />
+              </Accordion>
+            ))
           )}
         </Container>
       </div>

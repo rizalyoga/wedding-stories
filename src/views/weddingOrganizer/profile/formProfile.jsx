@@ -68,6 +68,8 @@ const FormProfile = (props) => {
     // name errors
     if (!nameWO.trim() || nameWO.trim() === "")
       newErrors.nameWO = "cannot be blank!";
+    else if (nameWO.length < 8)
+      newErrors.nameWO = "bussiness name is too short!";
     // email errors
     if (!emailWO.trim() || emailWO.trim() === "")
       newErrors.emailWO = "cannot be blank!";
@@ -91,7 +93,7 @@ const FormProfile = (props) => {
       newErrors.descWO = "cannot be blank!";
     else if (descWO.length < 11) newErrors.descWO = "description is too short!";
     //password
-    if (pwdWO.length > 0 && pwdWO.length < 11)
+    if (pwdWO.length > 0 && pwdWO.length < 8)
       newErrors.pwdWO = "password is too short!";
 
     // else if (address.length < 6)
@@ -121,7 +123,7 @@ const FormProfile = (props) => {
       const body = {
         WoName: nameWO.trim(),
         email: emailWO.trim(),
-        password: "",
+        password: pwdWO,
         PhoneNumber: phoneWO.trim(),
         weburl: urlWO.trim(),
         about: descWO.trim(),
@@ -131,7 +133,7 @@ const FormProfile = (props) => {
       const data = new FormData();
       data.append("WoName", nameWO.trim());
       data.append("email", emailWO.trim());
-      data.append("password", "");
+      data.append("password", pwdWO);
       data.append("PhoneNumber", phoneWO);
       data.append("weburl", urlWO.trim());
       data.append("about", descWO.trim());
@@ -331,7 +333,9 @@ const FormProfile = (props) => {
         >
           <option value="">Choose your city</option>
           {cities.map((el, idx) => (
-            <option value={el.County}>{el.County}</option>
+            <option value={el.County} key={idx} id={el.ID}>
+              {el.County}
+            </option>
           ))}
         </Form.Select>
 
@@ -379,14 +383,14 @@ const FormProfile = (props) => {
               ></i>
             )}
           </InputGroup.Text>
+          <Form.Text id="passwordHelpBlock" muted>
+            Your password must be more than 8 characters long, empty the field
+            if you don't want to change your password!
+          </Form.Text>
+          <Form.Control.Feedback type="invalid">
+            {errors.pwdWO}
+          </Form.Control.Feedback>
         </InputGroup>
-        <Form.Text id="passwordHelpBlock" muted>
-          Your password must be more than 8 characters long, empty the field if
-          you don't want to change your password!
-        </Form.Text>
-        <Form.Control.Feedback type="invalid">
-          {errors.pwdWO}
-        </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group as={Col} md="12" controlId="validationCustom05">
@@ -409,7 +413,7 @@ const FormProfile = (props) => {
           isInvalid={!!errors.descWO}
         />
         <Form.Text id="descHelpBlock" muted>
-          The description be more than 8 characters long.
+          The description must be more than 8 characters long.
         </Form.Text>
         <Form.Control.Feedback type="invalid">
           {errors.descWO}

@@ -3,3 +3,9 @@
   padding-bottom: 10%;
   padding-top: 10%;
 }
+
+.status{
+  align-items: flex-end;
+  justify-content: flex-end;
+  align-content: flex-end;
+}
