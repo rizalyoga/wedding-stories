@@ -330,7 +330,7 @@ const FormEditPackage = () => {
                 value={packName}
               ></Form.Control>
               <Form.Text id="nameHelpBlock" muted>
-                Your Bussiness Name must be more than 8 characters long.
+                Package name must be more than 8 characters long.
               </Form.Text>
               <Form.Control.Feedback type="invalid">
                 {errors.packName}

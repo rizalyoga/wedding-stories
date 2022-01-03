@@ -39,7 +39,9 @@ const ProfileWO = () => {
               Your Profile
             </h5>
 
-            <h2 className="title-page">Edit Profile</h2>
+            <h2 className="title-page" style={{ color: "white" }}>
+              Edit Profile
+            </h2>
             <hr />
           </Row>
           {/*  upload foto logo */}

@@ -35,13 +35,16 @@ const RegisterWO = () => {
 
     // name errors
     if (!name || name === "") newErrors.name = "cannot be blank!";
-    else if (name.length < 8) newErrors.name = "Bussiness Name cannot be less than 8!";
+    else if (name.length < 8)
+      newErrors.name = "Bussiness Name cannot be less than 8!";
     // email errors
     if (!email || email === "") newErrors.email = "cannot be blank!";
-    else if (regexEmail.test(email) === false) newErrors.email = "email is not valid!";
+    else if (regexEmail.test(email) === false)
+      newErrors.email = "email is not valid!";
     // password errors
     if (!password || password === "") newErrors.password = "cannot be blank!";
-    else if (password.length < 8) newErrors.password = "password cannot be less than 8!";
+    else if (password.length < 8)
+      newErrors.password = "password cannot be less than 8!";
     // address errors
     if (!address || address === "") newErrors.address = "cannot be blank!";
     // city errors
@@ -49,8 +52,10 @@ const RegisterWO = () => {
     // phone errors
     if (!phone || phone === "") newErrors.phone = "cannot be blank!";
     else if (phone < 0) newErrors.phone = "phone number cannot be negative!";
-    else if (phone.length < 9) newErrors.phone = "phone number cannot be less than 8!";
-    else if (phone.length > 15) newErrors.phone = "phone number cannot be more than 14!";
+    else if (phone.length < 9)
+      newErrors.phone = "phone number cannot be less than 8!";
+    else if (phone.length > 15)
+      newErrors.phone = "phone number cannot be more than 14!";
 
     // else if (address.length < 6)
     //   newErrors.phonenumber = "phone number is too short!";
@@ -132,49 +137,114 @@ const RegisterWO = () => {
           <Container>
             <Row>
               <Col md={8} sm={12} className="">
-                <h1 className="title-text">The Right Place To Grow Your Wedding Business</h1>
+                <h1 className="title-text">
+                  The Right Place To Grow Your Wedding Business
+                </h1>
                 <hr className="strip" />
-                <p className="description-text">Join more than 20,000 wedding vendors from 70 countries who have connected with millions of engaged couples through Wedding Stories.</p>
+                <p className="description-text">
+                  Join more than 20,000 wedding vendors from 70 countries who
+                  have connected with millions of engaged couples through
+                  Wedding Stories.
+                </p>
               </Col>
               <Col md={4} sm={12}>
                 <Form id="form-register-wo">
                   <Row className="mt-5 pt-5">
-                    <Form.Group as={Col} md="12" controlId="validationCustomUsername">
-                      <Form.Label className="title-form">Bussiness Name</Form.Label>
-                      <Form.Control type="text" placeholder="Bussiness name" aria-describedby="inputGroupPrepend" onChange={(e) => setField("name", e.target.value)} autoComplete="off" required isInvalid={!!errors.name} />
+                    <Form.Group
+                      as={Col}
+                      md="12"
+                      controlId="validationCustomUsername"
+                    >
+                      <Form.Label className="title-form">
+                        Bussiness Name
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Bussiness name"
+                        aria-describedby="inputGroupPrepend"
+                        onChange={(e) => setField("name", e.target.value)}
+                        autoComplete="off"
+                        required
+                        isInvalid={!!errors.name}
+                      />
 
-                      <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="12" controlId="validationCustom03">
                       <Form.Label className="title-form">Email</Form.Label>
-                      <Form.Control type="text" placeholder="Email" onChange={(e) => setField("email", e.target.value)} required isInvalid={!!errors.email} />
-                      <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                      <Form.Control
+                        type="text"
+                        placeholder="Email"
+                        onChange={(e) => setField("email", e.target.value)}
+                        required
+                        isInvalid={!!errors.email}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.email}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="12" controlId="validationCustom04">
                       <Form.Label className="title-form">Address</Form.Label>
-                      <Form.Control type="text" placeholder="Address" onChange={(e) => setField("address", e.target.value)} required isInvalid={!!errors.address} />
-                      <Form.Control.Feedback type="invalid">{errors.address}</Form.Control.Feedback>
+                      <Form.Control
+                        type="text"
+                        placeholder="Address"
+                        onChange={(e) => setField("address", e.target.value)}
+                        required
+                        isInvalid={!!errors.address}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.address}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="12" controlId="validationCustom04">
                       <Form.Label className="title-form">City</Form.Label>
-                      <Form.Select type="text" placeholder="City" onChange={(e) => setField("city", e.target.value)} required isInvalid={!!errors.city}>
+                      <Form.Select
+                        type="text"
+                        placeholder="City"
+                        onChange={(e) => setField("city", e.target.value)}
+                        required
+                        isInvalid={!!errors.city}
+                      >
                         <option value="">Choose your city</option>
                         {cities.map((el, idx) => (
-                          <option value={el.County}>{el.County}</option>
+                          <option value={el.County} key={idx} id={el.ID}>
+                            {el.County}
+                          </option>
                         ))}
                       </Form.Select>
-                      <Form.Control.Feedback type="invalid">{errors.address}</Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.address}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="12" controlId="validationCustom05">
-                      <Form.Label className="title-form">Phone Number</Form.Label>
-                      <Form.Control type="tel" placeholder="Phone Number" onChange={(e) => setField("phone", e.target.value)} required isInvalid={!!errors.phone} />
-                      <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
+                      <Form.Label className="title-form">
+                        Phone Number
+                      </Form.Label>
+                      <Form.Control
+                        type="tel"
+                        placeholder="Phone Number"
+                        onChange={(e) => setField("phone", e.target.value)}
+                        required
+                        isInvalid={!!errors.phone}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.phone}
+                      </Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group as={Col} md="12" controlId="validationCustom05">
                       <Form.Label className="title-form">Password</Form.Label>
                       <InputGroup>
-                        <Form.Control type={passwordShown ? "text" : "password"} placeholder="Password" onChange={(e) => setField("password", e.target.value)} required isInvalid={!!errors.password} autoComplete="off" />
+                        <Form.Control
+                          type={passwordShown ? "text" : "password"}
+                          placeholder="Password"
+                          onChange={(e) => setField("password", e.target.value)}
+                          required
+                          isInvalid={!!errors.password}
+                          autoComplete="off"
+                        />
                         <InputGroup.Text>
                           {passwordShown ? (
                             <i
@@ -196,7 +266,9 @@ const RegisterWO = () => {
                             ></i>
                           )}
                         </InputGroup.Text>
-                        <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+                        <Form.Control.Feedback type="invalid">
+                          {errors.password}
+                        </Form.Control.Feedback>
                       </InputGroup>
                     </Form.Group>
                   </Row>
@@ -209,7 +281,12 @@ const RegisterWO = () => {
                     feedbackType="invalid"
                   />
                 </Form.Group> */}
-                  <Button id="btn-register-wo" className="col-12 mt-3 mb-3 btn-submit" variant="primary" onClick={(e) => handleRegister(e)}>
+                  <Button
+                    id="btn-register-wo"
+                    className="col-12 mt-3 mb-3 btn-submit"
+                    variant="primary"
+                    onClick={(e) => handleRegister(e)}
+                  >
                     Register
                   </Button>
                 </Form>

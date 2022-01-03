@@ -42,7 +42,7 @@ const FormAddPackage = () => {
     // name errors
     if (!name || name.trim() === "") newErrors.name = "cannot be blank!";
     else if (name.length < 8)
-      newErrors.name = "ackage name cannot be less than 8 characters!";
+      newErrors.name = "package name cannot be less than 8 characters!";
     // price errors
     if (!price || price === "") newErrors.price = "cannot be blank!";
     else if (price < 0) newErrors.price = "price cannot be negative!";
@@ -170,7 +170,7 @@ const FormAddPackage = () => {
                 isInvalid={!!errors.name}
               />
               <Form.Text id="nameHelpBlock" muted>
-                Your Bussiness Name must be more than 8 characters long.
+                Package Name must be more than 8 characters long.
               </Form.Text>
               <Form.Control.Feedback type="invalid">
                 {errors.name}
