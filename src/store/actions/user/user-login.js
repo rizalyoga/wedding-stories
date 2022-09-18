@@ -3,24 +3,24 @@ import allStore from "../index.js";
 import swal from "sweetalert";
 
 export const UserLogin = (payload) => {
-  localStorage.clear();
+  sessionStorage.clear();
   const online = window.navigator.onLine;
+
+  console.log(payload);
 
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
-    // console.log("2.masuk Action");
-    // console.log(payload);
-    axios
-      .post("https://weddingstories.space/login/users", payload)
-      .then((response) => {
-        // console.log("3, Masuk Then", response.data);
-        swal(response.data.message);
 
+    axios
+      // .post("https://weddingstories.space/login/users", payload)
+      .get("https://jsonplaceholder.typicode.com/users/1/")
+      .then((response) => {
         if (response.data.data !== null) {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("id", response.data.id);
-          localStorage.setItem("status", response.data.role);
-          localStorage.setItem("nama", response.data.name);
+          sessionStorage.setItem("token", Date.now());
+          sessionStorage.setItem("id", response.data.id);
+          sessionStorage.setItem("status", "user");
+          sessionStorage.setItem("nama", response.data.name);
+          sessionStorage.setItem("email", response.data.email);
           swal("Login Success", { icon: "success", buttons: false });
           dispatch(allStore.setRoute("/"));
           setTimeout(() => {
@@ -30,11 +30,9 @@ export const UserLogin = (payload) => {
       })
       .catch((err) => {
         if (online) {
-          // console.log("online");
-          console.log("3, Masuk ERROR:", err.response.data);
-          swal(err.response.data.message, { icon: "warning" });
+          // swal(err.response.data.message, { icon: "warning" });
+          swal(err, { icon: "warning" });
         } else if (!online) {
-          // console.log("offline");
           swal("Check your Internet Connection", { icon: "warning" });
         }
 

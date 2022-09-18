@@ -35,7 +35,7 @@ export const postEditUser = (payload) => {
           .catch((err) => {
             console.log("ERROR GET PROFILE", err.response.data);
           });
-        dispatch(allStore.setEditUser(response.data.data));
+        // dispatch(allStore.setEditUser(response.data.data));
 
         // window.location.reload();
       })
@@ -45,7 +45,10 @@ export const postEditUser = (payload) => {
         // allStore.setError(err.response.data.message);
         // dispatch(allStore.setError(err.response.data.message));
       })
-      .finally((_) => dispatch(allStore.setLoading(false)), dispatch(allStore.setError({})));
+      .finally(
+        (_) => dispatch(allStore.setLoading(false)),
+        dispatch(allStore.setError({}))
+      );
   };
 };
 

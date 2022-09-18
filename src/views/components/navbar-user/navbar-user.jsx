@@ -25,7 +25,11 @@ const NavUser = () => {
     // const newTerm = term.replace(/\s+/g, " ".trim());
     const newTerm = term;
     if (newTerm === "") {
-      swal("Please Input Keyword", { buttons: false, icon: "warning", timer: 500 });
+      swal("Please Input Keyword", {
+        buttons: false,
+        icon: "warning",
+        timer: 500,
+      });
     } else {
       console.log(newTerm);
       dispatch(allStore.getSearchPackage(newTerm));
@@ -33,11 +37,11 @@ const NavUser = () => {
     }
   };
 
-  if (localStorage.token && localStorage.status == "User") {
+  if (sessionStorage.token && sessionStorage.status == "user") {
     return <NavbarLoginUser />;
-  } else if (localStorage.token && localStorage.status == "organizer") {
+  } else if (sessionStorage.token && sessionStorage.status == "organizer") {
     return <NavbarLoginWo />;
-  } else if (localStorage.status == "admin") {
+  } else if (sessionStorage.status == "admin") {
     return <NavbarAdmin />;
   } else {
     return (
@@ -45,7 +49,12 @@ const NavUser = () => {
         <div className="nav-bar py-3 shadow">
           <div className="container d-flex justify-content-between">
             <div className="logo">
-              <img src={logo} alt="logo" id="navbar-logo-bef-login" onClick={() => navigate("/")} />
+              <img
+                src={logo}
+                alt="logo"
+                id="navbar-logo-bef-login"
+                onClick={() => navigate("/")}
+              />
             </div>
             <Form className="search-input-user" onSubmit={submitHandler}>
               <input
@@ -60,17 +69,39 @@ const NavUser = () => {
                 value={term}
                 onChange={(e) => setTerm(e.target.value)}
               />
-              {/* <Button class="btn btn-outline-success" type="submit"></Button> */}
-              <Button variant="primary" id="search-button" type="submit" style={{ borderRadius: "50%", background: "#5C7893", border: "#5C7893" }}>
-                <i class="bi bi-search"></i>
+
+              <Button
+                variant="primary"
+                id="search-button"
+                type="submit"
+                style={{
+                  borderRadius: "50%",
+                  background: "#5C7893",
+                  border: "#5C7893",
+                }}
+              >
+                <i className="bi bi-search"></i>
               </Button>
             </Form>
             <div className="nav-links mt-2">
-              <ModalLogin show={modalLoginShow} onHide={() => setModalLoginShow(false)} />
-              <a className="sign-in" href="#" id="signIn-button-user" onClick={() => setModalLoginShow(true)}>
+              <ModalLogin
+                show={modalLoginShow}
+                onHide={() => setModalLoginShow(false)}
+              />
+              <a
+                className="sign-in"
+                href="#"
+                id="signIn-button-user"
+                onClick={() => setModalLoginShow(true)}
+              >
                 Sign in
               </a>
-              <a className="sign-up" href="#" id="signUp-button-user" onClick={() => navigate("/user/register")}>
+              <a
+                className="sign-up"
+                href="#"
+                id="signUp-button-user"
+                onClick={() => navigate("/user/register")}
+              >
                 Sign up
               </a>
             </div>

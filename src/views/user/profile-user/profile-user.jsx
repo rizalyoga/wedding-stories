@@ -18,22 +18,11 @@ const ProfileUser = () => {
   const profileUser = useSelector(({ userProfile }) => userProfile);
   const loading = useSelector(({ loading }) => loading);
 
-  useEffect(() => {
-    dispatch(allStore.ProfileUser());
-    if (!localStorage.email) {
-      localStorage.setItem("email", profileUser.data.Email);
-    }
-  }, [dispatch]);
-
   //GET DATA PROFILE USER
   useEffect(() => {
-    setUsername(localStorage.nama);
-    setEmail(localStorage.email);
+    setUsername(sessionStorage.nama);
+    setEmail(sessionStorage.email);
   }, [profileUser]);
-
-  // useEffect(() => {
-  //   console.log(profileUser.data);
-  // }, [profileUser]);
 
   /* -------------------------- UNLOCK ACTION DISABEL ------------------------- */
 
@@ -45,11 +34,23 @@ const ProfileUser = () => {
   const handleEdit = (event) => {
     event.preventDefault();
     if (password.length < 8) {
-      swal("password cannot less than 8 characters", { icon: "warning", buttons: false, timer: 1500 });
+      swal("password cannot less than 8 characters", {
+        icon: "warning",
+        buttons: false,
+        timer: 1500,
+      });
     } else if (password.includes(" ")) {
-      swal("password cannot contain space character", { icon: "warning", buttons: false, timer: 1500 });
+      swal("password cannot contain space character", {
+        icon: "warning",
+        buttons: false,
+        timer: 1500,
+      });
     } else if (!email.includes("@")) {
-      swal("please check your email format", { icon: "warning", buttons: false, timer: 1500 });
+      swal("please check your email format", {
+        icon: "warning",
+        buttons: false,
+        timer: 1500,
+      });
     } else {
       swal({
         text: "Are you sure to edit Profile ?",
@@ -58,19 +59,23 @@ const ProfileUser = () => {
         dangerMode: true,
       }).then((willEdit) => {
         if (willEdit) {
-          dispatch(allStore.postEditUser({ name: username, email: email, password: password }));
+          dispatch(
+            allStore.postEditUser({
+              name: username,
+              email: email,
+              password: password,
+            })
+          );
         }
         setPassword("");
       });
-      // console.log(username);
-      // console.log(email);
     }
   };
 
   /* ------------------------------ HANDLE DELETE ----------------------------- */
 
   // const handleDelete = () => {
-  //   const token = localStorage.getItem("token");
+  //   const token = sessionStorage.getItem("token");
   //   const config = {
   //     headers: { Authorization: `Bearer ${token}` },
   //   };
@@ -84,7 +89,7 @@ const ProfileUser = () => {
   //       axios
   //         .delete("https://weddingstories.space/users/profile", config)
   //         .then((response) => {
-  //           localStorage.removeItem("token");
+  //           sessionStorage.removeItem("token");
   //           if (response.data.data !== null) {
   //             navigate("/");
   //           }
@@ -127,7 +132,13 @@ const ProfileUser = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#5C7893", paddingTop: "5%", paddingBottom: "5%" }}>
+    <div
+      style={{
+        backgroundColor: "#5C7893",
+        paddingTop: "5%",
+        paddingBottom: "5%",
+      }}
+    >
       <NavUser />
       <div className="container">
         <div className="form-edit">
@@ -135,20 +146,52 @@ const ProfileUser = () => {
           <Form>
             <Row>
               <div className="Room d-flex flex-column">
-                <Button className="mb-3 unlock-edit" id="enable-edit-profile" onClick={() => unlock()}>
+                <Button
+                  className="mb-3 unlock-edit"
+                  id="enable-edit-profile"
+                  onClick={() => unlock()}
+                >
                   Click for edit profile
                 </Button>
-                <div className="mb-3 d-flex flex-column text-white" controlId="username">
+                <div
+                  className="mb-3 d-flex flex-column text-white"
+                  controlId="username"
+                >
                   <Form.Label>Username</Form.Label>
-                  <Form.Control disabled={disabled} id="username-profile-user" className="input-register p-2" placeholder="username" autoComplete="off" value={username} onChange={(event) => setUsername(event.target.value)} required />
+                  <Form.Control
+                    disabled={disabled}
+                    id="username-profile-user"
+                    className="input-register p-2"
+                    placeholder="username"
+                    autoComplete="off"
+                    value={username}
+                    onChange={(event) => setUsername(event.target.value)}
+                    required
+                  />
                 </div>
 
-                <div className="mb-3 d-flex flex-column text-white" controlId="email">
+                <div
+                  className="mb-3 d-flex flex-column text-white"
+                  controlId="email"
+                >
                   <Form.Label>Email</Form.Label>
-                  <Form.Control disabled={disabled} id="email-profile-user" className="input-register p-2" placeholder="Email" type="email" value={email} autoComplete="off" onChange={(event) => setEmail(event.target.value)} required />
+                  <Form.Control
+                    disabled={disabled}
+                    id="email-profile-user"
+                    className="input-register p-2"
+                    placeholder="Email"
+                    type="email"
+                    value={email}
+                    autoComplete="off"
+                    onChange={(event) => setEmail(event.target.value)}
+                    required
+                  />
                 </div>
 
-                <div className="mb-2 d-flex flex-column text-white" controlId="password">
+                <div
+                  className="mb-2 d-flex flex-column text-white"
+                  controlId="password"
+                >
                   <Form.Label>password</Form.Label>
                   <p className="d-flex justify-content-center align-items-center">
                     <Form.Control
@@ -163,16 +206,28 @@ const ProfileUser = () => {
                       required
                       autoComplete="off"
                     />
-                    <i style={{ marginLeft: "-25px", color: "black", cursor: "pointer" }} className="bi bi-eye-slash fw-1" id="togglePassword" onClick={() => showPassword()}></i>
+                    <i
+                      style={{
+                        marginLeft: "-25px",
+                        color: "black",
+                        cursor: "pointer",
+                      }}
+                      className="bi bi-eye-slash fw-1"
+                      id="togglePassword"
+                      onClick={() => showPassword()}
+                    ></i>
                   </p>
                 </div>
                 <div className="button-edit">
-                  <Button className="w-100 p-2" id="edit-profile" style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }} disabled={disabled} onClick={(event) => handleEdit(event)}>
+                  <Button
+                    className="w-100 p-2"
+                    id="edit-profile"
+                    style={{ border: "#A5BED1", backgroundColor: "#A5BED1" }}
+                    disabled={disabled}
+                    onClick={(event) => handleEdit(event)}
+                  >
                     Edit
                   </Button>
-                  {/* <Button className="w-35 ms-2 bg-danger" id="delete-user" style={{ border: "#DC3545" }} disabled={disabled} onClick={() => handleDelete()}> */}
-                  {/* delete */}
-                  {/* </Button> */}
                 </div>
               </div>
             </Row>
