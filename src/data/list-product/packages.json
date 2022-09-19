@@ -1,0 +1,85 @@
+{
+  "data": [
+    {
+      "package_id": 1,
+      "Organizer_ID": 1,
+      "PackageName": "Building Theme Max",
+      "Price": "270000000",
+      "Pax": "1000",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../../assets/weddings/wedding-1.jpg"
+    },
+    {
+      "package_id": 2,
+      "Organizer_ID": 1,
+      "PackageName": "White Wedding",
+      "Price": "570000000",
+      "Pax": "100",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../assets/weddings/wedding-2.jpg"
+    },
+    {
+      "package_id": 3,
+      "Organizer_ID": 2,
+      "PackageName": "Mevvah Plus",
+      "Price": "300000000",
+      "Pax": "100",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../assets/weddings/wedding-3.jpg"
+    },
+    {
+      "package_id": 4,
+      "Organizer_ID": 3,
+      "PackageName": "Garden Wedding",
+      "Price": "370000000",
+      "Pax": "50",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../assets/weddings/wedding-4.jpeg"
+    },
+    {
+      "package_id": 5,
+      "Organizer_ID": 3,
+      "PackageName": "Islami",
+      "Price": "375000000",
+      "Pax": "1000",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../assets/weddings/wedding-5.jpg"
+    },
+    {
+      "package_id": 6,
+      "Organizer_ID": 3,
+      "PackageName": "Max",
+      "Price": "270000000",
+      "Pax": "40",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../assets/weddings/wedding-6.jpg"
+    },
+    {
+      "package_id": 7,
+      "Organizer_ID": 4,
+      "PackageName": "Olide Venue",
+      "Price": "10000000",
+      "Pax": "100",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../assets/weddings/wedding-7.jpg"
+    },
+    {
+      "package_id": 8,
+      "Organizer_ID": 4,
+      "PackageName": "Arians Weddings",
+      "Price": "355000000",
+      "Pax": "100",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../assets/weddings/wedding-8.jpg"
+    },
+    {
+      "package_id": 9,
+      "Organizer_ID": 5,
+      "PackageName": "Chinese Theme Wedding",
+      "Price": "255000000",
+      "Pax": "100",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "../../assets/weddings/wedding-9.jpg"
+    }
+  ]
+}

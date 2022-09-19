@@ -10,13 +10,11 @@ export const ProfileUser = () => {
   // };
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
-    // console.log("2.masuk Action");
+
     axios
       // .get("https://weddingstories.space/users/profile", config)
       .get("https://jsonplaceholder.typicode.com/users/1")
       .then((response) => {
-        // console.log("3, Masuk Then", response.data);
-        console.log(response);
         dispatch(allStore.setProfileUser(response.data));
       })
       .catch((err) => {

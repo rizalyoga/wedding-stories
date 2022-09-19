@@ -1,6 +1,7 @@
 import axios from "axios";
 import allStore from "../index.js";
 import swal from "sweetalert";
+import packages from "../../../data/list-product/packages.json";
 
 export const getAllPackage = () => {
   const online = window.navigator.onLine;
@@ -8,19 +9,19 @@ export const getAllPackage = () => {
   //   const config = {
   //     headers: { Authorization: `Bearer ${token}` },
   //   };
+
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
     axios
-      .get(`https://weddingstories.space/package`)
+      // .get(`https://weddingstories.space/package`)
+      .get(`https://jsonplaceholder.typicode.com/users/1`)
       .then((data) => {
-        // console.log(data.data.data);
-        dispatch(setAllPackage(data.data.data));
+        dispatch(setAllPackage(packages.data));
       })
       .catch((err) => {
         if (online) {
           console.log(err);
           // swal(err.response.data.message);
-          console.log(err);
         } else {
           swal("Check your Internet Connection", { icon: "warning" });
         }
