@@ -60,8 +60,8 @@ const Home = () => {
                 <div
                   className="card-wo my-2 "
                   id="card-package-landing-page"
-                  onClick={() => goToDetail(el.ID)}
-                  key={el.ID}
+                  onClick={() => goToDetail(el.package_id)}
+                  key={el.package_id}
                 >
                   <div className="images">
                     <img

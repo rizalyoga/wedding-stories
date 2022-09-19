@@ -1,7 +1,7 @@
 import axios from "axios";
 import allStore from "../index.js";
 import swal from "sweetalert";
-// import navUser from "../../../views/components/navbar-user/navbar-user.jsx";
+import packages from "../../../data/list-product/packages.json";
 
 export const detailPackage = (id) => {
   const online = window.navigator.onLine;
@@ -12,10 +12,13 @@ export const detailPackage = (id) => {
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
     axios
-      .get(`https://weddingstories.space/package/${id}`)
+      // .get(`https://weddingstories.space/package/${id}`)
+      .get(`https://jsonplaceholder.typicode.com/users/1`)
       .then((data) => {
-        // console.log(data.data.data);
-        dispatch(setDetaiilPackage(data.data.data));
+        const dataDetailPackage = packages.data.filter(
+          (el) => el.package_id === Number(id)
+        );
+        dispatch(setDetaiilPackage(dataDetailPackage));
       })
       .catch((err) => {
         if (online) {

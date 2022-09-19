@@ -2,17 +2,18 @@ import axios from "axios";
 import allStore from "../index.js";
 // import swal from "sweetalert";
 
+import packages from "../../../data/list-product/packages.json";
+
 export const getSearchPackage = (term) => {
   const online = window.navigator.onLine;
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
     axios
-      .get(`https://weddingstories.space/package`)
+      .get(`https://jsonplaceholder.typicode.com/users/1`)
       .then((data) => {
         const dataSearch = [];
-        data.data.data.map((el) => {
+        packages.data.forEach((el) => {
           if (el.PackageName.toLowerCase().includes(term)) {
-            // console.log("ada bos");
             dataSearch.push(el);
           }
           dispatch(setSearchPackage(dataSearch));

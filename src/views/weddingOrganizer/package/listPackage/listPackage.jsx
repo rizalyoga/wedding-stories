@@ -1,4 +1,15 @@
-import { Container, Row, Col, Card, Button, Tooltip, OverlayTrigger, Spinner, Modal, Alert } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Tooltip,
+  OverlayTrigger,
+  Spinner,
+  Modal,
+  Alert,
+} from "react-bootstrap";
 import NavLoginWo from "../../../components/navbar-wo/navbar-wo-login";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -26,12 +37,22 @@ const ListPackage = () => {
     if (show) {
       return (
         <Modal show={show} onHide={handleClose} backdrop="static">
-          <Modal.Body>Are you sure want to delete "{packName}" package?</Modal.Body>
+          <Modal.Body>
+            Are you sure want to delete "{packName}" package?
+          </Modal.Body>
           <Modal.Footer>
-            <Button id="btn-close-alert" variant="secondary" onClick={(e) => handleClose(e)}>
+            <Button
+              id="btn-close-alert"
+              variant="secondary"
+              onClick={(e) => handleClose(e)}
+            >
               No
             </Button>
-            <Button id="btn-delete-package" variant="primary" onClick={() => handleDelete(ID)}>
+            <Button
+              id="btn-delete-package"
+              variant="primary"
+              onClick={() => handleDelete(ID)}
+            >
               Yes
             </Button>
           </Modal.Footer>
@@ -40,23 +61,6 @@ const ListPackage = () => {
     }
     return <></>;
   };
-
-  /* --------------------------- CHECK MY PACKAGE WO -------------------------- */
-  // const checkPack = () => {
-  //   if (pack.length === 0) {
-  //     return (
-  //       <>
-  //         <Alert variant="warning">You have no data.</Alert>
-  //         {/* <h3>You have no data.</h3> */}
-  //       </>
-  //     );
-  //   }
-  //   return (
-  //     <>
-  //       <h3></h3>
-  //     </>
-  //   );
-  // };
 
   /* --------------------------- NAVIGATE TO EDIT PAGE -------------------------- */
   const handleEdit = (id) => {
@@ -151,7 +155,16 @@ const ListPackage = () => {
             </h2>
             <hr />
           </Row>
-          <Button id="nav-form-add-package" variant="primary" className="mb-3 mt-3 btn-submit" onClick={() => (profileWo.status === "Not Activated" ? swal("You need to activate your account !") : navigate("/vendor/packages/add"))}>
+          <Button
+            id="nav-form-add-package"
+            variant="primary"
+            className="mb-3 mt-3 btn-submit"
+            onClick={() =>
+              profileWo.status === "Not Activated"
+                ? swal("You need to activate your account !")
+                : navigate("/vendor/packages/add")
+            }
+          >
             <i class="bi bi-plus-square"> </i>
             New Package
           </Button>
@@ -170,12 +183,17 @@ const ListPackage = () => {
               myPackage.map((el, idx) => (
                 <Col>
                   <Card className="card-package" id={idx}>
-                    <Card.Img variant="top" src={el.UrlPhoto} className="photo-package" width="300px" height="150px" />
+                    <Card.Img
+                      variant="top"
+                      src={el.UrlPhoto}
+                      className="photo-package"
+                      width="300px"
+                      height="150px"
+                    />
                     <Card.Body>
                       <Card.Title>
-                        {" "}
                         <h5 className="pack-name">
-                          <b>{el.PackageName}</b>{" "}
+                          <b>{el.PackageName}</b>
                         </h5>
                         <hr />
                         <h6>
@@ -195,12 +213,27 @@ const ListPackage = () => {
                         <Row>
                           <div className="col-7"></div>
                           <div className="col-2">
-                            <OverlayTrigger key="bottom" placement="bottom" overlay={<Tooltip id="tooltip-bottom">edit</Tooltip>}>
-                              <i class="bi bi-pencil-square m-3 cursor" onClick={() => handleEdit(el.ID)}></i>
+                            <OverlayTrigger
+                              key="bottom"
+                              placement="bottom"
+                              overlay={
+                                <Tooltip id="tooltip-bottom">edit</Tooltip>
+                              }
+                            >
+                              <i
+                                class="bi bi-pencil-square m-3 cursor"
+                                onClick={() => handleEdit(el.ID)}
+                              ></i>
                             </OverlayTrigger>
                           </div>
                           <div className="col-3">
-                            <OverlayTrigger key="bottom" placement="bottom" overlay={<Tooltip id="tooltip-bottom">delete</Tooltip>}>
+                            <OverlayTrigger
+                              key="bottom"
+                              placement="bottom"
+                              overlay={
+                                <Tooltip id="tooltip-bottom">delete</Tooltip>
+                              }
+                            >
                               <i
                                 class="bi bi-trash m-3 cursor"
                                 onClick={() => {

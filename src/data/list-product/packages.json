@@ -3,83 +3,110 @@
     {
       "package_id": 1,
       "Organizer_ID": 1,
+      "Wo_Name": "Naraya Wedding",
+      "City": "Jakarta",
+      "Address": "Olide Coffee, Jalan Bukit Pakar Utara, Ciburial, Jakarta, Jawa Barat, Indonesia",
       "PackageName": "Building Theme Max",
       "Price": "270000000",
       "Pax": "1000",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../../assets/weddings/wedding-1.jpg"
+      "UrlPhoto": "https://i.ytimg.com/vi/vl2QDwgnRLA/maxresdefault.jpg"
     },
     {
       "package_id": 2,
       "Organizer_ID": 1,
+      "Wo_Name": "Naraya Wedding",
+      "City": "Bandung",
+      "Address": "Olide Coffee, Jalan Bukit Pakar Utara, Ciburial, Bandug, Jawa Barat, Indonesia",
       "PackageName": "White Wedding",
       "Price": "570000000",
       "Pax": "100",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../assets/weddings/wedding-2.jpg"
+      "UrlPhoto": "https://media2.insideweddings.com/images/33e79d8ce83ff7f8bc59f9803d762800.original.jpg"
     },
     {
       "package_id": 3,
       "Organizer_ID": 2,
+      "Wo_Name": "Royal Wedding",
+      "City": "Bandung",
+      "Address": "Olide Coffee, Jalan Bukit Pakar Utara, Ciburial, Bandug, Jawa Barat, Indonesia",
       "PackageName": "Mevvah Plus",
       "Price": "300000000",
       "Pax": "100",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../assets/weddings/wedding-3.jpg"
+      "UrlPhoto": "https://i.pinimg.com/736x/47/07/fc/4707fcbdad07d95f9a4f4d769264bda5.jpg"
     },
     {
       "package_id": 4,
       "Organizer_ID": 3,
+      "Wo_Name": "History Wedding",
+      "City": "Jakarta",
+      "Address": "History Hotel, Jalan Bukit Pakar Utara, Jayabaya, Jakarta, Jawa Barat, Indonesia",
       "PackageName": "Garden Wedding",
       "Price": "370000000",
       "Pax": "50",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../assets/weddings/wedding-4.jpeg"
+      "UrlPhoto": "https://1hq6f244nzqssy4d8fp6y7re-wpengine.netdna-ssl.com/wp-content/uploads/2019/04/elegant-wedding-enchanted-garden-wedding-filled-with-romance10.jpg"
     },
     {
       "package_id": 5,
       "Organizer_ID": 3,
-      "PackageName": "Islami",
+      "Wo_Name": "History Wedding",
+      "City": "Jakarta",
+      "Address": "History Hotel, Jalan Bukit Pakar Utara, Jayabaya, Jakarta, Jawa Barat, Indonesia",
+      "PackageName": "Night",
       "Price": "375000000",
       "Pax": "1000",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../assets/weddings/wedding-5.jpg"
+      "UrlPhoto": "https://imagesawe.s3.amazonaws.com/styles/max750/s3/articles/2020/09/gold_wedding_thee.jpg?itok=Gz5kewcW"
     },
     {
       "package_id": 6,
       "Organizer_ID": 3,
+      "Wo_Name": "History Wedding",
+      "City": "Jakarta",
+      "Address": "History Hotel, Jalan Bukit Pakar Utara, Jayabaya, Jakarta, Jawa Barat, Indonesia",
       "PackageName": "Max",
       "Price": "270000000",
       "Pax": "40",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../assets/weddings/wedding-6.jpg"
+      "UrlPhoto": "https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-GD5o4PWIb.webp"
     },
     {
       "package_id": 7,
       "Organizer_ID": 4,
+      "Wo_Name": "NEO Wedding",
+      "City": "Bali",
+      "Address": "Neo Hotel, Jalan Bukit Pakar Utara 12, Jagakarsa, Bali, Indonesia",
       "PackageName": "Olide Venue",
       "Price": "10000000",
       "Pax": "100",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../assets/weddings/wedding-7.jpg"
+      "UrlPhoto": "https://jenningstrace.com/wp-content/uploads/2021/05/classic-wedding-theme-ideas.jpg"
     },
     {
       "package_id": 8,
       "Organizer_ID": 4,
+      "Wo_Name": "NEO Wedding",
+      "City": "Bali",
+      "Address": "Neo Hotel, Jalan Bukit Pakar Utara 12, Jagakarsa, Bali, Indonesia",
       "PackageName": "Arians Weddings",
       "Price": "355000000",
       "Pax": "100",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../assets/weddings/wedding-8.jpg"
+      "UrlPhoto": "https://www.tastefulspace.com/wp-content/uploads/2019/10/10-Top-Wedding-Themes-Right-Now.jpeg"
     },
     {
       "package_id": 9,
       "Organizer_ID": 5,
+      "Wo_Name": "My Wedding",
+      "City": "Jakarta",
+      "Address": "Nihaosu, Jalan Mt.Haryono, Jakarta, Indonesia",
       "PackageName": "Chinese Theme Wedding",
       "Price": "255000000",
       "Pax": "100",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
-      "UrlPhoto": "../../assets/weddings/wedding-9.jpg"
+      "UrlPhoto": "https://i.pinimg.com/originals/c5/10/16/c510161d7a8fbf791e432d9c4838acb2.jpg"
     }
   ]
 }

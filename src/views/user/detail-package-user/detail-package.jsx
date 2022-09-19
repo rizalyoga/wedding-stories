@@ -31,15 +31,18 @@ const DetailPackage = () => {
 
   const [date, setDate] = useState(null);
   const [additional, setAdditional] = useState("");
-  const [totalPax, setTotalPax] = useState(detailPackage ? detailPackage.Pax : null);
-  // useEffect(() => {
-  //   console.log(detailPackage);
-  // }, [detailPackage]);
+  const [totalPax, setTotalPax] = useState(
+    detailPackage ? detailPackage.Pax : null
+  );
 
   /* ----------------------------- RUPIAH CONVERT ----------------------------- */
 
   const formatRupiah = (money) => {
-    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(money);
   };
 
   /* --------------------------------- LOADING -------------------------------- */
@@ -79,12 +82,15 @@ const DetailPackage = () => {
     } else {
       let dateString = moment(date).format("YYYY-MM-DD");
       let idPackage = parseInt(id);
-      // console.log(dateString); // Output: 2020-07-21
-      // console.log(date);
-      // console.log(additional);
-      // console.log(pax);
-      // console.log(id);
-      dispatch(allStore.postOrder({ package_id: idPackage, date: dateString, additional: additional, Total_pax: pax }));
+
+      dispatch(
+        allStore.postOrder({
+          package_id: idPackage,
+          date: dateString,
+          additional: additional,
+          Total_pax: pax,
+        })
+      );
 
       setTotalPax(detailPackage.Pax);
       setDate(null);
@@ -92,15 +98,17 @@ const DetailPackage = () => {
     }
   };
 
-  /* --------------------------- TEXT-AREA AUTO GROW -------------------------- */
-
+  console.log(detailPackage);
   /* ---------------------------- // PAGE NOT FOUN ---------------------------- */
 
   if (!detailPackage) {
     return (
       <>
         <NavUser />
-        <h1 className="text-center" style={{ marginTop: "25%", height: "50vh", color: "#bdbdbd" }}>
+        <h1
+          className="text-center"
+          style={{ marginTop: "25%", height: "50vh", color: "#bdbdbd" }}
+        >
           <i className="bi bi-emoji-frown"> </i>
           Package Not Found
         </h1>
@@ -112,39 +120,51 @@ const DetailPackage = () => {
         <NavUser />
         <div className="container">
           <div className="desc-wo">
-            <h3 className="fw-bold" style={{ cursor: "pointer" }} id="wo-name" onClick={() => goToDetailWo(detailPackage.Organizer_ID)}>
-              {detailPackage.Wo_Name}
+            <h3
+              className="fw-bold"
+              style={{ cursor: "pointer" }}
+              id="wo-name"
+              onClick={() => goToDetailWo(detailPackage[0].Organizer_ID)}
+            >
+              {detailPackage[0].Wo_Name}
             </h3>
             <div className="content-address d-flex mb-1">
-              <h6 className="me-1">{detailPackage.City}, </h6>
-              <h6>{detailPackage.Address}</h6>
+              <h6 className="me-1">{detailPackage[0].City}, </h6>
+              <h6>{detailPackage[0].Address}</h6>
             </div>
           </div>
           <hr />
           <div className="row-foto">
             <div className="image-package">
-              <img src={detailPackage.UrlPhoto} alt="foto-paket" />
+              <img src={detailPackage[0].UrlPhoto} alt="foto-paket" />
             </div>
           </div>
           <div className="name-package">
-            <h4 className="fw-bold">{detailPackage.PackageName}</h4>
+            <h4 className="fw-bold">{detailPackage[0].PackageName}</h4>
             <h5 className="my-3">Detail Package</h5>
           </div>
           <div className="row-content-detail">
             <div className="col-detail">
-              <p>{detailPackage.PackageDesc}</p>
+              <p>{detailPackage[0].PackageDesc}</p>
             </div>
             <div className="col-card-price">
               <div className="content-pesan">
                 <div className="harga">
                   <p>Harga</p>
-                  <h6 className="fw-bold">{formatRupiah(detailPackage.Price) + ",00"} </h6>
+                  <h6 className="fw-bold">
+                    {formatRupiah(detailPackage[0].Price) + ",00"}{" "}
+                  </h6>
                 </div>
                 <hr />
                 <div className="form-pax">
                   <div className="min-pax">
                     <p className="text-center desc-pax">Min Pax</p>
-                    <input className="text-center" disabled="disable" value={detailPackage.Pax} type="text" />
+                    <input
+                      className="text-center"
+                      disabled="disable"
+                      value={detailPackage[0].Pax}
+                      type="text"
+                    />
                   </div>
                   <div className="custom-pax">
                     <p className="text-center desc-pax">Custom pax</p>
@@ -153,9 +173,9 @@ const DetailPackage = () => {
                       autoComplete="off"
                       id="custom-pax"
                       type="number"
-                      placeholder={detailPackage.Pax}
+                      placeholder={detailPackage[0].Pax}
                       value={totalPax}
-                      min={detailPackage.Pax}
+                      min={detailPackage[0].Pax}
                       onChange={(event) => setTotalPax(event.target.value)}
                       required
                     />
@@ -163,7 +183,9 @@ const DetailPackage = () => {
                 </div>
                 <div className="content-order">
                   <div className="calender">
-                    <p className="text-center desc-pax date-title">Date Reservation</p>
+                    <p className="text-center desc-pax date-title">
+                      Date Reservation
+                    </p>
                     <div className="date-picker d-flex">
                       <DatePicker
                         className="date-order mt-3 text-center"
@@ -179,7 +201,9 @@ const DetailPackage = () => {
                       <i className="bi bi-calendar2-week logo-calender"></i>
                     </div>
                   </div>
-                  <p className="text-center desc-pax date-title">Your Additional</p>
+                  <p className="text-center desc-pax date-title">
+                    Your Additional
+                  </p>
                   <textarea
                     className="text-area additional mt-3"
                     name="additional"
@@ -194,7 +218,11 @@ const DetailPackage = () => {
 
                 <hr />
                 <div className="btn-pesan">
-                  <Button className="w-100" id="order-button" onClick={(event) => handleSubmit(event)}>
+                  <Button
+                    className="w-100"
+                    id="order-button"
+                    onClick={(event) => handleSubmit(event)}
+                  >
                     Order
                   </Button>
                 </div>
