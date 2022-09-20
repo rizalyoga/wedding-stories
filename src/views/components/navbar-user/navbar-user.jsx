@@ -28,20 +28,19 @@ const NavUser = () => {
       swal("Please Input Keyword", {
         buttons: false,
         icon: "warning",
-        timer: 500,
+        timer: 1000,
       });
     } else {
-      console.log(newTerm);
       dispatch(allStore.getSearchPackage(newTerm));
       navigate("/search/package");
     }
   };
 
-  if (sessionStorage.token && sessionStorage.status == "user") {
+  if (sessionStorage.token && sessionStorage.status === "user") {
     return <NavbarLoginUser />;
-  } else if (sessionStorage.token && sessionStorage.status == "organizer") {
+  } else if (sessionStorage.token && sessionStorage.status === "organizer") {
     return <NavbarLoginWo />;
-  } else if (sessionStorage.status == "admin") {
+  } else if (sessionStorage.status === "admin") {
     return <NavbarAdmin />;
   } else {
     return (
@@ -63,7 +62,6 @@ const NavUser = () => {
                 autoComplete="off"
                 id="search-form-bef-login"
                 className="form-control me-2"
-                type="search"
                 placeholder="Search"
                 aria-label="Search"
                 value={term}
@@ -90,7 +88,6 @@ const NavUser = () => {
               />
               <a
                 className="sign-in"
-                href="#"
                 id="signIn-button-user"
                 onClick={() => setModalLoginShow(true)}
               >
@@ -98,7 +95,6 @@ const NavUser = () => {
               </a>
               <a
                 className="sign-up"
-                href="#"
                 id="signUp-button-user"
                 onClick={() => navigate("/user/register")}
               >

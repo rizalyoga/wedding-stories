@@ -21,8 +21,6 @@ const DetailPackage = () => {
   const loading = useSelector(({ loading }) => loading);
   const { id } = useParams();
 
-  // const [modalLoginShow] = useState(true);
-
   /* --------------------------- GET DETAIL PACKAGE --------------------------- */
 
   useEffect(() => {
@@ -68,10 +66,10 @@ const DetailPackage = () => {
     event.preventDefault();
     const pax = parseInt(totalPax);
     //check total pax
-    if (!localStorage.token) {
+    if (!sessionStorage.token) {
       // <ModalLogin show={modalLoginShow} />;
       swal("Please Login First", { icon: "info" });
-    } else if (localStorage.status == "organizer") {
+    } else if (sessionStorage.status === "organizer") {
       swal("Please Sign In as User", { icon: "info" });
     } else if (pax < detailPackage.Pax) {
       swal("Your Custom-Pax under minimum", { icon: "warning" });
@@ -98,7 +96,6 @@ const DetailPackage = () => {
     }
   };
 
-  console.log(detailPackage);
   /* ---------------------------- // PAGE NOT FOUN ---------------------------- */
 
   if (!detailPackage) {
@@ -124,35 +121,35 @@ const DetailPackage = () => {
               className="fw-bold"
               style={{ cursor: "pointer" }}
               id="wo-name"
-              onClick={() => goToDetailWo(detailPackage[0].Organizer_ID)}
+              onClick={() => goToDetailWo(detailPackage[0]?.Organizer_ID)}
             >
-              {detailPackage[0].Wo_Name}
+              {detailPackage[0]?.Wo_Name}
             </h3>
             <div className="content-address d-flex mb-1">
-              <h6 className="me-1">{detailPackage[0].City}, </h6>
-              <h6>{detailPackage[0].Address}</h6>
+              <h6 className="me-1">{detailPackage[0]?.City}, </h6>
+              <h6>{detailPackage[0]?.Address}</h6>
             </div>
           </div>
           <hr />
           <div className="row-foto">
-            <div className="image-package">
-              <img src={detailPackage[0].UrlPhoto} alt="foto-paket" />
+            <div className="image-package mt-4">
+              <img src={detailPackage[0]?.UrlPhoto} alt="foto-paket" />
             </div>
           </div>
           <div className="name-package">
-            <h4 className="fw-bold">{detailPackage[0].PackageName}</h4>
+            <h4 className="fw-bold">{detailPackage[0]?.PackageName}</h4>
             <h5 className="my-3">Detail Package</h5>
           </div>
           <div className="row-content-detail">
             <div className="col-detail">
-              <p>{detailPackage[0].PackageDesc}</p>
+              <p>{detailPackage[0]?.PackageDesc}</p>
             </div>
             <div className="col-card-price">
               <div className="content-pesan">
                 <div className="harga">
-                  <p>Harga</p>
-                  <h6 className="fw-bold">
-                    {formatRupiah(detailPackage[0].Price) + ",00"}{" "}
+                  <p className="pb-1">Price</p>
+                  <h6 className="fw-bold ">
+                    {formatRupiah(detailPackage[0]?.Price) + ",00"}{" "}
                   </h6>
                 </div>
                 <hr />
@@ -162,7 +159,7 @@ const DetailPackage = () => {
                     <input
                       className="text-center"
                       disabled="disable"
-                      value={detailPackage[0].Pax}
+                      value={detailPackage[0]?.Pax}
                       type="text"
                     />
                   </div>
@@ -173,9 +170,9 @@ const DetailPackage = () => {
                       autoComplete="off"
                       id="custom-pax"
                       type="number"
-                      placeholder={detailPackage[0].Pax}
+                      placeholder={detailPackage[0]?.Pax}
                       value={totalPax}
-                      min={detailPackage[0].Pax}
+                      min={detailPackage[0]?.Pax}
                       onChange={(event) => setTotalPax(event.target.value)}
                       required
                     />

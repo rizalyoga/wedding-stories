@@ -1,0 +1,66 @@
+{
+  "data": [
+    {
+      "Organizer_ID": 1,
+      "WoName": "Naraya Wedding",
+      "email": "naraya.wedding@naraya.id",
+      "PhoneNumber": "082189767812",
+      "weburl": "www.naraya_wedding.com",
+      "about": "Kami mengerti bahwa pernikahan anda adalah moment paling berharga sekali seumur hidup. Oleh karena it kami menyiapkannya dengan sebaik baiknya sehingga semua prosesi acara dapat berjalan dengan sukses dan lancar. Dimulai dari perencanaan, meeting rutin hngga membantu mengkoordinasi dengan semua vendor yang terlibat sehingga semua dapat berjalan lancar dan sukses. Kami akan membantu semaksimal mungkin sesuai dengan harapan kedua mempelai beserta keluarga.",
+      "city": "Jakarta",
+      "address": "Olide Coffee, Jalan Bukit Pakar Utara, Ciburial, Jakarta, Jawa Barat, Indonesia",
+      "logo": "https://weddingstories-space.web.app/static/media/virus-user.ae6d585c.png",
+      "status": true
+    },
+    {
+      "Organizer_ID": 2,
+      "WoName": "Royal Wedding",
+      "email": "royal.wedding@royal.id",
+      "PhoneNumber": "088289867812",
+      "weburl": "www.royal_wedding.com",
+      "about": "Kami mengerti bahwa pernikahan anda adalah moment paling berharga sekali seumur hidup. Oleh karena it kami menyiapkannya dengan sebaik baiknya sehingga semua prosesi acara dapat berjalan dengan sukses dan lancar. Dimulai dari perencanaan, meeting rutin hngga membantu mengkoordinasi dengan semua vendor yang terlibat sehingga semua dapat berjalan lancar dan sukses. Kami akan membantu semaksimal mungkin sesuai dengan harapan kedua mempelai beserta keluarga.",
+      "city": "Bandung",
+      "address": "Olide Coffee, Jalan Bukit Pakar Utara, Ciburial, Bandug, Jawa Barat, Indonesia",
+      "logo": "https://my-wedding-day.vercel.app/static/media/virus.ec6a778f.png",
+      "status": true
+    },
+    {
+      "Organizer_ID": 3,
+      "WoName": "History Wedding",
+      "email": "history.wedding@history.id",
+      "PhoneNumber": "088289868111",
+      "weburl": "www.history_wedding.com",
+      "about": "Kami mengerti bahwa pernikahan anda adalah moment paling berharga sekali seumur hidup. Oleh karena it kami menyiapkannya dengan sebaik baiknya sehingga semua prosesi acara dapat berjalan dengan sukses dan lancar. Dimulai dari perencanaan, meeting rutin hngga membantu mengkoordinasi dengan semua vendor yang terlibat sehingga semua dapat berjalan lancar dan sukses. Kami akan membantu semaksimal mungkin sesuai dengan harapan kedua mempelai beserta keluarga.",
+      "city": "Jakarta",
+      "address": "History Hotel, Jalan Bukit Pakar Utara, Jayabaya, Jakarta, Jawa Barat, Indonesia",
+      "logo": "https://weddingbaligo.info/wp-content/uploads/2022/08/icon1-1.png",
+      "status": true
+    },
+    {
+      "Organizer_ID": 4,
+      "WoName": "NEO Wedding",
+      "email": "neo.wedding@neo.id",
+      "PhoneNumber": "082381068110",
+      "weburl": "www.neo_wedding.com",
+      "about": "Kami mengerti bahwa pernikahan anda adalah moment paling berharga sekali seumur hidup. Oleh karena it kami menyiapkannya dengan sebaik baiknya sehingga semua prosesi acara dapat berjalan dengan sukses dan lancar. Dimulai dari perencanaan, meeting rutin hngga membantu mengkoordinasi dengan semua vendor yang terlibat sehingga semua dapat berjalan lancar dan sukses. Kami akan membantu semaksimal mungkin sesuai dengan harapan kedua mempelai beserta keluarga.",
+      "city": "Bali",
+      "address": "Neo Hotel, Jalan Bukit Pakar Utara 12, Jagakarsa, Bali, Indonesia",
+      "logo": "https://my-wedding-day.vercel.app/static/media/virus.ec6a778f.png",
+      "status": true
+    },
+    {
+      "Organizer_ID": 5,
+      "WoName": "My Wedding",
+      "email": "my-wedding@mail.id",
+      "PhoneNumber": "082381158125",
+      "weburl": "www.my-wedding.com",
+      "about": "Kami mengerti bahwa pernikahan anda adalah moment paling berharga sekali seumur hidup. Oleh karena it kami menyiapkannya dengan sebaik baiknya sehingga semua prosesi acara dapat berjalan dengan sukses dan lancar. Dimulai dari perencanaan, meeting rutin hngga membantu mengkoordinasi dengan semua vendor yang terlibat sehingga semua dapat berjalan lancar dan sukses. Kami akan membantu semaksimal mungkin sesuai dengan harapan kedua mempelai beserta keluarga.",
+      "city": "Jakarta",
+      "address": "Nihaosu, Jalan Mt.Haryono, Jakarta, Indonesia",
+      "logo": "https://my-wedding-day.vercel.app/static/media/virus.ec6a778f.png",
+      "status": true
+    }
+  ],
+  "message": "success get user",
+  "status": "success"
+}

@@ -197,7 +197,7 @@ const ProfileUser = () => {
                     <Form.Control
                       id="password"
                       style={{ marginLeft: "-10px" }}
-                      id="password-profile-user"
+                      // id="password-profile-user"
                       disabled={disabled}
                       placeholder="password"
                       type="password"

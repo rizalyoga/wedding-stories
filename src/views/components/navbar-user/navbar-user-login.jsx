@@ -23,7 +23,7 @@ const NavLoginUser = () => {
     navigate("/");
   };
 
-  const username = sessionStorage.nama;
+  const username = sessionStorage.nama.split(" ");
 
   const [term, setTerm] = useState("");
 
@@ -35,7 +35,7 @@ const NavLoginUser = () => {
       swal("Please Input Keyword", {
         buttons: false,
         icon: "warning",
-        timer: 500,
+        timer: 1000,
       });
     } else {
       console.log(newTerm);
@@ -65,7 +65,6 @@ const NavLoginUser = () => {
               id="search-form-bef-login"
               style={{ borderRadius: "20px" }}
               className="form-control me-2"
-              type="search"
               placeholder="Search"
               aria-label="Search"
               autoComplete="off"
@@ -93,8 +92,8 @@ const NavLoginUser = () => {
                 className="bi bi-person-circle"
                 style={{ fontSize: 25, color: "#5C7893" }}
               >
-                <a style={{ fontSize: "15px" }} className="name">
-                  {username}
+                <a style={{ fontSize: "15px" }} href="https" className="name">
+                  {`  ${username[0]}`}
                 </a>
               </i>
             }

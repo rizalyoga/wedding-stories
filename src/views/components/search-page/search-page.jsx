@@ -23,7 +23,11 @@ const Home = () => {
   // }, [searchPackage]);
 
   const formatRupiah = (money) => {
-    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(money);
   };
 
   if (loading) {
@@ -43,7 +47,10 @@ const Home = () => {
     return (
       <>
         <NavUser />
-        <h1 className="text-center" style={{ paddingTop: "20%", height: "80vh", color: "#bdbdbd" }}>
+        <h1
+          className="text-center"
+          style={{ paddingTop: "20%", height: "80vh", color: "#bdbdbd" }}
+        >
           <i className="bi bi-emoji-frown"> </i>
           Package Not Found
         </h1>
@@ -55,20 +62,42 @@ const Home = () => {
         <NavUser />
         {/* <NavWo /> */}
         {/* <NavLoginUser /> */}
-        <div className="list-wo container-list-wo" style={{ paddingBottom: "15%" }}>
+        <div
+          className="list-wo container-list-wo"
+          style={{ paddingBottom: "15%" }}
+        >
           <div className="container">
             <h2 className="fw-bold">Wedding Planner di Indonesia</h2>
             <div className="row-card" style={{ paddingTop: "6%" }}>
               {searchPackage.map((el, index) => (
-                <div className="card-wo my-2 " id="card-package-landing-page" onClick={() => goToDetail(el.ID)} key={index}>
+                <div
+                  className="card-wo my-2 "
+                  id="card-package-landing-page"
+                  onClick={() => goToDetail(el.package_id)}
+                  key={index}
+                >
                   <div className="images">
-                    <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
+                    <img
+                      style={{ borderRadius: "10px" }}
+                      src={el.UrlPhoto}
+                      alt="product"
+                    />
                   </div>
-                  <div className="name-wo fw-bold mt-1" id="name-wo" style={{ overflow: "hidden", textOverflow: "ellipsis", height: "25px" }}>
+                  <div
+                    className="name-wo fw-bold mt-1"
+                    id="name-wo"
+                    style={{
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      height: "25px",
+                    }}
+                  >
                     {el.PackageName}
                   </div>
                   <div className="desc-packages d-flex justify-content-between">
-                    <div className="price">{formatRupiah(el.Price) + ",00"}</div>
+                    <div className="price">
+                      {formatRupiah(el.Price) + ",00"}
+                    </div>
                     <div className="rate" style={{ color: "#5C7893" }}>
                       4.5
                     </div>

@@ -1,7 +1,5 @@
 import "../../weddingOrganizer/profile-wo/profile-wo.css";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
-// import LogoWo from "../../../assets/covid.jpg";
-import logoWo from "../../../assets/unknown.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -21,20 +19,12 @@ const ProfileWO = () => {
     dispatch(allStore.getDetailWo(id));
   }, [dispatch, id]);
 
-  useEffect(() => {
-    console.log(detailWo);
-  }, [detailWo]);
-
   // GET ALL PACKAGE WO
   const allPackage = useSelector(({ getAllPackage }) => getAllPackage);
 
   useEffect(() => {
     dispatch(allStore.getAllPackage());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   console.log(allPackage);
-  // }, [allPackage]);
 
   //LOADING
   if (loading) {
@@ -54,7 +44,11 @@ const ProfileWO = () => {
 
   //CONVER RUPIAH
   const formatRupiah = (money) => {
-    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(money);
   };
 
   return (
@@ -64,64 +58,94 @@ const ProfileWO = () => {
         <div className="container">
           <div className="content-header">
             <div className="image-logo">
-              <img src={detailWo.logo == "" ? logoWo : detailWo.logo} alt="logo-wo" />
+              <img src={detailWo[0]?.logo} alt="logo-wo" />
             </div>
             <div className="content-wo">
-              <h2 className="fw-bold">{detailWo.woname}</h2>
+              <h2 className="fw-bold">{detailWo[0]?.WoName}</h2>
               <div className="content-address d-flex mb-1">
                 <i className="bi bi-geo-alt me-1"></i>
                 <div className="address d-flex">
-                  <h6 className="me-1">{detailWo.city},</h6>
-                  <h6>{detailWo.address}</h6>
+                  <h6 className="me-1">{detailWo[0]?.city},</h6>
+                  <h6>{detailWo[0]?.address}</h6>
                 </div>
               </div>
               <div className="contact d-flex">
                 <div className="phone d-flex">
-                  <i style={{ marginTop: "-2px", color: "#2CB040" }} className="bi bi-whatsapp me-1 mb-2"></i>
+                  <i
+                    style={{ marginTop: "-2px", color: "#2CB040" }}
+                    className="bi bi-whatsapp me-1 mb-2"
+                  ></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
-                    {detailWo.phonenumber}
+                    {detailWo[0]?.PhoneNumber}
                   </h6>
                 </div>
                 <div className="mail d-flex">
-                  <i style={{ marginTop: "-2px", color: "#E34133" }} className="bi bi-envelope me-1"></i>
+                  <i
+                    style={{ marginTop: "-2px", color: "#E34133" }}
+                    className="bi bi-envelope me-1"
+                  ></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
-                    {detailWo.email}
+                    {detailWo[0]?.email}
                   </h6>
                 </div>
                 <div className="website d-flex">
-                  <i style={{ marginTop: "-2px", color: "#5C7893" }} className="bi bi-globe2 me-2"></i>
+                  <i
+                    style={{ marginTop: "-2px", color: "#5C7893" }}
+                    className="bi bi-globe2 me-2"
+                  ></i>
                   <h6 className="me-2" style={{ color: "#606060" }}>
-                    {detailWo.weburl == "" ? "-" : detailWo.weburl}
+                    {detailWo[0]?.weburl === "" ? "-" : detailWo[0]?.weburl}
                   </h6>
                 </div>
               </div>
               <div className="status">
-                <h6 className="text-center">{detailWo.status}</h6>
+                <h6 className="text-center">
+                  {detailWo[0]?.status ? "Active" : "Not Active"}
+                </h6>
               </div>
             </div>
           </div>
-          <hr />
+          <hr className="mt-5" />
           <div className="desc">
             <h5 className="fw-bold">Description Wedding Organizer</h5>
             <hr />
-            <p>{detailWo.about == "" ? "No Description" : detailWo.about}</p>
+            <p>{detailWo[0] === "" ? "No Description" : detailWo[0]?.about}</p>
             <hr />
             <h5 className="fw-bold">List Packages</h5>
             <div className="list-packages mt-5">
-              {allPackage.map((el, index) => {
+              {allPackage.map((el) => {
                 if (el.Organizer_ID !== idInt) {
-                  return <>{/* <h1>salah masuk BOS!!!</h1> */}</>;
+                  return <></>;
                 } else if (el.Organizer_ID === idInt) {
                   return (
-                    <div className="card-wo my-2 " id="card-package-wo" onClick={() => goToDetail(el.ID)} key={index}>
+                    <div
+                      className="card-wo my-2 "
+                      id="card-package-wo"
+                      onClick={() => goToDetail(el.Organizer_ID)}
+                      key={el.package_id}
+                    >
                       <div className="images">
-                        <img style={{ borderRadius: "10px" }} src={el.UrlPhoto} alt="product" />
+                        <img
+                          style={{ borderRadius: "10px" }}
+                          src={el.UrlPhoto}
+                          alt="product"
+                        />
                       </div>
-                      <div className="name-wo fw-bold mt-1" id="name-wo" style={{ overflow: "hidden", textOverflow: "ellipsis", height: "25px" }}>
+                      <div
+                        className="name-wo fw-bold mt-1"
+                        id="name-wo"
+                        style={{
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          height: "25px",
+                        }}
+                      >
                         {el.PackageName}
                       </div>
                       <div className="desc-packages d-flex justify-content-between">
-                        <div className="price">{formatRupiah(el.Price) + ",00"}</div>
+                        <div className="price">
+                          {formatRupiah(el.Price) + ",00"}
+                        </div>
                         {/* <div className="rate" style={{ color: "#5C7893" }}>
                           4.5
                         </div> */}

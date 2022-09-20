@@ -51,7 +51,7 @@ const Home = () => {
       <Reason />
       <div className="list-wo container-list-wo">
         <div className="container">
-          <h2 className="fw-bold">Wedding Planner in Indonesia</h2>
+          <h2 className="fw-bold">Wedding Packages in Indonesia</h2>
           <div className="row-card my-5">
             {!allPackage ? (
               <></>

@@ -1,4 +1,4 @@
-const initialState = {};
+const initialState = [];
 
 const getDetailWo = (state = initialState, action) => {
   if (action.type === "SET_DETAIL_WO") {

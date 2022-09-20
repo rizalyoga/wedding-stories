@@ -22,7 +22,7 @@
 }
 
 .images img {
-  max-width: 100%;
+  /* max-width: 100%; */
   width: 100%;
   height: 100%;
   position: relative;
@@ -31,6 +31,11 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
   object-fit: cover;
+}
+
+.price {
+  color: #777;
+  font-size: 0.9rem;
 }
 
 .images:hover {

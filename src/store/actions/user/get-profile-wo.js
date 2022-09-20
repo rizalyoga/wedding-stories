@@ -1,20 +1,27 @@
 import axios from "axios";
 import allStore from "../index.js";
 import swal from "sweetalert";
+import profile_wo from "../../../data/list-wo/wedding_organizer.json";
 
 export const getDetailWo = (id) => {
   const online = window.navigator.onLine;
-  const token = localStorage.getItem("token");
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
+
+  // const token = localStorage.getItem("token");
+  // const config = {
+  //   headers: { Authorization: `Bearer ${token}` },
+  // };
+
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
     axios
-      .get(`https://weddingstories.space/organizer/profile/${id}`, config)
+      // .get(`https://weddingstories.space/organizer/profile/${id}`, config)
+      .get(`https://jsonplaceholder.typicode.com/users/1`)
       .then((data) => {
-        console.log(data.data.data);
-        dispatch(setDetailWo(data.data.data));
+        const detail_wo = profile_wo.data.filter(
+          (el) => el.Organizer_ID === Number(id)
+        );
+
+        dispatch(setDetailWo(detail_wo));
       })
       .catch((err) => {
         if (online) {
