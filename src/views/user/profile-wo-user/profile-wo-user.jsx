@@ -1,9 +1,13 @@
 import "../../weddingOrganizer/profile-wo/profile-wo.css";
-import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+
+// Store
 import allStore from "../../../store/actions/index.js";
+
+// Component
+import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import { Spinner } from "react-bootstrap";
 
 const ProfileWO = () => {
@@ -14,7 +18,7 @@ const ProfileWO = () => {
   const { id } = useParams();
   const loading = useSelector(({ loading }) => loading);
 
-  //GET PROFILE WO
+  // GET PROFILE WO
   useEffect(() => {
     dispatch(allStore.getDetailWo(id));
   }, [dispatch, id]);
@@ -26,7 +30,20 @@ const ProfileWO = () => {
     dispatch(allStore.getAllPackage());
   }, [dispatch]);
 
-  //LOADING
+  const goToDetail = (id) => {
+    navigate(`/detail/package/${id}`);
+  };
+
+  // FORMAT RUPIAH
+  const formatRupiah = (money) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(money);
+  };
+
+  // LOADING COMPONENT
   if (loading) {
     return (
       <>
@@ -35,21 +52,6 @@ const ProfileWO = () => {
       </>
     );
   }
-
-  const idInt = parseInt(id);
-
-  const goToDetail = (id) => {
-    navigate(`/detail/package/${id}`);
-  };
-
-  //CONVER RUPIAH
-  const formatRupiah = (money) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      minimumFractionDigits: 0,
-    }).format(money);
-  };
 
   return (
     <div>
@@ -84,6 +86,7 @@ const ProfileWO = () => {
                     style={{ marginTop: "-2px", color: "#E34133" }}
                     className="bi bi-envelope me-1"
                   ></i>
+                  key{" "}
                   <h6 className="me-2" style={{ color: "#606060" }}>
                     {detailWo[0]?.email}
                   </h6>
@@ -113,47 +116,45 @@ const ProfileWO = () => {
             <hr />
             <h5 className="fw-bold">List Packages</h5>
             <div className="list-packages mt-5">
-              {allPackage.map((el) => {
-                if (el.Organizer_ID !== idInt) {
-                  return <></>;
-                } else if (el.Organizer_ID === idInt) {
-                  return (
+              {allPackage.map((el) =>
+                el.Organizer_ID !== Number(id) ? (
+                  <></>
+                ) : (
+                  <div
+                    className="card-wo my-2 "
+                    id="card-package-wo"
+                    onClick={() => goToDetail(el.Organizer_ID)}
+                    key={el.package_id}
+                  >
+                    <div className="images">
+                      <img
+                        style={{ borderRadius: "10px" }}
+                        src={el.UrlPhoto}
+                        alt="product"
+                      />
+                    </div>
                     <div
-                      className="card-wo my-2 "
-                      id="card-package-wo"
-                      onClick={() => goToDetail(el.Organizer_ID)}
-                      key={el.package_id}
+                      className="name-wo fw-bold mt-1"
+                      id="name-wo"
+                      style={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        height: "25px",
+                      }}
                     >
-                      <div className="images">
-                        <img
-                          style={{ borderRadius: "10px" }}
-                          src={el.UrlPhoto}
-                          alt="product"
-                        />
+                      {el.PackageName}
+                    </div>
+                    <div className="desc-packages d-flex justify-content-between">
+                      <div className="price">
+                        {formatRupiah(el.Price) + ",00"}
                       </div>
-                      <div
-                        className="name-wo fw-bold mt-1"
-                        id="name-wo"
-                        style={{
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          height: "25px",
-                        }}
-                      >
-                        {el.PackageName}
-                      </div>
-                      <div className="desc-packages d-flex justify-content-between">
-                        <div className="price">
-                          {formatRupiah(el.Price) + ",00"}
-                        </div>
-                        {/* <div className="rate" style={{ color: "#5C7893" }}>
+                      {/* <div className="rate" style={{ color: "#5C7893" }}>
                           4.5
                         </div> */}
-                      </div>
                     </div>
-                  );
-                }
-              })}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>

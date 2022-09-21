@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "react-bootstrap";
 import "./modal-login.css";
 import allStore from "../../../store/actions/index";
-// import NavUser from "../navbar-user/navbar-user.jsx";
 
 const ModalLogin = (props) => {
   const [email, setEmail] = useState("");
@@ -14,28 +13,15 @@ const ModalLogin = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loading = useSelector(({ loading }) => loading);
-  // const route = useSelector(({ route }) => route);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("1.masuk Handle Submit");
     dispatch(allStore.UserLogin({ email, password }));
   };
 
-  // useEffect(() => {
-  //   if (localStorage) {
-  //     navigate(route);
-  //   }
-  // }, [route]);
-
   if (loading) {
-    // console.log("inilagi loading");
     return (
-      // <div className="loading d-flex justify-content-center align-items-center flex-column">
-      //   <Spinner animation="border" />
-      // </div>
       <>
-        {/* <NavUser /> */}
         <div className="loading">
           <Spinner className="spinner" animation="border" />
         </div>
@@ -65,14 +51,10 @@ const ModalLogin = (props) => {
       <Modal.Header closeButton></Modal.Header>
       <div className="form-container sign-in-container rounded">
         <Modal.Body>
-          {/* <h5 className="mb-3 fw-bolder" style={{ textAlign: "center" }}>
-            Masuk
-          </h5> */}
           <Form
             onSubmit={(event) => handleSubmit(event)}
             className="input-login "
           >
-            {/* <Form.Label className="mb-0 label-login">Email</Form.Label> */}
             <input
               type="email"
               id="form-input-email-user"
@@ -83,7 +65,7 @@ const ModalLogin = (props) => {
               onChange={(event) => setEmail(event.target.value)}
               required
             />
-            {/* <Form.Label className="mb-0 label-login">Password</Form.Label> */}
+
             <input
               type="password"
               id="form-input-pass-user"
@@ -113,44 +95,31 @@ const ModalLogin = (props) => {
               sign in
             </Button>
             <p className="pt-4">
-              Don't have an acount ?{" "}
+              Don't have an acount ?
               <a
-                style={{ color: "#fff", cursor: "pointer" }}
                 id="redirect-regis-user-page"
                 onClick={() => navigate("/user/register")}
+                href
               >
-                sign up
+                {`  Sign up`}
               </a>
             </p>
           </Form>
           <hr style={{ color: "white" }} />
-          {/* <h6 className="text-white">Sign up as organizer</h6> */}
+
           <Button
             onClick={() => navigate("/vendor/register")}
             id="redirect-signUp-wo-page"
             size="sm"
-            style={{
-              background: "#84A1BE",
-              borderColor: "#84A1BE",
-              width: "100%",
-              borderRadius: "20px",
-            }}
           >
             Sign up as organizer
           </Button>
           <hr style={{ color: "white" }} />
-          {/* <h6 className="text-white">Sign in as organizer</h6> */}
+
           <Button
             onClick={() => navigate("/vendor/login")}
             id="redirect-signIn-wo-page"
-            size="sm"
-            style={{
-              background: "#84A1BE",
-              borderColor: "#84A1BE",
-              width: "100%",
-              borderRadius: "20px",
-              marginBottom: "10px",
-            }}
+            size="sm mb-4"
           >
             Sign in as organizer
           </Button>

@@ -1,7 +1,3 @@
-/* .Modal {
-  height: 30%;
-} */
-
 .form-container {
   background: #5c7893;
   display: flex;
@@ -45,7 +41,7 @@
   border-radius: 20px !important;
   text-transform: uppercase !important;
   transition: transform 80ms ease-in !important;
-  background-color: wheat;
+  background-color: #7cb1e7;
 }
 
 ::placeholder {
@@ -80,4 +76,30 @@
   -webkit-backdrop-filter: blur(5px);
   transition: 1s all !important;
   transition-property: color !important;
+}
+
+#redirect-signIn-wo-page,
+#redirect-signUp-wo-page {
+  background: #84a1be;
+  border-color: #84a1be;
+  width: 100%;
+  border-radius: 20px;
+}
+
+#redirect-signIn-wo-page {
+  margin-bottom: 10px;
+}
+
+#redirect-signUp-wo-page:hover,
+#redirect-signIn-wo-page:hover {
+  background: #7cb1e7;
+}
+
+#redirect-regis-user-page {
+  color: #fff;
+  cursor: pointer;
+}
+
+#redirect-regis-user-page:hover {
+  font-style: initial;
 }
