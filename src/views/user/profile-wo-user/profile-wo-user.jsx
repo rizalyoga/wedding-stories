@@ -86,7 +86,6 @@ const ProfileWO = () => {
                     style={{ marginTop: "-2px", color: "#E34133" }}
                     className="bi bi-envelope me-1"
                   ></i>
-                  key{" "}
                   <h6 className="me-2" style={{ color: "#606060" }}>
                     {detailWo[0]?.email}
                   </h6>

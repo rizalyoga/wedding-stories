@@ -1,6 +1,15 @@
 import "./history.css";
 import NavUser from "../../components/navbar-user/navbar-user-login.jsx";
-import { Container, Accordion, Row, Col, Button, Spinner, Alert, Table } from "react-bootstrap";
+import {
+  Container,
+  Accordion,
+  Row,
+  Col,
+  Button,
+  Spinner,
+  Alert,
+  Table,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,10 +33,6 @@ const History = () => {
     dispatch(allStore.getHistory());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(listOrder);
-  }, [listOrder]);
-
   /* --------------------------------- LOADING -------------------------------- */
   if (loading) {
     return (
@@ -43,6 +48,8 @@ const History = () => {
   const goToDetail = (id) => {
     navigate(`/detail/package/${id}`);
   };
+
+  console.log(listOrder);
 
   return (
     <>
@@ -73,26 +80,44 @@ const History = () => {
                           <div className="status-orders">
                             <div className="status-order">
                               {el.Status_Order === "waiting" ? (
-                                <h6 className="fw-bold" style={{ color: "orange" }}>
+                                <h6
+                                  className="fw-bold"
+                                  style={{ color: "orange" }}
+                                >
                                   {el.Status_Order}
                                 </h6>
                               ) : el.Status_Order === "accepted" ? (
-                                <h6 className="fw-bold" style={{ color: "green" }}>
+                                <h6
+                                  className="fw-bold"
+                                  style={{ color: "green" }}
+                                >
                                   {el.Status_Order}
                                 </h6>
                               ) : (
-                                <h6 className="fw-bold" style={{ color: "red" }}>
+                                <h6
+                                  className="fw-bold"
+                                  style={{ color: "red" }}
+                                >
                                   {el.Status_Order}
                                 </h6>
                               )}
                             </div>
-                            <div className="ms-2" style={{ width: "30px", marginRight: "30px" }}>
+                            <div
+                              className="ms-2"
+                              style={{ width: "30px", marginRight: "30px" }}
+                            >
                               {el.Status_Payment === "paid" ? (
-                                <h6 className="fw-bold" style={{ color: "green" }}>
+                                <h6
+                                  className="fw-bold"
+                                  style={{ color: "green" }}
+                                >
                                   {el.Status_Payment}
                                 </h6>
                               ) : (
-                                <h6 className="fw-bold" style={{ color: "red" }}>
+                                <h6
+                                  className="fw-bold"
+                                  style={{ color: "red" }}
+                                >
                                   {el.Status_Payment}
                                 </h6>
                               )}
@@ -129,22 +154,28 @@ const History = () => {
                               </tr>
                               <tr>
                                 <td>Date Reservation</td>
-                                <td>{el.Date}</td>
+                                <td>{el.date}</td>
                               </tr>
                               <tr>
                                 <td>Total pax</td>
-                                <td>{el.Total_Pax}</td>
+                                <td>{el.total_pax}</td>
                               </tr>
                               <tr>
                                 <td>Additional</td>
-                                <td>{!el.Additional ? "no additional" : el.Additional}</td>
+                                <td>
+                                  {!el.additional
+                                    ? "no additional"
+                                    : el.additional}
+                                </td>
                               </tr>
                             </tbody>
                           </Table>
                         </Col>
                         <Col md={4} className="col-status">
                           <h7>
-                            <b>Status Order&emsp;&emsp;&ensp;: {el.Status_Order}</b>
+                            <b>
+                              Status Order&emsp;&emsp;&ensp;: {el.Status_Order}
+                            </b>
                           </h7>
                           <br />
                           <h7>
@@ -155,14 +186,26 @@ const History = () => {
 
                         {/* /* ------------------------------- COL BUTTON ------------------------------- */}
                         <Col md={2} sm={12} className="col-button">
-                          <Button id="detail-package-history" style={{ color: "#fff", width: "90%" }} md={12} sm={6} className="m-2 btn-submit" variant="warning" onClick={() => goToDetail(el.Package_ID)}>
+                          <Button
+                            id="detail-package-history"
+                            style={{ color: "#fff", width: "90%" }}
+                            md={12}
+                            sm={6}
+                            className="m-2 btn-submit"
+                            variant="warning"
+                            onClick={() => goToDetail(el.package_id)}
+                          >
                             Detail Package
                           </Button>
-                          {el.Status_Order === "declined" || el.Status_Payment === "paid" ? (
+                          {el.Status_Order === "declined" ||
+                          el.Status_Payment === "paid" ? (
                             <></>
                           ) : el.Status_Order === "waiting" ? (
                             <div>
-                              <Alert variant="warning" className="waiting-alert">
+                              <Alert
+                                variant="warning"
+                                className="waiting-alert"
+                              >
                                 waiting for organizer confirmation
                               </Alert>
                             </div>
@@ -182,7 +225,11 @@ const History = () => {
                               Payment
                             </Button>
                           )}
-                          <ModalPayment show={modalShow} id_order={id_order} onHide={() => setModalShow(false)} />
+                          <ModalPayment
+                            show={modalShow}
+                            id_order={id_order}
+                            onHide={() => setModalShow(false)}
+                          />
                         </Col>
                       </Row>
                     </Accordion.Body>

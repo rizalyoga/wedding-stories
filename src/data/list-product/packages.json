@@ -19,7 +19,7 @@
       "City": "Bandung",
       "Address": "Olide Coffee, Jalan Bukit Pakar Utara, Ciburial, Bandug, Jawa Barat, Indonesia",
       "PackageName": "White Wedding",
-      "Price": "570000000",
+      "Price": "170000000",
       "Pax": "100",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
       "UrlPhoto": "https://media2.insideweddings.com/images/33e79d8ce83ff7f8bc59f9803d762800.original.jpg"
@@ -107,6 +107,18 @@
       "Pax": "100",
       "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
       "UrlPhoto": "https://i.pinimg.com/originals/c5/10/16/c510161d7a8fbf791e432d9c4838acb2.jpg"
+    },
+    {
+      "package_id": 10,
+      "Organizer_ID": 5,
+      "Wo_Name": "My Wedding",
+      "City": "Jakarta",
+      "Address": "Nihaosu, Jalan Mt.Haryono, Jakarta, Indonesia",
+      "PackageName": "Chinese II Wedding",
+      "Price": "240000000",
+      "Pax": "150",
+      "PackageDesc": "Kami menyediakan penyewaan tempat untuk resepsi pernikahan atau event lainnya yang dilengkapi dengan fasilitas yang baik. Cocok untuk tema penikahan outdoor atau garden party, bersyukur banyak dapat respon positif dari mitra kami yang menggelar pernikahannya di sini. Kami juga bekerja sama dengan beberapa wedding planner / WO dan vendor dekorasi yang terpercaya.",
+      "UrlPhoto": "http://www.eventweddings.com.au/assets/images/lvmu4135-1604x1069.jpg"
     }
   ]
 }
