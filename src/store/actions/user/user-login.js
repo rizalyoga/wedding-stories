@@ -6,8 +6,6 @@ export const UserLogin = (payload) => {
   sessionStorage.clear();
   const online = window.navigator.onLine;
 
-  console.log(payload);
-
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
 
@@ -15,7 +13,21 @@ export const UserLogin = (payload) => {
       // .post("https://weddingstories.space/login/users", payload)
       .get("https://jsonplaceholder.typicode.com/users/1/")
       .then((response) => {
-        if (response.data.data !== null) {
+        if (
+          response.data.data !== null &&
+          payload.email === "admin@wedding.com"
+        ) {
+          sessionStorage.setItem("token", Date.now());
+
+          sessionStorage.setItem("status", "admin");
+          sessionStorage.setItem("nama", "admin");
+          sessionStorage.setItem("email", payload.email);
+          swal("Login Success", { icon: "success", buttons: false });
+          dispatch(allStore.setRoute("/"));
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 750);
+        } else {
           sessionStorage.setItem("token", Date.now());
           sessionStorage.setItem("id", response.data.id);
           sessionStorage.setItem("status", "user");

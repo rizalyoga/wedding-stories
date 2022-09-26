@@ -1,21 +1,23 @@
 import axios from "axios";
 import allStore from "../index.js";
 import swal from "sweetalert";
+import lisrOrder from "../../../data/list-order-admin/list-order-admin.json";
 
 export const getAllPayment = () => {
   const online = window.navigator.onLine;
-  const token = localStorage.getItem("token");
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
+  // const token = localStorage.getItem("token");
+  // const config = {
+  //   headers: { Authorization: `Bearer ${token}` },
+  // };
 
   return (dispatch) => {
     dispatch(allStore.setLoading(true));
     axios
-      .get(`https://weddingstories.space/payment/invoice`, config)
+      // .get(`https://weddingstories.space/payment/invoice`, config)
+      .get(`https://jsonplaceholder.typicode.com/users/2/`)
       .then((data) => {
         // console.log(data.data.data);
-        dispatch(setAllPayment(data.data.data));
+        dispatch(setAllPayment(lisrOrder.data));
       })
       .catch((err) => {
         if (online) {

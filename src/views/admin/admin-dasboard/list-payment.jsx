@@ -1,6 +1,14 @@
 import "./list-payment.css";
 import NavUser from "../../components/navbar-user/navbar-user.jsx";
-import { Container, Accordion, Row, Col, Button, Alert, Table } from "react-bootstrap";
+import {
+  Container,
+  Accordion,
+  Row,
+  Col,
+  Button,
+  Alert,
+  Table,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import allStore from "../../../store/actions/index.js";
@@ -17,20 +25,6 @@ const ListPayment = () => {
     dispatch(allStore.getAllPayment());
   }, [dispatch, listPayment]);
 
-  // useEffect(() => {
-  //   console.log(listPayment);
-  //   // listPayment();
-  // }, [listPayment]);
-
-  // if (loading) {
-  //   return (
-  //     <>
-  //       <NavUser />
-  //       <Spinner className="spinner" animation="border" />
-  //     </>
-  //   );
-  // }
-
   const handleChange = (id) => {
     // event.preventDefault();
     swal({
@@ -41,16 +35,19 @@ const ListPayment = () => {
     }).then((willAccept) => {
       if (willAccept) {
         dispatch(allStore.acceptPayment({ reservationid: id }));
-        // console.log(id);
       }
     });
   };
 
   const formatRupiah = (money) => {
-    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(money);
   };
 
-  if (localStorage.token && localStorage.status === "admin") {
+  if (sessionStorage.token && sessionStorage.status === "admin") {
     return (
       <div>
         <NavUser />
@@ -74,14 +71,17 @@ const ListPayment = () => {
                       <Accordion.Header id="detail-history">
                         <Row style={{ width: "100%" }}>
                           <Col className="title">
-                            <h6>{el.Name}</h6>
-                            {el.Status_Payment === "unpaid" ? (
+                            <h6>{el.customer_name}</h6>
+                            {el.status_payment === "unpaid" ? (
                               <h6 className="fw-bold" style={{ color: "red" }}>
-                                {el.Status_Payment}
+                                {el.status_payment}
                               </h6>
                             ) : (
-                              <h6 className="fw-bold" style={{ color: "green" }}>
-                                {el.Status_Payment}
+                              <h6
+                                className="fw-bold"
+                                style={{ color: "green" }}
+                              >
+                                {el.status_payment}
                               </h6>
                             )}
                           </Col>
@@ -99,35 +99,37 @@ const ListPayment = () => {
                               <tbody>
                                 <tr>
                                   <td>Organizer</td>
-                                  <td>: {el.WoName}</td>
+                                  <td>: {el.wo_name}</td>
                                 </tr>
                                 <tr>
                                   <td>User</td>
-                                  <td>: {el.Name}</td>
+                                  <td>: {el.customer_name}</td>
                                 </tr>
                                 <tr>
                                   <td>User Email</td>
-                                  <td>: {el.Email}</td>
+                                  <td>: {el.customer_email}</td>
                                 </tr>
                                 <tr>
                                   <td>Package</td>
-                                  <td>: {el.PackageName}</td>
+                                  <td>: {el.package_name}</td>
                                 </tr>
                                 <tr>
                                   <td>Date Reservation</td>
-                                  <td>: {el.Date}</td>
+                                  <td>: {el.date}</td>
                                 </tr>
                                 <tr>
                                   <td>Total pax</td>
-                                  <td>: {el.Total_Pax}</td>
+                                  <td>: {el.total_pax}</td>
                                 </tr>
                                 <tr>
                                   <td>Price</td>
-                                  <td>: {formatRupiah(el.Price) + ",00"}</td>
+                                  <td>: {formatRupiah(el.price) + ",00"}</td>
                                 </tr>
                                 <tr>
                                   <td>Total Price</td>
-                                  <td>: {formatRupiah(el.Total_Price) + ",00"}</td>
+                                  <td>
+                                    : {formatRupiah(el.total_price) + ",00"}
+                                  </td>
                                 </tr>
                               </tbody>
                             </Table>
@@ -138,17 +140,25 @@ const ListPayment = () => {
                             </h7>
                             <br /> */}
                             <h7>
-                              <b>Status Payment&ensp; : {el.Status_Payment}</b>
+                              <b>Status Payment&ensp; : {el.status_payment}</b>
                             </h7>
                             <br />
                             <div className="image-invoice" id="image-invoice">
-                              <img src={el.UrlPhoto} alt="preview-invoice" />
+                              <img src={el.url_photo} alt="preview-invoice" />
                             </div>
                           </Col>
 
                           {/* /* ------------------------------- COL BUTTON ------------------------------- */}
                           <Col md={2} sm={12} className="col-button">
-                            <Button id="detail-package-history" style={{ color: "#fff", width: "90%" }} md={12} sm={6} className="m-2 btn-submit" variant="success" onClick={(id) => handleChange(el.Reservation_ID)}>
+                            <Button
+                              id="detail-package-history"
+                              style={{ color: "#fff", width: "90%" }}
+                              md={12}
+                              sm={6}
+                              className="m-2 btn-submit"
+                              variant="success"
+                              onClick={(id) => handleChange(el.reservation_id)}
+                            >
                               Accept
                             </Button>
                           </Col>

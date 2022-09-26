@@ -16,7 +16,7 @@ const AdminLogin = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("1.masuk Handle Submit");
+
     dispatch(allStore.UserLogin({ email, password }));
   };
 
@@ -31,17 +31,32 @@ const AdminLogin = () => {
             <img src={logo} alt="logo" />
           </div>
           <Form.Group>
-            <Form.Control id="email-admin" className="p-2 mb-4 b-mid-signup email-admin " type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <Form.Control
+              id="email-admin"
+              className="p-2 mb-4 b-mid-signup email-admin "
+              type="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </Form.Group>
           <Form.Group className=" mb-4">
-            <Form.Control id="password-admin" className="mb-1 p-2 b-top-signup" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <Form.Control
+              id="password-admin"
+              className="mb-1 p-2 b-top-signup"
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </Form.Group>
 
           {/* <button className=" mb-1 p-2 btn-submit" type="submit">
           {loading && <Spinner animation="border" variant="light" />}
           {!loading && <span>Masuk</span>}
         </button> */}
-          <button className=" mb-1 p-2 btn-submit-login text-white" type="submit">
+          <button
+            className=" mb-1 p-2 btn-submit-login text-white"
+            type="submit"
+          >
             Sign In
           </button>
         </Form>

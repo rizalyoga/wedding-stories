@@ -13,7 +13,7 @@ const NavAdmin = () => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     swal("You've Been Logged Out!", {
       icon: "success",
       buttons: false,
@@ -37,7 +37,6 @@ const NavAdmin = () => {
         timer: 1000,
       });
     } else {
-      console.log(newTerm);
       dispatch(allStore.getSearchPackage(newTerm));
       navigate("/search/package");
     }
@@ -64,7 +63,6 @@ const NavAdmin = () => {
               id="search-form-bef-login"
               style={{ borderRadius: "20px" }}
               className="form-control me-2"
-              type="search"
               placeholder="Search"
               aria-label="Search"
               autoComplete="off"
