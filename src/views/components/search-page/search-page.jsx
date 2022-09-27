@@ -17,11 +17,6 @@ const Home = () => {
     // console.log(typeof searchPackage);
   }, [searchPackage]);
 
-  // useEffect(() => {
-  //   console.log(typeof searchPackage, "INI ALL PACKAET");
-  //   console.log(searchPackage, "INI ALL PACKAET");
-  // }, [searchPackage]);
-
   const formatRupiah = (money) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -98,9 +93,9 @@ const Home = () => {
                     <div className="price">
                       {formatRupiah(el.Price) + ",00"}
                     </div>
-                    <div className="rate" style={{ color: "#5C7893" }}>
+                    {/* <div className="rate" style={{ color: "#5C7893" }}>
                       4.5
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}

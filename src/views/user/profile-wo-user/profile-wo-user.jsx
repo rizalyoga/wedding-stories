@@ -122,7 +122,7 @@ const ProfileWO = () => {
                   <div
                     className="card-wo my-2 "
                     id="card-package-wo"
-                    onClick={() => goToDetail(el.Organizer_ID)}
+                    onClick={() => goToDetail(el.package_id)}
                     key={el.package_id}
                   >
                     <div className="images">
