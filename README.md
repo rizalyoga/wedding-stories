@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
 
-## Available Scripts
+# Wedding Stories
 
-In the project directory, you can run:
+<img src="src/assets/virus-2.png" alt="Logo" width="250" height="auto" />
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/feliciakri/cofficed) -->
+<!-- ![Vercel](https://vercelbadge.vercel.app/api/feliciakri/cofficed) -->
+<!-- ![Website](https://img.shields.io/website?url=https%3A%2F%2Fcofficed.tech) -->
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> Wedding Stories is an e-commerce platform that brings together wedding organizers who want to market wedding packages online with couples who want to find wedding packages.
 
-### `npm test`
+## ✨ Demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Here is a working live demo : [Demo](https://weddingstories-space.web.app/)
 
-### `npm run build`
+## ⚙️ Backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Github Repository for the backend](https://github.com/My-Wedding-Day/Wedding-Stories)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Swagger OpenAPI](https://app.swaggerhub.com/apis-docs/Nathannov24/WeddingDay/1.0#/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔮 Features
 
-### `npm run eject`
+#### As Customer
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Register, login & logout account
+- See all list package
+- Search package by package name
+- See details package
+- See details wedding organizer profile
+- Create order for wedding package
+- Change profile customer ( username, email and password )
+- See history order from customer
+- Upload image for proof of payment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### As Wedding Organizer
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Register, login & logout account
+- See all list package
+- See all list package they have
+- Search package by package name
+- See details package
+- See details wedding organizer profile
+- Change wedding organizer profile ( avatar, username, email, website name, whatsapp number and address )
+- See the list of incoming orders
+- Accept or decline the list of incoming orders
+- Create wedding package ( upload image package, create package name, create detail of package and create price of package )
+- Change image, name, price and details of wedding package
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### As Admin
 
-## Learn More
+- Login & logout account
+- See all list package
+- Search package by package name
+- See details Package
+- See details wedding organizer profile
+- View all orders that have been received by wedding organizer in dashboard page
+- See details from incoming orders
+- Change payment status from unpaid to paid
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🧰 Run in locale
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To clone and run this website, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
-### Code Splitting
+```bash
+# Clone this repository
+$ git clone https://github.com/rizalyoga/wedding-stories.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Go into the repository
+$ cd wedding-stories
 
-### Analyzing the Bundle Size
+# Install dependencies
+$ npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Run the app
+$ npm run start
+```
 
-### Making a Progressive Web App
+<!-- ## 🙊 Environment Variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To run this project, you will need to add the following environment variables to your .env file
 
-### Advanced Configuration
+`REACT_APP_API_URL`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+That contains the endpoint for the backend -->
 
-### Deployment
+## ⛏️ Built With
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [React JS](https://reactjs.org/)
+- [Create React App](https://create-react-app.dev/)
+- [React Router](https://reactrouter.com/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- [React-Bootstrap](https://react-bootstrap.github.io/)
+- [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [Axios](https://github.com/axios/axios)
+- [MomentJS](https://momentjs.com/)
+- [Sweetalert](https://sweetalert.js.org/guides/)
+- [React-DatePicker](https://www.npmjs.com/package/react-datepicker)
+- [React Redux](https://react-redux.js.org/)
+- [Redux Thunk](https://www.npmjs.com/package/redux-thunk)
 
-### `npm run build` fails to minify
+## 👤 Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Aida](https://github.com/AidaFna)
+- [Rizalyoga](https://github.com/rizalyoga/)
