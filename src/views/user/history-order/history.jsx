@@ -1,5 +1,6 @@
 import "./history.css";
-import NavUser from "../../components/navbar-user/navbar-user-login.jsx";
+import { useState, useEffect } from "react";
+import NavUser from "../../components/navbar-user/navbar-user.jsx";
 import {
   Container,
   Accordion,
@@ -10,10 +11,8 @@ import {
   Alert,
   Table,
 } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import allStore from "../../../store/actions/index.js";
 import ModalPayment from "./modal-payment.jsx";
 
@@ -48,8 +47,6 @@ const History = () => {
   const goToDetail = (id) => {
     navigate(`/detail/package/${id}`);
   };
-
-  console.log(listOrder);
 
   return (
     <>

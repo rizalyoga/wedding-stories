@@ -47,7 +47,12 @@ const ModalPayment = (props) => {
 
   return (
     <div>
-      <Modal {...props} size="lg" aria-labelledby="example-modal-sizes-title-lg-center" centered>
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="example-modal-sizes-title-lg-center"
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg"></Modal.Title>
         </Modal.Header>
@@ -60,7 +65,17 @@ const ModalPayment = (props) => {
               <img src={bank} alt="logo-bank" />
             </div>
           </div>
-          <div className="body-preview">{file ? <img className="preview-images" src={preview} alt="preview-image" /> : <i class="bi bi-cloud-arrow-up"></i>}</div>
+          <div className="body-preview">
+            {file ? (
+              <img
+                className="preview-images"
+                src={preview}
+                alt="preview-payment"
+              />
+            ) : (
+              <i class="bi bi-cloud-arrow-up"></i>
+            )}
+          </div>
           <Form onSubmit={(event) => handleSubmit(event)}>
             <Form.Control
               type="file"

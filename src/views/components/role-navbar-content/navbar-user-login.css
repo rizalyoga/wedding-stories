@@ -14,47 +14,13 @@
 }
 
 .menu-user {
-  /* padding-right: 10px; */
   overflow: visible;
   color: black;
-  /* z-index: 10; */
 }
 
 .menu-user {
   border: none !important;
   outline: none !important;
-}
-
-.dropdown-toggle {
-  color: black;
-}
-
-.dropdown-toggle::after {
-  display: none;
-}
-
-.dropdown-toggle:focus {
-  outline: none;
-}
-
-.dropdown-menu {
-  margin-left: -0px;
-}
-
-.name {
-  color: #5c7893;
-  font-size: 25px !important;
-  font-style: normal;
-  letter-spacing: -1px;
-}
-
-.name:hover {
-  color: #5c7893;
-}
-
-.search-input {
-  width: 50%;
-  margin-left: 10%;
 }
 
 @media (max-width: 885px) {

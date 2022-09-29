@@ -1,4 +1,5 @@
 /* --------------------------------- NAVBAR --------------------------------- */
+
 .nav-bar {
   top: 0;
   position: fixed;
@@ -8,7 +9,7 @@
   justify-content: center;
   align-items: center;
   background: white;
-  z-index: 999;
+  z-index: 100;
 }
 
 a {
@@ -16,10 +17,14 @@ a {
 }
 
 .logo img {
-  margin-top: -32px;
+  margin-top: -52px;
   width: 100px !important;
   cursor: pointer;
   position: absolute;
+}
+
+.nav-links {
+  margin-top: 1px !important;
 }
 
 .sign-in {
@@ -51,19 +56,16 @@ a {
   border-radius: 5px;
 }
 
-/* .search-input {
-  width: 150%;
-  border-radius: 20px;
-  border: 2px solid;
-  border-color: #5c7893;
-  background: none;
-  color: rgb(71, 71, 71);
-} */
+.name {
+  font-size: 1.5rem !important;
+  padding-left: 4px;
+}
 
 .search-input-user {
   display: flex;
   width: 50%;
   margin-left: 10%;
+  height: 10%;
 }
 
 .search-input-user input:focus {
