@@ -31,8 +31,7 @@ const ModalPayment = (props) => {
       swal("Your file more than 3MB");
     } else {
       const id_order = props.id_order;
-      // console.log("file", file);
-      // console.log(props.id_order);
+
       const data = new FormData();
       data.append("reservationid", id_order);
       data.append("invoice", file);

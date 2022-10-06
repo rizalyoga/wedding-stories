@@ -8,8 +8,8 @@
 
 </div>
 
-<!-- ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/feliciakri/cofficed) -->
-<!-- ![Vercel](https://vercelbadge.vercel.app/api/feliciakri/cofficed) -->
+<!-- ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/rizalyoga) -->
+<!-- ![Vercel](https://vercelbadge.vercel.app/api/rizalyoga) -->
 <!-- ![Website](https://img.shields.io/website?url=https%3A%2F%2Fcofficed.tech) -->
 
 > Wedding Stories is an e-commerce platform that brings together wedding organizers who want to market wedding packages online with couples who want to find wedding packages.
@@ -17,6 +17,10 @@
 ## ✨ Demo
 
 Here is a working live demo : [Demo](https://weddingstories-space.web.app/)
+
+## 🎥 Video Demo
+
+Here is a working video demo : [Video](https://drive.google.com/file/d/1eVjkmEI08w4FNJKIz1a4kzMF8JqzsyWM/view?usp=sharing)
 
 ## ⚙️ Backend
 
