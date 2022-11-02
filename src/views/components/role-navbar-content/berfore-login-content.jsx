@@ -20,7 +20,7 @@ const BeforeLoginContent = () => {
           onClick={() => setModalLoginShow(true)}
           href
         >
-          Sign in
+          Login
         </a>
         <a
           className="sign-up"
