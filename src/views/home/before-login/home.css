@@ -3,89 +3,11 @@
   flex-wrap: wrap;
 }
 
-.card-wo {
-  cursor: pointer;
-  width: 271px;
-  margin-right: 8px;
-  box-shadow: 0px 0px 5px 0px rgba(97, 97, 97, 0.75);
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(119, 119, 119, 0.75);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  border-radius: 9px;
-}
-
-.images {
-  -webkit-transition: box-shadow 0.2s ease-in;
-  -moz-transition: box-shadow 0.2s ease-in;
-  transition: box-shadow 0.2s ease-in;
-  height: 200px;
-}
-
-.images img {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: -1;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 2px;
-  object-fit: cover;
-}
-
-.name-wo {
-  padding-left: 8px;
-  font-size: 0.9rem;
-  margin-bottom: -4px;
-}
-
-.price {
-  color: #777;
-  font-size: 0.8rem;
-  padding-left: 8px;
-  padding-bottom: 8px;
-}
-
-.images:hover {
-  -moz-box-shadow: rgba(4, 9, 30, 0.7) 5px 10px inset;
-  -webkit-box-shadow: rgba(4, 9, 30, 0.7) 5px 5px 30px inset;
-  box-shadow: rgba(107, 154, 241, 0.3) 5px 5px 55px inset;
-  border-radius: 10px;
-}
-
-@media (min-width: 1400px) {
-  .card-wo {
-    width: 424px;
-  }
-}
-
-@media (max-width: 1300px) {
-  .card-wo {
-    width: 364px;
-  }
-}
-
-@media (max-width: 1105px) {
-  .card-wo {
-    width: 340px;
-  }
-}
-
 @media (max-width: 850px) {
   .list-wo h2 {
     text-align: center;
   }
 
-  .images {
-    height: 300px;
-  }
-
-  .images img {
-    height: 300px;
-  }
-
-  .card-wo {
-    width: 500px;
-    margin-bottom: 20px !important;
-  }
   .row-card {
     display: flex;
     justify-content: center;
