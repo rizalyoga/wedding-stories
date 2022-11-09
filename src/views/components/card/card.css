@@ -6,6 +6,13 @@
   -webkit-box-shadow: 0px 0px 5px 0px rgba(119, 119, 119, 0.75);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   border-radius: 9px;
+  transition: 400ms;
+  background-color: #fff;
+}
+
+.card-wo:hover {
+  transform: scale(1.1);
+  z-index: 10;
 }
 
 .images {
@@ -19,7 +26,6 @@
   width: 100%;
   height: 100%;
   position: relative;
-  z-index: -1;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 2px;
@@ -30,6 +36,9 @@
   padding-left: 8px;
   font-size: 0.9rem;
   margin-bottom: -4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 25px;
 }
 
 .price {

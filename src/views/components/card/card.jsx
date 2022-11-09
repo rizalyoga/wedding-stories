@@ -34,15 +34,7 @@ const Card = ({ packageData }) => {
                 alt="product"
               />
             </div>
-            <div
-              className="name-wo fw-bold mt-1"
-              id="name-wo"
-              style={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                height: "25px",
-              }}
-            >
+            <div className="name-wo fw-bold mt-1" id="name-wo">
               {el.PackageName}
             </div>
             <div className="desc-packages d-flex justify-content-between">
